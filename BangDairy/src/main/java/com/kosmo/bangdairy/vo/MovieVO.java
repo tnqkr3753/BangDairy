@@ -24,7 +24,6 @@ public class MovieVO {
 	private String posterAddr;
 	private String previewAddr;
 	private HashMap<ActorVO, String> starring;
-	private HashMap<OstVO, String> movieOst;
 	private ArrayList<DirectorVO> movieDirector;
 	private ArrayList<CommentVO> movieComment;
 	private ArrayList<GenreVO> movieGenre;
@@ -120,12 +119,6 @@ public class MovieVO {
 	public void setStarring(HashMap<ActorVO, String> starring) {
 		this.starring = starring;
 	}
-	public HashMap<OstVO, String> getMovieOst() {
-		return movieOst;
-	}
-	public void setMovieOst(HashMap<OstVO, String> movieOst) {
-		this.movieOst = movieOst;
-	}
 	public ArrayList<DirectorVO> getMovieDirector() {
 		return movieDirector;
 	}
@@ -178,7 +171,7 @@ public class MovieVO {
 				+ ", openingDate=" + openingDate + ", plot=" + plot + ", showtimes=" + showtimes + ", viewingClass="
 				+ viewingClass + ", numbersViewers=" + numbersViewers + ", keyword=" + keyword + ", numbersHists="
 				+ numbersHists + ", updateDate=" + updateDate + ", posterAddr=" + posterAddr + ", previewAddr="
-				+ previewAddr + ", starring=" + starring + ", movieOst=" + movieOst + ", movieDirector=" + movieDirector
+				+ previewAddr + ", starring=" + starring + ", movieOst=" + ", movieDirector=" + movieDirector
 				+ ", movieComment=" + movieComment + ", movieGenre=" + movieGenre + ", movieStill=" + movieStill + "]";
 	}
 	

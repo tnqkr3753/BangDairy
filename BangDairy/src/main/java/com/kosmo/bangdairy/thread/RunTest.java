@@ -10,7 +10,7 @@ public class RunTest {
 		// TODO Auto-generated method stub
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar cal = Calendar.getInstance();
-		String strDate = "20150101";
+		String strDate = "20100101";
 		try {
 			cal.setTime(sdf.parse(strDate));
 		} catch (ParseException e) {

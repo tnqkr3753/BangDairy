@@ -15,24 +15,32 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.kosmo.bangdairy.service.ThreadInsertService;
+import com.kosmo.bangdairy.service.ThreadInsertServiceImpl;
 import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 import com.kosmo.bangdairy.vo.StillVO;
-
+//@Component
 public class ApiConnection implements Runnable {
+//	@Autowired
+//	ThreadInsertService threadInsertService;
+	
 	String aDate;
 	public ApiConnection(String aDate) {
 		this.aDate = aDate;
 	}
-	public static void getMovie(Calendar cal) throws Exception {
+	private ArrayList<MovieVO> getMovie(Calendar cal) throws Exception {
 		//http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&createDts=2019&director=%EB%B4%89%EC%A4%80%ED%98%B8&listCount=3&detail=Y&ServiceKey=5U295LSU679NZDLWTCK5
 		 /*URL*/ 
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -48,7 +56,7 @@ public class ApiConnection implements Runnable {
 		//releaseDte 개봉일종료
 		  urlBuilder.append("&" + URLEncoder.encode("releaseDte","UTF-8") +"="+dtsPlus);
 		  System.out.println(df.format(cal.getTime()));
-//		  urlBuilder.append("&" + URLEncoder.encode("val001","UTF-8") + "=" + URLEncoder.encode("2000", "UTF-8"));
+		  urlBuilder.append("&" + URLEncoder.encode("listCount","UTF-8") +"="+500);
 		  URL url = new URL(urlBuilder.toString());
 		  HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		  conn.setRequestMethod("GET"); conn.setRequestProperty("Content-type", "application/json");
@@ -68,6 +76,7 @@ public class ApiConnection implements Runnable {
 		  }
 		  rd.close();
 		  conn.disconnect();
+		  //Json parsing
 		  JsonParser jp = new JsonParser();
 		  JsonObject json = jp.parse(sb.toString()).getAsJsonObject();
 		  Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -77,24 +86,25 @@ public class ApiConnection implements Runnable {
 		  for (JsonElement jsonElement : jarr) {
 			JsonArray arrResult = jsonElement.getAsJsonObject().get("Result").getAsJsonArray();
 			System.out.println("--------------------------------");
-			
+			//결과받기
 			for (JsonElement result : arrResult) {
 				MovieVO vo = new MovieVO();
 				JsonObject rs = result.getAsJsonObject();
-				vo.setMovieTitle(rs.get("title").getAsString());
-				vo.setMovieEngTitle(rs.get("titleEng").getAsString());
-				vo.setOpeningDateStr(rs.get("repRatDate").getAsString());
-				JsonArray directors = rs.get("directors").getAsJsonObject().get("director").getAsJsonArray();
-				ArrayList<DirectorVO> drs = new ArrayList<DirectorVO>();
-				for (JsonElement direct : directors) {
+				vo.setMovieTitle(rs.get("title").getAsString()); //영화제목
+				vo.setMovieEngTitle(rs.get("titleEng").getAsString()); //영어제목
+				vo.setOpeningDateStr(rs.get("repRatDate").getAsString()); //개봉일
+				JsonArray directors = rs.get("directors").getAsJsonObject().get("director").getAsJsonArray(); //감독배열
+				ArrayList<DirectorVO> drs = new ArrayList<DirectorVO>(); //감독리스트
+				for (JsonElement direct : directors) { // for문시작
 					DirectorVO dvo = new DirectorVO();
 					JsonObject director_each = direct.getAsJsonObject();
 					dvo.setDirectorName(director_each.get("directorNm").getAsString());
 					dvo.setDirectorEngName(director_each.get("directorEnNm").getAsString());
 					dvo.setDirectorId(director_each.get("directorId").getAsString());
 					drs.add(dvo);
-				}
+				} //for문끝
 				vo.setMovieDirector(drs);
+				//장르정보 vo 등록
 				StringTokenizer  st = new StringTokenizer(rs.get("genre").getAsString(),",");
 				ArrayList<GenreVO> gvoArr = new ArrayList<GenreVO>();
 				while(st.hasMoreTokens()) {
@@ -103,10 +113,6 @@ public class ApiConnection implements Runnable {
 					gvoArr.add(gvo);
 				}
 				vo.setMovieGenre(gvoArr);
-//				JsonArray actors = rs.get("actors").getAsJsonObject().get("actor").getAsJsonArray();
-//				for (JsonElement jActors : actors) {
-//					actMap.put(avo, null);
-//				}
 				vo.setContry(rs.get("nation").getAsString());
 				vo.setCompany(rs.get("company").isJsonNull()?"":rs.get("company").getAsString());
 				JsonObject plots = rs.get("plots").getAsJsonObject().get("plot").getAsJsonArray().get(0).getAsJsonObject();
@@ -115,7 +121,7 @@ public class ApiConnection implements Runnable {
 				vo.setViewingClass(rs.get("rating").getAsString());
 				vo.setKeyword(rs.get("keywords").getAsString());
 				vo.setPosterAddr(rs.get("posters").getAsString());
-//				System.out.println("releaseDate : "+rs.get("releaseDate"));
+				//스틸컷 정보 vo등록
 				StringTokenizer stStill = new StringTokenizer(rs.get("stlls").getAsString());
 				ArrayList<StillVO> stillArr = new ArrayList<StillVO>();
 				while (stStill.hasMoreTokens()) {
@@ -123,6 +129,7 @@ public class ApiConnection implements Runnable {
 					svo.setStillAddr(stStill.nextToken());
 					stillArr.add(svo);
 				}
+				//배우정보 vo등록
 				JsonArray staffs = rs.get("staffs").getAsJsonObject().get("staff").getAsJsonArray();
 				HashMap<ActorVO, String> actMap = new HashMap<ActorVO, String>();
 				for (JsonElement jStaff : staffs) {
@@ -131,14 +138,23 @@ public class ApiConnection implements Runnable {
 						ActorVO avo = new ActorVO();
 						avo.setActorName(joStaff.get("staffNm").getAsString());
 						avo.setActorEngName(joStaff.get("staffEnNm").getAsString());
+						avo.setActorRegId(joStaff.get("staffId").getAsString());
 						actMap.put(avo, joStaff.get("staffRole").getAsString());
 					}
 				}
 				vo.setStarring(actMap);
 				vo.setPreviewAddr(rs.get("vods").getAsJsonObject().get("vod").getAsJsonArray().get(0).getAsJsonObject().get("vodUrl").getAsString());
-				System.out.println("************************");
-				System.out.println(vo);
-				System.out.println("////////////////////////////");
+//				System.out.println(vo);
+				voArr.add(vo);
+			}
+		}
+		return voArr;
+	}
+	private void insertMovie(ArrayList<MovieVO> arr){
+		for (MovieVO movieVO : arr) {
+			if (movieVO != null) {
+				ThreadInsertService threadInsertService = new ThreadInsertServiceImpl();
+				threadInsertService.insertMovie(movieVO);
 			}
 		}
 	}
@@ -154,12 +170,14 @@ public class ApiConnection implements Runnable {
 		}
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
+		ArrayList<MovieVO> movieArr = null;
 		try {
-			getMovie(cal);
+			movieArr = getMovie(cal);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("api접근 오류 : "+e.getMessage());
 		}
+		System.out.println(movieArr);
+		insertMovie(movieArr);
 	}
 
 }

@@ -4,6 +4,7 @@ public class ActorVO {
 	private int actorId;
 	private String actorName;
 	private String actorEngName;
+	private String actorRegId;
 	public int getActorId() {
 		return actorId;
 	}
@@ -22,8 +23,16 @@ public class ActorVO {
 	public void setActorEngName(String actorEngName) {
 		this.actorEngName = actorEngName;
 	}
+	public String getActorRegId() {
+		return actorRegId;
+	}
+	public void setActorRegId(String actorRegId) {
+		this.actorRegId = actorRegId;
+	}
 	@Override
 	public String toString() {
-		return "ActorVO [actorId=" + actorId + ", actorName=" + actorName + ", actorEngName=" + actorEngName + "]";
+		return "ActorVO [actorId=" + actorId + ", actorName=" + actorName + ", actorEngName=" + actorEngName
+				+ ", actorRegId=" + actorRegId + "]";
 	}
+	
 }
