@@ -1,0 +1,157 @@
+.pagination_tab.pagination_number .item {
+    border: 1px solid #69707d;
+    background-color: #69707d;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 4px;
+    border: 1px solid rgba(221,221,223,0.8);
+    line-height: 17px;
+    float: left;
+    position: relative;
+    background-color: #f6f6f7;
+    color: #888;
+    font-size: 12px;
+    font-family: "Tahoma","Malgun Gothic","¸¼Àº °íµñ","Dotum","µ¸¿ò","Helvetica","Apple SD Gothic Neo","sans-serif";
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-style: initial;
+    text-decoration-color: initial;
+    color: inherit;
+    cursor: pointer;
+    text-align:left;
+}
+
+.s-content__tags span a {
+	float: center;
+
+}
+#darinsaram-blog-image{	
+   width: 282px;
+}
+
+#mydairyimg .s-content__author-name img{
+   margin-top : 15px;
+   width: 6.6rem;
+   height: 6.6rem;
+   border-radius: 50%;
+}
+
+#mydairyimg .s-content__author-name2 img{
+   width: 88%;
+}
+#userhello {
+	text-align:center;
+	font-size: 50px;
+	
+}
+
+#mydairyimg h4 {
+   border-top: 1px solid rgba(0, 0, 0, 0.1);
+   margin-bottom: 1.5rem;
+   text-align:left;
+}
+
+.mydairy{
+	width: 100%;
+}
+
+.left-dairy-maintab{
+	width: 75%;
+	float: left;
+}
+
+.right-dairy-maintab {
+	width: 20%;
+	float: right;
+}
+
+#myrigthprofile {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	text-align:left;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.s-content__author-name5{
+	margin-top: 1.5rem;
+}
+
+#rigthotherdiary{
+    padding: 0px 16px 20px 23px;
+    border: solid #dddddf;
+    border-width: 1px 1px 1px;
+}
+
+.s-content__header-meta h4{
+	text-align:left;
+}
+
+.myleftTap{	
+	width: 25%;
+	float: left;
+}	
+
+.myRightTap{
+	width: 70%;
+	float: right;
+}
+.rowformat-audio{
+	width:100%;
+}
+
+.myleftTap2{	
+	width: 25%;
+	float: left;
+}	
+
+.myRightTap2{
+	width: 60%;
+	float: right;
+}
+
+.s-content__header-title pre{
+	text-align:left;
+}
+.s-content__header-title h4{
+	text-align:left;
+}
+
+.s-content__header-title h1{
+	text-align:center;
+}
+
+.s-content__header-title h3{
+	text-align:center;
+}
+.s-content__header-title h4{
+	
+	}
+.starR {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starR.on{
+	background-position:0 0;
+}
+
+.mk_scroller_block {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: auto;
+}
+
+.demo-page-block {
+  height: 100vh;
+  width: 100%;
+}
