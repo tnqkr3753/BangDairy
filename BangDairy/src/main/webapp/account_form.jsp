@@ -16,29 +16,36 @@
 		<div class="row">
 		<div class="col-md-12 col-sm-12 col">
 			<div>
-				<input type="text" name="" required="">
-				<label>
-					Name
+				<input id='user_id' type="text" name="" required="">
+				<strong id='idCheckResult'>ggg</strong>
+				<label >
+					아이디
 				</label>	
 			</div>
 			<div>
-				<input type="text" name="" required="">
-				<label>
-					Username
-				</label>	
-			</div>
-			<div>
-				<input type="text" name="" required="">
-				<label>Email id</label>	
+				<input type="password" name="" required="">
+				<label>패스워드</label>	
 			</div>
 			<div>
 				<input type="password" name="" required="">
-				<label>Password</label>	
+				<strong id="passwdCheckResult">aaa</strong>
+				<label>패스워드-확인</label>	
+			</div>
+			
+			<div>
+				<input type="text" name="" required="">
+				<label>이름</label>	
 			</div>
 			<div>
-				<input type="password" name="" required="">
-				<label>Re-Enter Password</label>	
+				<input type="text" name="" required="">
+				<label>주민번호</label>	
 			</div>
+			<div>
+				<input id="user_email" type="text" name="" required="">
+				<strong id="eMailCheckResult">eee</strong>
+				<label>e-mail</label>	
+			</div>
+			
 			<input type="submit" value="Create my account" name="">
 			<button>취소</button>
 			</div>
