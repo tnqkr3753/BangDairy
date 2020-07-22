@@ -19,4 +19,6 @@ public interface ThreadInsertDAO {
 	public int insertStarring(HashMap hash);
 	public int insertMovieDirector(HashMap hash);
 	public int insertMovieGenre(HashMap hash);
+	public ActorVO selectActorInfo(ActorVO vo);
+	public DirectorVO selectDirectorInfo(DirectorVO vo);
 }

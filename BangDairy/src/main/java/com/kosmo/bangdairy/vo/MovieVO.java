@@ -10,7 +10,7 @@ public class MovieVO {
 	private int movieId;
 	private String movieTitle;
 	private String MovieEngTitle;
-	private String contry;
+	private String country;
 	private String company;
 	private String openingDateStr;
 	private Date openingDate;
@@ -46,11 +46,11 @@ public class MovieVO {
 	public void setMovieEngTitle(String movieEngTitle) {
 		MovieEngTitle = movieEngTitle;
 	}
-	public String getContry() {
-		return contry;
+	public String getCountry() {
+		return country;
 	}
-	public void setContry(String contry) {
-		this.contry = contry;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	public String getCompany() {
 		return company;
@@ -167,7 +167,7 @@ public class MovieVO {
 	@Override
 	public String toString() {
 		return "MovieVO [movieId=" + movieId + ", movieTitle=" + movieTitle + ", MovieEngTitle=" + MovieEngTitle
-				+ ", contry=" + contry + ", company=" + company + ", openingDateStr=" + openingDateStr
+				+ ", country=" + country + ", company=" + company + ", openingDateStr=" + openingDateStr
 				+ ", openingDate=" + openingDate + ", plot=" + plot + ", showtimes=" + showtimes + ", viewingClass="
 				+ viewingClass + ", numbersViewers=" + numbersViewers + ", keyword=" + keyword + ", numbersHists="
 				+ numbersHists + ", updateDate=" + updateDate + ", posterAddr=" + posterAddr + ", previewAddr="

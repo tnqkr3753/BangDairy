@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.dao.ThreadInsertDAO;
+import com.kosmo.bangdairy.dao.ThreadInsertDAOImpl;
 import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
@@ -40,12 +41,15 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 		avoMap.forEach((key,value) -> {
 			if(threadInsertDAO.insertActor(key)==1) {}
 			else {
-				System.out.println("db actor입력실패 : "+key);
+				System.out.println("db actor입력실패 중복 : "+key);
+				ActorVO avo = threadInsertDAO.selectActorInfo(key);
+				key.setActorId(avo.getActorId());
 			}
 			HashMap starring = new HashMap();
 			starring.put("movieId", vo.getMovieId());
 			starring.put("actorId", key.getActorId());
-			starring.put("actorId", value);
+			starring.put("role", value);
+			System.out.println("starring : "+starring);
 			if(threadInsertDAO.insertStarring(starring)==1) {}
 			else {
 				System.out.println("db starring 입력실패" + starring);
@@ -55,7 +59,6 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 			if(threadInsertDAO.insertDirector(dvo)==1) {}
 			else {
 				System.out.println("db director입력실패 : "+dvo);
-				continue;
 			}
 			HashMap movieDirector = new HashMap();
 			movieDirector.put("movieId", vo.getMovieId());
@@ -66,11 +69,13 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 				continue;
 			}
 		}
-		for (StillVO svo : vo.getMovieStill()) {
-			if(threadInsertDAO.insertStillImg(svo)==1) {}
-			else {
-				System.out.println("db still-img 입력실패 : " + svo);
-				continue;
+		if (vo.getMovieStill()!=null) {
+			for (StillVO svo : vo.getMovieStill()) {
+				if(threadInsertDAO.insertStillImg(svo)==1) {}
+				else {
+					System.out.println("db still-img 입력실패 : " + svo);
+					continue;
+				}
 			}
 		}
 	}

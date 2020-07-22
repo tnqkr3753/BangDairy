@@ -1,4 +1,4 @@
-package com.kosmo.bangdairy.thread;
+package com.kosmo.bangdairy.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.StringTokenizer;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,22 +23,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.kosmo.bangdairy.service.ThreadInsertService;
-import com.kosmo.bangdairy.service.ThreadInsertServiceImpl;
 import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 import com.kosmo.bangdairy.vo.StillVO;
-//@Component
-public class ApiConnection implements Runnable {
-//	@Autowired
-//	ThreadInsertService threadInsertService;
+
+@Service("apiConnectionService")
+public class ApiConnectionService {
+	@Autowired
+	ThreadInsertService threadInsertService;
 	
-	String aDate;
-	public ApiConnection(String aDate) {
-		this.aDate = aDate;
-	}
 	private ArrayList<MovieVO> getMovie(Calendar cal) throws Exception {
 		//http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&createDts=2019&director=%EB%B4%89%EC%A4%80%ED%98%B8&listCount=3&detail=Y&ServiceKey=5U295LSU679NZDLWTCK5
 		 /*URL*/ 
@@ -78,7 +72,7 @@ public class ApiConnection implements Runnable {
 		  conn.disconnect();
 		  //Json parsing
 		  JsonParser jp = new JsonParser();
-		  JsonObject json = jp.parse(sb.toString()).getAsJsonObject();
+		  JsonObject json = jp.parse(sb.toString().replace("'", "")).getAsJsonObject();
 		  Gson gson = new GsonBuilder().setPrettyPrinting().create();
 //		  System.out.println(gson.toJson(json));
 		  JsonArray jarr = json.get("Data").getAsJsonArray();
@@ -113,14 +107,17 @@ public class ApiConnection implements Runnable {
 					gvoArr.add(gvo);
 				}
 				vo.setMovieGenre(gvoArr);
-				vo.setContry(rs.get("nation").getAsString());
+				vo.setCountry(rs.get("nation").getAsString());
 				vo.setCompany(rs.get("company").isJsonNull()?"":rs.get("company").getAsString());
 				JsonObject plots = rs.get("plots").getAsJsonObject().get("plot").getAsJsonArray().get(0).getAsJsonObject();
 				vo.setPlot(plots.get("plotText").getAsString());
 				vo.setShowtimes(rs.get("runtime").getAsString());
 				vo.setViewingClass(rs.get("rating").getAsString());
 				vo.setKeyword(rs.get("keywords").getAsString());
-				vo.setPosterAddr(rs.get("posters").getAsString());
+				String pos = rs.get("posters").getAsString();
+				if (pos.indexOf("|")!=-1) {
+					vo.setPosterAddr(pos.split("|")[0]);
+				}else vo.setPosterAddr(pos);
 				//스틸컷 정보 vo등록
 				StringTokenizer stStill = new StringTokenizer(rs.get("stlls").getAsString());
 				ArrayList<StillVO> stillArr = new ArrayList<StillVO>();
@@ -153,23 +150,11 @@ public class ApiConnection implements Runnable {
 	private void insertMovie(ArrayList<MovieVO> arr){
 		for (MovieVO movieVO : arr) {
 			if (movieVO != null) {
-				ThreadInsertService threadInsertService = new ThreadInsertServiceImpl();
 				threadInsertService.insertMovie(movieVO);
 			}
 		}
 	}
-	@Override
-	public void run() {
-		DateFormat df = new SimpleDateFormat("yyyyMMdd");
-		Date date = null;
-		try {
-			date = df.parse(aDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
+	public void runService(Calendar cal) {
 		ArrayList<MovieVO> movieArr = null;
 		try {
 			movieArr = getMovie(cal);

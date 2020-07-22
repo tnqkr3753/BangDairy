@@ -57,4 +57,15 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 		return sqlSession.insert("ThreadInsertDAO.insertMovieGenre", hash);
 	}
 
+	@Override
+	public ActorVO selectActorInfo(ActorVO vo) {
+		return sqlSession.selectOne("ThreadInsertDAO.selectActor",vo);
+	}
+
+	@Override
+	public DirectorVO selectDirectorInfo(DirectorVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ThreadInsertDAO.selectDirector",vo);
+	}
+	
 }

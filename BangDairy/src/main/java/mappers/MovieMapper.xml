@@ -3,7 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ThreadInsertDAO">
 <insert id="insertGenre" parameterType="genre" useGeneratedKeys="true" keyProperty="genreId">
-	insert into genre_info (genre_title) values (#{genreTitle})
+	insert into genre_info (genre_title)
+	SELECT #{genreTitle} from dual
+	WHERE not exists (SELECT * FROM genre_info WHERE genre_title=#{genreTitle})
 </insert>
 
 <insert id="insertActor" parameterType="actor" useGeneratedKeys="true" keyProperty="actorId">
@@ -16,14 +18,17 @@
 	,actor_reg_id
 	</if>
 	)
-	 values (#{actorName}
-	<if test="actorName !=null">
-	,#{actorName}
+	SELECT #{actorName}	
+	<if test="actorEngName !=null">
+	,#{actorEngName}
 	</if>
 	<if test="actorRegId !=null">
 	,#{actorRegId}
 	</if>
-	)
+	FROM dual
+	<if test="actorRegId !=null">
+	WHERE not exists (SELECT * FROM actor_info WHERE actor_reg_id=#{actorRegId})
+	</if>
 </insert>
 
 <insert id="insertDirector" parameterType="director" useGeneratedKeys="true" keyProperty="directorId">
@@ -33,25 +38,25 @@
 	,director_eng_name
 	</if>
 	)
-	 values (#{directorId},#{actorName}
+	SELECT #{directorId},#{directorName}
 	<if test="directorEngName !=null">
 	,#{directorEngName}
 	</if>
-	)
+	FROM dual
+	WHERE not exists (SELECT * FROM director_info WHERE director_id=#{directorId})
 </insert>
 <insert id="insertStill" parameterType="still" useGeneratedKeys="true" keyProperty="stillId">
 	<if test="stillAddr !=null">
 	insert into movie_still_img (movie_id,still_addr) values (#{movieId},#{stillAddr})
 	</if>
 </insert>
-
 <insert id="insertMovie" parameterType="movie" useGeneratedKeys="true" keyProperty="movieId">
 	insert into movie_info
 	(movie_title
 	<if test="movieEngTitle !=null">
 	,movie_eng_title
 	</if>
-	<if test="contry !=null">
+	<if test="country !=null">
 	,country
 	</if>
 	<if test="company !=null">
@@ -64,7 +69,7 @@
 	<if test="keyword !=null">
 	,keyword
 	</if>
-	,0,SYSDATE(),
+	,numbers_hits,update_date
 	<if test="posterAddr !=null">
 	,poster_addr
 	</if>
@@ -77,7 +82,7 @@
 	<if test="movieEngTitle !=null">
 	,#{movieEngTitle}
 	</if>
-	<if test="contry !=null">
+	<if test="country !=null">
 	,#{country}
 	</if>
 	<if test="company !=null">
@@ -90,7 +95,7 @@
 	<if test="keyword !=null">
 	,#{keyword}
 	</if>
-	,0,SYSDATE(),
+	, 0 , now()
 	<if test="posterAddr !=null">
 	,#{posterAddr}
 	</if>
@@ -113,5 +118,18 @@
 <insert id="insertMovieGenre" parameterType="hashmap">
 	insert into movie_genre values (#{genreId},#{movieId})
 </insert>
- 
+ <select id="selectActor" parameterType="actor" resultType="actor">
+ 	select * from actor_info where
+ 	actor_reg_id = #{actorRegId} 
+ 	<if test="actorName != null">
+ 	AND actor_name = #{actorName} 
+ 	</if>
+ 	<if test="actorEngName != null">
+ 	AND actor_eng_name = #{actorEngName} 
+ 	</if>
+ </select>
+ <select id="selectDirector" parameterType="director" resultType="director">
+ 	SELECT * FROM director_info where
+ 	director_id = #{directorId}
+ </select>
 </mapper>  
