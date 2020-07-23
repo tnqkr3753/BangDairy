@@ -7,7 +7,7 @@ $(document).ready(function(){
 	maxSlides:10,
 	slideWidth:300,
 	slideMargin:30,
-	moveSlides:5
+	moveSlides:1
 	
 }); 
 
