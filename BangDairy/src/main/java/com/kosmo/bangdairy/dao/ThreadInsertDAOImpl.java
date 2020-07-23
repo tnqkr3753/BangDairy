@@ -1,6 +1,7 @@
 package com.kosmo.bangdairy.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +23,28 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 	}
 
 	@Override
-	public int insertActor(ActorVO vo) {
-		return sqlSession.insert("ThreadInsertDAO.insertActor", vo);
+	public int insertActor(List<ActorVO> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertActor", list);
 	}
 
 	@Override
-	public int insertDirector(DirectorVO vo) {
-		return sqlSession.insert("ThreadInsertDAO.insertDirector", vo);
+	public int insertDirector(List<DirectorVO> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertDirector", list);
 	}
 
 	@Override
-	public int insertStillImg(StillVO vo) {
-		return sqlSession.insert("ThreadInsertDAO.insertStill", vo);
+	public int insertStillImg(List<StillVO> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertStill", list);
 	}
 
 	@Override
-	public int insertMovie(MovieVO vo) {
-		return sqlSession.insert("ThreadInsertDAO.insertMovie", vo);
+	public int insertMovie(List<MovieVO> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertMovie", list);
 	}
 
 	@Override
-	public int insertStarring(HashMap hash) {
-		return sqlSession.insert("ThreadInsertDAO.insertStarring", hash);
+	public int insertStarring(List<HashMap> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertStarring", list);
 	}
 
 
@@ -53,8 +54,8 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 	}
 
 	@Override
-	public int insertMovieGenre(HashMap hash) {
-		return sqlSession.insert("ThreadInsertDAO.insertMovieGenre", hash);
+	public int insertMovieGenre(List<HashMap> list) {
+		return sqlSession.insert("ThreadInsertDAO.insertMovieGenre", list);
 	}
 
 	@Override
@@ -64,8 +65,18 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 
 	@Override
 	public DirectorVO selectDirectorInfo(DirectorVO vo) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("ThreadInsertDAO.selectDirector",vo);
 	}
+
+	@Override
+	public GenreVO selectGenreInfo(GenreVO vo) {
+		return sqlSession.selectOne("ThreadInsertDAO.selectGenre",vo);
+	}
+
+	@Override
+	public int updateMovieOpening(List<MovieVO> list) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("ThreadInsertDAO.updateMovieOpening",list);
+	}	
 	
 }

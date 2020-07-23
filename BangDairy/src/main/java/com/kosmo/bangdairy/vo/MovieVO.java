@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class MovieVO {
-	private int movieId;
+	private String movieId;
 	private String movieTitle;
 	private String MovieEngTitle;
 	private String country;
@@ -28,10 +28,10 @@ public class MovieVO {
 	private ArrayList<CommentVO> movieComment;
 	private ArrayList<GenreVO> movieGenre;
 	private ArrayList<StillVO> movieStill;
-	public int getMovieId() {
+	public String getMovieId() {
 		return movieId;
 	}
-	public void setMovieId(int movieId) {
+	public void setMovieId(String movieId) {
 		this.movieId = movieId;
 	}
 	public String getMovieTitle() {

@@ -8,128 +8,130 @@
 	WHERE not exists (SELECT * FROM genre_info WHERE genre_title=#{genreTitle})
 </insert>
 
-<insert id="insertActor" parameterType="actor" useGeneratedKeys="true" keyProperty="actorId">
+<insert id="insertActor" parameterType="java.util.List">
 	insert into actor_info
 	(actor_name
-		<if test="actorEngName !=null">
 	,actor_eng_name
-	</if>
-	<if test="actorRegId !=null">
-	,actor_reg_id
-	</if>
+	,actor_id
 	)
-	SELECT #{actorName}	
-	<if test="actorEngName !=null">
-	,#{actorEngName}
-	</if>
-	<if test="actorRegId !=null">
-	,#{actorRegId}
-	</if>
+	<foreach collection="list" item="item" separator=" UNION ">
+	SELECT #{item.actorName}	
+	,#{item.actorEngName}
+	,#{item.actorId}
 	FROM dual
-	<if test="actorRegId !=null">
-	WHERE not exists (SELECT * FROM actor_info WHERE actor_reg_id=#{actorRegId})
-	</if>
+	WHERE not exists (SELECT * FROM actor_info WHERE actor_id=#{item.actorId})
+	</foreach>
 </insert>
 
-<insert id="insertDirector" parameterType="director" useGeneratedKeys="true" keyProperty="directorId">
-	insert into director_info 	
-	(director_id,director_name
-	<if test="directorEngName !=null">
-	,director_eng_name
-	</if>
-	)
-	SELECT #{directorId},#{directorName}
-	<if test="directorEngName !=null">
-	,#{directorEngName}
-	</if>
-	FROM dual
-	WHERE not exists (SELECT * FROM director_info WHERE director_id=#{directorId})
-</insert>
-<insert id="insertStill" parameterType="still" useGeneratedKeys="true" keyProperty="stillId">
-	<if test="stillAddr !=null">
-	insert into movie_still_img (movie_id,still_addr) values (#{movieId},#{stillAddr})
-	</if>
-</insert>
-<insert id="insertMovie" parameterType="movie" useGeneratedKeys="true" keyProperty="movieId">
-	insert into movie_info
-	(movie_title
-	<if test="movieEngTitle !=null">
-	,movie_eng_title
-	</if>
-	<if test="country !=null">
-	,country
-	</if>
-	<if test="company !=null">
-	,company
-	</if>
-	<if test="openingDate !=null">
-	,opening_date
-	</if>
-	,plot,showtimes,viewing_class
-	<if test="keyword !=null">
-	,keyword
-	</if>
-	,numbers_hits,update_date
-	<if test="posterAddr !=null">
-	,poster_addr
-	</if>
-	<if test="previewAddr !=null">
-	,preview_addr
-	</if>
-	)
-	 values 
-	(movie_title
-	<if test="movieEngTitle !=null">
-	,#{movieEngTitle}
-	</if>
-	<if test="country !=null">
-	,#{country}
-	</if>
-	<if test="company !=null">
-	,#{company}
-	</if>
-	<if test="openingDate !=null">
-	,#{openingDate}
-	</if>
-	,#{plot},#{showtimes},#{viewingClass}
-	<if test="keyword !=null">
-	,#{keyword}
-	</if>
-	, 0 , now()
-	<if test="posterAddr !=null">
-	,#{posterAddr}
-	</if>
-	<if test="previewAddr !=null">
-	,#{previewAddr}
-	</if>
-	)
+<insert id="insertDirector" parameterType="java.util.List">
+		insert into director_info 	
+		(director_id,director_name
+		,director_eng_name
+		)
+		<foreach collection="list" item="item" separator=" UNION ">
+		SELECT #{item.directorId},#{item.directorName}
+		,#{item.directorEngName}
+		FROM dual
+		WHERE not exists (SELECT * FROM director_info WHERE director_id=#{item.directorId})
+		</foreach>
 </insert>
 
-<insert id="insertStarring" parameterType="hashmap">
-	insert into starring values
-	(#{movieId},#{actorId},#{role})
+<insert id="insertStill" parameterType="java.util.List">
+	insert into movie_still_img (movie_id,still_addr) 
+	<foreach collection="list" item="item" separator=" UNION ">
+	SELECT #{item.movieId},#{item.stillAddr} FROM dual
+	WHERE not exists (SELECT * FROM movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
+	</foreach>
+</insert>
+
+<insert id="insertMovie" parameterType="java.util.List">
+	
+		insert into movie_info
+		(movie_id,movie_title
+		,movie_eng_title
+		,country
+		,company
+		,opening_date
+		,plot,showtimes,viewing_class
+		,keyword
+		,numbers_hits,update_date
+		,poster_addr
+		,preview_addr
+		)
+		<foreach collection="list" item="item" separator=" UNION ">
+		SELECT 
+		#{item.movieId},#{item.movieTitle}
+		,#{item.movieEngTitle}
+		,#{item.country}
+		,#{item.company}
+		,#{item.openingDate}
+		,#{item.plot},#{item.showtimes},#{item.viewingClass}
+		,#{item.keyword}
+		, 0 , now()
+		,#{item.posterAddr}
+		,#{item.previewAddr}
+		FROM dual
+		WHERE not exists (SELECT * FROM movie_info WHERE movie_id=#{item.movieId})
+	</foreach>
+</insert>
+
+<insert id="insertStarring" parameterType="java.util.List">
+	
+	insert into starring (movie_id,actor_id,role) 
+	<foreach collection="list" item="item" separator=" UNION ">
+	SELECT
+	#{item.movieId},#{item.actorId},#{item.role}
+	FROM dual
+	WHERE not exists (SELECT * FROM starring 
+	WHERE movie_id=#{item.movieId}
+	AND actor_id = #{item.actorId}
+	AND role=#{item.role} )
+	</foreach>
 </insert>
 
 <insert id="insertMovieDirector" parameterType="hashmap">
-	insert into movie_director values
-	(#{directorId},#{movieId})
+	insert into movie_director SELECT
+	#{directorId},#{movieId} FROM DUAL
+	WHERE not exists (SELECT * FROM movie_director 
+	WHERE director_Id=#{directorId}
+	AND  movie_id=#{movieId})
 </insert>
 
-<insert id="insertMovieGenre" parameterType="hashmap">
-	insert into movie_genre values (#{genreId},#{movieId})
+<insert id="insertMovieGenre" parameterType="java.util.List">
+	
+	insert into movie_genre 
+	<foreach collection="list" item="item" separator=" UNION ">
+	SELECT #{item.genreId},#{item.movieId} FROM DUAL
+	WHERE not exists (SELECT * FROM movie_genre 
+	WHERE genre_Id=#{item.genreId}
+	AND  movie_id=#{item.movieId})
+	</foreach>
 </insert>
  <select id="selectActor" parameterType="actor" resultType="actor">
- 	select * from actor_info where
- 	actor_reg_id = #{actorRegId} 
- 	<if test="actorName != null">
- 	AND actor_name = #{actorName} 
- 	</if>
- 	<if test="actorEngName != null">
- 	AND actor_eng_name = #{actorEngName} 
+ 	select * from actor_info 
+ 	<if test="actorId!=null">
+ 	where actor_id = #{actorId}
  	</if>
  </select>
  <select id="selectDirector" parameterType="director" resultType="director">
- 	SELECT * FROM director_info where
- 	director_id = #{directorId}
+ 	SELECT * FROM director_info
+ 	<if test="directorId!=null"> 
+ 	where director_id = #{directorId}
+ 	</if>
  </select>
+ <select id="selectGenre" parameterType="genre" resultType="genre">
+ 	SELECT * FROM genre_info 
+ 	<if test="genreTitle !=null">
+ 	where genre_title = #{genreTitle}
+ 	</if>
+ </select>
+ <update id="updateMovieOpening" parameterType="java.util.List">
+ 	update
+ 	movie_info AS a, (<foreach collection="list" item="item" separator=" UNION ">
+ 	(SELECT #{item.movieId} as mvid,#{item.openingDate} as openDate from dual)
+ 	</foreach> ) as b  set
+ 	a.opening_date = b.openDate
+ 	WHERE a.movie_id = b.mvid 
+
+ </update>
 </mapper>  

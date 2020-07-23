@@ -12,13 +12,15 @@ import com.kosmo.bangdairy.vo.StillVO;
 
 public interface ThreadInsertDAO {
 	public int insertGenre(GenreVO vo);
-	public int insertActor(ActorVO vo);
-	public int insertDirector(DirectorVO vo);
-	public int insertStillImg(StillVO vo);
-	public int insertMovie(MovieVO vo);
-	public int insertStarring(HashMap hash);
-	public int insertMovieDirector(HashMap hash);
-	public int insertMovieGenre(HashMap hash);
+	public int insertActor(List<ActorVO> list);
+	public int insertDirector(List<DirectorVO> list);
+	public int insertStillImg(List<StillVO> list);
+	public int insertMovie(List<MovieVO> list);
+	public int insertStarring(List<HashMap> list);
+	public int insertMovieDirector(HashMap vo);
+	public int insertMovieGenre(List<HashMap> list);
 	public ActorVO selectActorInfo(ActorVO vo);
 	public DirectorVO selectDirectorInfo(DirectorVO vo);
+	public GenreVO selectGenreInfo(GenreVO vo);
+	public int updateMovieOpening(List<MovieVO> list);
 }

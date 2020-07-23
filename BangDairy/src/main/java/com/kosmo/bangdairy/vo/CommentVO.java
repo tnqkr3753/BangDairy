@@ -1,14 +1,14 @@
 package com.kosmo.bangdairy.vo;
 
 public class CommentVO {
-	private int movieId;
+	private String movieId;
 	private String userId;
 	private String comment;
 	private int receipt;
-	public int getMovieId() {
+	public String getMovieId() {
 		return movieId;
 	}
-	public void setMovieId(int movieId) {
+	public void setMovieId(String movieId) {
 		this.movieId = movieId;
 	}
 	public String getUserId() {

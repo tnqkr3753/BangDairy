@@ -2,7 +2,7 @@ package com.kosmo.bangdairy.vo;
 
 public class ReviewVO {
 	private int reviewId;
-	private int movieId;
+	private String movieId;
 	private String siteName;
 	private String reviewWriter;
 	private String reviewContent;
@@ -13,10 +13,10 @@ public class ReviewVO {
 	public void setReviewId(int reviewId) {
 		this.reviewId = reviewId;
 	}
-	public int getMovieId() {
+	public String getMovieId() {
 		return movieId;
 	}
-	public void setMovieId(int movieId) {
+	public void setMovieId(String movieId) {
 		this.movieId = movieId;
 	}
 	public String getSiteName() {

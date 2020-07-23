@@ -1,14 +1,13 @@
 package com.kosmo.bangdairy.vo;
 
 public class ActorVO {
-	private int actorId;
+	private String actorId;
 	private String actorName;
 	private String actorEngName;
-	private String actorRegId;
-	public int getActorId() {
+	public String getActorId() {
 		return actorId;
 	}
-	public void setActorId(int actorId) {
+	public void setActorId(String actorId) {
 		this.actorId = actorId;
 	}
 	public String getActorName() {
@@ -23,16 +22,10 @@ public class ActorVO {
 	public void setActorEngName(String actorEngName) {
 		this.actorEngName = actorEngName;
 	}
-	public String getActorRegId() {
-		return actorRegId;
-	}
-	public void setActorRegId(String actorRegId) {
-		this.actorRegId = actorRegId;
-	}
 	@Override
 	public String toString() {
 		return "ActorVO [actorId=" + actorId + ", actorName=" + actorName + ", actorEngName=" + actorEngName
-				+ ", actorRegId=" + actorRegId + "]";
+				+"]";
 	}
 	
 }
