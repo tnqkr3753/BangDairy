@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/account_form.js"></script>
+<script type="text/javascript" src="resources/js/Sign_in.js"></script>
+<script type="text/javascript" src="resources/js/search.js"></script>
 </head>
 <body>
 	<div class="header_sticky">
@@ -86,5 +89,7 @@
             </div> <!-- header-content -->
         </header> <!-- header -->
         </div>
+        <%@ include file="account_form.jsp"%>
+		<%@ include file="Sign_In.jsp"%>
 </body>
 </html>

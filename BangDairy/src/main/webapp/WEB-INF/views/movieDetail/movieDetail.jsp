@@ -1,5 +1,8 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -25,8 +28,8 @@
 
 <!-- script
     ================================================== -->
-<script src="js/modernizr.js"></script>
-<script src="js/pace.min.js"></script>
+<!-- <script src="resources/js/modernizr.js"></script> -->
+<!-- <script src="resources/js/pace.min.js"></script> -->
 
 <!-- favicons
     ================================================== -->
@@ -39,90 +42,81 @@
 </head>
 
 <body id="top">
-	<%@ include file="header_menu.jsp"%>
-	<%@ include file="account_form.jsp"%>
-	<%@ include file="Sign_In.jsp"%>
-
+	<%@ include file="../../../header_menu.jsp"%>
 
 	<!-- s-content
-    ================================================== -->
+	================================================== -->
+	<!--============= 20200724박윤태============== -->
+	
+	<c:choose>
+	<c:when test="${not empty vo}">
+	<%--=============vo가 null이 아니라면 ============= --%>
 	<section
 		class="s-content s-content--narrow s-content--no-padding-bottom">
 
 		<article class="row format-video">
-
+			<%-- 영화 컨텐츠 시작 --%>
 			<div class="s-content__header col-full">
-				<!-- 영화 이름 -->
-				<h1 class="s-content__header-title">MOVIE NAME HERE</h1>
+				<%-- 영화 이름 --%>
+				<h1 class="s-content__header-title">${vo.movieTitle }</h1>
 
-				<!-- 영화 정보 -->
+				<%-- 영화 정보 --%>
 				<ul class="s-content__header-meta">
-					<li>OPENING DATE HERE
-					<li>GENRE HERE
-					<li>TIME HERE
-					<li>COUNTS(PEOPLE)</li>
+					<li>${vo.openingDateStr }
+					<li><c:forEach items="${vo.movieGenre}" var="genre">
+					${genre.genreTitle} &nbsp;
+					</c:forEach>
+					<li>${vo.showtimes } 분
 					<br />
-					<li>AGE HERE
-					<li>COMPANY HERE
-					<li>COUNTRY HERE</li>
+					<li>${vo.viewingClass} 
+					<li>${vo.company }
+					<li>${vo.country }</li>
 				</ul>
 
-				<!-- 평점 -->
+				<%-- 평점 --%>
 				<div class="starRev">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
 						class="starR">별3</span> <span class="starR">별4</span> <span
-						class="starR">별5</span>
+						class="starR">별5</span> <!-- 해야함 -->
 				</div>
 				<br />
-
-				<!-- 영화포스터 rslides START -->
+			
+				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<li><img src="resources/images/movieDetail/sam1.jpg" alt=""></li>
-					<li><img src="resources/images/movieDetail/sam2.jpg" alt=""></li>
-					<li><img src="resources/images/movieDetail/sam3.png" alt=""></li>
+					<li><img src="${vo.posterAddr}" alt=""></li>
+					<li><img src="${vo.posterAddr}" alt=""></li>
 				</ul>
-				<!-- rslides END -->
+				<%-- rslides End --%>
 
 			</div>
-			<!-- 영화포스터 end s-content__media -->
 
 			<div class="col-full s-content__main">
 
-				<!-- 짧은 소개 -->
-				<p class="lead">INTRO ~~~~~~~~ INTRO ~~~~~~~~ INTRO ~~~~~~~~
-					INTRO ~~~~~~~~ INTRO ~~~~~~~~</p>
+				<%-- 영화 줄거리 --%>
+				<p>${vo.plot }</p>
 
-				<!-- 줄거리 -->
-				<p>AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND
-					CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS
-					HERE ~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!! AND CONTENTS HERE ~~~~~!!!!! AND CONTENTS HERE
-					~~~~~!!!!!</p>
-
-				<!-- 감독 정보 START -->
-				<h2>DIRECTOR</h2>
-
+				<%-- 영화 감독 TODO --%>
+				<h2>DIRECTOR</h2> 
+				
 				<section id="two" class="wrapper alt spotlight style2">
-					<div class="inner">
-						<a href="#" class="image"><img
-							src="resources/images/movieDetail/directorSam.jpg" alt=""></a>
-						<div class="content">
-							<!-- 감독 이름 -->
-							<h2 class="major">YEON SANG HO</h2>
-							<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
-								Cras turpis ante, nullam sit amet turpis non, sollicitudin
-								posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
-								dignissim dapibus. Nullam ultrices, neque et faucibus viverra,
-								ex nulla cursus.</p>
+					<c:forEach items="${vo.movieDirector }" var="director">
+						<div class="inner">
+						<%--
+							<a href="#" class="image"><img
+								src="resources/images/movieDetail/directorSam.jpg" alt=""></a> --%>
+							<div class="content">
+								<h2 class="major">${director.directorName }</h2>
+								<%-- <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
+									Cras turpis ante, nullam sit amet turpis non, sollicitudin
+									posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
+									dignissim dapibus. Nullam ultrices, neque et faucibus viverra,
+									ex nulla cursus.</p> --%>
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</section>
 
-				<blockquote>
+				<%-- <blockquote>
 					<p>This is a simple example of a styled blockquote. A
 						blockquote tag typically specifies a section that is quoted from
 						another source of some sort, or highlighting text in your post.</p>
@@ -135,122 +129,74 @@
 					venenatis vestibulum. Nulla vitae elit libero, a pharetra augue
 					laboris in sit minim cupidatat ut dolor voluptate enim veniam
 					consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non
-					ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+					ut enim aliqua laborum mollit quis nostrud sed sed.</p>--%>
 
-				<!-- 감독 정보 END -->
+				<%-- 영화 감독 끝 --%>
 
-				<!-- 배우 정보 START -->
+				<%-- 영화 배우 시작 --%>
 				<h2>ACTOR</h2>
-
-				<section id="two" class="wrapper style1 special">
-					<div class="inner">
-						<div class="flex flex-4">
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 1">
-								</div>
-								<!-- 배우 이름 -->
-								<h3>YOOAIN</h3>
-							</div>
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 2">
-								</div>
-								<h3>YOOAIN</h3>
-							</div>
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 3">
-								</div>
-								<h3>YOOAIN</h3>
-							</div>
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 4">
-								</div>
-								<h3>YOOAIN</h3>
-							</div>
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 4">
-								</div>
-								<h3>YOOAIN</h3>
-							</div>
-							<div class="box person">
-								<div class="image round">
-									<img src="resources/images/movieDetail/actorSam.jpg"
-										alt="Person 4">
-								</div>
-								<h3>YOOAIN</h3>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- 배우 정보 END -->
-
-				<!-- OST 정보 START -->
-
-				<h2>OST</h2>
 				<div class="col-twelve">
 					<div class="table-responsive">
 						<table>
 							<thead>
 								<tr>
-									<th>SONG TITLE</th>
-									<th>ARTIST</th>
-									<th>GENRE</th>
-									<th>DATE</th>
+									<th>배우 이름</th>
+									<th>배역</th>
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${vo.starring }" var="hash">
 								<tr>
-									<td>Maria</td>
-									<td>Hwasa</td>
-									<td>Dance</td>
-									<td>2020.06.29</td>
+									<td>${hash.key.actorName}</td>
+									<td>${hash.value}</td>
 								</tr>
-								<tr>
-									<td>Monster</td>
-									<td>Red Velvet</td>
-									<td>Dance</td>
-									<td>2020.07.06</td>
-								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 
 					</div>
 
 				</div>
-				<!-- OST 정보 END -->
+				<%-- <section id="two" class="wrapper style1 special">
+					<div class="inner">
+						<div class="flex flex-4">
+							<c:forEach items="${vo.starring }" var="hash">
+							<div class="box person">--%>
+								<%--<div class="image round">
+									<img src="resources/images/movieDetail/actorSam.jpg"
+										alt="Person 1">
+								</div> --%>
+								<%-- <h3>${hash.key.actorName}</h3><h4>(${hash.value})</h4>
+								
+							</div>
+							</c:forEach>
+						</div>
+					</div>
+				</section>--%>
+				<%-- 영화 배우정보 끝 --%>
 
-				<!-- 그래프  START -->
+				<%-- 영화 그래프 시작 --%>
 				<h2>GRAPH</h2>
 				여기다 그래프를
 				넣어~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-				<!-- 그래프 END -->
+				<%-- 영화 그래프 끝 --%>
 
 			</div>
-			<!-- end s-content__main -->
+			<%-- 영화 컨텐츠 끝 --%>
 
 		</article>
 
-		<!-- Comments START -->
+		<%-- 영화 커멘트 시작 --%>
 		<div class="comments-wrap">
 
 			<div id="comments" class="row">
 				<div class="col-full">
 
-					<!-- respond
-                    ================================================== -->
+					<%-- 코멘트 리스폰드 시작 --%>
 					<div class="respond">
 
 						<h3 class="h2">Add Comment</h3>
-						<!-- 평점 -->
+						<%-- 커멘트 별점 --%>
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR">별2</span> <span
 								class="starR">별3</span> <span class="starR">별4</span> <span
@@ -263,7 +209,7 @@
 									<input name="cWebsite" type="text" id="cWebsite"
 										class="full-width" placeholder="Your Comment" value="">
 								</div>
-								<!-- 영수증 사진 첨부 및 댓글 등록 버튼 -->
+								<%-- 코멘트 영수증 첨부 --%>
 								<div class="comment">
 									<input type="file" name="file" id="pct_img" value="file">
 									<button type="submit" class="submit btn--primary btn--large">Register</button>
@@ -271,14 +217,14 @@
 								</div>
 							</fieldset>
 						</form>
-						<!-- end form -->
+						<%-- 폼 끝 --%>
 					</div>
-					<!-- end respond -->
+					<%-- 코멘트 리스폰드 끝 --%>
 
-					<!-- 다른 사용자의 댓글 보여주기 -->
+					<%-- 다른 코멘트 --%>
 					<h3 class="h2">1 Comments</h3>
 
-					<!-- commentlist -->
+					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
 						<li class="depth-1 comment">
 							<div class="comment__avatar">
@@ -301,19 +247,20 @@
 								</div>
 							</div>
 						</li>
-						<!-- end comment level 1 -->
 					</ol>
-					<!-- end commentlist -->
+					<%-- 코멘트 끝 --%>
 				</div>
-				<!-- end col-full -->
+				<%-- 코멘트 총 끝 --%>
 			</div>
-			<!-- end row comments -->
+			<%-- 코멘트 줄 끝 --%>
 		</div>
-		<!-- end comments-wrap -->
-		<!-- Comments END -->
+		<%-- 코멘트 롤 끝 --%>
+		<%-- 코멘트 끝 --%>
 	</section>
-	<!-- s-content -->
-
+	</c:when>
+	<%-- when 끝 --%>
+	<%-- 컨텐츠 끝 --%>
+	</c:choose>
 	<!-- s-extra
     ================================================== -->
 	<section class="s-extra">
@@ -324,10 +271,7 @@
 				<h3>Keywords</h3>
 
 				<div class="tagcloud">
-					<a href="#0">Salad</a> <a href="#0">Recipe</a> <a href="#0">Places</a>
-					<a href="#0">Tips</a> <a href="#0">Friends</a> <a href="#0">Travel</a>
-					<a href="#0">Exercise</a> <a href="#0">Reading</a> <a href="#0">Running</a>
-					<a href="#0">Self-Help</a> <a href="#0">Vacation</a>
+				<c:forEach items="${fn:split(vo.keyword,',')}" var="key"><a href="#0">${key}</a></c:forEach>
 				</div>
 				<!-- end tagcloud -->
 			</div>
@@ -338,7 +282,7 @@
 	</section>
 	<!-- end s-extra -->
 
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../../../footer.jsp"%>
 
 	<!-- preloader
     ================================================== -->
@@ -357,9 +301,6 @@
 
 	<!-- Java Script
     ================================================== -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
 	<script src="resources/js/movieDetail.js"></script>
 	<script src="resources/js/responsiveslides.min.js"></script>
 

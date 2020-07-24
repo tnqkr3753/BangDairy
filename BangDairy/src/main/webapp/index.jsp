@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -57,8 +57,7 @@
 
 
 <script type="text/javascript" src="resources/js/main2.js"></script>
-<script type="text/javascript" src="resources/js/account_form.js"></script>
-<script type="text/javascript" src="resources/js/Sign_in.js"></script>
+
 
 <!-- ====회원가입 폼==== -->
 
@@ -70,8 +69,6 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
-		<%@ include file="account_form.jsp"%>
-		<%@ include file="Sign_In.jsp"%>
 		<%@ include file = "leftbar.jsp" %>
 		<div class="pageheader-content row">
 			<div class="col-full">
@@ -181,13 +178,13 @@
 		<!-- s-content
     ================================================== -->
 		 <div >
-<%for(int b=0; b<3;b++){ %>
+<%for(int b=0; b<3;b++){ %> <!-- for문 시작  -->
         <div class="row masonry-wrap"  >
        
         <span class=title>AI추천</span>
          <div class="bxslider" id="stastistical-part"> 
-         <%for(int a=0;a<5;a++){ %>
-        
+         <%for(int a=0;a<5;a++){ %> <!-- for문 시작 -->
+        	
             <div class="masonry"style="background-color: black">
 
                 <div class="grid-sizer">
@@ -231,10 +228,10 @@
                          </article>
                     </div>
                     </div>
-                    <%} %>
+                    <%} %> <!-- for문 끝 -->
                  </div>
                  </div>
-                <%};%>  
+                <%};%>   <!-- for문 끝 -->
                 
                 
   <section class="timeline-part" id="timeline-part">

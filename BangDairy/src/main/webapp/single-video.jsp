@@ -37,8 +37,7 @@
 
    
    		<%@ include file="header_menu.jsp"%>
-		<%@ include file="account_form.jsp"%>
-		<%@ include file="Sign_In.jsp"%>
+
 
 
     <!-- s-content
