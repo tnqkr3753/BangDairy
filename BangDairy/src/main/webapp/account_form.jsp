@@ -12,36 +12,49 @@
   	<div>
     <div class="account_container">
 		<h3>Sign up</h3>
-		<form id="account_body">
+		<form id="account_body" action="AccountUser.do">
 		<div class="row">
 		<div class="col-md-12 col-sm-12 col">
 			<div>
-				<input id='user_id' type="text" name="" required="">
-				<strong id='idCheckResult'>ggg</strong>
+				<input id='user_id' type="text" name="userId" required="" minlength="2">
+ 				<strong id='idCheckResult'> ggg</strong>
 				<label >
 					아이디
-				</label>	
+				</label>
 			</div>
 			<div>
-				<input type="password" name="" required="">
+				<input id="user_passwd" type="password" name="userPassword" required="">
+				<strong id="passwdCheckResult">aaa</strong>
 				<label>패스워드</label>	
 			</div>
 			<div>
-				<input type="password" name="" required="">
-				<strong id="passwdCheckResult">aaa</strong>
+				<input id="user_passwd2" type="password" name="" required="">
+				<strong id="passwdCheckResult2">bbb</strong>
 				<label>패스워드-확인</label>	
 			</div>
 			
-			<div>
-				<input type="text" name="" required="">
+ 			<div>
+				<input type="text" name="userName" required="">
 				<label>이름</label>	
 			</div>
 			<div>
-				<input type="text" name="" required="">
-				<label>주민번호</label>	
+				<table>
+					<tr>
+						<td><input class="rbtn" type="radio" name="rbtnGender" value="1">남자</td>				</td>
+						<td><input class="rbtn" type="radio" name="rbtnGender" value="2">여자</td>
+					<label>성별</label>	
+					</tr>
+				</table>
+				<input style="display:none" id="genderNum" type="text" name="userGender" required="" value="">
 			</div>
+			
 			<div>
-				<input id="user_email" type="text" name="" required="">
+				<input type="text" name="userAge" required="">
+				<label>연령</label>	
+			</div>
+			
+			<div>
+				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
 				<strong id="eMailCheckResult">eee</strong>
 				<label>e-mail</label>	
 			</div>
