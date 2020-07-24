@@ -17,6 +17,9 @@
 	<typeAlias alias="still" type="com.kosmo.bangdairy.vo.StillVO"/>
 	<typeAlias alias="comment" type="com.kosmo.bangdairy.vo.CommentVO"/>
 	<typeAlias alias="review" type="com.kosmo.bangdairy.vo.ReviewVO"/>
+	<!-- 2020-07-23 이경호 수정
+		수정내용:AccountFormVO 추가 -->
+	<typeAlias alias="account" type="com.kosmo.bangdairy.vo.AccountFormVO"/>
 </typeAliases>
 
 </configuration>   

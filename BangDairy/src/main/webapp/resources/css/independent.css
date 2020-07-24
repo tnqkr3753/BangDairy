@@ -1,5 +1,5 @@
 .title{
-color: #292a32;
+color: #fff;
     font-size: 22px;
     font-weight: 700;
     -webkit-letter-spacing: -0.4px;
@@ -9,7 +9,9 @@ color: #292a32;
     line-height: 30px;
 }
 
-
+/* 반응형폰트 */
+.rr{ font-size: 1vw; 
+}
 
 input[type="text"],
 select{
@@ -35,13 +37,5 @@ div.distribution table td textarea	{width:97%; padding:2px 0 0 5px; border:1px s
 	margin-right: 10%;
 	margin-left: 10%;
 }
-textarea {
-	 width:100%;
-}
-text{
-	width:100%
-}
-
-
 
 
