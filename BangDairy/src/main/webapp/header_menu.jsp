@@ -10,8 +10,8 @@
             <div class="header__content row">
 
                 <div class="header__logo">
-                    <a class="logo" href="index.html">
-                        <img src="resources/images/123.png" alt="Homepage">
+                    <a class="logo" href="index.jsp">
+                        <img src="resources/images/123.png" alt="Homepage" >
                     </a>
                 </div> <!-- end header__logo -->
 
@@ -74,8 +74,8 @@
                          <a href="#0" title="">인디스토리</a>
                          
                           <ul>
-                         <li><a href="Independent.jsp">신청</a></li>
-                            <li><a href="single-audio.html">Audio Post</a></li>
+                         <li><a href="Independent.do">신청</a></li>
+                            <li><a href="mainIndependent.jsp">인디메인</a></li>
                             </ul>
                     <!-- end header__nav -->
 
