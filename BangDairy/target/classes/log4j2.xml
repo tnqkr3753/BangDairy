@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <configuration>
+	<Properties>
+		<Property name="logNm">logs</Property>
+	</Properties>
 	<!-- appender들 모임 -->
 	 <appenders>
 	 	<!-- console appender 설정 -->
 	 	<Console name="TestConsole">
 	 		<!-- layout 설정 -->
-	 		<PatternLayout pattern="%d{YYYY/MM/dd : HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+	 		<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n"/>
 		</Console>
+		
+		<RollingFile name="rollfile" fileName="D:/LKH/log/${logNm}.log" filePattern="D:/LKH/log/${logNm}_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
+			<Policies>
+			<SizeBasedTriggeringPolicy size="10KB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->      
+			<TimeBasedTriggeringPolicy module="true" interval="1" /><!-- 일별 로그 파일 생성 -->
+			</Policies>
+			<DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+		</RollingFile>
+		
 		<!-- file appender 설정 -->
-		<File name="infoFile" fileName = "./log/infoFile.log" append = "true">
+		<File name="infoFile" fileName = "D:/LKH/log/infoFile.log" append = "true">
 			<!-- 기본값으로 layout 설정 -->
 	 		<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
 		</File>
-		<File name="warnFile" fileName = "./log/warnFile.log" append = "true">
+		<File name="warnFile" fileName = "D:/LKH/log/warnFile.log" append = "true">
 			<!-- 기본값으로 layout 설정 -->
 	 		<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
 		</File>
@@ -21,14 +33,14 @@
 	<!-- logger들 모임 -->
 	 <loggers>
 	 	<!-- root는 기본적으로 하나가 존재해야 하며 다른 logger들은 여러개 존재 가능 -->
-	 	<root level="info">
-	 		<appender-ref ref="infoFile"></appender-ref>
-	 		<appender-ref ref="TestConsole"></appender-ref>
-	 	</root>
-	 </loggers>
-	 <loggers>
-	 	<root level="warn">
-	 		<appender-ref ref="warnFile"></appender-ref>
-	 	</root>
+			<logger level="warn" name="warning">
+		 		<appender-ref ref="warnFile"></appender-ref>
+		 		<appender-ref ref="TestConsole"></appender-ref>
+	 		</logger>
+	 		<root level="info">
+		 		<appender-ref ref="infoFile"></appender-ref>
+		 		<appender-ref ref="rollfile"></appender-ref>
+		 		<appender-ref ref="TestConsole"></appender-ref>
+		 	</root>
 	 </loggers>
 </configuration>
