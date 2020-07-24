@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.ApiConnectionService;
@@ -21,9 +22,9 @@ public class ControllerExample {
 	ApiConnectionService apiConnectionService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ControllerExample.class);
-	
+	@ResponseBody
 	@RequestMapping("apiConn/{aDate}.do")
-	public ModelAndView apiConn(@PathVariable(value = "aDate") String aDate) {
+	public void apiConn(@PathVariable(value = "aDate") String aDate) {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
 		Date date;
@@ -33,19 +34,12 @@ public class ControllerExample {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-			//총 834달 반복 20881201까지 
-			for (int i = 0; i < 834; i++) {
 				try{
-					cal.add(Calendar.MONTH, 1);
+//					cal.add(Calendar.MONTH,1);
 					logger.info("년도 == " + cal.getTime());
-				apiConnectionService.runService(cal);
+					apiConnectionService.runService(cal);
 				}catch (Exception e) {
 					logger.error("년도 총 에러 [" + "i값 : " /*+ i*/+"errorMsg : " + e.getMessage());
 				}
-			}
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
-		return mv;
 	}
 }

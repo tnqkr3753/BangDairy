@@ -44,7 +44,7 @@
 	</foreach>
 </insert>
 
-<insert id="insertMovie" parameterType="java.util.List">
+<insert id="insertMovie" parameterType="movie">
 	
 		insert into movie_info
 		(movie_id,movie_title
@@ -58,21 +58,19 @@
 		,poster_addr
 		,preview_addr
 		)
-		<foreach collection="list" item="item" separator=" UNION ">
 		SELECT 
-		#{item.movieId},#{item.movieTitle}
-		,#{item.movieEngTitle}
-		,#{item.country}
-		,#{item.company}
-		,#{item.openingDate}
-		,#{item.plot},#{item.showtimes},#{item.viewingClass}
-		,#{item.keyword}
+		#{movieId},#{movieTitle}
+		,#{movieEngTitle}
+		,#{country}
+		,#{company}
+		,#{openingDate}
+		,#{plot},#{showtimes},#{viewingClass}
+		,#{keyword}
 		, 0 , now()
-		,#{item.posterAddr}
-		,#{item.previewAddr}
+		,#{posterAddr}
+		,#{previewAddr}
 		FROM dual
-		WHERE not exists (SELECT * FROM movie_info WHERE movie_id=#{item.movieId})
-	</foreach>
+		WHERE not exists (SELECT * FROM movie_info WHERE movie_id=#{movieId})
 </insert>
 
 <insert id="insertStarring" parameterType="java.util.List">

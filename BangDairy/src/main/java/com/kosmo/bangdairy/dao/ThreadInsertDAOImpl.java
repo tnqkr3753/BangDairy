@@ -38,7 +38,7 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 	}
 
 	@Override
-	public int insertMovie(List<MovieVO> list) {
+	public int insertMovie(MovieVO list) {
 		return sqlSession.insert("ThreadInsertDAO.insertMovie", list);
 	}
 

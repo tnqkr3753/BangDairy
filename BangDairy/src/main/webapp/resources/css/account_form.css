@@ -1,4 +1,8 @@
-
+.account_container form div strong{
+	position: absolute;
+	top: -10px;
+	left: 100px;
+}
 .account_container
 {
 	

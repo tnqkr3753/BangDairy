@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.StringTokenizer;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +33,7 @@ import com.kosmo.bangdairy.vo.StillVO;
 public class ApiConnectionService {
 	@Autowired
 	ThreadInsertService threadInsertService;
-	
+	static final Logger logger =  (Logger)LogManager.getLogger("Service");
 	private ArrayList<MovieVO> getMovie(Calendar cal) throws Exception {
 		//http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&createDts=2019&director=%EB%B4%89%EC%A4%80%ED%98%B8&listCount=3&detail=Y&ServiceKey=5U295LSU679NZDLWTCK5
 		 /*URL*/ 
@@ -85,9 +88,13 @@ public class ApiConnectionService {
 				vo.setMovieId(rs.get("DOCID").getAsString());
 				vo.setMovieTitle(rs.get("title").getAsString().trim()); //영화제목
 				vo.setMovieEngTitle(rs.get("titleEng").getAsString()); //영어제목
-				vo.setOpeningDateStr(rs.get("ratings").getAsJsonObject().get("rating")
+				String openingDate = rs.get("ratings").getAsJsonObject().get("rating")
 						.getAsJsonArray().get(0)
-						.getAsJsonObject().get("releaseDate").getAsString()); //개봉일
+						.getAsJsonObject().get("releaseDate").getAsString(); //개봉일
+				//개봉일 자르기
+				if (openingDate.indexOf("|")!=-1) {
+					vo.setOpeningDateStr(openingDate.split("[|]")[0]);
+				}else vo.setOpeningDateStr(openingDate);
 				JsonArray directors = rs.get("directors").getAsJsonObject().get("director").getAsJsonArray(); //감독배열
 				ArrayList<DirectorVO> drs = new ArrayList<DirectorVO>(); //감독리스트
 				for (JsonElement direct : directors) { // for문시작
@@ -205,8 +212,6 @@ public class ApiConnectionService {
 				vo.setOpeningDateStr(rs.get("ratings").getAsJsonObject().get("rating")
 						.getAsJsonArray().get(0)
 						.getAsJsonObject().get("releaseDate").getAsString()); //개봉일
-				System.out.println("끝");
-//				System.out.println(vo);
 				voArr.add(vo);
 			}
 		}
@@ -223,9 +228,8 @@ public class ApiConnectionService {
 			movieArr = getMovie(cal);
 //			movieArr = updateMovieOpening(cal);
 		} catch (Exception e) {
-			System.out.println("api접근 오류 : "+e.getMessage());
+			logger.error("api접근 오류 : "+e.getMessage());
 		}
-		System.out.println(movieArr);
 		insertMovie(movieArr);
 	}
 

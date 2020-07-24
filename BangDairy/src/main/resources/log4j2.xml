@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- appender들 모임 -->
+	 <appenders>
+	 	<!-- console appender 설정 -->
+	 	<Console name="TestConsole">
+	 		<!-- layout 설정 -->
+	 		<PatternLayout pattern="%d{YYYY/MM/dd : HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<!-- file appender 설정 -->
+		<File name="infoFile" fileName = "D:/log/infoFile.log" append = "true">
+			<!-- 기본값으로 layout 설정 -->
+	 		<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
+		</File>
+		<File name="warnFile" fileName = "D:/log/warnFile.log" append = "true">
+			<!-- 기본값으로 layout 설정 -->
+	 		<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
+		</File>
+	 </appenders>
+	<!-- logger들 모임 -->
+	 <loggers>
+	 	<!-- root는 기본적으로 하나가 존재해야 하며 다른 logger들은 여러개 존재 가능 -->
+	 	<logger level="info" name="Service">
+	 		<appender-ref ref="infoFile"/>
+	 		<appender-ref ref="TestConsole"/>
+	 	</logger>
+	 	<root level="warn">
+	 		<appender-ref ref="warnFile"/>
+	 	</root>
+	 </loggers>
+</configuration>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="apiConn/19491201.do">날짜입력</a>
+	<a href="apiConn/">날짜입력</a>
 </body>
 </html>

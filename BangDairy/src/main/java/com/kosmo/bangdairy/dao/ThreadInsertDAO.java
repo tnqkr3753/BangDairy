@@ -15,7 +15,7 @@ public interface ThreadInsertDAO {
 	public int insertActor(List<ActorVO> list);
 	public int insertDirector(List<DirectorVO> list);
 	public int insertStillImg(List<StillVO> list);
-	public int insertMovie(List<MovieVO> list);
+	public int insertMovie(MovieVO list);
 	public int insertStarring(List<HashMap> list);
 	public int insertMovieDirector(HashMap vo);
 	public int insertMovieGenre(List<HashMap> list);
