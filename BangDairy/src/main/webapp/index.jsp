@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+
 <!--- 아이콘가지고오는 링크 fa fa-twier 등등
     ================================================== -->
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-	
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">	
 <!--- basic page needs
     ================================================== -->
 <meta charset="utf-8">
@@ -40,28 +40,20 @@
     <link rel="stylesheet" href="resources/css/main.css">
     <link rel="stylesheet" href="resources/css/independent.css">
   
-<!-- script
-    ================================================== -->
-<script src="resources/js/modernizr.js"></script>
-<script src="resources/js/pace.min.js"></script>
 
-<!-- favicons
-    ================================================== -->
+
+<!-- favicons    ================================================== -->
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-
+<!-- script    ================================================== -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
  <script src="resources/js/js1/jquery.bxslider.min.js"></script>
-
-
 <script type="text/javascript" src="resources/js/main2.js"></script>
 
 
-<!-- ====회원가입 폼==== -->
+<script src="resources/js/modernizr.js"></script>
+<script src="resources/js/pace.min.js"></script>
 
-<!-- ========================================================= -->
 </head>
 
 

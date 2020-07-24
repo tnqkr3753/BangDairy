@@ -53,5 +53,10 @@ $(document).ready(function(){
 	        searchField.attr({placeholder: 'Type Keywords', autocomplete: 'off'});
 	    
 	    };
+	    /* Initialize
+	     * ------------------------------------------------------ */
+	    (function ssInit() {
+	    clSearch();
+	    })();
 })
 

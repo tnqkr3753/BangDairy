@@ -28,6 +28,7 @@
 
 <!-- script
     ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <!-- <script src="resources/js/modernizr.js"></script> -->
 <!-- <script src="resources/js/pace.min.js"></script> -->
 
@@ -35,9 +36,6 @@
     ================================================== -->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<!-- jquery lib import -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 </head>
 
