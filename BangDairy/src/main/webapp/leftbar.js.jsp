@@ -8,8 +8,8 @@
  <!-- s-footer
     ================================================== -->
     
-        <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
-   <script type="text/javascript" src="resources/js/js1/j.jquery.mobile.custom.js"></script>
+<script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
+<script type="text/javascript" src="resources/js/js1/j.jquery.mobile.custom.js"></script>
 <script type="text/javascript" src="resources/js/js1/j.response.js"></script> 
 <script type="text/javascript" src="resources/js/js1/j.swiper.js"></script>
 <script type="text/javascript" src="resources/js/js1/j.waypoints.js"></script>

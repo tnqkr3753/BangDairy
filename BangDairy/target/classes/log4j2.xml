@@ -33,10 +33,13 @@
 	<!-- logger들 모임 -->
 	 <loggers>
 	 	<!-- root는 기본적으로 하나가 존재해야 하며 다른 logger들은 여러개 존재 가능 -->
-	 	<logger level="info" name="Service">
+	 	<logger level="info" name="Service" additivity="false">
 		 	<appender-ref ref="rollfile"></appender-ref>
 	 	</logger>
-	 	<root level="warn">
+	 	<logger level="info" name="Aop" additivity="false">
+		 	<appender-ref ref="TestConsole"/>
+	 	</logger>
+	 	<root level="warn" additivity="false">
 		 	<appender-ref ref="rollfile"></appender-ref>
 	 		<appender-ref ref="TestConsole"/>
 	 	</root>

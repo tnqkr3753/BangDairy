@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 </head>
 <body>
 	<div class="header_sticky">
@@ -28,7 +29,6 @@
                 <a class="header__search-trigger" href="#0"></a>
 
                 <div class="header__search">
-
                     <form role="search" method="get" class="header__search-form" action="#">
                         <label>
                             <span class="hide-content">Search for:</span>
@@ -86,5 +86,10 @@
             </div> <!-- header-content -->
         </header> <!-- header -->
         </div>
+        <%@ include file="account_form.jsp"%>
+		<%@ include file="Sign_In.jsp"%>
+		<script type="text/javascript" src="resources/js/account_form.js"></script>
+		<script type="text/javascript" src="resources/js/Sign_in.js"></script>
+		<script type="text/javascript" src="resources/js/search.js"></script>
 </body>
 </html>

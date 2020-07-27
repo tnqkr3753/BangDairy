@@ -54,8 +54,6 @@
 <body id="top">
 
     		<%@ include file="header_menu.jsp"%>
-		<%@ include file="account_form.jsp"%>
-		<%@ include file="Sign_In.jsp"%>
 
  <section class="s-content">
 <form name="frm" id="frm" method="get" action="index.jsp">
