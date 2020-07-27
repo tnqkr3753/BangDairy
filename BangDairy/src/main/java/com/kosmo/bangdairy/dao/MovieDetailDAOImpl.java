@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
@@ -35,6 +36,14 @@ public class MovieDetailDAOImpl implements MovieDetailDAO {
 	@Override
 	public List<DirectorVO> selectDirectors(MovieVO vo) {
 		return  sqlSession.selectList("MovieDetailDAO.selectDirectors",vo);
+	}
+	@Override
+	public List<CommentVO> selectComments(HashMap hash) {
+		return sqlSession.selectList("MovieDetailDAO.selectComment",hash);
+	}
+	@Override
+	public HashMap getCommentCount(HashMap hash) {
+		return sqlSession.selectOne("MovieDetailDAO.getCommentCount", hash);
 	}
 	
 	

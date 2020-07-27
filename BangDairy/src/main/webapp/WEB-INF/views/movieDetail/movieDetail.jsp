@@ -41,7 +41,7 @@
 
 <body id="top">
 	<%@ include file="../../../header_menu.jsp"%>
-
+	<input type="hidden" name="movieId" value="${vo.movieId }" id="movieId">
 	<!-- s-content
 	================================================== -->
 	<!--============= 20200724박윤태============== -->
@@ -224,27 +224,7 @@
 
 					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
-						<li class="depth-1 comment">
-							<div class="comment__avatar">
-								<img width="50" height="50" class="avatar"
-									src="images/avatars/user-01.jpg" alt="">
-							</div>
-							<div class="comment__content">
-								<div class="comment__info">
-									<cite>Itachi Uchiha</cite>
-
-									<div class="comment__meta">
-										<time class="comment__time">Dec 16, 2017 @ 23:05</time>
-									</div>
-								</div>
-								<div class="comment__text">
-									<p>Adhuc quaerendum est ne, vis ut harum tantas noluisse,
-										id suas iisque mei. Nec te inani ponderum vulputate, facilisi
-										expetenda has et. Iudico dictas scriptorem an vim, ei alia
-										mentitum est, ne has voluptua praesent.</p>
-								</div>
-							</div>
-						</li>
+						
 					</ol>
 					<%-- 코멘트 끝 --%>
 				</div>

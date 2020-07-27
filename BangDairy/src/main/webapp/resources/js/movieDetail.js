@@ -1,6 +1,7 @@
 $(document).ready(function(){
-	alert("확인");
-	
+	var movieId = $('#movieId').val();
+	alert(movieId)
+	commentLoad(1,movieId);
 	$(".rslides").responsiveSlides({
 		pager:true,				 // 페이징
 		auto:true,				 // 자동으로 넘어가기
@@ -15,4 +16,22 @@ $(document).ready(function(){
 		$(this).addClass('on').prevAll('span').addClass('on');
 		return false;
 	});
+
+	function commentLoad(pNum,movieId){
+		$.ajax({
+			type: "POST",
+			async : true,
+			contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+			url: "detail/"+movieId+"/commant/"+pNum,
+			dataType: "html",
+			success: function (response) {
+				alert("성공 :" + response)
+				$('ol.commentlist').html(response);
+			},
+			error: function(e){
+				alert("comment 불러오기 실패 :"+e);
+			}
+			
+		});
+	}
 });
