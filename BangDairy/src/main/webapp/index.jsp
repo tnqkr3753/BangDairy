@@ -25,15 +25,11 @@
 <!-- resources/css
     ================================================== -->
  <meta name="msapplication-TileColor" content="#FFFFFF">
-  <!-- 왼쪽바 구현 css-->
- <link rel="stylesheet" type="text/css" href="resources/css/css2/laftbar.css">
-  <!-- 왼쪽바 구현 -->
- 
+
  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 
 <!-- 슬라이더 구현에 필요함 따로 빼서 써도 아이콘 구현이 안됨 -->
- <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="resources/css/bxslider.css">
 	<!-- ================================================ -->
     <link rel="stylesheet" href="resources/css/base.css">
     <link rel="stylesheet" href="resources/css/vendor.css">
@@ -61,107 +57,31 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
-		<%@ include file = "leftbar.jsp" %>
-		<div class="pageheader-content row">
-			<div class="col-full">
-
-				<div class="featured">
-
-					<div class="featured__column featured__column--big">
-						<div class="entry"
-							style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
-
-							<div class="entry__content">
-								<span class="entry__category"><a href="#0">Music</a></span>
-
-								<h1>
-									<a href="#0" title="">What Your Music Preference Says About
-										You and Your Personality.</a>
-								</h1>
-
-								<div class="entry__info">
-									<a href="#0" class="entry__profile-pic"> <img
-										class="avatar" src="resources/images/avatars/user-03.jpg"
-										alt="">
-									</a>
-
-									<ul class="entry__meta">
-										<li><a href="#0">John Doe</a></li>
-										<li>December 29, 2017</li>
-									</ul>
-								</div>
-							</div>
-							<!-- end entry__content -->
-
-						</div>
-						<!-- end entry -->
-					</div>
-					<!-- end featured__big -->
-
-					<div class="featured__column featured__column--small">
-
-						<div class="entry"
-							style="background-image: url('resources/images/thumbs/featured/featured-watch.jpg');">
-
-							<div class="entry__content">
-								<span class="entry__category"><a href="#0">Management</a></span>
-
-								<h1>
-									<a href="#0" title="">The Pomodoro Technique Really Works.</a>
-								</h1>
-
-								<div class="entry__info">
-									<a href="#0" class="entry__profile-pic"> <img
-										class="avatar" src="resources/images/avatars/user-03.jpg"
-										alt="">
-									</a>
-
-									<ul class="entry__meta">
-										<li><a href="#0">John Doe</a></li>
-										<li>December 27, 2017</li>
-									</ul>
-								</div>
-							</div>
-							<!-- end entry__content -->
-
-						</div>
-						<!-- end entry -->
-
-						<div class="entry"
-							style="background-image: url('resources/images/thumbs/featured/featured-beetle.jpg');">
-
-							<div class="entry__content">
-								<span class="entry__category"><a href="#0">LifeStyle</a></span>
-
-								<h1>
-									<a href="#0" title="">Throwback To The Good Old Days.</a>
-								</h1>
-
-								<div class="entry__info">
-									<a href="#0" class="entry__profile-pic"> <img
-										class="avatar" src="resources/images/avatars/user-03.jpg"
-										alt="">
-									</a>
-
-									<ul class="entry__meta">
-										<li><a href="#0">John Doe</a></li>
-										<li>December 21, 2017</li>
-									</ul>
-								</div>
-							</div>
-							<!-- end entry__content -->
-
-						</div>
-						<!-- end entry -->
-
-					</div>
-					<!-- end featured__small -->
-				</div>
-				<!-- end featured -->
+	<!-- 다이어라 자리  -->
+		<div class="pageheader-content row"  >
+			<div class="col-full" style="margin-bottom: 1%">
+				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
+				
 
 			</div>
 			<!-- end col-full -->
 		</div>
+		</div>
+		
+		<nav class="pgn" >
+                    <ul>
+                        <li><a class="pgn__prev" href="#0">Prev</a></li>
+                        <li><a class="pgn__num" href="#0">1</a></li>
+                        <li><span class="pgn__num current">2</span></li>
+                        <li><a class="pgn__num" href="#0">3</a></li>
+                        <li><a class="pgn__num" href="#0">4</a></li>
+                        <li><a class="pgn__num" href="#0">5</a></li>
+                        <li><span class="pgn__num dots">…</span></li>
+                        <li><a class="pgn__num" href="#0">8</a></li>
+                        <li><a class="pgn__next" href="#0">Next</a></li>
+                    </ul>
+                </nav>
+          
 		<!-- end pageheader-content row -->
 
 		<!-- </section> end s-pageheader -->
@@ -193,12 +113,12 @@
                     </div>
     
     <div class="board" style="background-color: black">
-  <ul class="list" >
-  <li>
+  
+  
                     <div class="entry__text" style="background-color: black">
                         <div class="entry__header" style="background-color: black">
                            
-                            <h1 class="entry__title"><a href="single-standard.html"><p class=rr>트랜스포머: 패자의 역습 (제목)</p></a></h1>
+                            <h1 class="entry__title"><a href="Independent.do"><p class=rr>트랜스포머: 패자의 역습 (제목)</p></a></h1>
                             
                         </div>
                          <div class="entry__date" style="background-color: black">
@@ -209,13 +129,12 @@
                         </div>
                         <div class="entry__meta" style="background-color: black">
                             <span class="entry__meta-links">
-                                 <a href="https://www.naver.com/"><spen><i class="fa fa-play-circle-o" aria-hidden="true"title="예고편시청"></i></spen></a>
-                                <a href="#0"><spen><i class="fa fa-heart" aria-hidden="true"title="좋아요"></i></spen></a>
+                                 <a href="https://www.naver.com/"><spen><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
+                                <a href="#0"><spen><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
                             </span>
                         </div>
                          </div>
-                         </li>
-                         </ul>
+                         
                          </div>
                          </article>
                     </div>
@@ -225,58 +144,7 @@
                  </div>
                 <%};%>   <!-- for문 끝 -->
                 
-                
-  <section class="timeline-part" id="timeline-part">
-
-	<div class="content">
-		<div class="container-template">
-
-			<div class="headergroup">
-			    <h2 class="in-point">
-			        <span class="seconday"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">뭐가</font></font></span>
-			        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">럭셔리 주택?</font></font></span>
-			    </h2>
-		    </div>
-
-		    <div class="intro content-template">
-		        <p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">오늘날 웹에서 최고의 럭셔리 호텔 쇼케이스입니다. </font></font></strong></p>
-				<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">세계 최고의 Luxury Homes 공급 업체 인 Luxury Homes는이 짧은 온라인 쇼케이스를 선보이는 것을 자랑스럽게 생각합니다. </font><font style="vertical-align: inherit;">우리는 당신이 그것을 즐기시기 바랍니다.</font></font></p>
-				<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Luxury Homes는 전 세계적으로 가장 안목 높은 고 가치 개인을 대상으로하는 글로벌 럭셔리 시장의 '숨겨진 보석'입니다.</font></font></p>
-		    </div>
-
-		    <ul class="timeline">					
-					<li class="year in-point"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2012 년</font></font></li>
-				    <li class="upper-line in-point">
-				    	<span class="title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2012 년 John Doe가 설립</font></font></span>
-				    	<span class="timeline-content paragraph-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">“럭셔리 홈을 시작한 동기는 럭셔리 부동산 개발자가 자신의 작업을 더 잘 보여줄 수있는 더 넓은 플랫폼을 만드는 것이 었습니다.”
-						 </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">John Doe, 설립자 겸 관리 디렉터</font></font></strong>
-						</span>
-				    </li>
-
-									
-					<li class="year in-point"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2013 년</font></font></li>
-				    <li class="upper-line in-point">
-				    	<span class="title"><font style="vertical-align: inherit
-				    	;"><font style="vertical-align: inherit;">2800 명 이상이 1 년 안에 자신의 재산을 사고 팔다</font></font></span>
-				    	<span class="paragraph-text timeline-content"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-				    		이 웹 사이트는 고급 아파트를 결합하여 세계에서 최고를 찾기 위해 실용적인 수준으로 어디로 가야하는지 제공합니다.
-						</font></font></span>
-				    </li>
-
-				    <li class="year in-point"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2014 년</font></font></li>
-				    <li class="upper-line in-point">
-				    	<span class="title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Luxury Homes는 전 세계에서 사업을 시작했습니다.
-				    	</font></font></span>
-				    	<span class="timeline-content"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-				    		우리는 전 세계 12 개국에서 사업을 운영하고 있습니다. </font><font style="vertical-align: inherit;">우리는 그것을 전세계에 퍼 뜨리고 싶습니다. </font><font style="vertical-align: inherit;">당신은 우리 팀을이기는 데 참여할 수 있습니다
-						</font></font></span>
-				    </li>
-			    </ul>
-		    </div>
-	    </div>
-
-		</section>
-
+             
   
 <div class="home__slider"> 
     <div class="bxslider1">
@@ -311,9 +179,7 @@
 		<script src="resources/js/plugins.js"></script>
 		<script src="resources/js/main.js"></script>
 		  <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
-  <!-- /옆에 바 구현 ; -->    
-<%@ include file="leftbar.js.jsp" %>
-		      <!-- /옆에 바 구현 ; --> 
+ 
 		
 	</div>
 </body>

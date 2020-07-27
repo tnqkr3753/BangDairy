@@ -41,7 +41,6 @@
 
 <body id="top">
 	<%@ include file="../../../header_menu.jsp"%>
-	<input type="hidden" name="movieId" value="${vo.movieId }" id="movieId">
 	<!-- s-content
 	================================================== -->
 	<!--============= 20200724박윤태============== -->
@@ -201,16 +200,19 @@
 								class="starR">별5</span>
 						</div>
 
-						<form name="contactForm" id="contactForm" method="post" action="">
+						<form name="commentForm" id="contactForm" method="post" action="/comment/insert">
 							<fieldset>
+								<input type="hidden" name="commentScore" value="" id="commentScore">
+								<input type="hidden" name="movieId" value="${vo.movieId }" id="movieId">
 								<div class="form-field">
-									<input name="cWebsite" type="text" id="cWebsite"
+									<input name="comment" type="text" id="cWebsite"
 										class="full-width" placeholder="Your Comment" value="">
 								</div>
 								<%-- 코멘트 영수증 첨부 --%>
+								<%-- TODO --%>
 								<div class="comment">
 									<input type="file" name="file" id="pct_img" value="file">
-									<button type="submit" class="submit btn--primary btn--large">Register</button>
+									<button type="button" class="submit btn--primary btn--large" id="btn-insertComment">Register</button>
 
 								</div>
 							</fieldset>
@@ -220,12 +222,13 @@
 					<%-- 코멘트 리스폰드 끝 --%>
 
 					<%-- 다른 코멘트 --%>
-					<h3 class="h2">1 Comments</h3>
+					<h3 class="h2" id="comment-count">1 Comments</h3>
 
 					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
 						
 					</ol>
+					<button type="button" class="submit btn--primary" id="btn-moreComment">더보기</button>
 					<%-- 코멘트 끝 --%>
 				</div>
 				<%-- 코멘트 총 끝 --%>

@@ -74,8 +74,9 @@
                          <a href="#0" title="">인디스토리</a>
                          
                           <ul>
-                         <li><a href="Independent.do">신청</a></li>
-                            <li><a href="mainIndependent.jsp">인디메인</a></li>
+                         	<li><a href="Independent.do">신청2</a></li>
+                            <li><a href="mainIndependent.do">인d디2</a></li>
+                            <li><a href="test.do">test</a></li>
                             </ul>
                     <!-- end header__nav -->
 

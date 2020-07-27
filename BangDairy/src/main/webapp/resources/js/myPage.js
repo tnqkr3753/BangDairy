@@ -1,14 +1,12 @@
 $(document).ready(function(){
 	
-	alert("myPage.js 확인");
-	
 	/*
 	 * My Profile 하단의 Go 버튼을 눌렀을때 동작
 	 */
 	$('#btnMyProfile').click(function() {
 		$.ajax({
 			type : 'POST',	// 요청 메소드 타입
-			url : "myPageMember.jsp",	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
+			url : "myPage/info",	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
 			dataType : "html",	// 서버가 리턴하는 데이터 타입
 			error : function() {          // 통신 실패시
 				alert('myPageMember 통신실패');

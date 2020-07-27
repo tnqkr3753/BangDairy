@@ -20,7 +20,10 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	@Autowired
 	MovieDetailDAO movieDetailDAO;
 	/*
-	 * 
+	 * 메소드명	: selectOneMovie
+	 * 기능		: 영화에 대한 정보 가져오기( 포함된 정보 모두)
+	 * 변수 		: MovieVO
+	 * 작성자		: 박윤태
 	 */
 	@Override
 	public MovieVO selectOneMovie(MovieVO vo) {
@@ -41,7 +44,10 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		return rvo;
 	}
 	/*
-	 * 
+	 * 메소드명	: selectComments
+	 * 기능		: Comment 페이징 후 가져오기
+	 * 변수 		: pageNum, movieId
+	 * 작성자		: 박윤태
 	 */
 	@Override
 	public List<CommentVO> selectComments(String pageNum, String movieId) {
@@ -62,6 +68,12 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		hash.put("endRow", endRow);
 		hash.put("movieId", movieId);
 		return movieDetailDAO.selectComments(hash);
+	}
+	public int commentCount(String movieId) {
+		HashMap hm = new HashMap();
+		hm.put("movieId", movieId);
+		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
+		
 	}
 	
 }

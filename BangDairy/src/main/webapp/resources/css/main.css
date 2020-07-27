@@ -1486,9 +1486,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    transition: all 0.3s ease-in-out;
    z-index: 1;
 }
+    
 
 .masonry .entry__thumb-link::after {
-   content: "...";
+   content:url("https://img.icons8.com/nolan/64/documentary.png");
    font-family: georgia, serif;
    font-size: 2.7rem;
    z-index: 1;
@@ -1545,7 +1546,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__title a {
-   color: #000000;
+   color: #eeeeee;
    border-bottom: 1px solid transparent;
 }
 
@@ -1755,7 +1756,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    padding-top: 222px;
 }
 
-/* 2020-07-20 °æÈ£ ¼öÁ¤*/
+/* 2020-07-20 ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½*/
 div.header_sticky{
 	position : sticky;
 	top:0px;
@@ -2244,7 +2245,7 @@ body.search-is-visible {
    background: #050505;
    border-radius: 0 0 3px 3px;
    z-index: 500;
-   -webkit-transform: translate3d(0, 15px, 0);
+   -webkit-transform: translate3d(0, 15px, 0,);
    -ms-transform: translate3d(0, 15px, 0);
    transform: translate3d(0, 15px, 0);
    -webkit-transition: all 0.5s ease-in-out;
@@ -2410,7 +2411,7 @@ body.search-is-visible {
    position: relative;
 }
 
-.featured::before, .featured::after {
+/* .featured::before, .featured::after {
    content: "";
    display: block;
    height: 1px;
@@ -2418,14 +2419,14 @@ body.search-is-visible {
    background-color: rgba(255, 255, 255, 0.15);
    position: absolute;
    top: 50%;
-}
+} */
 
 .featured::before {
-   left: -75px;
+  
 }
 
 .featured::after {
-   right: -75px;
+  
 }
 
 .featured__column {
@@ -4243,8 +4244,8 @@ footer h4::after {
 
 
 /*
-	2020-07-20 °æÈ£ ¼öÁ¤
-	¼öÁ¤³»¿ë: Çì´õ ¸Þ´º¹Ù »ó´ëÀ§Ä¡ ¼³Á¤
+	2020-07-20 ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 */
 
 
