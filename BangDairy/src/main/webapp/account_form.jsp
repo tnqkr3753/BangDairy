@@ -17,35 +17,42 @@
 		<div class="col-md-12 col-sm-12 col">
 			<div>
 				<input id='user_id' type="text" name="userId" required="" minlength="2">
- 				<strong id='idCheckResult'> ggg</strong>
-				<label >
-					아이디
-				</label>
+				<label >아이디</label>
 			</div>
+			<div class="FilterResult hideResult">
+				<strong id='idCheckResult'> ggg</strong>
+			</div>
+			
 			<div>
 				<input id="user_passwd" type="password" name="userPassword" required="">
-				<strong id="passwdCheckResult">aaa</strong>
 				<label>패스워드</label>	
 			</div>
+			<div class="FilterResult hideResult">
+				<strong id="passwdCheckResult">aaa</strong>
+			</div>
+			
 			<div>
 				<input id="user_passwd2" type="password" name="" required="">
-				<strong id="passwdCheckResult2">bbb</strong>
 				<label>패스워드-확인</label>	
 			</div>
+			<div class="FilterResult hideResult">
+				<strong id="passwdCheckResult2">bbb</strong>
+			</div>
+			
 			
  			<div>
 				<input type="text" name="userName" required="">
 				<label>이름</label>	
 			</div>
+			
 			<div>
 				<table>
 					<tr>
-						<td><input class="rbtn" type="radio" name="rbtnGender" value="1">남자</td>				</td>
-						<td><input class="rbtn" type="radio" name="rbtnGender" value="2">여자</td>
+						<td><input class="rbtn" type="radio" name="userGender" value="1">남자</td>
+						<td><input class="rbtn" type="radio" name="userGender" value="2">여자</td>
 					<label>성별</label>	
 					</tr>
 				</table>
-				<input style="display:none" id="genderNum" type="text" name="userGender" required="" value="">
 			</div>
 			
 			<div>

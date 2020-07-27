@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
+
 <!--- 아이콘가지고오는 링크 fa fa-twier 등등
     ================================================== -->
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">	
 <!--- basic page needs
     ================================================== -->
 <meta charset="utf-8">
@@ -35,29 +36,20 @@
     <link rel="stylesheet" href="resources/css/main.css">
     <link rel="stylesheet" href="resources/css/independent.css">
   
-<!-- script
-    ================================================== -->
+
+
+<!-- favicons    ================================================== -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- script    ================================================== -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+ <script src="resources/js/js1/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="resources/js/main2.js"></script>
+
+
 <script src="resources/js/modernizr.js"></script>
 <script src="resources/js/pace.min.js"></script>
 
-<!-- favicons
-    ================================================== -->
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
- <script src="resources/js/js1/jquery.bxslider.min.js"></script>
-
-
-<script type="text/javascript" src="resources/js/main2.js"></script>
-<script type="text/javascript" src="resources/js/account_form.js"></script>
-<script type="text/javascript" src="resources/js/Sign_in.js"></script>
-
-<!-- ====회원가입 폼==== -->
-
-<!-- ========================================================= -->
 </head>
 
 
@@ -65,12 +57,12 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
+<<<<<<< HEAD
 		<%@ include file="account_form.jsp"%>
 		<%@ include file="Sign_In.jsp"%>
 	<!-- 다이어라 자리  -->
 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
-
 				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
 				
 
@@ -101,13 +93,13 @@
 		<!-- s-content
     ================================================== -->
 		 <div >
-<%for(int b=0; b<3;b++){ %>
+<%for(int b=0; b<3;b++){ %> <!-- for문 시작  -->
         <div class="row masonry-wrap"  >
        
         <span class=title>AI추천</span>
          <div class="bxslider" id="stastistical-part"> 
-         <%for(int a=0;a<5;a++){ %>
-        
+         <%for(int a=0;a<5;a++){ %> <!-- for문 시작 -->
+        	
             <div class="masonry"style="background-color: black">
 
                 <div class="grid-sizer">
@@ -150,10 +142,10 @@
                          </article>
                     </div>
                     </div>
-                    <%} %>
+                    <%} %> <!-- for문 끝 -->
                  </div>
                  </div>
-                <%};%>  
+                <%};%>   <!-- for문 끝 -->
                 
              
   

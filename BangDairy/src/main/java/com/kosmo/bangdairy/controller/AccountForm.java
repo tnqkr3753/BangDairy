@@ -6,8 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
@@ -22,21 +25,34 @@ public class AccountForm {
 	@Autowired
 	private AccountFormServiceImpl accountFormService;
 	
+	
+	//비동기 아이디 체크
 	@RequestMapping(value = "/AccountForm_idCheck")
 	@ResponseBody
-	public int AccountForm_idCheck(HttpServletRequest request) {
+	public int accountForm_idCheck(HttpServletRequest request) {
 		logger2.info("INFO Message");
 		logger.warn("WARN Message");
 		logger.error("Error Message");
+		//request를 통해 아이디 변경시마다 아이디 값아서 db에 해당 아이디가 존재하는지 질의한다.
 		String user_id = request.getParameter("user_id");
-		System.out.println(user_id);
 		int result = accountFormService.idCheck(user_id);
 		return result;
 	}
+	
+	//회원가입시 고객 회원
 	@RequestMapping(value="/AccountUser")
-	public void AccountUser(AccountFormVO vo) {
-		System.out.println(vo.getUserId());
-		System.out.println("옴");
+	public void accountUser(AccountFormVO vo) {
+		int result = accountFormService.insertUser(vo);
 
+	}
+	//유저 로그인
+	@RequestMapping(value="/SignInUser", method = RequestMethod.POST)
+	@ResponseBody 
+	public int signInUser( AccountFormVO vo) {
+		int result = accountFormService.signInUser(vo);
+		System.out.println(vo.getUserId());
+		System.out.println(vo.getUserPassword());
+		System.out.println(result);
+		return result;
 	}
 }
