@@ -24,4 +24,10 @@ public class AccountFormServiceImpl implements AccountFormService {
 		return result;
 	}
 
+	@Override
+	public int signInUser(AccountFormVO vo) {
+		int result = accountFormDAO.signInUser(vo);
+		return result;
+	}
+
 }
