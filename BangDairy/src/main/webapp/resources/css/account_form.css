@@ -8,11 +8,6 @@
 	border-bottom: 1px solid #008000;
 }
 
-.account_container form div strong{
-	position: absolute;
-	top: -10px;
-	left: 100px;
-}
 .account_container
 {
 	
@@ -73,6 +68,26 @@ body.account-is-visible{
 	outline: none;
 	border:none;
 	border-bottom: 1px solid #008000;
+}
+.account_container #account_body .FilterResult{
+	padding: 5px;
+	margin-bottom: 30px;
+	width: 100%;
+	box-sizing: border-box;
+	box-shadow: none;
+	outline: none;
+	border:none;
+	border-bottom: 1px solid #008000;
+	position:relative;
+	text-align: initial;
+}
+.account_container #account_body .hideResult{
+	display:none;
+}
+.account_container #account_body .showResult{
+	-webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    display:block;
 }
 .account_container input[type="submit"]
 {

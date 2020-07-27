@@ -25,8 +25,8 @@
 
 <!-- script
     ================================================== -->
-<script src="js/modernizr.js"></script>
-<script src="js/pace.min.js"></script>
+<script src="resources/js/modernizr.js"></script>
+<script src="resources/js/pace.min.js"></script>
 
 <!-- favicons
     ================================================== -->
@@ -40,8 +40,6 @@
 
 <body id="top">
 	<%@ include file="header_menu.jsp"%>
-	<%@ include file="account_form.jsp"%>
-	<%@ include file="Sign_In.jsp"%>
 
 	<!-- s-content
     ================================================== -->
@@ -244,14 +242,10 @@
 
 	<!-- Java Script
     ================================================== -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/plugins.js"></script>
+	<script src="resources/js/main.js"></script>
 	<script src="resources/js/movieList.js"></script>
-
-
-	<script src="./js/jquery-1.11.3.min.js"></script>
-	<script src="./js/jquery-ui-1.11.4.custom.min.js"></script>
 </body>
 
 </html>

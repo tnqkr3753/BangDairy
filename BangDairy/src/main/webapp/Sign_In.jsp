@@ -10,21 +10,20 @@
 <body>
   <div id="login_body">
   <div class="login-form">
-    <form>
+    <form id="SignForm" method="post" action="SignInUser.do">
       <h1>Login</h1>
       <div class="form-group">
-        <input type="email" name="email" placeholder="E-mail Address">
+        <input id="usrId" type="text" name="userId" placeholder="User ID">
         <span class="input-icon"><i class="fa fa-envelope"></i></span>
       </div>
       <div class="form-group">
-        <input type="password" name="psw" placeholder="Password">
+        <input id="usrPasswd" type="password" name="userPassword" placeholder="Password">
         <span class="input-icon"><i class="fa fa-lock"></i></span>
-      </div>      
-      <button class="login-btn">Login</button>      
+      </div>   
+      <input type="submit" class="login-btn" value="Login"/>     
       <a class="reset-psw" href="#">Forgot your password?</a>
       <div class="seperator"><b>or</b></div>
       <p>Sign in with your social media account</p>
-      
     </form>
   </div>
   </div>
