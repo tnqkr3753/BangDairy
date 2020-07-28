@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	alert("movieList 확인이야");
 	
+	alert("환영합니다.")
 	// 평점 클릭했을때
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
