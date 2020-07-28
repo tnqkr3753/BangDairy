@@ -60,8 +60,8 @@
 						<h2>My Profile</h2>
 						<p>나의 정보를 볼 수 있으며<br/> 수정, 탈퇴가 가능합니다.</p>
 						<p>
-							<a class="btn btn-default" id="btnMyProfile" href="#"
-								role="button">GO »</a>
+							<button class="btn btn-default" id="btnMyProfile" href="#"
+								role="button">GO »</button>
 						</p>
 					</div>
 					<!-- My profile 끝 -->
@@ -74,7 +74,7 @@
 						<h2>Wish List</h2>
 						<p>내가 보고싶은 영화에 추가한<br/>영화들을 볼 수 있습니다.</p>
 						<p>
-							<a class="btn btn-default" id="btnWish" href="#" role="button">GO »</a>
+							<button class="btn btn-default" id="btnWish" href="#" role="button">GO»</button>
 						</p>
 					</div>
 					<!-- Wish List 끝 -->
@@ -87,8 +87,7 @@
 						<h2>Q&A</h2>
 						<p>내가 남긴 Q&A를 보거나<br/>Q&A를 쓸 수 있습니다.</p>
 						<p>
-							<a class="btn btn-default" id="btnQA" href="#" role="button">GO
-								»</a>
+							<button class="btn btn-default" id="btnQA" href="#" role="button">GO	»</button>
 						</p>
 					</div>
 					<!-- Q&A 끝 -->
