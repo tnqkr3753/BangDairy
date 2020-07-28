@@ -10,13 +10,21 @@ import org.springframework.stereotype.Service;
 import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.dao.MovieDetailDAO;
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
+	int commentPerPage = 10;
 	@Autowired
 	MovieDetailDAO movieDetailDAO;
+	/*
+	 * 메소드명	: selectOneMovie
+	 * 기능		: 영화에 대한 정보 가져오기( 포함된 정보 모두)
+	 * 변수 		: MovieVO
+	 * 작성자		: 박윤태
+	 */
 	@Override
 	public MovieVO selectOneMovie(MovieVO vo) {
 		MovieVO rvo = movieDetailDAO.selectOneMovie(vo);
@@ -35,5 +43,37 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		rvo.setMovieDirector((ArrayList<DirectorVO>)movieDetailDAO.selectDirectors(vo));
 		return rvo;
 	}
-
+	/*
+	 * 메소드명	: selectComments
+	 * 기능		: Comment 페이징 후 가져오기
+	 * 변수 		: pageNum, movieId
+	 * 작성자		: 박윤태
+	 */
+	@Override
+	public List<CommentVO> selectComments(String pageNum, String movieId) {
+		int pNum = Integer.parseInt(pageNum);
+		HashMap hm = new HashMap();
+		hm.put("movieId", movieId);
+		int totalCount = ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
+		int totalPage = totalCount/commentPerPage+1;
+		if (totalCount!=0&&totalCount%commentPerPage==0) totalPage-=1;
+		int startRow  = 1;
+		int endRow = 10;
+		if(pNum>=1 && pNum <= totalPage) {
+			startRow = (pNum-1)*commentPerPage+1;
+			endRow = (pNum)*commentPerPage;
+		}
+		HashMap hash = new HashMap();
+		hash.put("startRow", startRow);
+		hash.put("endRow", endRow);
+		hash.put("movieId", movieId);
+		return movieDetailDAO.selectComments(hash);
+	}
+	public int commentCount(String movieId) {
+		HashMap hm = new HashMap();
+		hm.put("movieId", movieId);
+		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
+		
+	}
+	
 }

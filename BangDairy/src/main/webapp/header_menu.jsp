@@ -53,7 +53,7 @@
                         <li class="has-children">
                             <a href="#0" title="">Chart</a>
                             <ul class="sub-menu">
-                            <li><a href="movieDetail.jsp">movieDetail</a></li>
+                            <li><a href="detail">movieDetail</a></li>
                             <li><a href="movieList.jsp">movieList</a></li>
                             <li><a href="category.html">Family</a></li>
                             <li><a href="category.html">Management</a></li>
@@ -70,11 +70,13 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                         <a href="#0" title="">인디스토리</a>
+                         <a href="#0" title="">Indie Chart</a>
                          
                           <ul>
-                         <li><a href="Independent.do">신청</a></li>
-                            <li><a href="mainIndependent.jsp">인디메인</a></li>
+                
+                            <li><a href="indieList.do">indieList</a></li>
+                            <li><a href="Independent.do">신청</a></li>
+                           
                             </ul>
                     <!-- end header__nav -->
 

@@ -75,7 +75,7 @@
                          
                           <ul>
                          <li><a href="Independent.jsp">신청</a></li>
-                            <li><a href="single-audio.html">Audio Post</a></li>
+                            <li><a href="mainIndependent.jsp">Audio Post</a></li>
                             </ul>
                     <!-- end header__nav -->
 
