@@ -14,7 +14,6 @@
 <!--- basic page needs
     ================================================== -->
 <meta charset="utf-8">
-<title>Philosophy</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -94,6 +93,7 @@
         <div class="row masonry-wrap"  >
        
         <span class=title>AI추천</span>
+        <br/> 
          <div class="bxslider" id="stastistical-part"> 
          <%for(int a=0;a<5;a++){ %> <!-- for문 시작 -->
         	
@@ -160,19 +160,7 @@
 		<%@ include file="footer.jsp"%>
 		<!-- preloader
     ================================================== -->
-		<div id="preloader">
-			<div id="loader">
-				<div class="line-scale">
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-			</div>
-		</div>
-
-
+	
 		<!-- Java Script
     ================================================== -->
 

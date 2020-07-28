@@ -25,8 +25,8 @@
 				<br /> <input type="checkbox" id="chkbx" checked="checked"
 				disabled="disabled">&nbsp;여자</td>
 		</tr>
-		<th><span>생년월일</span></th>
-		<td>1996-09-05</td>
+		<th><span>나이</span></th>
+		<td>25</td>
 		</tr>
 		<tr>
 			<th><span>휴대폰 번호</span></th>
@@ -54,3 +54,6 @@
 	<input type="button" value="수정하기"> <input type="button"
 		value="탈퇴하기">
 </div>
+<script src="resources/js/myPageMemberUpdate.js"></script>
+
+

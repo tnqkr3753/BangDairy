@@ -25,23 +25,19 @@
 
 <!-- script
     ================================================== -->
-<script src="js/modernizr.js"></script>
-<script src="js/pace.min.js"></script>
+<script src="resources/js/jquery-3.2.1.min.js"></script>
+<script src="resources/js/modernizr.js"></script>
+<script src="resources/js/pace.min.js"></script>
 
 <!-- favicons
     ================================================== -->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-<!-- jquery lib import -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
 </head>
 
 <body id="top">
 	<%@ include file="header_menu.jsp"%>
-	<%@ include file="account_form.jsp"%>
-	<%@ include file="Sign_In.jsp"%>
 
 	<!-- s-content
     ================================================== -->
@@ -57,10 +53,7 @@
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
 						<h2>My Profile</h2>
-						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-							euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-							Praesent commodo cursus magna.</p>
+						<p>나의 정보를 볼 수 있으며 수정, 탈퇴가 가능합니다.</p>
 						<p>
 							<a class="btn btn-default" id="btnMyProfile" href="#"
 								role="button">GO »</a>
@@ -74,10 +67,7 @@
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
 						<h2>Wish List</h2>
-						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-							euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-							Praesent commodo cursus magna.</p>
+						<p>내가 보고싶은 영화에 추가한 영화들의 리스트를 볼 수 있습니다.</p>
 						<p>
 							<a class="btn btn-default" id="btnWish" href="#" role="button">GO »</a>
 						</p>
@@ -90,10 +80,7 @@
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
 						<h2>Q&A</h2>
-						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-							euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-							Praesent commodo cursus magna.</p>
+						<p>내가 남긴 Q&A를 보거나 Q&A를 쓸 수 있습니다.</p>
 						<p>
 							<a class="btn btn-default" id="btnQA" href="#" role="button">GO
 								»</a>
@@ -132,7 +119,6 @@
 
 	<!-- Java Script
     ================================================= -->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/myPage.js"></script>
