@@ -25,35 +25,39 @@ $(document).ready(function(){
     //회원가입 메소드
     
     var accountSubmit = function () {
-    	var allCheckResult = false;
-    	var regId = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
-    	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-    	
-    	//조건1. 6~20 영문 대소문자
-    	//조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
-    	
-    	var regPasswd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; 
-    	
     	
     	/*
-    	 * 2020-07-27 이경호 수정
-    	 * 수정 내용: 아이디 입력 input 벗어날시 사용여부 텍스트 숨기기
+    	 * 2020-07-27 경호 추가
+    	 * 추가 내용: 주민번호 입력단 숫자만 받게 하기
+    	 * 설명 : 숫자 이외의 단어가 입력 될 시 replace를 통해 제거한다.
     	 */
-    	$('#user_id').blur(function () {
-			$('.FilterResultId').addClass('hideResult');
-		});
+    	$('.userReg').on("keyup", function() {
+    	    $(this).val($(this).val().replace(/[^0-9]/g,""));
+    	});
+    	var allCheckResult = false;
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	
     	//아이디에 텍스트 입력시마다 ajax로 존재여부 결과를 가져온다.
-    	$('#user_id').on("change keyup paste",function () {
+    	//아이디 정규식 : 6~20자 영문자,숫자 최소 한개씩
+    	var regId = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
+    	$('#user_id').on("keyup",function () {
     		var idCheck = $('#user_id').val();
     		if (regId.test(idCheck)==false){
-    			$('#idCheckResult').html("영문자와 숫자로 이루어진 조합 6자리 이상만 가능합니다.");
-    			return
+    			$('#idCheckResult').html("영문자+숫자 최소 6자리");
+    			$('.FilterResultId').removeClass('hideResult');
+    			return;
     		}
     		if (idCheck.length==0){
     			$('#idCheckResult').html("");
-    			return
+    			$('.FilterResultId').addClass('hideResult');
+    			return;
     		}
     		
         	$.ajax({
@@ -76,21 +80,32 @@ $(document).ready(function(){
         	});
     	}); // 아이디 end
     	
+    	/*
+    	 * 2020-07-27 이경호 수정
+    	 * 수정 내용: 아이디 입력 input 벗어날시 사용여부 텍스트 숨기기
+    	 */
+    	$('#user_id').blur(function () {
+			$('.FilterResultId').addClass('hideResult');
+		});
+    	
     	//이메일 정규식
+    	//형식: 영문자+숫자 @ 영문자+숫자 . 영문자+숫자
+    	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
     	$('#user_email').on("change keyup paste",function () {
     		var emailCheck = $('#user_email').val();
     		if(emailCheck.length==0){
     			$('#eMailCheckResult').html("");
+    			$('.FilterResultEmail').addClass('hideResult');
     		}
     		else{
-    			// 이메일 형식: 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식
-    			
     			if(exptext.test(emailCheck) == false) { 
     				$('#eMailCheckResult').html("이메일 주소가 유효하지 않습니다.");
+    				$('.FilterResultEmail').removeClass('hideResult');
     				allCheckResult=false;
     			}
     			else{
     				$('#eMailCheckResult').html("사용 가능한 이메일 주소 입니다.");
+    				$('.FilterResultEmail').removeClass('hideResult');
     				allCheckResult=true;
     			}
     		}
@@ -98,14 +113,19 @@ $(document).ready(function(){
     	
     	
     	//비밀번호 정규식 체크
+    	//조건1. 6~20 영문 대소문자
+    	//조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
+    	var regPasswd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; 
     	$('#user_passwd').focusout(function () {
     		var passWdCheck = $('#user_passwd').val();
 			if(regPasswd.test(passWdCheck)==false){
-				$('#passwdCheckResult').html("최소 1개의 숫자 또는 특수문자와 6~20자의 비밀번호를 입력해주세요");
+				$('#passwdCheckResult').html("6~20자 최소 1개의 숫자 또는 특수문자 ");
+				$('.FilterResultPasswd').removeClass('hideResult');
 				allCheckResult=false;
 			}
 			else{
-				$('#passwdCheckResult').html("규격에 맞음");
+				$('#passwdCheckResult').html("✔");
+				$('.FilterResultPasswd').removeClass('hideResult');
 				allCheckResult=true;
 			}
 		});
@@ -113,10 +133,12 @@ $(document).ready(function(){
     		var passWdCheck2 = $('#user_passwd2').val();
 			if(passWdCheck2 != $('#user_passwd').val()){
 				$('#passwdCheckResult2').html("비밀번호 불일치");
+				$('.FilterResultPasswd2').removeClass('hideResult');
 				allCheckResult=false;
 			}
 			else{
-				$('#passwdCheckResult2').html("확인");
+				$('#passwdCheckResult2').html("✔");
+				$('.FilterResultPasswd2').removeClass('hideResult');
 				allCheckResult=true;
 			}
 		});
