@@ -57,7 +57,7 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 	public int insertMovieGenre(List<HashMap> list) {
 		return sqlSession.insert("ThreadInsertDAO.insertMovieGenre", list);
 	}
-
+	
 	@Override
 	public ActorVO selectActorInfo(ActorVO vo) {
 		return sqlSession.selectOne("ThreadInsertDAO.selectActor",vo);
