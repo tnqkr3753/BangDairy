@@ -64,10 +64,9 @@
                         <li class="has-children">
                             <a href="#0" title="">Diary</a>
                             <ul class="sub-menu">
-                            <li><a href="single-audio.jsp">다이어리 메인</a></li>
-                            <li><a href="single-video.jsp">내 다이어리</a></li>
-                            <li><a href="single-gallery.html">Gallery Post</a></li>
-                            <li><a href="single-standard.html">Standard Post</a></li>
+                            <li><a href="main_dairy.jsp">다이어리 메인</a></li>
+                            <li><a href="my_dairy.jsp">내 다이어리</a></li>
+                            <li><a href="write_dairy.jsp">다이어리 작성</a></li>
                             </ul>
                         </li>
                         <li class="has-children">

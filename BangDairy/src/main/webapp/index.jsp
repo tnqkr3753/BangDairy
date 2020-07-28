@@ -14,7 +14,6 @@
 <!--- basic page needs
     ================================================== -->
 <meta charset="utf-8">
-<title>Philosophy</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
