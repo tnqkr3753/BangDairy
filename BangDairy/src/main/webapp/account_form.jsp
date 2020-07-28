@@ -19,7 +19,7 @@
 				<input id='user_id' type="text" name="userId" required="" minlength="2">
 				<label >아이디</label>
 			</div>
-			<div class="FilterResult hideResult">
+			<div class="FilterResultId hideResult">
 				<strong id='idCheckResult'> ggg</strong>
 			</div>
 			
@@ -27,7 +27,7 @@
 				<input id="user_passwd" type="password" name="userPassword" required="">
 				<label>패스워드</label>	
 			</div>
-			<div class="FilterResult hideResult">
+			<div class="FilterResultPasswd hideResult">
 				<strong id="passwdCheckResult">aaa</strong>
 			</div>
 			
@@ -35,7 +35,7 @@
 				<input id="user_passwd2" type="password" name="" required="">
 				<label>패스워드-확인</label>	
 			</div>
-			<div class="FilterResult hideResult">
+			<div class="FilterResultPasswd hideResult">
 				<strong id="passwdCheckResult2">bbb</strong>
 			</div>
 			
@@ -66,8 +66,8 @@
 				<label>e-mail</label>	
 			</div>
 			
-			<input type="submit" value="Create my account" name="">
-			<button>취소</button>
+			<input id="onsubmit" type="submit" value="Create my account" name="">
+			<input type="button" id="account_cancel" value="cancel"></button>
 			</div>
 			</div>
 

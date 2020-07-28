@@ -10,7 +10,7 @@
 <body>
   <div id="login_body">
   <div class="login-form">
-    <form id="SignForm" method="post" action="SignInUser.do">
+    <form id="SignForm" method="post" action="">
       <h1>Login</h1>
       <div class="form-group">
         <input id="usrId" type="text" name="userId" placeholder="User ID">
@@ -20,7 +20,7 @@
         <input id="usrPasswd" type="password" name="userPassword" placeholder="Password">
         <span class="input-icon"><i class="fa fa-lock"></i></span>
       </div>   
-      <input type="submit" class="login-btn" value="Login"/>     
+      <input type="button" class="login-btn" value="Login"/>     
       <a class="reset-psw" href="#">Forgot your password?</a>
       <div class="seperator"><b>or</b></div>
       <p>Sign in with your social media account</p>

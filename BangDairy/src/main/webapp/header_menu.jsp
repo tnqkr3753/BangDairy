@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 세션에서 아이디 가져오기 -->
+<%String userId = (String)session.getAttribute("userId");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +18,26 @@
                     </a>
                 </div> <!-- end header__logo -->
 
+				<!-- 2020-07-28 경호 수정
+					  수정내용 : 로그인 시 메뉴바 아이콘 변경
+				 -->
+				 
                 <ul class="header__social">
+                	<%if (userId==null){ %>
                     <li>
                         <a href="#0"><i class="fa fa-sign-in" id=pa aria-hidden="true"></i>로그인</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">회원가입</i></a>
                     </li>
+                    <%}else{ %><!-- end If -->
+                	<li>
+                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"><%=userId%>님</i></a>
+                    </li>
+					<%} %>
                   
                 </ul> <!-- end header__social -->
-
+                
                 <a class="header__search-trigger" href="#0"></a>
 
                 <div class="header__search">

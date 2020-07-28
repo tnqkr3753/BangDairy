@@ -11,6 +11,12 @@ public class AccountFormVO {
 	int userProfileSize;
 	
 	
+	@Override
+	public String toString() {
+		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
+				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
+				+ userProfile + ", userProfileSize=" + userProfileSize + "]";
+	}
 	public String getUserName() {
 		return userName;
 	}

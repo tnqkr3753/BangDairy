@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="ko">
 <head>
 
 <!--- 아이콘가지고오는 링크 fa fa-twier 등등
@@ -57,9 +57,6 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
-<<<<<<< HEAD
-		<%@ include file="account_form.jsp"%>
-		<%@ include file="Sign_In.jsp"%>
 	<!-- 다이어라 자리  -->
 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
