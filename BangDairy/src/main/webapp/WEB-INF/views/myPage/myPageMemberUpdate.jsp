@@ -22,12 +22,12 @@
 		</tr>
 		<tr>
 			<th><span>성별</span></th>
-			<td><input type="checkbox" id="chkbx" disabled="disabled">&nbsp;남자
-				<br /> <input type="checkbox" id="chkbx" checked="checked"
+			<td><input type="checkbox" id="chkbx" name="userGender" disabled="disabled" value="0">&nbsp;남자
+				<br /> <input type="checkbox" name="userGender" id="chkbx" checked="checked" value="1"
 				disabled="disabled">&nbsp;여자</td>
 		</tr>
 		<th><span>나이</span></th>
-		<td><input type='text' value="25"  name="userAge"></td>
+		<td><input type='text' value="25"  name="userAge" disabled="disabled" ></td>
 		</tr>
 		<tr>
 			<th><span>휴대폰 번호</span></th>

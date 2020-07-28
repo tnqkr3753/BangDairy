@@ -7,8 +7,7 @@
 <html class="no-js" lang="en">
 <head>
 
-<!--- basic page needs
-    ================================================== -->
+<!-- basic page needs================================================== -->
 <meta charset="utf-8">
 <title>Video Post Format - Philosophy</title>
 <meta name="description" content="">
@@ -21,6 +20,11 @@
 
 <!-- CSS
     ================================================== -->
+        <link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">	
+ <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">

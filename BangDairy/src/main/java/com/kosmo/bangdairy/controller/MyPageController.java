@@ -25,4 +25,13 @@ public class MyPageController {
 		mv.setViewName("myPage/myPageMember");
 		return mv;
 	}
+	/*
+	 * 
+	 */
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "myPage/info/update",method = RequestMethod.POST)
+	 * public ModelAndView
+	 */
 }

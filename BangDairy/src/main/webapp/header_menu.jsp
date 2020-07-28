@@ -14,7 +14,7 @@
 
                 <div class="header__logo">
                     <a class="logo" href="index.jsp">
-                        <img src="resources/images/123.png" alt="Homepage" >
+                        <img src="/bangdairy/resources/images/123.png" alt="Homepage" >
                     </a>
                 </div> <!-- end header__logo -->
 
@@ -25,7 +25,7 @@
                 <ul class="header__social">
                 	<%if (userId==null){ %>
                     <li>
-                        <a href="#0"><i class="fa fa-sign-in" id=pa aria-hidden="true"></i>로그인</a>
+                        <a href="#0"><i class="fa fa-sign-in" id="pa" aria-hidden="true"></i>로그인</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">회원가입</i></a>
@@ -99,10 +99,10 @@
             </div> <!-- header-content -->
         </header> <!-- header -->
         </div>
-        <%@ include file="account_form.jsp"%>
-		<%@ include file="Sign_In.jsp"%>
-		<script type="text/javascript" src="resources/js/account_form.js"></script>
-		<script type="text/javascript" src="resources/js/Sign_in.js"></script>
-		<script type="text/javascript" src="resources/js/search.js"></script>
+        <%@ include file="/account_form.jsp"%>
+		<%@ include file="/Sign_In.jsp"%>
+		<script type="text/javascript" src="/bangdairy/resources/js/account_form.js"></script>
+		<script type="text/javascript" src="/bangdairy/resources/js/Sign_in.js"></script>
+		<script type="text/javascript" src="/bangdairy/resources/js/search.js"></script>
 </body>
 </html>
