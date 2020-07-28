@@ -1,6 +1,7 @@
 package com.kosmo.bangdairy.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,12 +48,13 @@ public class AccountForm {
 	}
 	//유저 로그인
 	@RequestMapping(value="/SignInUser", method = RequestMethod.POST)
-	@ResponseBody 
-	public int signInUser( AccountFormVO vo) {
+	@ResponseBody
+	public int signInUser( AccountFormVO vo,HttpSession sess) {
 		int result = accountFormService.signInUser(vo);
-		System.out.println(vo.getUserId());
-		System.out.println(vo.getUserPassword());
-		System.out.println(result);
+		if (result==1) {
+			sess.setAttribute("userId", vo.getUserId());
+			//sess.setMaxInactiveInterval(300);
+		}
 		return result;
 	}
 }

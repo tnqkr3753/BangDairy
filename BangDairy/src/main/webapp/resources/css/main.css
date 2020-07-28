@@ -832,7 +832,7 @@ input[type="button"] {
    text-transform: uppercase;
    letter-spacing: .3rem;
    height: 5.4rem;
-   line-height: 5rem;
+   /* line-height: 5rem; */
    padding: 0 3rem;
    margin: 0 .3rem 1.2rem 0;
    color: #000000;
@@ -1756,7 +1756,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    padding-top: 222px;
 }
 
-/* 2020-07-20 ��ȣ ����*/
+/* 2020-07-20 占쏙옙호 占쏙옙占쏙옙*/
 div.header_sticky{
 	position : sticky;
 	top:0px;
@@ -4245,8 +4245,8 @@ footer h4::after {
 
 
 /*
-	2020-07-20 ��ȣ ����
-	��������: ��� �޴��� �����ġ ����
+	2020-07-20 占쏙옙호 占쏙옙占쏙옙
+	占쏙옙占쏙옙占쏙옙占쏙옙: 占쏙옙占� 占쌨댐옙占쏙옙 占쏙옙占쏙옙占식� 占쏙옙占쏙옙
 */
 
 

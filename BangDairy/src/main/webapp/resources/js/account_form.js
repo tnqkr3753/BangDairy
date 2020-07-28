@@ -1,4 +1,13 @@
 $(document).ready(function(){ 
+	/*
+	 *  회원가입 취소버튼 이벤트
+	 *  account_cancel : 취소 버튼 Id 값
+	 *  작성자 : 이경호
+	 */
+	$('.account_container #account_cancel').on("click",function(){
+		var siteBody = $('body');
+		siteBody.removeClass('account-is-visible')
+	});
 	
 	 /*
      * 2020-07-20 이경호 수정
@@ -24,6 +33,17 @@ $(document).ready(function(){
     	//조건2. 최소 1개의 숫자 혹은 특수 문자를 포함해야 함
     	
     	var regPasswd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; 
+    	
+    	
+    	/*
+    	 * 2020-07-27 이경호 수정
+    	 * 수정 내용: 아이디 입력 input 벗어날시 사용여부 텍스트 숨기기
+    	 */
+    	$('#user_id').blur(function () {
+			$('.FilterResultId').addClass('hideResult');
+		});
+    	
+    	
     	//아이디에 텍스트 입력시마다 ajax로 존재여부 결과를 가져온다.
     	$('#user_id').on("change keyup paste",function () {
     		var idCheck = $('#user_id').val();
@@ -38,16 +58,19 @@ $(document).ready(function(){
     		
         	$.ajax({
         		data: {"user_id":idCheck},
-        		url: 'AccountForm_idCheck.do',
+        		url: 'AccountForm_idCheck',
         		success: function(data) {
         			var result = data;
         			if (result==0){
         				$('#idCheckResult').html("사용 가능한 아이디 입니다.");
+        				$('.FilterResultId').removeClass('hideResult');
+        				
         				allCheckResult=true;
         			}
         			else{
         				$('#idCheckResult').html("이미 사용중인 아이디 입니다.");
         				allCheckResult=false;
+        				$('.FilterResultId').removeClass('hideResult');
         			}
         		}
         	});
@@ -73,6 +96,7 @@ $(document).ready(function(){
     		}
     	}); // 이메일 정규식 end
     	
+    	
     	//비밀번호 정규식 체크
     	$('#user_passwd').focusout(function () {
     		var passWdCheck = $('#user_passwd').val();
@@ -97,15 +121,16 @@ $(document).ready(function(){
 			}
 		});
     	
-    	$('#account_body').on("submit",function (e) {
+    	
+    	$('#onsubmit').on("submit",function (e) {
+
     		e.preventdefault();
 		    if (allCheckResult==true){
 		    	this.submit();
 		    }
 		});
+
     	
-    	/*//성별 버튼 클릭시 정수형 변환
-    	$('.rbtn')*/
 	};
 	clAccount();
     accountSubmit();
