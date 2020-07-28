@@ -1,0 +1,274 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+@import url("reset.css");
+
+p {
+  padding-bottom: 24px;
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+ul,
+ol {
+  margin-left: 40px;
+}
+
+#editor {
+  margin: 50px auto 50px auto;
+  padding: 7px 20px 20px 20px;
+  border: 1px solid #464646;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+#toolbar {
+  margin-left: -20px;
+  margin-right: -20px;
+  border-bottom: 1px solid #464646;
+  padding: 8px 20px;
+  overflow: hidden;
+}
+
+#page {
+  padding-top: 30px;
+  min-height: 600px;
+  outline: none;
+}
+
+.icon {
+  float: left;
+  height: 30px;
+  width: 40px;
+  margin-right: 10px;
+  background: #fafafa;
+  font-size: 0.8rem;
+  color: #464646;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  border-color: #3e7086;
+  color: #3e7086;
+}
+
+main {
+	text-align: left;
+	background: #000;
+	margin: 30px auto;
+	width: 800px;
+	height: 500px
+}
+    
+#controls_E {
+	background: #191919;
+}
+    
+button {
+	color: #000;
+	background: #00668d;
+	margin: 10px 5px;
+	font-size: 15px;
+	border-radius: 5px;
+	border: none;
+	padding: 3px 5px;
+}
+    
+button:hover {
+	cursor: pointer;
+	color: #eee;
+}
+
+.button.active {
+	background: #33b5e5;
+}
+
+#editor_E {
+     caret-color: #33b5e5;
+     padding: 10px;
+     height: 100%;
+     font-size: 20px;
+    }
+    
+#editor_E:focus {
+	outline: none;
+}
+
+.inputfile {
+	display: inline-block;
+    margin-bottom: 2px;
+}
+	
+.inputfile .upload-button {	
+    display: inline-block;
+    position: relative;
+}
+
+.inputfile .upload-button input[type="file"] {
+    left: 0;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+	
+.inputfile .previous-file {
+    display: inline-block;
+}
+		
+.inputfile .previous-file .upload-button-link {
+    margin-right: 4px;
+    display: inline-block;
+    direction: rtl;
+    max-width: 360px;
+    overflow: visible;
+    height: 24px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.inputfile .previous-file .upload-button-link[href="#"] {
+    cursor: default;
+    text-decoration: none;
+}
+
+.inputfile .previous-file .upload-button-remove {
+    margin-right: 15px;
+}
+
+				
+.inputfile .previous-file .upload-button-remove .remove-icon {
+    display: inline-block;
+}
+			
+.inputfile .previous-file .upload-button-remove .restore-icon {
+    display: none;
+}
+		
+.inputfile .previous-file.deleted .upload-button-link {
+    color: #999;
+    text-decoration: line-through;
+}
+			
+.inputfile .previous-file.deleted .upload-button-remove .remove-icon {
+    display: none;
+}
+				
+.inputfile .previous-file.deleted .upload-button-remove .restore-icon {
+    display: inline-block;
+}
+
+#userhello{
+	text-align: center;
+}
+
+#title{
+	font-size: 40px;
+	width : 100%;
+	padding-left: 20px;
+}
+
+#date{
+	font-size: 20px;
+	width : 50%;
+}
+#together{
+	font-size: 20px;
+	width : 49%;
+}
+#location{
+	font-size: 20px;
+	width : 49%;
+}
+
+.panel h2{
+	width : 49%;
+}
+
+.starRev{
+	display: table-cell;
+	text-align: center;
+	width : 49%;
+}
+
+.input-group{
+	border-bottom: 1px;
+}
+
+.form-control{
+	width: 100%;
+}
+
+div.simpleTree-mainContainer.countHidden span.simpleTree-childCountBadge {
+    display: none;
+}
+
+.simpleTree-highlight {
+    background-color: greenyellow;
+}
+
+.simpleTree-nodeContainer {
+    padding: .1rem 0;
+    line-height: 1.15rem;
+}
+
+.simpleTree-indent {
+    display: inline-block;
+}
+
+.simpleTree-toggle {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-left: .5rem;
+    cursor: pointer;
+}
+
+.simpleTree-toggle:not(.disabled):hover {
+    cursor: pointer;
+    font-size: larger;
+}
+
+.simpleTree-toggle.disabled {
+    color: gray;
+    cursor: default !important;
+}
+
+.simpleTree-label {
+    display: inline-block;
+    padding: .2rem .25rem;
+    cursor: pointer;
+    margin-left: .25rem;
+    border: 1px solid transparent;
+}
+
+.simpleTree-label:hover {
+    font-weight: bold;
+}
+
+.simpleTree-selected {
+    border: 1px solid gray;
+    background-color: whitesmoke;
+    border-radius: .25rem;
+    font-weight: bold;
+}
+#mytree { margin: 20px auto; }
