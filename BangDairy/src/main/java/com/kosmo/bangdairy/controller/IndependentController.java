@@ -21,19 +21,21 @@ public class IndependentController {
 	@RequestMapping("Independent")
 	public String movieAppImsert(DirectorVO Dvo, GenreVO gvo, MovieVO mvo,ReviewVO rvo,HttpServletRequest request, HttpSession session ) {	
 		System.out.println("===================================================================================================");
+		
+		
+		
 		return "indie/Independent";
 		
 	}
 	
-	@RequestMapping("mainIndependent")
+	@RequestMapping("indieList")
 	public String movie() {	
 		
-		return "indie/mainIndependent";
+		return "indie/listIndie";
 		
 	}
 	@RequestMapping("indieDetail")
 	public String indieDetail() {	
-		
 		return "indie/indieDetail";
-}
+	}
 }

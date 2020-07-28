@@ -1,3 +1,5 @@
+//ajax listindie 페이지기능
+
 $(document).ready(function(){
 var a =0
 var main="mainAjax"
