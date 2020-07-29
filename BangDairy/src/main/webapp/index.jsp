@@ -26,7 +26,6 @@
  <meta name="msapplication-TileColor" content="#FFFFFF">
 
  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-flx
 <!-- 슬라이더 구현에 필요함 따로 빼서 써도 아이콘 구현이 안됨 -->
 <link rel="stylesheet" href="resources/css/bxslider.css">
 	<!-- ================================================ -->
