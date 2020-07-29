@@ -30,6 +30,14 @@ jQuery(document).ready(function ($) {
 	 * 작성자			: 박윤태
 	 */
 	function clickUpdate() {
+		var pass= $('input[name=userPassword]').val();
+		var chkPass = $('#passwordCheck').val();
+		if(pass!=""){
+			if(pass!=chkPass){
+				alert("비밀번호가 일치하지 않습니다");
+				return false;
+			}
+		}
 		var formData = new FormData($("#account")[0]);
 		$.ajax({
 			type: "POST",

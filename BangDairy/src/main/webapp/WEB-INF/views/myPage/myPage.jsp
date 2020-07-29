@@ -34,6 +34,7 @@ ss/myPage.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="resources/js/modernizr.js"></script>
 <script src="resources/js/pace.min.js"></script>
+<script src="resources/js/myPage.js"></script>
 
 <!-- favicons
     ================================================== -->
@@ -43,7 +44,7 @@ ss/myPage.css">
 </head>
 
 <body id="top">
-	<%@ include file="header_menu.jsp"%>
+	<%@ include file="../../../header_menu.jsp"%>
 
 	<!-- s-content
     ================================================== -->
@@ -109,7 +110,7 @@ ss/myPage.css">
 	</div>
 	<!-- s-content -->
 
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../../../footer.jsp"%>
 
 	<!-- preloader
     ================================================== -->
@@ -129,7 +130,7 @@ ss/myPage.css">
     ================================================= -->
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
-	<script src="resources/js/myPage.js"></script>
+	
 
 </body>
 

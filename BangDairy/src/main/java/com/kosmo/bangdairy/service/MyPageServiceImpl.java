@@ -20,5 +20,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public int updateUserInfo(AccountFormVO vo) {
 		return myPageDAO.updateUserInfo(vo);
 	}
+
+	@Override
+	public int deleteUserInfo(AccountFormVO vo) {
+		return myPageDAO.deleteUserInfo(vo);
+	}
 	
 }

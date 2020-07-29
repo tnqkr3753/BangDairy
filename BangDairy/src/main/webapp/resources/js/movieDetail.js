@@ -14,7 +14,7 @@ $(document).ready(function(){
 	});
 	
 	// 평점 클릭했을때
-	$('.starRev span').click(function(){
+	$('.comments-wrap .starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
 		$(this).addClass('on').prevAll('span').addClass('on');
 		return false;
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	 * 작성자		: 박윤태
 	 */
 	function insertComment(){
-		$('#commentScore').val($('div.starRev span.on').length-1)
+		$('#commentScore').val($('div.starRev span.on').length)
 		var formData = new FormData($('#contactForm')[0]);//.serialize();
 		//alert(formData)
 		$.ajax({
@@ -94,6 +94,7 @@ $(document).ready(function(){
 			success: function (response) {
 				if(response==1){
 					alert("코맨트 입력 성공");
+					$('ol.commentlist').html("");
 					commentLoad(1,movieId);
 				}else{
 					alert("코맨트 입력 실패");

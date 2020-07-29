@@ -57,4 +57,14 @@ $(document).ready(function(){
 		var location = document.querySelector(".mypage-content").offsetTop;	// mypage-content Top 위치 구함
 		window.scrollTo({top:location, behavior:'smooth'});	// Scroll 내려줌
 	});
+
 });
+	/*
+	* 나가기 : myPage로 이동
+	*/
+	function exit(){
+		window.location.href="/bangdairy/myPage";
+	};
+	$('input.btn-cancle').click(function(){
+		window.location.href="/bangdairy/myPage";
+	});

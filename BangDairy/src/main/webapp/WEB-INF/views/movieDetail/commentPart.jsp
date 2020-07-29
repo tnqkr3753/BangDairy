@@ -22,7 +22,7 @@
 								<div class="comment__text">
 									<p>${comment.comment }</p>
 								</div>
-								<div class="starRev">
+								<div class="starRevC">
 									<c:forEach begin="1" end="${comment.commentScore }">
 									<span class="starR on">별</span>
 									</c:forEach>

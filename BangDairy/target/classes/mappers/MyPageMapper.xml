@@ -12,4 +12,7 @@
 		</if>
 		WHERE user_id = #{userId}
 	</update>
+	<delete id="deleteUserInfo">
+		DELETE FROM user_info where user_id=#{userId} and user_password=#{userPassword}
+	</delete>
 </mapper>  

@@ -20,6 +20,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public int updateUserInfo(AccountFormVO vo) {
 		return sqlSession.update("MyPageDAO.updateUserInfo",vo);
 	}
+
+	@Override
+	public int deleteUserInfo(AccountFormVO vo) {
+		return sqlSession.delete("MyPageDAO.deleteUserInfo",vo);
+	}
 	
 	
 }

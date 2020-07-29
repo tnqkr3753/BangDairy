@@ -16,7 +16,7 @@ import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
-	int commentPerPage = 10;
+	int commentPerPage = 5;
 	@Autowired
 	MovieDetailDAO movieDetailDAO;
 	/*
@@ -73,7 +73,6 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		HashMap hm = new HashMap();
 		hm.put("movieId", movieId);
 		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
-		
 	}
 	/*
 	 * 메소드명	: insertComment

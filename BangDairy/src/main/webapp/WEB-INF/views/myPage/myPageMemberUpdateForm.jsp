@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<h2>Member Info</h2>
+<h2>회원 정보</h2>
 
 <script src="resources/js/myPageMemberUpdateForm.js"></script>
 <!-- table form 시작 -->
@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<th><span>주민등록번호</span></th>
-			<td><input type='text' value="${vo.userReg}"  name="userReg" readonly="readonly" ><span>******</span></td>
+			<td><input type='text' value="${vo.userReg}"  name="userReg" readonly="readonly" ></td>
 		</tr>
 		<tr>
 			<th><span>이메일</span></th>
@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<th style="font-size: 14px"><span>비밀번호 확인</span></th>
-			<td><input type="password" value=""></td>
+			<td><input type="password" value="" id="passwordCheck"></td>
 		</tr>
 		
 
@@ -51,7 +51,7 @@
 
 <!-- 수정하기, 탈퇴하기버튼 -->
 <div class="btn_wrap">
-	<input id="btn-updateConfirm" type="button" value="수정완료"> <input type="button" value="취소" id='btn-cancle'>
+	<input id="btn-updateConfirm" type="button" value="수정완료"> <input type="button" class='btn-cancle' value="취소" id='btn-cancle' onclick="exit()"> 
 </div>
 
 

@@ -14,8 +14,7 @@
 		<tr>
 			<th><span>프로필사진</span></th>
 			<td>
-			<div id='image_container'><img src="${vo.absoluteFilePath}"
-			 onerror='this.src="resources/images/defaultImage.png"'/></div></td>
+			<div id='image_container'><img src="resources/upload/userProfile/${vo.userProfile}"  onerror='this.src="resources/images/defaultImage.png"'/></div></td>
 		</tr>
 		<tr>
 			<th><span>아이디</span></th>
@@ -27,7 +26,7 @@
 		</tr>
 		<tr>
 			<th><span>주민등록번호</span></th>
-			<td>${vo.userReg }</td>
+			<td>${vo.userReg }<span>******</span></td>
 		</tr>
 		<tr>
 			<th><span>이메일</span></th>

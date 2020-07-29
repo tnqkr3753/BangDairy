@@ -75,11 +75,10 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping(value = "myPage/info/updateUser",method = RequestMethod.POST)
 	public ModelAndView updateUser(HttpSession session,AccountFormVO vo) {
+		LoggerAspect.logger.info("=== updateUser ===");
 		ModelAndView mv = new ModelAndView();
 		String userId = (String)session.getAttribute("userId");
-		//mv.addObject("", attributeValue)
 		vo.setUserId(userId);
-		LoggerAspect.logger.info(vo);
 		int result = myPageService.updateUserInfo(vo);
 		if (result ==1) {
 			vo = myPageService.selectUserInfo(vo);
@@ -87,5 +86,37 @@ public class MyPageController {
 		mv.addObject("vo", vo);
 		mv.setViewName("myPage/myPageMember");
 		return mv;
+	}
+	/*
+	 * 메소드 명  	:		deleteUserForm
+	 * 기능 		:		회원탈퇴를 위해 비밀번호 재확인 창으로 감
+	 * 변수		:		none
+	 * 작성자		:		박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "myPage/info/deleteUserForm",method = RequestMethod.POST)
+	public ModelAndView deleteUserForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("myPage/passCheck");
+		return mv;
+	}
+	/*
+	 * 메소드 명  	:		deleteUser
+	 * 기능 		:		회원정보 삭제 //로그에 남김
+	 * 변수		:		session, AccountFormVO
+	 * 작성자		:		박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "myPage/info/deleteUser",method = RequestMethod.POST)
+	public int deleteUser(HttpSession session,AccountFormVO vo) {
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		AccountFormVO avo = myPageService.selectUserInfo(vo);
+		int result = myPageService.deleteUserInfo(vo);
+		if(result ==1) {
+			session.removeAttribute("userId");
+			LoggerAspect.logger.warn("DELETE USER INFO : " +avo);
+		}
+		return result;
 	}
 }

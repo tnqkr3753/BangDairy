@@ -75,7 +75,7 @@
 				</ul>
 
 				<%-- 평점 --%>
-				<div class="starRev">
+				<div class="starRevM">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
 						class="starR">별3</span> <span class="starR">별4</span> <span
 						class="starR">별5</span> <!-- 해야함 -->
