@@ -103,6 +103,9 @@
 			</div>
 		</article>
 	</section>
+	<div id="dialogPass" title="비밀번호 입력" style="display:none">
+		<input type="password" name="userPassword">
+	</div>
 	<!-- s-content -->
 
 	<%@ include file="footer.jsp"%>

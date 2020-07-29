@@ -4,6 +4,13 @@ $(document).ready(function(){
 	 * My Profile 하단의 Go 버튼을 눌렀을때 동작
 	 */
 	$('#btnMyProfile').click(function() {
+		$('#dialogPass').dialog({
+			modal: true,
+			buttons: {
+				"확인": function() { $(this).dialog('close'); },
+				"취소": function() { $(this).dialog('close'); },
+			}
+		});
 		$.ajax({
 			type : 'POST',	// 요청 메소드 타입
 			url : "myPage/info",	// 클라이언트가 HTTP 요청을 보낼 서버의 주소

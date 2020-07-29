@@ -20,14 +20,15 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		Object id =request.getAttribute("userId");
+		String id =(String)request.getSession().getAttribute("userId");
+		LoggerAspect.logger.info("id : "+id);
 		if (id==null) {
 			//로그인 안했을 때
 			LoggerAspect.logger.warn("세션 만료 " + request.getRemoteAddr() +" " + request.getRequestURI());
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter pw = response.getWriter();
 			pw.println("<script type='text/javascript'>");
-			pw.println("alert('세션이 만료되었거나 로그인하지 않았습니다. 다시 로그인 해주세요');");
+			pw.println("alert('로그인이 필요한 기능입니다. 로그인을 해주세요');");
 			pw.println("history.back();");
 			pw.println("</script>");
 			pw.flush();

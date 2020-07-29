@@ -14,23 +14,24 @@
 		<tr>
 			<th><span>프로필사진</span></th>
 			<td>
-			<div id='image_container'><img src=""></div></td>
+			<div id='image_container'><img src="${vo.absoluteFilePath}"
+			 onerror='this.src="resources/images/defaultImage.png"'/></div></td>
 		</tr>
 		<tr>
 			<th><span>아이디</span></th>
-			<td>bej96</td>
+			<td>${vo.userId }</td>
 		</tr>
 		<tr>
 			<th><span>이름</span></th>
-			<td>배은주</td>
+			<td>${vo.userName }</td>
 		</tr>
 		<tr>
 			<th><span>주민등록번호</span></th>
-			<td>951231-1******</td>
+			<td>${vo.userReg }</td>
 		</tr>
 		<tr>
 			<th><span>이메일</span></th>
-			<td>qkrdbsxo1@naver.com</td>
+			<td>${vo.userEmail }</td>
 		</tr>
 	</tbody>
 </table>

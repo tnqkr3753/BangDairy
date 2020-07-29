@@ -15,23 +15,24 @@
 		<tr>
 			<th><span>프로필사진</span></th>
 			<td><input id="profile_img" type="file" name='file' value="" accept="image/gif,image/jpg,image/png" onchange="chk_file_type(this)" >
-			<div id='image_container'></div></td>
+			<div id='image_container'><img src="${vo.absoluteFilePath}"
+			 onerror='this.src="resources/images/defaultImage.png"'/></div></td>
 		</tr>
 		<tr>
 			<th><span>아이디</span></th>
-			<td><input type='text' value="bej96"  name="userId" readonly="readonly" ></td>
+			<td><input type='text' value="${vo.userId }"  name="userId" readonly="readonly" ></td>
 		</tr>
 		<tr>
 			<th><span>이름</span></th>
-			<td><input type='text' value="은주배"  name="userName" readonly="readonly" ></td>
+			<td><input type='text' value="${vo.userName }"  name="userName" readonly="readonly" ></td>
 		</tr>
 		<tr>
 			<th><span>주민등록번호</span></th>
-			<td><input type='text' value="951231-1******"  name="userReg" readonly="readonly" ></td>
+			<td><input type='text' value="${vo.userReg}"  name="userReg" readonly="readonly" ><span>******</span></td>
 		</tr>
 		<tr>
 			<th><span>이메일</span></th>
-			<td><input type='email' value="qkrdbsxo1@naver.com"   name="userEmail" readonly="readonly" ></td>
+			<td><input type='email' value="${vo.userEmail }"   name="userEmail" readonly="readonly" ></td>
 		</tr>
 		<tr>
 			<th><span>비밀번호</span></th>

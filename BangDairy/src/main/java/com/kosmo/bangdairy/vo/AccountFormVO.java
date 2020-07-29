@@ -1,16 +1,10 @@
 package com.kosmo.bangdairy.vo;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
@@ -130,6 +124,8 @@ public class AccountFormVO {
 	}
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
+		String path = "C:\\Users\\KOSMO_25\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\userProfile\\";
+		this.absoluteFilePath = path+userProfile;
 	}
 	public long getUserProfileSize() {
 		return userProfileSize;

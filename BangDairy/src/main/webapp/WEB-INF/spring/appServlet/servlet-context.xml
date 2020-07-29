@@ -46,8 +46,9 @@
 		<aop:include name="loggerAspect"/>
 	</aop:aspectj-autoproxy> -->
 	<!-- Interceptor 설정
-		loggingInterceptor
-		loginSessionCheckInterceptor
+		loggingInterceptor 모든 경로
+		loginCheckInterceptor /comment/insert , /myPage/**/
+		
 	 -->
     <interceptors>
         <interceptor>
@@ -56,6 +57,8 @@
         </interceptor>
         <interceptor>
         	<mapping path="/comment/insert"/>
+        	<mapping path="/myPage"/>
+        	<mapping path="/myPage/**/"/>
         	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
         </interceptor>
     </interceptors>
