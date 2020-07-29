@@ -11,8 +11,10 @@
   <body>
   	<div>
     <div class="account_container">
-		<h3>Sign up</h3>
-		<form id="account_body" action="AccountUser.do">
+		<h3>회원가입</h3>
+		<form id="account_body" method="post" action="">
+		
+		<input style="display:none;" id="userProfileSize" name="userProfileSize" value="1">
 		<div class="row">
 		<div class="col-md-12 col-sm-12 col">
 			<div>
@@ -32,42 +34,33 @@
 			</div>
 			
 			<div>
-				<input id="user_passwd2" type="password" name="" required="">
+				<input id="user_passwd2" type="password" required="">
 				<label>패스워드-확인</label>	
 			</div>
-			<div class="FilterResultPasswd hideResult">
-				<strong id="passwdCheckResult2">bbb</strong>
+			<div class="FilterResultPasswd2 hideResult">
+				<label id="passwdCheckResult2">bbb</label>
 			</div>
 			
 			
- 			<div>
-				<input type="text" name="userName" required="">
-				<label>이름</label>	
+ 			<div id="userRegForm">
+					<input maxlength="6" minlength="6" class="userReg" type="text" required="">
+					<span style="font-size:30px;">-</span>
+					<input maxlength="1" class="userRegB" type="text" required="">
+					<span class="userRegStar">******</span>
+					<label>주민등록번호</label>	
+					<input id="saveReg" style="display:none;" name="userReg">
 			</div>
-			
-			<div>
-				<table>
-					<tr>
-						<td><input class="rbtn" type="radio" name="userGender" value="1">남자</td>
-						<td><input class="rbtn" type="radio" name="userGender" value="2">여자</td>
-					<label>성별</label>	
-					</tr>
-				</table>
-			</div>
-			
-			<div>
-				<input type="text" name="userAge" required="">
-				<label>연령</label>	
-			</div>
-			
+
 			<div>
 				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
-				<strong id="eMailCheckResult">eee</strong>
 				<label>e-mail</label>	
 			</div>
+			<div class="FilterResultEmail hideResult">
+				<strong id="eMailCheckResult">eee</strong>
+			</div>
 			
-			<input id="onsubmit" type="submit" value="Create my account" name="">
-			<input type="button" id="account_cancel" value="cancel"></button>
+			<input id="onsubmit" type="submit" value="회원가입">
+			<input type="button" id="account_cancel" value="취소"></button>
 			</div>
 			</div>
 
