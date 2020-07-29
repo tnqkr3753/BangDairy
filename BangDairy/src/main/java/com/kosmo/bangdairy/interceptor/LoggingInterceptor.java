@@ -10,13 +10,18 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
 	public static final Logger logger = LogManager.getLogger("Interceptor");
+	/*
+	 * 메소드명		: preHandler (@Override)
+	 * 기능			: 페이지를 거치거나 서버에 요청을 보낼 때 마다 logger에 기록해 파일로 남김
+	 * 변수			: request, response, handler, modelAndView
+	 * 작성자			: 박윤태
+	 */
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		logger.info(request.getRemoteAddr()+"\t"+request.getSession().getAttribute("userId")+"\t"+request.getServletPath()+"\t"+request.getHeader("referer")+"\t"+response.getLocale());
-		super.postHandle(request, response, handler, modelAndView);
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		logger.info(request.getRemoteAddr()+"\t"+request.getRequestURL()+"\t"+request.getSession().getAttribute("userId")+"\t"+request.getServletPath()+"\t"+request.getHeader("referer")+"\t"+response.getLocale());
+		return super.preHandle(request, response, handler);
 	}
-	
+		
 }

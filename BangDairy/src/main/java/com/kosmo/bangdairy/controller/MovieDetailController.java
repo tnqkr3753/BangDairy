@@ -81,11 +81,10 @@ public class MovieDetailController {
 			}
 			else vo.setReceipt(1);
 		}
-		//TODO 세선쳐리 끝나고 시작 vo에 아이디를 넣고 db에 입력
-		//vo.setUserId((String)session.getAttribute("userId"));
-		
+		vo.setUserId((String)session.getAttribute("userId"));
+		int result =movieDetailService.insertComment(vo);
 		LoggerAspect.logger.info(vo);
-		return 0;
+		return result;
 	}
 	/*
 	 * 메소드명	: commentCount

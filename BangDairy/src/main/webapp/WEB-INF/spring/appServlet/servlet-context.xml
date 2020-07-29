@@ -38,6 +38,7 @@
 	        </beans:props>
 	    </beans:property>
 	</beans:bean>
+	
 	<!-- 로그 AOP -->
 	<beans:bean id="loggerAspect" class="com.kosmo.bangdairy.aop.LoggerAspect"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -52,6 +53,10 @@
         <interceptor>
             <mapping path="/**/"/>
             <beans:bean id="loggingInterceptor" class="com.kosmo.bangdairy.interceptor.LoggingInterceptor"/>
+        </interceptor>
+        <interceptor>
+        	<mapping path="/comment/insert"/>
+        	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
         </interceptor>
     </interceptors>
 	

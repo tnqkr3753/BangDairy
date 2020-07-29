@@ -92,11 +92,15 @@ $(document).ready(function(){
 			data : formData,
 			dataType: "html",
 			success: function (response) {
-				alert("입력 성공")
-				$('ol.commentlist').html(response);
+				if(response==1){
+					alert("코맨트 입력 성공");
+					commentLoad(1,movieId);
+				}else{
+					alert("코맨트 입력 실패");
+				}
 			},
 			error: function(e){
-				alert("comment 추가 후 불러오기 실패 :"+e);
+				alert("이미 코맨트를 입력했습니다. :"+e);
 			}
 		})
 		//form reset
