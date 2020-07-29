@@ -605,6 +605,27 @@
         } 
 
     };
+    /*
+     * 2020-07-29 경호 추가
+     * 추가 내용 : 로그아웃 클릭 시 세션내용 제거 및 로그아웃
+     */
+    var clLogOut = function () {
+		$('#logout-btn').on('click',function(){
+			$.ajax({
+        		type:"POST",
+        		url: 'userLogout',
+        		success: function(data) {
+        			if(data==1){
+        				alert('로그아웃 되었습니다.');
+        				window.location.href="index.jsp";
+        			}
+        		},
+        		error: function () {
+					alert('세션 실패');
+				}
+        	});
+		});
+	};
 
    
    /* Initialize
@@ -625,7 +646,7 @@
         clAjaxChimp();
         clBackToTop();
         clGoogleMap();
-
+        clLogOut();
     })();
         
 })(jQuery);

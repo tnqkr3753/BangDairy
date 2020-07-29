@@ -92,4 +92,13 @@ public class AccountForm {
 		}
 		return result;
 	}
+	@RequestMapping(value="/userLogout")
+	@ResponseBody
+	public int userLogout(HttpSession sess) {
+		sess.removeAttribute("userId");
+		if(sess.getAttribute("userId")==null) {
+			return 1;
+		}
+		return 0;
+	}
 }

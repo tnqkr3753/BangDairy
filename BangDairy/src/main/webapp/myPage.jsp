@@ -61,7 +61,7 @@ ss/myPage.css">
 						<h2>My Profile</h2>
 						<p>나의 정보를 볼 수 있으며<br/> 수정, 탈퇴가 가능합니다.</p>
 						<p>
-							<button class="btn btn-default" id="btnMyProfile" href="#"
+							<button class="btn btn-default" id="btnMyProfile"
 								role="button">GO »</button>
 						</p>
 					</div>

@@ -30,10 +30,17 @@
                     <li>
                         <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">회원가입</i></a>
                     </li>
+                    
                     <%}else{ %><!-- end If -->
-                	<li>
-                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"><%=userId%>님</i></a>
-                    </li>
+                    <ul class="header__nav">
+                    	<li class="has-children">
+                    	<a href='#'><i id='mark-user-id' class="f	a" aria-hidden="true"><%=userId%>님</i></a>
+                    		<ul class="sub-menu">
+	                    		<li><a href="myPage">마이 페이지</a></li>
+	                    		<li><a id="logout-btn" href="#">로그아웃</a></li>
+                    		</ul>
+                    	</li>
+                    </ul>
 					<%} %>
                   
                 </ul> <!-- end header__social -->
@@ -61,20 +68,15 @@
                     <h2 class="header__nav-heading h6">Site Navigation</h2>
 
                     <ul class="header__nav">
-                        <li class="current"><a href="index.jsp" title="">Home</a></li>
+                        <li class="current"><a href="index.jsp" title="">메인</a></li>
                         <li class="has-children">
-                            <a href="#0" title="">Chart</a>
+                            <a href="#0" title="">영화</a>
                             <ul class="sub-menu">
-                            <li><a href="detail">movieDetail</a></li>
-                            <li><a href="movieList.jsp">movieList</a></li>
-                            <li><a href="category.html">Family</a></li>
-                            <li><a href="category.html">Management</a></li>
-                            <li><a href="category.html">Travel</a></li>
-                            <li><a href="category.html">Work</a></li>
+                            <li><a href="movieList.jsp">영화정보</a></li>
                             </ul>
                         </li>
                         <li class="has-children">
-                            <a href="#0" title="">Diary</a>
+                            <a href="#0" title="">다이어리</a>
                             <ul class="sub-menu">
                             <li><a href="main_dairy.jsp">다이어리 메인</a></li>
                             <li><a href="my_dairy.jsp">내 다이어리</a></li>
@@ -82,11 +84,11 @@
                             </ul>
                         </li>
                         <li class="has-children">
-                         <a href="#0" title="">Indie Chart</a>
+                         <a href="#0" title="">인디극장</a>
                          
                           <ul>
                 
-                            <li><a href="indieList.do">indieList</a></li>
+                            <li><a href="indieList.do">인디영화</a></li>
                             <li><a href="Independent.do">신청</a></li>
                            
                             </ul>
