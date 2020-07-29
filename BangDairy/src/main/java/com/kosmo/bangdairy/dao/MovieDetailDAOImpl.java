@@ -45,7 +45,14 @@ public class MovieDetailDAOImpl implements MovieDetailDAO {
 	public HashMap getCommentCount(HashMap hash) {
 		return sqlSession.selectOne("MovieDetailDAO.getCommentCount", hash);
 	}
-	
+	@Override
+	public int insertComment(CommentVO vo) {
+		return sqlSession.insert("MovieDetailDAO.insertComment",vo);
+	}
+	@Override
+	public int increaseHist(MovieVO vo) {
+		return sqlSession.update("MovieDetailDAO.increaseHits",vo);
+	}
 	
 
 }

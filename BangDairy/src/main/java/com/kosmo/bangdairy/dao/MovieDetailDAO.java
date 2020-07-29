@@ -16,5 +16,6 @@ public interface MovieDetailDAO {
 	public List<DirectorVO> selectDirectors(MovieVO vo);
 	public List<CommentVO> selectComments(HashMap hash);
 	public HashMap getCommentCount(HashMap hash);
-	
+	public int insertComment(CommentVO vo);
+	public int increaseHist(MovieVO vo);
 }

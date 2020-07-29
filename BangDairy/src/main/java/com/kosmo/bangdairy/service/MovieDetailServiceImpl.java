@@ -29,7 +29,6 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	public MovieVO selectOneMovie(MovieVO vo) {
 		MovieVO rvo = movieDetailDAO.selectOneMovie(vo);
 		ArrayList<GenreVO> gvo =  (ArrayList<GenreVO>)movieDetailDAO.selectMovieGenre(vo);
-		LoggerAspect.logger.info("gvo : "+gvo);
 		rvo.setMovieGenre(gvo);
 		HashMap<ActorVO, String> star = new HashMap<ActorVO, String>();
 		for (HashMap hash : movieDetailDAO.selectStarring(vo)) {
@@ -39,8 +38,9 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 			star.put(avo, (String)hash.get("role"));
 		}
 		rvo.setStarring(star);
-		LoggerAspect.logger.info("star : "+star);
+		movieDetailDAO.increaseHist(rvo);
 		rvo.setMovieDirector((ArrayList<DirectorVO>)movieDetailDAO.selectDirectors(vo));
+		LoggerAspect.logger.info("rvo : "+rvo);
 		return rvo;
 	}
 	/*
@@ -75,5 +75,16 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
 		
 	}
+	/*
+	 * 메소드명	: insertComment
+	 * 기능		: Comment 입력
+	 * 변수 		: CommentVO
+	 * 작성자		: 박윤태
+	 */
+	@Override
+	public int insertComment(CommentVO vo) {
+		return movieDetailDAO.insertComment(vo);
+	}
+	
 	
 }
