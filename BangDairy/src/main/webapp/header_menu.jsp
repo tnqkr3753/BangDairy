@@ -36,8 +36,8 @@
                     	<li class="has-children">
                     	<a href='#'><i id='mark-user-id' class="f	a" aria-hidden="true"><%=userId%>님</i></a>
                     		<ul class="sub-menu">
-	                    		<li><a href="#">마이 페이지</a></li>
-	                    		<li><a id="#" href="#">로그아웃</a></li>
+	                    		<li><a href="myPage">마이 페이지</a></li>
+	                    		<li><a id="logout-btn" href="#">로그아웃</a></li>
                     		</ul>
                     	</li>
                     </ul>

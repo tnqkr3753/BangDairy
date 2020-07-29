@@ -611,10 +611,19 @@
      */
     var clLogOut = function () {
 		$('#logout-btn').on('click',function(){
-
-			sessionStorage.removeItem('userId');
-			alert("로그아웃 되었습니다.");
-			window.location.href="index.jsp";
+			$.ajax({
+        		type:"POST",
+        		url: 'userLogout',
+        		success: function(data) {
+        			if(data==1){
+        				alert('로그아웃 되었습니다.');
+        				window.location.href="index.jsp";
+        			}
+        		},
+        		error: function () {
+					alert('세션 실패');
+				}
+        	});
 		});
 	};
 
