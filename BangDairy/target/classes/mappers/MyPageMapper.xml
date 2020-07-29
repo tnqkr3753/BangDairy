@@ -5,4 +5,11 @@
 	<select id="selectUserInfo" resultType="account" parameterType="account">
 		SELECT * from user_info where user_id = #{userId}
 	</select>
+	<update id="updateUserInfo" parameterType="account">
+		UPDATE user_info SET user_password=#{userPassword}
+		<if test="userProfileSize!=null and userProfileSize!=0">
+			, user_profile = #{userProfile} , user_profile_size=#{userProfileSize}
+		</if>
+		WHERE user_id = #{userId}
+	</update>
 </mapper>  

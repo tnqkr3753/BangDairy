@@ -15,5 +15,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public AccountFormVO selectUserInfo(AccountFormVO vo) {
 		return sqlSession.selectOne("MyPageDAO.selectUserInfo",vo);
 	}
+
+	@Override
+	public int updateUserInfo(AccountFormVO vo) {
+		return sqlSession.update("MyPageDAO.updateUserInfo",vo);
+	}
+	
 	
 }

@@ -45,8 +45,8 @@ jQuery(document).ready(function ($) {
 					$('.mypage-content').html(response);
 				}
 			},
-			error: function(e){
-				alert("comment 추가 후 불러오기 실패 :"+e);
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 		})
 	}

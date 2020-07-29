@@ -26,7 +26,8 @@
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/css/myPage.css">
+<link rel="stylesheet" href="resources/c
+ss/myPage.css">
 
 <!-- script
     ================================================== -->

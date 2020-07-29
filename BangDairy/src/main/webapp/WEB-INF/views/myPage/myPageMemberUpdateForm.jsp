@@ -51,8 +51,7 @@
 
 <!-- 수정하기, 탈퇴하기버튼 -->
 <div class="btn_wrap">
-	<input id="btn-updateConfirm" type="button" value="수정완료"> <input type="button"
-		value="취소" id='btn-cancle'>
+	<input id="btn-updateConfirm" type="button" value="수정완료"> <input type="button" value="취소" id='btn-cancle'>
 </div>
 
 

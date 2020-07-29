@@ -76,8 +76,15 @@ public class MyPageController {
 	@RequestMapping(value = "myPage/info/updateUser",method = RequestMethod.POST)
 	public ModelAndView updateUser(HttpSession session,AccountFormVO vo) {
 		ModelAndView mv = new ModelAndView();
+		String userId = (String)session.getAttribute("userId");
 		//mv.addObject("", attributeValue)
+		vo.setUserId(userId);
 		LoggerAspect.logger.info(vo);
+		int result = myPageService.updateUserInfo(vo);
+		if (result ==1) {
+			vo = myPageService.selectUserInfo(vo);
+		}
+		mv.addObject("vo", vo);
 		mv.setViewName("myPage/myPageMember");
 		return mv;
 	}
