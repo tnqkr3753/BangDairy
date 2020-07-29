@@ -25,7 +25,7 @@
                 <ul class="header__social">
                 	<%if (userId==null){ %>
                     <li>
-                        <a href="#0"><i class="fa fa-sign-in" id="pa" aria-hidden="true"></i>로그인</a>
+                        <a id="show-login"><i class="fa fa-sign-in" id="pa" aria-hidden="true"></i>로그인</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">회원가입</i></a>

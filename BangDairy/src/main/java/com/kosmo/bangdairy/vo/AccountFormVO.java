@@ -13,9 +13,18 @@ public class AccountFormVO {
 	String userPassword;
 	String userEmail;
 	int userGender;
-	String userReg;
 	String userProfile;
 	long userProfileSize;
+	String userReg;
+	
+	
+	
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
+	}
+	public void setUserGender(int userGender) {
+		this.userGender = userGender;
+	}
 	MultipartFile file;
 	public MultipartFile getFile() {
 		return file;
@@ -93,7 +102,7 @@ public class AccountFormVO {
 	public void setUserReg(String userReg) {
 		this.userReg = userReg;
 		Calendar cal = Calendar.getInstance();
-		char lastNum = userReg.charAt(7);
+		char lastNum = userReg.charAt(6);
 		int birth = Integer.parseInt(userReg.substring(0, 2));
 		if ( lastNum =='1' || lastNum =='3') {
 			this.userGender = 1;

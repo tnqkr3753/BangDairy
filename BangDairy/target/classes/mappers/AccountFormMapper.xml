@@ -5,12 +5,18 @@
 
 	<!-- db에 유저 id 존재 여부 질의 쿼리 -->
 	<select id="selectIdCheck" resultType="String" parameterType="String">
-		select * from user_info where user_id like #{user_id}
+		select * from user_info where user_id = #{id}
 	</select>
+	
+	<select id="selectEmailCheck" resultType="String" parameterType="String">
+		select * from user_info where user_email = #{email};
+	</select>
+	
+	
 	<!-- db에 유저 정보 저장 쿼리-->
 	<insert id="insertUser" parameterType="account">
-		insert into user_info(user_name,user_id,user_password,
-			user_email,user_gender,user_age
+		insert into user_info(user_id,user_password,
+			user_email,user_reg
 		<if test="userProfile != null">
 			,user_profile
 		</if>
@@ -18,8 +24,8 @@
 			,user_profile_size
 		</if>
 			)
-		 values(#{userName},#{userId},#{userPassword},
-		#{userEmail},#{userGender},#{userAge}
+		 values(#{userId},#{userPassword},
+		#{userEmail},#{userReg}
 		<if test="userProfile != null">
 		,#{userProfile}
 		</if>

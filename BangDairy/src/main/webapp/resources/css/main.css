@@ -69,6 +69,9 @@
  * # base style overrides
  *
  * ------------------------------------------------------------------- */
+ .header__social #show-login:hover{
+	cursor:pointer;
+}
  .title{
 color: #292a32;
     font-size: 22px;

@@ -5,6 +5,7 @@ package com.kosmo.bangdairy.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int selectIdCheck(String user_id) {
-		List<Object> list = sqlSession.selectList("selectIdCheck", user_id);
+	public int selectIdCheck(String id) {
+		List<Object> list = sqlSession.selectList("selectIdCheck", id);
 		int result = list.size();
 		return result;
 	}
@@ -35,6 +36,12 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 	public int signInUser(AccountFormVO vo) {
 		int result = sqlSession.selectOne("SignInUser", vo);
 		return result;
+	}
+
+	@Override
+	public int selectEmailCheck(String email) {
+		List<Object> list = sqlSession.selectList("selectEmailCheck", email);
+		return list.size();
 	}
 
 }

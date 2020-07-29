@@ -35,15 +35,7 @@ $(document).ready(function(){
     	    $(this).val($(this).val().replace(/[^0-9]/g,""));
     	});
     	var allCheckResult = false;
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+
     	//아이디에 텍스트 입력시마다 ajax로 존재여부 결과를 가져온다.
     	//아이디 정규식 : 6~20자 영문자,숫자 최소 한개씩
     	var regId = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
@@ -61,7 +53,8 @@ $(document).ready(function(){
     		}
     		
         	$.ajax({
-        		data: {"user_id":idCheck},
+        		data: {"id":idCheck},
+        		type:"post",
         		url: 'AccountForm_idCheck',
         		success: function(data) {
         			var result = data;
@@ -80,13 +73,13 @@ $(document).ready(function(){
         	});
     	}); // 아이디 end
     	
-    	/*
-    	 * 2020-07-27 이경호 수정
-    	 * 수정 내용: 아이디 입력 input 벗어날시 사용여부 텍스트 숨기기
-    	 */
-    	$('#user_id').blur(function () {
-			$('.FilterResultId').addClass('hideResult');
-		});
+//    	/*
+//    	 * 2020-07-27 이경호 수정
+//    	 * 수정 내용: 아이디 입력 input 벗어날시 사용여부 텍스트 숨기기
+//    	 */
+//    	$('#user_id').blur(function () {
+//			$('.FilterResultId').addClass('hideResult');
+//		});
     	
     	//이메일 정규식
     	//형식: 영문자+숫자 @ 영문자+숫자 . 영문자+숫자
@@ -104,9 +97,26 @@ $(document).ready(function(){
     				allCheckResult=false;
     			}
     			else{
-    				$('#eMailCheckResult').html("사용 가능한 이메일 주소 입니다.");
-    				$('.FilterResultEmail').removeClass('hideResult');
-    				allCheckResult=true;
+
+    				$.ajax({
+    					type:"post",
+    					contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+    	        		data: {"email":emailCheck},
+    	        		url: 'AccountForm_emailCheck',
+    	        		success: function(data) {
+    	        			var result = data;
+    	        			if (result==0){
+    	        				$('#eMailCheckResult').html("사용 가능한 이메일 주소 입니다.");
+    	        				$('.FilterResultEmail').removeClass('hideResult');
+    	        				allCheckResult=true;
+    	        			}
+    	        			else{
+    	        				$('#eMailCheckResult').html("이미 사용중인 이메일 주소 입니다.");
+    	        				allCheckResult=false;
+    	        				$('.FilterResultEmail').removeClass('hideResult');
+    	        			}
+    	        		}
+    	        	});
     			}
     		}
     	}); // 이메일 정규식 end
@@ -144,11 +154,32 @@ $(document).ready(function(){
 		});
     	
     	
-    	$('#onsubmit').on("submit",function (e) {
-
-    		e.preventdefault();
+    	$('#onsubmit').on("click",function (e) {
+    		
 		    if (allCheckResult==true){
-		    	this.submit();
+		    	e.preventDefault();
+		    	/*
+		    	 * 주민번호 합쳐서 보내주기
+		    	 */
+		    	$('#saveReg').val($('.userReg').val()+$('.userRegB').val());
+		    	var userData = $('#account_body').serialize();
+		    	//비동기 통신으로 유저 정보 저장하고 결과값 받기.
+		    	console.log(userData);
+		    	$.ajax({
+	        		data: userData,
+	        		type:"POST",
+	        		url: 'AccountUser',
+	        		success: function(data) {
+	        			var result = data;
+	        			if (result==0){
+	        				alert('가입실패 : DB오류');
+	        			}
+	        			else{
+	        				alert('가입이 성공적으로 완료 되었습니다.');
+	        				window.location.href="index.jsp";
+	        			}
+	        		}
+	        	});
 		    }
 		});
 

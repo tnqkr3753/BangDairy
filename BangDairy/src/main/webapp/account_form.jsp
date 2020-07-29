@@ -12,7 +12,9 @@
   	<div>
     <div class="account_container">
 		<h3>회원가입</h3>
-		<form id="account_body" action="AccountUser.do">
+		<form id="account_body" method="post" action="">
+		
+		<input style="display:none;" id="userProfileSize" name="userProfileSize" value="1">
 		<div class="row">
 		<div class="col-md-12 col-sm-12 col">
 			<div>
@@ -32,7 +34,7 @@
 			</div>
 			
 			<div>
-				<input id="user_passwd2" type="password" name="" required="">
+				<input id="user_passwd2" type="password" required="">
 				<label>패스워드-확인</label>	
 			</div>
 			<div class="FilterResultPasswd2 hideResult">
@@ -41,22 +43,23 @@
 			
 			
  			<div id="userRegForm">
-					<input maxlength="6" minlength="6" class="userReg" type="text" name="userRegF" required="">
+					<input maxlength="6" minlength="6" class="userReg" type="text" required="">
 					<span style="font-size:30px;">-</span>
-					<input maxlength="1" class="userRegB" type="text" name="userRegB" required="">
+					<input maxlength="1" class="userRegB" type="text" required="">
 					<span class="userRegStar">******</span>
 					<label>주민등록번호</label>	
+					<input id="saveReg" style="display:none;" name="userReg">
 			</div>
 
 			<div>
-				<input id="user_email" type="email" name="userEmail" required="" placeholder="ex)hong@naver.com">
+				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
 				<label>e-mail</label>	
 			</div>
 			<div class="FilterResultEmail hideResult">
 				<strong id="eMailCheckResult">eee</strong>
 			</div>
 			
-			<input id="onsubmit" type="submit" value="회원가입" name="">
+			<input id="onsubmit" type="submit" value="회원가입">
 			<input type="button" id="account_cancel" value="취소"></button>
 			</div>
 			</div>

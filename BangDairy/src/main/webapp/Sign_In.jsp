@@ -20,9 +20,10 @@
         <input id="usrPasswd" type="password" name="userPassword" placeholder="Password">
         <span class="input-icon"><i class="fa fa-lock"></i></span>
       </div>   
-      <input type="button" class="login-btn" value="Login"/>     
+      <input id="login-btn" type="button" class="login-btn" value="Login"/>     
       <a class="reset-psw" href="#">Forgot your password?</a>
       <div class="seperator"><b>or</b></div>
+      <div><input id="login-cancel-btn" class="login-btn" type="button" value="취소"></div>
       <p>Sign in with your social media account</p>
     </form>
   </div>
