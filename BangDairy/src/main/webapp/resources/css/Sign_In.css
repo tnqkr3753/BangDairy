@@ -3,6 +3,7 @@ body {
   font-family: arial;
   
 }
+
 .login-form h1 {
   font-size: 36px;
   text-align: center;
@@ -44,6 +45,8 @@ body {
 	width:100%;
 	height:100%;
 	background:#151515;
+	-webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 body.Sign-is-visible{
 	overflow:hidden;

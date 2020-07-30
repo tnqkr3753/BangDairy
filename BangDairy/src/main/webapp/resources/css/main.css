@@ -69,6 +69,18 @@
  * # base style overrides
  *
  * ------------------------------------------------------------------- */
+ 
+ /*
+  * 2020-07-29 경호 수정
+  * 수정 내용 : 유저 이름 크게 보이게 하기
+ */
+ 
+#mark-user-id{
+	font-size: 20px;
+}
+ .header__social #show-login:hover{
+	cursor:pointer;
+}
  .title{
 color: #292a32;
     font-size: 22px;
@@ -512,7 +524,8 @@ dl,
 form,
 .video-container,
 .cl-custom-select {
-   margin-bottom: 3rem;
+   margin-bottom: 2rem;
+   margin-top:2rem;/*진섭추가함  */
 }
 
 
@@ -832,7 +845,7 @@ input[type="button"] {
    text-transform: uppercase;
    letter-spacing: .3rem;
    height: 5.4rem;
-   line-height: 5rem;
+   /* line-height: 5rem; */
    padding: 0 3rem;
    margin: 0 .3rem 1.2rem 0;
    color: #000000;
@@ -1172,7 +1185,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    padding: .6rem 1.2rem;
    height: 3.6rem;
    margin: .3rem .15rem;
-   color: #151515;
+   color: #e5e5e5;
    border-radius: 3px;
    -webkit-transition: all 0.3s ease-in-out;
    transition: all 0.3s ease-in-out;
@@ -1486,9 +1499,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    transition: all 0.3s ease-in-out;
    z-index: 1;
 }
+    
 
 .masonry .entry__thumb-link::after {
-   content: "...";
+   content:url("https://img.icons8.com/nolan/64/documentary.png");
    font-family: georgia, serif;
    font-size: 2.7rem;
    z-index: 1;
@@ -1545,7 +1559,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__title a {
-   color: #000000;
+   color: #eeeeee;
    border-bottom: 1px solid transparent;
 }
 
@@ -1755,7 +1769,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    padding-top: 222px;
 }
 
-/* 2020-07-20 ��ȣ ����*/
+/* 2020-07-20 占쏙옙호 占쏙옙占쏙옙*/
 div.header_sticky{
 	position : sticky;
 	top:0px;
@@ -2011,11 +2025,11 @@ body.search-is-visible {
 
 .header__search-trigger::before {
    font-family: "metropolis-semibold", sans-serif;
-   font-size: 12px;
+   font-size: 16px;
    text-transform: uppercase;
    letter-spacing: 2px;
    line-height: 21px;
-   content: "Search";
+   content: "검색";
    display: block;
    color: #FFFFFF;
    float: left;
@@ -2244,7 +2258,7 @@ body.search-is-visible {
    background: #050505;
    border-radius: 0 0 3px 3px;
    z-index: 500;
-   -webkit-transform: translate3d(0, 15px, 0);
+   -webkit-transform: translate3d(0, 15px, 0,);
    -ms-transform: translate3d(0, 15px, 0);
    transform: translate3d(0, 15px, 0);
    -webkit-transition: all 0.5s ease-in-out;
@@ -2410,7 +2424,7 @@ body.search-is-visible {
    position: relative;
 }
 
-.featured::before, .featured::after {
+/* .featured::before, .featured::after {
    content: "";
    display: block;
    height: 1px;
@@ -2418,14 +2432,14 @@ body.search-is-visible {
    background-color: rgba(255, 255, 255, 0.15);
    position: absolute;
    top: 50%;
-}
+} */
 
 .featured::before {
-   left: -75px;
+  
 }
 
 .featured::after {
-   right: -75px;
+  
 }
 
 .featured__column {
@@ -3292,6 +3306,7 @@ html.no-csstransitions .featured {
  *
  * ------------------------------------------------------------------- */
 footer {
+   background: #19191b;
    padding-top: 10.2rem;
    padding-bottom: 6rem;
    font-size: 1.5rem;
@@ -4243,8 +4258,8 @@ footer h4::after {
 
 
 /*
-	2020-07-20 ��ȣ ����
-	��������: ��� �޴��� �����ġ ����
+	2020-07-20 占쏙옙호 占쏙옙占쏙옙
+	占쏙옙占쏙옙占쏙옙占쏙옙: 占쏙옙占� 占쌨댐옙占쏙옙 占쏙옙占쏙옙占식� 占쏙옙占쏙옙
 */
 
 

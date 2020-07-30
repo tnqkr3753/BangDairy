@@ -7,8 +7,7 @@
 <html class="no-js" lang="en">
 <head>
 
-<!--- basic page needs
-    ================================================== -->
+<!-- basic page needs================================================== -->
 <meta charset="utf-8">
 <title>Video Post Format - Philosophy</title>
 <meta name="description" content="">
@@ -21,6 +20,11 @@
 
 <!-- CSS
     ================================================== -->
+        <link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">	
+ <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
@@ -41,7 +45,6 @@
 
 <body id="top">
 	<%@ include file="../../../header_menu.jsp"%>
-
 	<!-- s-content
 	================================================== -->
 	<!--============= 20200724박윤태============== -->
@@ -69,10 +72,11 @@
 					<li>${vo.viewingClass} 
 					<li>${vo.company }
 					<li>${vo.country }</li>
+					
 				</ul>
-
+				<button id="wish-add" class="btn btn-info">찜목록에 추가</button>
 				<%-- 평점 --%>
-				<div class="starRev">
+				<div class="starRevM">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
 						class="starR">별3</span> <span class="starR">별4</span> <span
 						class="starR">별5</span> <!-- 해야함 -->
@@ -81,8 +85,8 @@
 			
 				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<li><img src="${vo.posterAddr}" alt=""></li>
-					<li><img src="${vo.posterAddr}" alt=""></li>
+					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
+					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
 				</ul>
 				<%-- rslides End --%>
 
@@ -201,16 +205,19 @@
 								class="starR">별5</span>
 						</div>
 
-						<form name="contactForm" id="contactForm" method="post" action="">
+						<form name="commentForm" id="contactForm" method="post" action="/comment/insert">
 							<fieldset>
+								<input type="hidden" name="commentScore" value="" id="commentScore">
+								<input type="hidden" name="movieId" value="${vo.movieId }" id="movieId">
 								<div class="form-field">
-									<input name="cWebsite" type="text" id="cWebsite"
+									<input name="comment" type="text" id="cWebsite"
 										class="full-width" placeholder="Your Comment" value="">
 								</div>
 								<%-- 코멘트 영수증 첨부 --%>
+								<%-- TODO --%>
 								<div class="comment">
 									<input type="file" name="file" id="pct_img" value="file">
-									<button type="submit" class="submit btn--primary btn--large">Register</button>
+									<button type="button" class="submit btn--primary btn--large" id="btn-insertComment">Register</button>
 
 								</div>
 							</fieldset>
@@ -220,32 +227,13 @@
 					<%-- 코멘트 리스폰드 끝 --%>
 
 					<%-- 다른 코멘트 --%>
-					<h3 class="h2">1 Comments</h3>
+					<h3 class="h2" id="comment-count">1 Comments</h3>
 
 					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
-						<li class="depth-1 comment">
-							<div class="comment__avatar">
-								<img width="50" height="50" class="avatar"
-									src="images/avatars/user-01.jpg" alt="">
-							</div>
-							<div class="comment__content">
-								<div class="comment__info">
-									<cite>Itachi Uchiha</cite>
-
-									<div class="comment__meta">
-										<time class="comment__time">Dec 16, 2017 @ 23:05</time>
-									</div>
-								</div>
-								<div class="comment__text">
-									<p>Adhuc quaerendum est ne, vis ut harum tantas noluisse,
-										id suas iisque mei. Nec te inani ponderum vulputate, facilisi
-										expetenda has et. Iudico dictas scriptorem an vim, ei alia
-										mentitum est, ne has voluptua praesent.</p>
-								</div>
-							</div>
-						</li>
+						
 					</ol>
+					<button type="button" class="submit btn--primary" id="btn-moreComment">더보기</button>
 					<%-- 코멘트 끝 --%>
 				</div>
 				<%-- 코멘트 총 끝 --%>

@@ -9,7 +9,6 @@ $(document).ready(function(){
 //	setTimeout(function() {
 //		$('#titleTrigger').trigger('click');
 //	}, 1000);
-
 	// 평점 클릭했을때
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');

@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MovieDetailDAO">
+<!-- 영화 정보 가져오기 -->
  <select id="selectMovie" parameterType="movie" resultType="movie">
  	SELECT * FROM movie_info 
  	WHERE movie_id = #{movieId}
  </select>
+ <!-- 영화 장르 가져오기 -->
  <select id="selectGenre" parameterType="movie" resultType="genre">
  	SELECT b.genre_id as genre_id , b.genre_title as genre_title
  	FROM (SELECT genre_id FROM movie_genre WHERE movie_id = #{movieId}  )  a 
@@ -13,14 +15,15 @@
  	ON a.genre_id = b.genre_id
  	ORDER BY genre_id;
  </select>
- 
+ <!-- 영화 배우 가져오기  -->
  <select id="selectStarring" parameterType="movie" resultType="hashmap">
  	SELECT b.actor_id as actor_id , b.actor_name as actor_name,a.role as role
- 	FROM (SELECT actor_id, role FROM starring WHERE movie_id = #{movieId}) a 
+ 	FROM (SELECT actor_id, role FROM starring WHERE movie_id = #{movieId} AND not actor_id is null) a 
  	 inner join actor_info b
  	ON a.actor_id = b.actor_id
  	ORDER BY actor_id
  </select>
+ <!-- 영화 감독 가져오기  -->
  <select id="selectDirectors" parameterType="movie" resultType="director">
  	SELECT b.director_id as director_id , b.director_name as director_name
  	FROM (SELECT director_id FROM movie_director WHERE movie_id = #{movieId}) a 
@@ -28,4 +31,30 @@
  	ON a.director_id = b.director_id
  	ORDER BY director_id
  </select>
+ <!-- 영화 코맨트 가져오기  -->
+ <select id="selectComment"	parameterType="hashmap" resultType="comment">
+ 	<![CDATA[SELECT * FROM movie_comment
+ 	WHERE (movie_id,user_id) IN (SELECT b.movie_id,b.user_id FROM 
+ 	(SELECT a.movie_id,a.user_id,ROW_NUMBER() OVER() as rnum FROM
+ 	(SELECT movie_id,user_id FROM movie_comment WHERE movie_id=#{movieId} order by comment_reg_date desc ) a
+ 	) b
+ 	WHERE rnum >= #{startRow} AND rnum <= #{endRow})]]>
+ </select>
+ <!-- 영화 코맨트 개수 가져오기  -->
+ <select id="getCommentCount" parameterType="hashmap"  resultType="hashmap">
+ 	SELECT count(*) as cnt FROM movie_comment where movie_id=#{movieId}
+ </select>
+ <!-- 영화 코맨트 삽입  -->
+ <insert id="insertComment" parameterType="comment">
+ 	INSERT INTO movie_comment (movie_id,user_id,comment,receipt,comment_reg_date,comment_score)
+ 	VALUES (#{movieId},#{userId},#{comment},#{receipt},NOW(),#{commentScore})
+ </insert>
+ <!-- 영화 조회수 증가  -->
+ <update id="increaseHits" parameterType="movie">
+ 	UPDATE movie_info SET numbers_hits = numbers_hits+1 WHERE movie_id = #{movieId}
+ </update>
+ <insert id="insertWishMovie" parameterType="wish">
+ 	INSERT INTO wish_movie (movie_id,user_id,reg_date)
+ 	VALUES (#{movieId},#{userId},now())
+ </insert>
 </mapper>  

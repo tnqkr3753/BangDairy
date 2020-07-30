@@ -26,16 +26,17 @@ div.distribution table td.c			{padding:5px 5px 5px 5px; text-align:center; borde
 div.distribution table th			{padding:5px 0 4px 20px; height:24px;  text-align:left; border-bottom:1px solid #ddd; background:#f5f5f5; font:bold 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
 div.distribution table th span		{color:red}
 div.distribution table td			{padding:5px 7px 5px 7px; text-align:left; border-bottom:1px solid #ddd; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td .type01	{padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
+div.distribution table td .type01	{background:rgba(255, 255, 255, 0.5);  padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
 div.distribution table td .type02	{padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
 div.distribution table td .tt01		{font:normal 11px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#ff6c00;}
 div.distribution table td .tt02		{font:bold 11px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#f90000;}
-div.distribution table td select	{padding:0 0 0 5px; height:24px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td textarea	{width:97%; padding:2px 0 0 5px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
+div.distribution table td select	{background:rgba(255, 255, 255, 0.5);padding:0 0 0 5px; height:24px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
+div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97%; padding:2px 0 0 5px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
 
 #box{
 	margin-right: 10%;
 	margin-left: 10%;
 }
 
+.masonry{top:15px}
 

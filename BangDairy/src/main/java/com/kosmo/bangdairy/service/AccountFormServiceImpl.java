@@ -1,5 +1,7 @@
 package com.kosmo.bangdairy.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class AccountFormServiceImpl implements AccountFormService {
 	private AccountFormDAOImpl accountFormDAO;
 	
 	@Override
-	public int idCheck(String user_id) {
-		int result = accountFormDAO.selectIdCheck(user_id);
+	public int idCheck(String id) {
+		int result = accountFormDAO.selectIdCheck(id);
 		return result;
 	}
 
@@ -27,6 +29,12 @@ public class AccountFormServiceImpl implements AccountFormService {
 	@Override
 	public int signInUser(AccountFormVO vo) {
 		int result = accountFormDAO.signInUser(vo);
+		return result;
+	}
+
+	@Override
+	public int emailCheck(String email) {
+		int result = accountFormDAO.selectEmailCheck(email);
 		return result;
 	}
 

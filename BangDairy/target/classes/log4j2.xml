@@ -2,6 +2,8 @@
 <configuration>
 	<Properties>
 		<Property name="logNm">logs</Property>
+		<Property name="logNmInfo">aop_info</Property>
+		<Property name="logInterceptor">logging</Property>
 	</Properties>
 	<!-- appender들 모임 -->
 	 <appenders>
@@ -12,6 +14,23 @@
 		</Console>
 		
 		<RollingFile name="rollfile" fileName="D:/log/${logNm}.log" filePattern="D:/log/${logNm}_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
+			<Policies>
+			<SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->      
+			<TimeBasedTriggeringPolicy module="true" interval="1" /><!-- 일별 로그 파일 생성 -->
+			</Policies>
+			<DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+		</RollingFile>
+		<RollingFile name="rollfileInfo" fileName="D:/log/aoplog/${logNmInfo}.log" filePattern="D:/log/aoplog/${logNmInfo}_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
+			<Policies>
+			<SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->      
+			<TimeBasedTriggeringPolicy module="true" interval="1" /><!-- 일별 로그 파일 생성 -->
+			</Policies>
+			<DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
+		</RollingFile>
+		
+		<RollingFile name="loggingInterceptRolling" fileName="D:/log/userlogs/${logInterceptor}.log" filePattern="D:/log/userlogs/${logInterceptor}_%d{yyyy-MM-dd}_%i.log">
 			<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss} [%t] %-5level %n-%msg%n" />
 			<Policies>
 			<SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->      
@@ -33,11 +52,13 @@
 	<!-- logger들 모임 -->
 	 <loggers>
 	 	<!-- root는 기본적으로 하나가 존재해야 하며 다른 logger들은 여러개 존재 가능 -->
-	 	<logger level="info" name="Service" additivity="false">
-		 	<appender-ref ref="rollfile"></appender-ref>
+	 	<logger level="info" name="Interceptor" additivity="false">
+		 	<appender-ref ref="loggingInterceptRolling"></appender-ref>
+		 	<appender-ref ref="TestConsole"></appender-ref>
 	 	</logger>
 	 	<logger level="info" name="Aop" additivity="false">
 		 	<appender-ref ref="TestConsole"/>
+		 	<appender-ref ref="rollfileInfo"></appender-ref>
 	 	</logger>
 	 	<root level="warn" additivity="false">
 		 	<appender-ref ref="rollfile"></appender-ref>
