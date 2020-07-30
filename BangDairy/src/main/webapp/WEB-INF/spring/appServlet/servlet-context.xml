@@ -23,19 +23,46 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	<context:component-scan base-package="com.kosmo.bangdairy.*" />
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!--파일 크기 제한 50MB  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize">
+        	<beans:value>50000000</beans:value>    <!-- 50MB -->
+    	</beans:property>
+    	<beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
+	<!-- 50MB넘을 시 오류 제어  -->
+	<beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <beans:property name="exceptionMappings">
+	        <beans:props>
+	            <beans:prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">/attachFileOverSizeErr</beans:prop>
+	        </beans:props>
+	    </beans:property>
+	</beans:bean>
+	
+	<!-- 로그 AOP -->
 	<beans:bean id="loggerAspect" class="com.kosmo.bangdairy.aop.LoggerAspect"/>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- <aop:aspectj-autoproxy>
 		<aop:include name="loggerAspect"/>
 	</aop:aspectj-autoproxy> -->
-	<!-- Interceptor 설정 -->
-<!--     <interceptors>
+	<!-- Interceptor 설정
+		loggingInterceptor 모든 경로
+		loginCheckInterceptor /comment/insert , /myPage/**/ ,/detail/addWish
+		
+	 -->
+    <interceptors>
         <interceptor>
             <mapping path="/**/"/>
-            <beans:bean id="TricaInterceptor" class="com.kosmo.modari.interceptor"/>
+            <beans:bean id="loggingInterceptor" class="com.kosmo.bangdairy.interceptor.LoggingInterceptor"/>
         </interceptor>
-    </interceptors> -->
+        <interceptor>
+        	<mapping path="/comment/insert"/>
+        	<mapping path="/myPage"/>
+        	<mapping path="/myPage/**/"/>
+        	<mapping path="/detail/addWish"/>
+        	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
+        </interceptor>
+    </interceptors>
 	
 	
 </beans:beans>

@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ThreadInsertDAO">
+<!-- 장르 정보 삽입  -->
 <insert id="insertGenre" parameterType="genre" useGeneratedKeys="true" keyProperty="genreId">
 	insert into genre_info (genre_title)
 	SELECT #{genreTitle} from dual
 	WHERE not exists (SELECT * FROM genre_info WHERE genre_title=#{genreTitle})
 </insert>
-
+<!--  배우 정보 삽입(다중insert)  -->
 <insert id="insertActor" parameterType="java.util.List">
 	insert into actor_info
 	(actor_name
@@ -22,7 +23,7 @@
 	WHERE not exists (SELECT * FROM actor_info WHERE actor_id=#{item.actorId})
 	</foreach>
 </insert>
-
+<!--감독 정보 삽입(다중insert)  -->
 <insert id="insertDirector" parameterType="java.util.List">
 		insert into director_info 	
 		(director_id,director_name
@@ -36,7 +37,7 @@
 		</foreach>
 		
 </insert>
-
+<!-- 영화 스틸이미지 삽입(다중insert)  -->
 <insert id="insertStill" parameterType="java.util.List">
 	insert into movie_still_img (movie_id,still_addr) 
 	<foreach collection="list" item="item" separator=" UNION ">
@@ -44,7 +45,7 @@
 	WHERE not exists (SELECT * FROM movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
 	</foreach>
 </insert>
-
+<!-- 영화 삽입  -->
 <insert id="insertMovie" parameterType="movie">
 	
 		insert into movie_info
@@ -73,7 +74,7 @@
 		FROM dual
 		WHERE not exists (SELECT * FROM movie_info WHERE movie_id=#{movieId})
 </insert>
-
+<!-- 영화 출연 배우 삽입(다중insert)  -->
 <insert id="insertStarring" parameterType="java.util.List">
 	
 	insert into starring (movie_id,actor_id,role) 
@@ -87,15 +88,16 @@
 	AND role=#{item.role} )
 	</foreach>
 </insert>
-
+<!-- 영화 감독 삽입  -->
 <insert id="insertMovieDirector" parameterType="hashmap">
-	insert into movie_director SELECT
+	insert into movie_director 
+	SELECT
 	#{directorId},#{movieId} FROM DUAL
 	WHERE not exists (SELECT * FROM movie_director 
 	WHERE director_Id=#{directorId}
 	AND  movie_id=#{movieId})
 </insert>
-
+<!-- 영화 장르 삽입(다중insert)  -->
 <insert id="insertMovieGenre" parameterType="java.util.List">
 	
 	insert into movie_genre 
@@ -106,24 +108,28 @@
 	AND  movie_id=#{item.movieId})
 	</foreach>
 </insert>
+<!-- 배우 정보 가져오기  -->
  <select id="selectActor" parameterType="actor" resultType="actor">
  	select * from actor_info 
  	<if test="actorId!=null">
  	where actor_id = #{actorId}
  	</if>
  </select>
+ <!-- 감독 정보 가져오기  -->
  <select id="selectDirector" parameterType="director" resultType="director">
  	SELECT * FROM director_info
  	<if test="directorId!=null"> 
  	where director_id = #{directorId}
  	</if>
  </select>
+ <!-- 장르 정보 가져오기  -->
  <select id="selectGenre" parameterType="genre" resultType="genre">
  	SELECT * FROM genre_info 
  	<if test="genreTitle !=null">
  	where genre_title = #{genreTitle}
  	</if>
  </select>
+ <!-- 영화 오픈일 변경   -->
  <update id="updateMovieOpening" parameterType="java.util.List">
  	update
  	movie_info AS a, (<foreach collection="list" item="item" separator=" UNION ">

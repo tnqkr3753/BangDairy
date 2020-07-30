@@ -14,9 +14,10 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
-	int commentPerPage = 10;
+	int commentPerPage = 5;
 	@Autowired
 	MovieDetailDAO movieDetailDAO;
 	/*
@@ -28,8 +29,8 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	@Override
 	public MovieVO selectOneMovie(MovieVO vo) {
 		MovieVO rvo = movieDetailDAO.selectOneMovie(vo);
+		if (rvo==null) return null;
 		ArrayList<GenreVO> gvo =  (ArrayList<GenreVO>)movieDetailDAO.selectMovieGenre(vo);
-		LoggerAspect.logger.info("gvo : "+gvo);
 		rvo.setMovieGenre(gvo);
 		HashMap<ActorVO, String> star = new HashMap<ActorVO, String>();
 		for (HashMap hash : movieDetailDAO.selectStarring(vo)) {
@@ -39,8 +40,9 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 			star.put(avo, (String)hash.get("role"));
 		}
 		rvo.setStarring(star);
-		LoggerAspect.logger.info("star : "+star);
+		movieDetailDAO.increaseHist(rvo);
 		rvo.setMovieDirector((ArrayList<DirectorVO>)movieDetailDAO.selectDirectors(vo));
+		LoggerAspect.logger.info("rvo : "+rvo);
 		return rvo;
 	}
 	/*
@@ -73,7 +75,22 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		HashMap hm = new HashMap();
 		hm.put("movieId", movieId);
 		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
-		
 	}
+	/*
+	 * 메소드명	: insertComment
+	 * 기능		: Comment 입력
+	 * 변수 		: CommentVO
+	 * 작성자		: 박윤태
+	 */
+	@Override
+	public int insertComment(CommentVO vo) {
+		return movieDetailDAO.insertComment(vo);
+	}
+	@Override
+	public int insertWishMovie(WishMovieVO vo) {
+		return movieDetailDAO.insertWishMovie(vo);
+	}
+	
+	
 	
 }

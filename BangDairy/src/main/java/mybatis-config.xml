@@ -23,6 +23,9 @@
 	<!-- 2020-07-23 이경호 수정
 		수정내용:AccountFormVO 추가 -->
 	<typeAlias alias="account" type="com.kosmo.bangdairy.vo.AccountFormVO"/>
+		<!-- 2020-07-30 박윤태 수정
+		수정내용:WishMovieVO 추가 -->
+	<typeAlias alias="wish" type="com.kosmo.bangdairy.vo.WishMovieVO"/>
 </typeAliases>
 
 </configuration>   

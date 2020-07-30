@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="ko">
 <head>
 
 <!--- 아이콘가지고오는 링크 fa fa-twier 등등
@@ -26,7 +26,6 @@
  <meta name="msapplication-TileColor" content="#FFFFFF">
 
  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
-
 <!-- 슬라이더 구현에 필요함 따로 빼서 써도 아이콘 구현이 안됨 -->
 <link rel="stylesheet" href="resources/css/bxslider.css">
 	<!-- ================================================ -->

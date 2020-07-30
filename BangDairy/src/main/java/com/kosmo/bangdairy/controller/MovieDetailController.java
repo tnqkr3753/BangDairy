@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.MovieDetailService;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Controller
 public class MovieDetailController {
@@ -81,11 +83,10 @@ public class MovieDetailController {
 			}
 			else vo.setReceipt(1);
 		}
-		//TODO 세선쳐리 끝나고 시작 vo에 아이디를 넣고 db에 입력
-		//vo.setUserId((String)session.getAttribute("userId"));
-		
+		vo.setUserId((String)session.getAttribute("userId"));
+		int result =movieDetailService.insertComment(vo);
 		LoggerAspect.logger.info(vo);
-		return 0;
+		return result;
 	}
 	/*
 	 * 메소드명	: commentCount
@@ -99,5 +100,19 @@ public class MovieDetailController {
 	public String commentCount(@PathVariable(value = "movieId",required = true)String movieId) {
 		return movieDetailService.commentCount(movieId)+" Comments";
 	}
-	
+	/*
+	 * 메소드명	: addWish
+	 * 기능		: 영화를 wish리스트에 추가
+	 * 변수 		: movieId
+	 * 작성자		: 박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "detail/addWish",method = RequestMethod.POST)
+	public int addWish(@RequestParam(value = "movieId",required = true)String movieId,HttpSession session) {
+		WishMovieVO vo = new WishMovieVO();
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		vo.setMovieId(movieId);
+		return movieDetailService.insertWishMovie(vo);
+	}
 }
