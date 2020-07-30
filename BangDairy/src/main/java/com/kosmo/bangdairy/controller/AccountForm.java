@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.MovieVO;
 
 @Controller
 public class AccountForm {
@@ -111,11 +114,17 @@ public class AccountForm {
 				//읽기
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));
-				String rev;
 				
+				ArrayList<String> list = new ArrayList<String>();
+				String rev;
 				while((rev=in.readLine())!=null) {
 					System.out.println("받음:"+rev);
+					list.add(rev);
 				}
+				// 여기서 리스트를 DB에 넘겨서 검색결과 받아오기
+				//=====================================
+				
+				//=====================================
 				in.close();
 				socket.close();
 			}catch (Exception e) {
