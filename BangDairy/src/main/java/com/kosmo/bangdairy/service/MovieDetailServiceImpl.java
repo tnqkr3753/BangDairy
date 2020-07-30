@@ -14,6 +14,7 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
 	int commentPerPage = 5;
@@ -28,6 +29,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	@Override
 	public MovieVO selectOneMovie(MovieVO vo) {
 		MovieVO rvo = movieDetailDAO.selectOneMovie(vo);
+		if (rvo==null) return null;
 		ArrayList<GenreVO> gvo =  (ArrayList<GenreVO>)movieDetailDAO.selectMovieGenre(vo);
 		rvo.setMovieGenre(gvo);
 		HashMap<ActorVO, String> star = new HashMap<ActorVO, String>();
@@ -84,6 +86,11 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	public int insertComment(CommentVO vo) {
 		return movieDetailDAO.insertComment(vo);
 	}
+	@Override
+	public int insertWishMovie(WishMovieVO vo) {
+		return movieDetailDAO.insertWishMovie(vo);
+	}
+	
 	
 	
 }

@@ -53,4 +53,8 @@
  <update id="increaseHits" parameterType="movie">
  	UPDATE movie_info SET numbers_hits = numbers_hits+1 WHERE movie_id = #{movieId}
  </update>
+ <insert id="insertWishMovie" parameterType="wish">
+ 	INSERT INTO wish_movie (movie_id,user_id,reg_date)
+ 	VALUES (#{movieId},#{userId},now())
+ </insert>
 </mapper>  

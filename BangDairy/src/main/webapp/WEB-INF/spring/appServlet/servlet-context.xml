@@ -47,7 +47,7 @@
 	</aop:aspectj-autoproxy> -->
 	<!-- Interceptor 설정
 		loggingInterceptor 모든 경로
-		loginCheckInterceptor /comment/insert , /myPage/**/
+		loginCheckInterceptor /comment/insert , /myPage/**/ ,/detail/addWish
 		
 	 -->
     <interceptors>
@@ -59,6 +59,7 @@
         	<mapping path="/comment/insert"/>
         	<mapping path="/myPage"/>
         	<mapping path="/myPage/**/"/>
+        	<mapping path="/detail/addWish"/>
         	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
         </interceptor>
     </interceptors>

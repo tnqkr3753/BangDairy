@@ -8,6 +8,7 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 public interface MovieDetailDAO {
 	public MovieVO selectOneMovie(MovieVO vo);
@@ -18,4 +19,5 @@ public interface MovieDetailDAO {
 	public HashMap getCommentCount(HashMap hash);
 	public int insertComment(CommentVO vo);
 	public int increaseHist(MovieVO vo);
+	public int insertWishMovie(WishMovieVO vo);
 }

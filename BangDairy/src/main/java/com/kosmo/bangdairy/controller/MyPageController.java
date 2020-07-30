@@ -1,5 +1,7 @@
 package com.kosmo.bangdairy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.MyPageService;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Controller
 public class MyPageController {
@@ -118,5 +121,56 @@ public class MyPageController {
 			LoggerAspect.logger.warn("DELETE USER INFO : " +avo);
 		}
 		return result;
+	}
+	/*
+	 * 메소드 명  	:		getWishList
+	 * 기능 		:		찜목록을 보여주는 페이지를 return
+	 * 변수		:		session
+	 * 작성자		:		박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "myPage/wishList",method = RequestMethod.POST)
+	public ModelAndView getWishList(HttpSession session) {
+		WishMovieVO vo = new WishMovieVO();
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		List<WishMovieVO> list = myPageService.selectWishMovie(vo);
+		ModelAndView mv = new ModelAndView();
+		LoggerAspect.logger.info("list : "+list);
+		mv.addObject("list",list);
+		mv.setViewName("myPage/myPageWish");
+		return mv;
+	}
+	/*
+	 * 메소드 명  	:		deleteWishMovie
+	 * 기능 		:		찜목록을 삭제하고 결과값을 return
+	 * 변수		:		session, WishMovieVO
+	 * 작성자		:		박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "myPage/wishList/delete",method = RequestMethod.POST)
+	public int deleteWishMovie(HttpSession session,WishMovieVO vo) {
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		return myPageService.deleteWishMovie(vo);
+	}
+	/*
+	 * 메소드 명  	:		getWishList
+	 * 기능 		:		찜목록을 보여주는 페이지를 return
+	 * 변수		:		session
+	 * 작성자		:		박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "myPage/Qna",method = RequestMethod.POST)
+	public ModelAndView getQnaList(HttpSession session) {
+		WishMovieVO vo = new WishMovieVO();
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		List<WishMovieVO> list = myPageService.selectWishMovie(vo);
+		ModelAndView mv = new ModelAndView();
+		LoggerAspect.logger.info("list : "+list);
+		mv.addObject("list",list);
+		mv.setViewName("myPage/myPageQA");
+		return mv;
 	}
 }

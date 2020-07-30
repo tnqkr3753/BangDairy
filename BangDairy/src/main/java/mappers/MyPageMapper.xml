@@ -15,4 +15,15 @@
 	<delete id="deleteUserInfo">
 		DELETE FROM user_info where user_id=#{userId} and user_password=#{userPassword}
 	</delete>
+	<select id="selectWishMovie" parameterType="wish" resultType="wish">
+		SELECT w.movie_id as movie_id , w.user_id as user_id , w.reg_date as reg_date,
+		m.movie_title as movie_title , m.viewing_class as viewing_class , m.poster_addr as poster_addr
+		FROM wish_movie w inner join movie_info m
+		ON w.movie_id = m.movie_id 
+		WHERE user_id = #{userId}
+		ORDER BY reg_date desc
+	</select>
+	<delete id="deleteWishMovie" parameterType="wish">
+		DELETE FROM wish_movie WHERE movie_id = #{movieId} AND user_id = #{userId}
+	</delete>
 </mapper>  

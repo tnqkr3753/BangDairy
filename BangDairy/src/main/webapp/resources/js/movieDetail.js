@@ -3,7 +3,6 @@ $(document).ready(function(){
 	var pageNum = 1;
 	var totalpage = 1;
 	var commentPerPage = 10;
-	alert(movieId)
 	commentLoad(pageNum,movieId);
 	$(".rslides").responsiveSlides({
 		pager:true,				 // 페이징
@@ -31,6 +30,10 @@ $(document).ready(function(){
 		}else{
 			alert("마지막 페이지입니다.");
 		}
+	});
+	//찜목록에 추가 누를 때
+	$('#wish-add').click(function(){
+		insertWish();
 	})
 	/*
 	 * 메소드명		: commentLoad
@@ -75,7 +78,7 @@ $(document).ready(function(){
 	/*
 	 * 메소드명		: insertComment
 	 * 기능			: 코멘트 등록 (영수증 첨부)
-	 * 변수			: 
+	 * 변수			: none
 	 * 작성자		: 박윤태
 	 */
 	function insertComment(){
@@ -106,5 +109,32 @@ $(document).ready(function(){
 		})
 		//form reset
 		$('#contactForm')[0].reset();
+	}
+		/*
+	 * 메소드명		: insertWish
+	 * 기능			: 찜목록 추가
+	 * 변수			: none
+	 * 작성자		: 박윤태
+	 */
+	function insertWish(){
+		$.ajax({
+			type: "POST",
+			async : true,
+			contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+			url: "detail/addWish",
+			data :  {"movieId":movieId},
+			dataType: "html",
+			success: function (response) {
+				if(response){
+					alert("찜목록 입력 성공");
+				}else{
+					alert("찜목록 입력 실패");
+				}
+			},
+			error: function(e){
+				alert("이미 찜목록에 추가했습니다. :"+e);
+			}
+		})
+		//form reset
 	}
 });

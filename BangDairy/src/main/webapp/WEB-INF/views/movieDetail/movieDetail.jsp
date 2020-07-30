@@ -72,8 +72,9 @@
 					<li>${vo.viewingClass} 
 					<li>${vo.company }
 					<li>${vo.country }</li>
+					
 				</ul>
-
+				<button id="wish-add" class="btn btn-info">찜목록에 추가</button>
 				<%-- 평점 --%>
 				<div class="starRevM">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
@@ -84,8 +85,8 @@
 			
 				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<li><img src="${vo.posterAddr}" alt=""></li>
-					<li><img src="${vo.posterAddr}" alt=""></li>
+					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
+					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
 				</ul>
 				<%-- rslides End --%>
 

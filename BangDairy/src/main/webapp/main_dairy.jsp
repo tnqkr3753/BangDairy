@@ -7,7 +7,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Video Post Format - Philosophy</title>
+    <title>Audio Post Format - Philosophy</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -20,22 +20,29 @@
     <link rel="stylesheet" href="resources/css/base.css">
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
-	<link rel="stylesheet" href="resources/css/maindairy.css">
+    <link rel="stylesheet" href="resources/css/maindairy.css">
+
     <!-- script
     ================================================== -->
-    <script src="resources/js/modernizr.js"></script>
-    <script src="resources/js/pace.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
 
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/metisMenu.min.css">
+    <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+    <link href="simplePagination.css" rel="stylesheet" />
+    
 </head>
 
 <body id="top">
 
-   
    		<%@ include file="header_menu.jsp"%>
 		<%@ include file="account_form.jsp"%>
 		<%@ include file="Sign_In.jsp"%>
@@ -43,169 +50,15 @@
 
     <!-- s-content
     ================================================== -->
+    <section class="s-content s-content--narrow s-content--no-padding-bottom">
 
-    <section class="s-content">
+        <article class="row format-audio">
         
-		<article class="row format-video">
-				<h3 class="title">
-					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
-						class="link" bg-nclick="htp.htp">다이어리 >> </a>
-					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
-						class="link" bg-nclick="htp.htp">내다이어리</a>	
-				</h3>
-			<div class="s-content__header col-full">
-			
-			<div id="ramdairy" class="heading">
-
-			    <article id="darinsaram-blog-image" class="masonry__brick entry format-video" data-aos="fade-up">
-                    <div  class="entry__thumb blog-image">
-                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="resources/images/thumbs/masonry/shutterbug-400.jpg" >
-                        </a>
-                    </div>
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            <div class="entry__date">
-                                <a href="single-video.html">남의 다이어리 이름</a>
-                            </div>
-                        </div>
-                    </div>    
-                </article>
-                			    <article id="darinsaram-blog-image" class="masonry__brick entry format-video" data-aos="fade-up">
-                    <div  class="entry__thumb blog-image">
-                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="resources/images/thumbs/masonry/shutterbug-400.jpg" >
-                        </a>
-                    </div>
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            <div class="entry__date">
-                                <a href="single-video.html">남의 다이어리 이름</a>
-                            </div>
-                        </div>
-                    </div>    
-                </article>
-                <article id="darinsaram-blog-image" class="masonry__brick entry format-video" data-aos="fade-up">
-                    <div  class="entry__thumb blog-image">
-                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="resources/images/thumbs/masonry/shutterbug-400.jpg" >
-                        </a>
-                    </div>
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            <div class="entry__date">
-                                <a href="single-video.html">남의 다이어리 이름</a>
-                            </div>
-                        </div>
-                    </div>    
-                </article>
-                <article id="darinsaram-blog-image" class="masonry__brick entry format-video" data-aos="fade-up">
-                    <div  class="entry__thumb blog-image">
-                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="resources/images/thumbs/masonry/shutterbug-400.jpg" >
-                        </a>
-                    </div>
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            <div class="entry__date">
-                                <a href="single-video.html">남의 다이어리 이름</a>
-                            </div>
-                        </div>
-                    </div>    
-                </article>
-                <p class="s-content__tags">
-					<span class="s-content__tag-list"> 
-					<a href="#0">1</a> <a href="#0">2</a> <a href="#0">3</a></br>
-					</span>
-				</p>  
-			</div>
-
-			<div class = "mydairy">
-			<div class="left-dairy-maintab">
-			<div id="mydairyimg">
-										<h1 class="s-content__header-title">이달의 다이어리 추천</h1>
-				<li class="date">December 16, 2017</li>
-				</br></br></br>
-						<h4 class="s-content__author-name">
-						<img src="resources/images/avatars/user-03.jpg" alt="">
-						</br>
-						<a href="#0">예슬이</a><a>2020.03.12</a>
-						</h4>
-										
-				<div class="s-content__author-name2">
-				<img src="resources/images/avatars/user-05.jpg" alt="">
-				<h2>다이어리 제목</h2>
-				<p>
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					
-				</p>
-				</div>
-			<h4 class="s-content__author-name">
-						<img src="resources/images/avatars/user-03.jpg" alt="">
-						</br>
-						<a href="#0">예슬이</a><a>2020.03.12</a>
-						</h4>
-										
-				<div class="s-content__author-name2">
-				<img src="resources/images/avatars/user-05.jpg" alt="">
-				<h2>다이어리 제목</h2>
-				<p>
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					
-				</p>
-				</div><h4 class="s-content__author-name">
-						<img src="resources/images/avatars/user-03.jpg" alt="">
-						</br>
-						<a href="#0">예슬이</a><a>2020.03.12</a>
-						</h4>
-										
-				<div class="s-content__author-name2">
-				<img src="resources/images/avatars/user-05.jpg" alt="">
-				<h2>다이어리 제목</h2>
-				<p>
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					여기에 내용 들어가면 좋겠다.
-					
-				</p>
-				</div>
-		</div></div>
-
-			<div class="right-dairy-maintab">
-			</br></br></br></br>
+        <a id="userhello">"예슬"</a>
+        <a style="font-size: 35px">님 다이어리</a></br></br></br>
+			<div class="myleftTap">	
 						<h3 class="s-content__author-name5"></br></br>
-						<img src="images/avatars/user-03.jpg" alt="">
+						<img src="resources/images/avatars/user-03.jpg" alt="">
 						</br></br>
 						예슬이</br><a href="#0">myprofile go</a>
 						</h4>
@@ -216,33 +69,123 @@
 				gender: 여자</br>
 				e-mail: rys587@naver.com</h4>
 				</div>
-				
-				<div id="rigthmakediary">
-				<button type="submit" class="submit btn--primary btn--large full-width">새글작성</button>
-				<button type="submit" class="submit btn--primary btn--large full-width" index="mydairy_btn">내다이어리</button>
-				</div>
-				
-				<div id="rigthotherdiary">
-				<h3>이런 다이어리는 어때?</h3></br>
-					<a>영화</a></br>
-					<p>다이어리타이틀</p></br>
-					<a>영화</a></br>
-					<p>다이어리타이틀</p></br>
-					<a>영화</a></br>
-					<p>다이어리타이틀</p></br>
-				</div>
+
+				<ul id="menu">
+				</br></br>
+				  <li class="active">
+				  
+				    <a href="#" class="has-arrow" aria-expanded="true">친구랑 같이본 영화</a>
+				    <ul>
+				      <li><a href="#">공포</a></li>
+				      <li><a href="#">로맨스</a></li>
+				      <li><a href="#">드라마</a></li>
+				    </ul>
+				  </li>
+				  <li>
+				    <a href="#" class="has-arrow" aria-expanded="false">부모님과 본 영화</a>
+				    <ul>
+				    
+				      <li><a href="#">청불</a></li>
+				      <li><a href="#">나머지</a></li>
+				      <li>
+				        <a href="#" class="has-arrow" aria-expanded="false">가장 좋아하는 영화</a>
+				        <ul>
+				          <li><a href="#">BEST 01</a></li>
+				          <li><a href="#">BEST 02</a></li>
+				          <li><a href="#">BEST 03</a></li>
+				        </ul>
+				      </li>
+				    </ul>
+				  </li>
+				</ul>
+			</div>
+			<div class="myRightTap">			
+                <div class="s-content__header-title">
+                                   <div class="goodHate" style="text-align: right;">
+                    </br>
+                    <button type="button" class="btn btn-link">
+							<i class="fa fa-thumbs-up"></i> 좋아요
+						</button>
+						<button type="button" class="btn btn-link">
+							<i class="fa fa-thumbs-down"></i> 싫어요
+						</button>
+                    <h2 style="text-align: center">여기는 다이어리 제목</h2>
+     
+					<h4>2020년 XX월 XX일 X요일</h4>
+
+						
+						<div class="starRev" >
+							<span class="starR on"></span> <span class="starR"></span> <span
+								class="starR"></span> <span class="starR"></span> <span
+								class="starR"></span>
+						</div>
+					
+					</br> 
+					
+					<div style="text-align : center;"><img src="resources/images/avatars/user-05.jpg"></div>
+
+					<h4>Donec sollicitudin molestie malesuada. Nulla quis lorem ut
+						libero malesuada feugiat. Pellentesque in ipsum id orci porta
+						dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et
+						ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet
+						aliquam vel, ullamcorper sit amet ligula. Quisque velit nisi,
+						pretium ut lacinia in, elementum id enim. Donec sollicitudin
+						molestie malesuada.</h4>
+
 				
 
-</div></div></div></article></section>
+			 <nav class="pgn">
+                    <ul>
+                        <li><a class="pgn__prev" href="#0">Prev</a></li>
+                        <li><a class="pgn__num" href="#0">1</a></li>
+                        <li><span class="pgn__num current">2</span></li>
+                        <li><a class="pgn__num" href="#0">3</a></li>
+                        <li><a class="pgn__num" href="#0">4</a></li>
+                        <li><a class="pgn__num" href="#0">5</a></li>
+                        <li><span class="pgn__num dots">…</span></li>
+                        <li><a class="pgn__num" href="#0">8</a></li>
+                        <li><a class="pgn__next" href="#0">Next</a></li>
+                    </ul>
+                </nav>
+			 </div></div>
+        </article>
+</section>
 		<%@ include file="footer.jsp"%>
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Java Script
     ================================================== -->
     <script src="resources/js/jquery-3.2.1.min.js"></script>
     <script src="resources/js/plugins.js"></script>
     <script src="resources/js/main.js"></script>
+    <script src="resources/jquery.min.js"></script>
+    <script src="/dist/jquery.metisMenu.js"></script>
     <script src="/path/to/cdn/jquery.min.js"></script>
-    
+	<script src="/path/to/build/bootstrap-rating-input.min.js"></script>
+	<script src="/path/to/build/bootstrap4-rating-input.min.js"></script>
+	<script src="/path/to/cdn/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/5ac93d4ca8.js"></script>
+	<script src="/path/to/cdn/jquery.min.js"></script>
+	<script src="/path/to/jquery.simplePagination.js"></script>
+	
+
+
+
+
 
 </body>
 

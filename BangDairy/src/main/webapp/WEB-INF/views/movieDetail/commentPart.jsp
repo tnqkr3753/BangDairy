@@ -16,7 +16,7 @@
 
 									<div class="comment__meta">
 										
-										<time class="comment__time"><fmt:formatDate value="${comment.commentRegDate }" type="both"/></time>
+										<time class="comment__time"><fmt:formatDate value="${comment.commentRegDate }"  type="date" dateStyle="full" /></time>
 									</div>
 								</div>
 								<div class="comment__text">
