@@ -1,5 +1,9 @@
 package com.kosmo.bangdairy.controller;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -10,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.mapping.ParameterMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.python.jline.internal.InputStreamReader;
+import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +37,8 @@ public class AccountForm {
 	@Autowired
 	private AccountFormServiceImpl accountFormService;
 	
+	// 자바에서 파이썬 파일 실행 함수
+	private static PythonInterpreter interpreter;
 	
 	/*
 	 * 메소드명 : accountForm_idCheck
@@ -84,11 +92,37 @@ public class AccountForm {
 	 */
 	@RequestMapping(value="/SignInUser", method = RequestMethod.POST)
 	@ResponseBody
-	public int signInUser( AccountFormVO vo,HttpSession sess) {
+	public int signInUser( AccountFormVO vo,HttpSession sess,HttpServletRequest request) {
 		int result = accountFormService.signInUser(vo);
 		if (result==1) {
 			sess.setAttribute("userId", vo.getUserId());
 			//sess.setMaxInactiveInterval(300);
+
+			try {
+				String HOST = "192.168.0.22";
+				int PORT = 8765;
+				Socket socket = new Socket(HOST,PORT);
+				System.out.println("클라이언트 접속");
+
+				//쓰기
+				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+				out.println(vo.getUserId());
+				
+				//읽기
+				BufferedReader in = new BufferedReader(
+						new InputStreamReader(socket.getInputStream()));
+				String rev;
+				
+				while((rev=in.readLine())!=null) {
+					System.out.println("받음:"+rev);
+				}
+				in.close();
+				socket.close();
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			
 		}
 		return result;
 	}
