@@ -58,5 +58,6 @@ $(document).ready(function(){
 	    (function ssInit() {
 	    clSearch();
 	    })();
+	    
 })
 
