@@ -79,24 +79,27 @@
 					<div class="select">
 						<!-- 검색창 -->
 						<input class="form-control" type="text" placeholder="Search"
-							style="float: left">
+							style="float: left;">
 
-						<div class="search__tab">
-							<input type="radio" value="Title" id="titleTrigger" name="searchTab">Title
-							<input type="radio" value="Director" name="searchTab">Director
-							<input type="radio" value="Actor" name="searchTab">Actor
-							<input type="radio" value="Keywords" name="searchTab">Keywords
+						<div class="search__tab" style="font-size: 30px; float: right;">
+							<input type="radio" value="Title" name="searchTab"
+								checked="checked" style="width: 20px; height: 20px;">&nbsp;Title
+							<input type="radio" value="Director" name="searchTab"
+								style="width: 20px; height: 20px;">&nbsp;Director <input
+								type="radio" value="Actor" name="searchTab"
+								style="width: 20px; height: 20px;">&nbsp;Actor <input
+								type="radio" value="Keywords" name="searchTab"
+								style="width: 20px; height: 20px;">&nbsp;Keywords
 						</div>
-
-						<!-- 정렬기준 Select Box -->
-						<select name="order" id='order'>
-							<option value="">정렬기준</option>
-							<option value="">개봉년도순</option>
-							<option value="">관람객순</option>
-							<option value="">평점순</option>
-						</select>
 					</div>
-
+					<br /> <br /> <br />
+					<!-- 정렬기준 Select Box -->
+					<select name="order" id='orderBy' style="float: right;">
+						<option value="default">정렬기준</option>
+						<option value="title">영화이름순</option>
+						<option value="year">개봉년도순</option>
+						<option value="score">평점순</option>
+					</select>
 
 					<!-- 영화리스트 START -->
 					<div class="col-twelve" id="movieSearch">

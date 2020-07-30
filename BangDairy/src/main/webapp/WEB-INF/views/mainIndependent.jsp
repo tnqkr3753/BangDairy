@@ -77,7 +77,6 @@
 <%@ include file = "../../header_menu.jsp" %>
 <%@ include file = "../../account_form.jsp" %>
 <%@ include file = "../../Sign_In.jsp" %>
-<%@ include file = "../../leftbar.jsp" %>
 		
     <!-- s-content
     ================================================== -->
@@ -226,7 +225,6 @@
 
 
       <!-- /옆에 바 구현 ; -->    
-<%@ include file="../../leftbar.js.jsp" %>
 		      <!-- /옆에 바 구현 ; -->    
 </div>
 </body>

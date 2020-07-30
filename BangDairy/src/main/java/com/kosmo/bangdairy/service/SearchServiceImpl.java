@@ -21,35 +21,35 @@ public class SearchServiceImpl implements SearchService {
 	int blockPageNumcount = 5; // 블럭에 존재하는 페이지 개수
 
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int pNum) {		// 영화 제목으로 검색
+	public List<HashMap> searchMovie(MovieVO vo, int pNum, String selectOrder) {		// 영화 제목으로 검색
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow 값은 항상 10!
 
-		return searchDAO.searchMovie(vo, firstRow, endRow);
+		return searchDAO.searchMovie(vo, firstRow, endRow, selectOrder);
 	}
 
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int pNum) {	// 감독 이름으로 검색
+	public List<HashMap> searchDirector(DirectorVO vo, int pNum, String selectOrder) {	// 감독 이름으로 검색
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow 값은 항상 10!
 		
-		return searchDAO.searchDirector(vo, firstRow, endRow);		
+		return searchDAO.searchDirector(vo, firstRow, endRow, selectOrder);		
 	}
 
 	@Override
-	public List<HashMap> searchActor(ActorVO vo, int pNum) {	// 배우 이름으로 검색
+	public List<HashMap> searchActor(ActorVO vo, int pNum, String selectOrder) {	// 배우 이름으로 검색
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow 값은 항상 10!
 		
-		return searchDAO.searchActor(vo, firstRow, endRow);		
+		return searchDAO.searchActor(vo, firstRow, endRow, selectOrder);		
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int pNum) {	// 키워드로 검색
+	public List<HashMap> searchKeywords(MovieVO vo, int pNum, String selectOrder) {	// 키워드로 검색
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow 값은 항상 10!
 		
-		return searchDAO.searchKeywords(vo, firstRow, endRow);
+		return searchDAO.searchKeywords(vo, firstRow, endRow, selectOrder);
 	}
 
 	@Override

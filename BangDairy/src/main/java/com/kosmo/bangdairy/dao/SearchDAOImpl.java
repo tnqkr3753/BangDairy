@@ -17,45 +17,49 @@ public class SearchDAOImpl implements SearchDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow) {					// 영화 제목으로 검색
+	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder) {					// 영화 제목으로 검색
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("movieTitle", vo.getMovieTitle());
+		m.put("selectOrder", selectOrder);
 		
 		return sqlSession.selectList("SearchDAO.searchMovie", m);
 	}
 	
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow) {	// 감독 이름으로 검색
+	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder) {	// 감독 이름으로 검색
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("directorName", vo.getDirectorName());
+		m.put("selectOrder", selectOrder);
 		
 		return sqlSession.selectList("SearchDAO.searchDirector", m);
 	}
 
 	@Override
-	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow) {	// 배우 이름으로 검색
+	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder) {	// 배우 이름으로 검색
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("actorName", vo.getActorName());
+		m.put("selectOrder", selectOrder);
 		
 		return sqlSession.selectList("SearchDAO.searchActor", m);
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow) {	// 키워드로 검색
+	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder) {	// 키워드로 검색
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("keyword", vo.getKeyword());
+		m.put("selectOrder", selectOrder);
 		
 		return sqlSession.selectList("SearchDAO.searchKeywords", m);
 	}

@@ -61,7 +61,7 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu_Eunju.jsp"%>
-		<%@ include file = "leftbar.jsp" %>
+	
 		
 		<div class="pageheader-content row">
 			<div class="col-full">
@@ -132,7 +132,7 @@
 
 						<div class="entry"
 							style="background-image: url('resources/images/thumbs/featured/featured-beetle.jpg');">
-
+ 
 							<div class="entry__content">
 								<span class="entry__category"><a href="#0">LifeStyle</a></span>
 
@@ -315,7 +315,6 @@
 		<script src="resources/js/main.js"></script>
 		  <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
   <!-- /옆에 바 구현 ; -->    
-<%@ include file="leftbar.js.jsp" %>
 		      <!-- /옆에 바 구현 ; --> 
 		
 	</div>

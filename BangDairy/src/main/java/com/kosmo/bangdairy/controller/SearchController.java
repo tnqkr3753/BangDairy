@@ -53,13 +53,14 @@ public class SearchController {
 	
 	/* 메소드명 : searchBy
 	 * 기능 : 영화 리스트 페이지에서 라디오 버튼 클릭하면 해당 기준(+검색어)에 맞는 영화 리스트 보여줌, 페이징
-	 * 변수 : tabName, pageNum
+	 * 변수 : tabName, pageNum, selectOrder
 	 * 작성자 : 배은주
 	 */
 	@ResponseBody
-	@RequestMapping(value = "searchBy/{tabName}/{pNum}", method = RequestMethod.POST)
+	@RequestMapping(value = "searchBy/{tabName}/{pNum}/{selectOrder}", method = RequestMethod.POST)
 	public ModelAndView searchBy(@PathVariable(value = "tabName", required = true) String tabName,
-			@PathVariable(value = "pNum", required = true) String pageNum) {
+			@PathVariable(value = "pNum", required = true) String pageNum,
+			@PathVariable(value = "selectOrder", required = false) String selectOrder) {
 		
 		ModelAndView mv = new ModelAndView(); 
 		
@@ -84,17 +85,15 @@ public class SearchController {
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchMovie(mvo, pNum));
+			mv.addObject("mList", searchService.searchMovie(mvo, pNum, selectOrder));
 		} else if (tabName.contains("Director")) { 				// "Director" 라디오 버튼을 클릭했을 때	
-			System.out.println(tabName+"-----"+pNum+"-----확인1");
 			dvo.setDirectorName(searchWord);	
-			System.out.println(tabName+"-----"+pNum+"-----확인2");
 
 			totalPage = searchService.searchCountDirector(dvo);
 
 			mv.addObject("pNum", pNum);
-			mv.addObject("totlaPage", totalPage);
-			mv.addObject("mList", searchService.searchDirector(dvo, pNum));
+			mv.addObject("totalPage", totalPage);
+			mv.addObject("mList", searchService.searchDirector(dvo, pNum, selectOrder));
 		}  else if (tabName.contains("Actor")) { 				// "Actor" 라디오 버튼을 클릭했을 때	
 			avo.setActorName(searchWord);
 			
@@ -102,7 +101,7 @@ public class SearchController {
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchActor(avo, pNum));
+			mv.addObject("mList", searchService.searchActor(avo, pNum, selectOrder));
 		}  else if (tabName.contains("Keywords")) {		 		// "Keywords" 라디오 버튼을 클릭했을 때
 			mvo.setKeyword(searchWord);
 			
@@ -110,9 +109,10 @@ public class SearchController {
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchKeywords(mvo, pNum));
+			mv.addObject("mList", searchService.searchKeywords(mvo, pNum, selectOrder));
 		}
 
 		return mv;
 	}
+
 }
