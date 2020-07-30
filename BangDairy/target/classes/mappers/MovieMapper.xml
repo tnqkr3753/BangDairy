@@ -34,6 +34,7 @@
 		FROM dual
 		WHERE not exists (SELECT * FROM director_info WHERE director_id=#{item.directorId})
 		</foreach>
+		
 </insert>
 
 <insert id="insertStill" parameterType="java.util.List">

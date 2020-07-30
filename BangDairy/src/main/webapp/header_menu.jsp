@@ -74,7 +74,7 @@
                          
                           <ul>
                 
-                            <li><a href="indieList.do">indieList</a></li>
+                            <li><a href="indieList.do" >indieList</a></li>
                             <li><a href="Independent.do">신청</a></li>
                            
                             </ul>

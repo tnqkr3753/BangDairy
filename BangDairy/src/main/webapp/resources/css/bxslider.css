@@ -22,6 +22,7 @@ ul.bxslider {
   list-style: none;
 }
 .bx-viewport {
+	height: 484.438px;/* 메인페이지 슬라이더 세로크기 를 정의한다. */
   /*fix other elements on the page moving (on Chrome)*/
   -webkit-transform: translatez(0);
 }
