@@ -524,7 +524,8 @@ dl,
 form,
 .video-container,
 .cl-custom-select {
-   margin-bottom: 3rem;
+   margin-bottom: 2rem;
+   margin-top:2rem;/*진섭추가함  */
 }
 
 

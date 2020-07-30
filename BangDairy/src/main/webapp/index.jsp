@@ -129,7 +129,8 @@
                         <div class="entry__meta" style="background-color: black">
                             <span class="entry__meta-links">
                                  <a href="https://www.naver.com/"><spen><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
-                                <a href="#0"><spen><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
+                                <!-- 아이콘 색 변경하려면  -->
+                                <a href="#0" style="color:red"><spen><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
                             </span>
                         </div>
                          </div>
@@ -144,15 +145,15 @@
                 <%};%>   <!-- for문 끝 -->
                 
              
-  
-<div class="home__slider"> 
+  <!-- 아래 슬라이더 필요하면 주석풀기 -->
+<%-- <div class="home__slider"> 
     <div class="bxslider1">
     <%for(int d=1;d<=8;d++){ %> 
         <a href="https://www.youtube.com/watch?v=N7vJxDDFmPY"><div><img src="resources/images/<%=d%>.jpg" alt="그림1"></div></a>
      
          <%} %>
     </div> 
-</div> 
+</div>  --%>
 
     </div>
 		<!-- end s-extra -->
