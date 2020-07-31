@@ -55,14 +55,15 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
+
 	<!-- 다이어라 자리  -->
 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
 				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
-				
-
+				</div>
 			</div>
 			<!-- end col-full -->
+			
 		</div>
 		</div>
 		
@@ -167,7 +168,8 @@
 		<script src="resources/js/plugins.js"></script>
 		<script src="resources/js/main.js"></script>
 		  <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
- 
+  <!-- /옆에 바 구현 ; -->    
+
 		
 	</div>
 </body>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SearchDAO">
+	<!-- 키워드 검색 (영화명) -->
+	<select id="searchMovie" parameterType="hashmap" resultType="hashmap">
+	SELECT m.*, f.gtitle, v.score FROM movie_info m inner join (SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
+	inner join genre_info g on mg.genre_id = g.genre_id where movie_id in (select movie_id from movie_info where movie_title like '%${movieTitle}%')
+	group by movie_id) f ON m.movie_id = f.movie_id left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
+	ON v.movie_id = m.movie_id
+
+	<if test="selectOrder.equals('title')">
+	ORDER BY movie_title
+	</if>
+	<if test="selectOrder.equals('year')">
+	ORDER BY opening_date DESC
+	</if>
+	
+ 	 LIMIT #{firstRow}, #{endRow}
+	</select>
+	
+	<!-- 키워드 검색 (감독명) -->
+	<select id="searchDirector" parameterType="hashmap" resultType="hashmap">
+ 	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN 
+ 	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_director WHERE director_id IN 
+ 	(SELECT director_id FROM director_info WHERE director_name LIKE '%${directorName}%'))
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
+	ON v.movie_id = m.movie_id
+ 	
+ 	<if test="selectOrder.equals('title')">
+	ORDER BY movie_title
+	</if>
+	<if test="selectOrder.equals('year')">
+	ORDER BY opening_date DESC
+	</if>
+ 	
+ 	 LIMIT #{firstRow}, #{endRow}
+	</select>
+	
+	<!-- 키워드 검색 (배우명) -->
+	<select id="searchActor" parameterType="hashmap" resultType="hashmap">
+ 	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN 
+ 	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
+ 	(SELECT movie_id FROM starring WHERE actor_id IN (SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
+	ON v.movie_id = m.movie_id
+ 	
+ 	<if test="selectOrder.equals('title')">
+	ORDER BY movie_title
+	</if>
+	<if test="selectOrder.equals('year')">
+	ORDER BY opening_date DESC
+	</if>
+	
+	LIMIT #{firstRow}, #{endRow}
+	
+	</select>
+		
+	<!-- 키워드 검색 (키워드) -->
+ 	<select id="searchKeywords" parameterType="hashmap" resultType="hashmap">
+	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN (SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+	 INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_info WHERE keyword LIKE '%${keyword}%')
+ 	 GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
+	 ON v.movie_id = m.movie_id
+	 
+	<if test="selectOrder.equals('title')">
+	ORDER BY movie_title
+	</if>
+	<if test="selectOrder.equals('year')">
+	ORDER BY opening_date DESC
+	</if>
+	
+	  LIMIT #{firstRow}, #{endRow}
+ 	</select>
+ 	
+ 	<!-- 페이징 : 행의 개수 구하기 (영화제목) -->
+	<select id="searchCountTitle" resultType="int">
+	SELECT count(*) FROM movie_info m inner join (SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
+ 	inner join genre_info g on mg.genre_id = g.genre_id where movie_id in (select movie_id from movie_info where movie_title like '%${movieTitle}%')
+	group by movie_id) f ON m.movie_id = f.movie_id
+	</select> 
+	
+	 <!-- 페이징 : 행의 개수 구하기 (감독이름) -->
+	<select id="searchCountDirector" resultType="int">
+	SELECT count(*) FROM movie_info m INNER JOIN 
+ 	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_director WHERE director_id IN 
+ 	(SELECT director_id FROM director_info WHERE director_name LIKE '%${directorName}%'))
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	</select> 
+ 	
+ 	<!-- 페이징 : 행의 개수 구하기 (배우이름) -->
+ 	<select id="searchCountActor" resultType="int">
+ 	SELECT count(*) FROM movie_info m INNER JOIN 
+ 	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
+ 	(SELECT movie_id FROM starring WHERE actor_id IN (SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	</select> 
+ 	
+ 	<!-- 페이징 : 행의 개수 구하기 (키워드) -->
+ 	<select id="searchCountKeywords" resultType="int">
+    SELECT count(*) FROM movie_info m INNER JOIN (SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_info WHERE keyword LIKE'%${keyword}%')
+	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	</select>
+ 	
+</mapper>  
