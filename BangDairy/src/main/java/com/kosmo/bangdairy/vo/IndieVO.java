@@ -17,7 +17,7 @@ private Date indieUpdateDate;
 private String indiePosterAddr;
 private int indiePosterSize;
 private String userId;
-private String genreId;
+private String indieGenre;
 
 private String indieLike;
 private String indieHate;
@@ -33,10 +33,10 @@ public void setIndieId(String indieId) {
 	this.indieId = indieId;
 }
 public String getGenreId() {
-	return genreId;
+	return indieGenre;
 }
-public void setGenreId(String genreId) {
-	this.genreId = genreId;
+public void setGenreId(String indieGenre) {
+	this.indieGenre = indieGenre;
 }
 @Override
 public String toString() {
