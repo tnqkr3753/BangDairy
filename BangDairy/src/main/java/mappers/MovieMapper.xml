@@ -35,14 +35,13 @@
 		FROM dual
 		WHERE not exists (SELECT * FROM director_info WHERE director_id=#{item.directorId})
 		</foreach>
-		
 </insert>
 <!-- 영화 스틸이미지 삽입(다중insert)  -->
 <insert id="insertStill" parameterType="java.util.List">
 	insert into movie_still_img (movie_id,still_addr) 
 	<foreach collection="list" item="item" separator=" UNION ">
 	SELECT #{item.movieId},#{item.stillAddr} FROM dual
-	WHERE not exists (SELECT * FROM movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
+	WHERE not exists (SELECT * FROM movie_still_img WHERE movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
 	</foreach>
 </insert>
 <!-- 영화 삽입  -->

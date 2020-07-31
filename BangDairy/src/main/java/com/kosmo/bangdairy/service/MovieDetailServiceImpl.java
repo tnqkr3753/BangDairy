@@ -14,6 +14,7 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.StillVO;
 import com.kosmo.bangdairy.vo.WishMovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
@@ -90,7 +91,8 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	public int insertWishMovie(WishMovieVO vo) {
 		return movieDetailDAO.insertWishMovie(vo);
 	}
-	
-	
-	
+	@Override
+	public List<StillVO> selectStill(MovieVO vo) {
+		return movieDetailDAO.selectStill(vo);
+	}
 }

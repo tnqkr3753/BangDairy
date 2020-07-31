@@ -59,7 +59,7 @@ ss/myPage.css">
 						<img class="img-circle" src="resources/images/myPage/user.png"
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
-						<h2>My Profile</h2>
+						<h2>내 정보</h2>
 						<p>나의 정보를 볼 수 있으며<br/> 수정, 탈퇴가 가능합니다.</p>
 						<p>
 							<button class="btn btn-default" id="btnMyProfile"
@@ -73,7 +73,7 @@ ss/myPage.css">
 						<img class="img-circle" src="resources/images/myPage/heart.png"
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
-						<h2>Wish List</h2>
+						<h2>찜 목록</h2>
 						<p>내가 보고싶은 영화에 추가한<br/>영화들을 볼 수 있습니다.</p>
 						<p>
 							<button class="btn btn-default" id="btnWish" href="#" role="button">GO»</button>

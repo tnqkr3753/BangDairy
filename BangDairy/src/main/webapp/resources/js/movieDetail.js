@@ -5,13 +5,14 @@ $(document).ready(function(){
 	var commentPerPage = 10;
 	commentLoad(pageNum,movieId);
 	$(".rslides").responsiveSlides({
-		pager:true,				 // 페이징
+		maxwidth:300,
+		pager:false,				 // 페이징
 		auto:true,				 // 자동으로 넘어가기
 		speed:1,				 // 속도
+		nav : true,
 		prevText: "Previous",    // String: Text for the "previous" button
 		nextText: "Next"         // String: Text for the "next" button
 	});
-	
 	// 평점 클릭했을때
 	$('.comments-wrap .starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
@@ -125,7 +126,7 @@ $(document).ready(function(){
 			data :  {"movieId":movieId},
 			dataType: "html",
 			success: function (response) {
-				if(response){
+				if(response==1){
 					alert("찜목록 입력 성공");
 				}else{
 					alert("찜목록 입력 실패");

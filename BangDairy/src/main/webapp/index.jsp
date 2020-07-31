@@ -55,14 +55,15 @@
 <body id="top">
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
+
 	<!-- 다이어라 자리  -->
 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
 				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
-				
-
+				</div>
 			</div>
 			<!-- end col-full -->
+			
 		</div>
 		</div>
 		
@@ -104,7 +105,7 @@
                          
                     <div class="entry__thumb"style="background-color: black">
                     
-                        <a href="﻿https://youtu.be/gspxp2lAR7A?t=211" class="entry__thumb-link" >
+                        <a href="#" class="entry__thumb-link" >
                             <img src="resources/images/thumbs/masonry/lamp-400.jpg" class="entry__thumb-link1"
                                     srcset="resources/images/아이유.jpg 1x, resources/images/thumbs/masonry/lamp-800.jpg 2x" alt="">
                     
@@ -128,9 +129,9 @@
                         </div>
                         <div class="entry__meta" style="background-color: black">
                             <span class="entry__meta-links">
-                                 <a href="https://www.naver.com/"><spen><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
+                                 <a href="https://www.naver.com/"><span><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
                                 <!-- 아이콘 색 변경하려면  -->
-                                <a href="#0" style="color:red"><spen><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
+                                <a href="#0" style="color:red"><span><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
                             </span>
                         </div>
                          </div>
@@ -167,7 +168,8 @@
 		<script src="resources/js/plugins.js"></script>
 		<script src="resources/js/main.js"></script>
 		  <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
- 
+  <!-- /옆에 바 구현 ; -->    
+
 		
 	</div>
 </body>

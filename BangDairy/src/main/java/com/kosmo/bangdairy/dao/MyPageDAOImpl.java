@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.QnaVO;
 import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Repository("myPageDAO")
@@ -38,5 +39,21 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public int deleteWishMovie(WishMovieVO vo) {
 		return sqlSession.delete("MyPageDAO.deleteWishMovie",vo);
 	}
+
+	@Override
+	public List<QnaVO> selectQnaList(QnaVO vo) {
+		return sqlSession.selectList("MyPageDAO.selectQna",vo);
+	}
+
+	@Override
+	public int insertQna(QnaVO vo) {
+		return sqlSession.insert("MyPageDAO.insertQna",vo);
+	}
+
+	@Override
+	public QnaVO selectQna(QnaVO vo) {
+		return sqlSession.selectOne("MyPageDAO.selectQnaOne",vo);
+	}
+	
 	
 }

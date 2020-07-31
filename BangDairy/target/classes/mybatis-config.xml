@@ -26,6 +26,9 @@
 		<!-- 2020-07-30 박윤태 수정
 		수정내용:WishMovieVO 추가 -->
 	<typeAlias alias="wish" type="com.kosmo.bangdairy.vo.WishMovieVO"/>
+	<!-- 2020-07-30 박윤태 수정
+		수정내용:QnaVO 추가 -->
+	<typeAlias alias="qna" type="com.kosmo.bangdairy.vo.QnaVO"/>
 </typeAliases>
 
 </configuration>   

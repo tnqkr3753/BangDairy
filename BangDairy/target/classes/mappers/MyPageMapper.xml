@@ -26,4 +26,14 @@
 	<delete id="deleteWishMovie" parameterType="wish">
 		DELETE FROM wish_movie WHERE movie_id = #{movieId} AND user_id = #{userId}
 	</delete>
+	<select id="selectQna" parameterType="qna" resultType="qna">
+		SELECT * FROM user_qna WHERE user_id = #{userId}
+	</select>
+	<insert id="insertQna" parameterType="qna">
+		INSERT INTO user_qna (user_id,qna_title,qna_content,qna_reg_date)
+		VALUES (#{userId},#{qnaTitle},#{qnaContent},now())
+	</insert>
+	<select id="selectQnaOne" parameterType="qna" resultType="qna">
+		SELECT * FROM user_qna WHERE qna_id = #{qnaId} AND user_id = #{userId}
+	</select>
 </mapper>  
