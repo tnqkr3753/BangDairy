@@ -74,7 +74,7 @@
 					<li>${vo.country }</li>
 					
 				</ul>
-				<button id="wish-add" class="btn btn-info">찜목록에 추가</button>
+				<button id="wish-add" class="btn btn-default">찜목록에 추가</button>
 				<%-- 평점 --%>
 				<div class="starRevM">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
@@ -85,8 +85,11 @@
 			
 				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
-					<li><img src="${vo.posterAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
+					<c:if test="${not empty sList }">
+						<c:forEach items="${sList }" var="list">
+							<li><img src="${list.stillAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
+						</c:forEach>
+					</c:if>
 				</ul>
 				<%-- rslides End --%>
 
@@ -101,21 +104,22 @@
 				<h2>DIRECTOR</h2> 
 				
 				<section id="two" class="wrapper alt spotlight style2">
-					<c:forEach items="${vo.movieDirector }" var="director">
 						<div class="inner">
 						<%--
 							<a href="#" class="image"><img
 								src="resources/images/movieDetail/directorSam.jpg" alt=""></a> --%>
 							<div class="content">
+								<c:forEach items="${vo.movieDirector }" var="director">
 								<h2 class="major">${director.directorName }</h2>
 								<%-- <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
 									Cras turpis ante, nullam sit amet turpis non, sollicitudin
 									posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
 									dignissim dapibus. Nullam ultrices, neque et faucibus viverra,
 									ex nulla cursus.</p> --%>
+								</c:forEach>
 							</div>
 						</div>
-					</c:forEach>
+					
 				</section>
 
 				<%-- <blockquote>
