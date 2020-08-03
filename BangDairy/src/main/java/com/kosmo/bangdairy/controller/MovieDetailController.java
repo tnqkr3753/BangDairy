@@ -20,6 +20,7 @@ import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.MovieDetailService;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.StillVO;
 import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Controller
@@ -40,9 +41,15 @@ public class MovieDetailController {
 		vo.setMovieId(movieId);
 		vo = movieDetailService.selectOneMovie(vo);
 		LoggerAspect.logger.info("movieDetail 결과 vo : "+vo);
+		List<StillVO> stillList = null;
 		if(vo!=null) {
 			mv.addObject("vo",vo);
+			stillList = movieDetailService.selectStill(vo);
 		}
+		if(stillList !=null) {
+			mv.addObject("sList",stillList);
+		}
+		LoggerAspect.logger.info("stillImg 결과 list : "+stillList);
 		mv.setViewName("movieDetail/movieDetail");
 		return mv;
 	}

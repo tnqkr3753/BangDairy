@@ -35,12 +35,11 @@ public class IndependentController {
 	 * 작성자		: 신진섭
 	 */
 	@RequestMapping(value="/Independent", method=RequestMethod.GET)
-	public ModelAndView movieAppImsert(HttpServletRequest request ){ 
+	public ModelAndView movieAppImsert(){ 
 		ModelAndView mv = new ModelAndView();
 		
 		List<IndieVO> result=indieSevice.indieGnareSelect();
-		System.out.println("=====================================================================================================");
-		System.out.println(result);
+		
 //		result 에 넣어진 을 addObject로 키값을"result" value값은 result 로 만들어준다.
 		mv.addObject("result", result);
 		mv.setViewName("indie/Independent");
@@ -49,16 +48,22 @@ public class IndependentController {
 	
 	/*
 	 * 메소드명	: indieList
-	 * 기능		: header에서 인디리트트페이지로 넘어감
+	 * 기능		: header에서 인디리트트페이지로 넘어감, 인디리스트에 뿌려줄 값을 DB에서 얻어온다.
 	 * 변수 		:
 	 * 작성자		: 신진섭
 	 */
 	@RequestMapping(value="/indieList", method=RequestMethod.GET)
-	public ModelAndView indieList() {	ModelAndView mv = new ModelAndView();mv.setViewName("indie/listIndie");return mv;}
+	public ModelAndView indieList() {
+	ModelAndView mv = new ModelAndView();
+	List<IndieVO> result=(List<IndieVO>)indieSevice.selectIndieInfo();
+	mv.addObject("result",result);
+	mv.setViewName("indie/listIndie");
+	return mv;
+	}
 	
 	/*
 	 * 메소드명	: indieDetail
-	 * 기능		: header에서 인디디테일로 넘어감
+	 * 기능		: indielist 에서 인디디테일로 넘어감
 	 * 변수 		:
 	 * 작성자		: 신진섭
 	 */
@@ -73,12 +78,16 @@ public class IndependentController {
 	 */
 	@RequestMapping(value="indieinsert", method=RequestMethod.GET)
 	public ModelAndView indieInsert(IndieVO ivo ) {	
+		
 		indieSevice.indieInsert(ivo);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("indie/listIndie");
+		mv.setViewName("redirect:/indieList");
 		return mv;
 	}
+	
+	
+	
 
 	
 }

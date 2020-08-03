@@ -61,12 +61,10 @@
     ================================================== -->
     
 <%@ include file = "../../../header_menu.jsp" %>
-<%@ include file="../../../account_form.jsp"%>
-<%@ include file="../../../Sign_In.jsp"%>
 
 
  <section class="s-content">
-<form name="frm" id="frm" method="GET" action="indieinsert"  enctype="Multipart/form-data">
+<form name="frm" id="frm" method="GET" action="indieinsert"  enctype="Multipart/form-data" accept="image/png, image/jpeg">
 			<div class="distribution" title="배급신청" style="display: block" id="box" >
 				<h4>신청인</h4>
 				<table class="">
@@ -75,6 +73,15 @@
 				  <tr>
 					<th>감독</th>
 				    <td><input type="text" name="indieDirector"  class="type01" style="width:30%;" msg="감독을"> </td>
+				  </tr>
+				   <tr>
+					<th>배우</th>
+				    <td><input type="text" name="indieActor"  class="type01" style="width:30%;" msg="감독을"> </td>
+				  </tr>
+				  
+ 				  <tr> 
+				 <th>포스터url</th>
+				    <td><input type="file" name="indiePosterAddr"  > </td>
 				  </tr>
 				   
 				  
@@ -108,10 +115,7 @@
 					<th>한글제목</th>
 				    <td><input type="text" name="indieTitle" id="distri_movie_subject" class="type01" style="width:20%;" msg="한글제목을"> </td>
 				  </tr>
-				  <tr>
-				   	<th>포스터url</th>
-				    <td><input type="text" name="indiePosterAddr"  class="type01" style="width:60%"; msg="포스터 url">ex :  http://www.indieforbunnies.com/wp-content/uploads/2019/10/indie-846x423.jpg </td>
-				  </tr>
+				
 <!-- 				  <tr> -->
 <!-- 					<th>영문제목</th> -->
 <!-- 				   <td><input type="text" value="123"name="distri_movie_esubject" id="distri_movie_esubject" class="type01" style="width:20%;" msg="영문제목을"> </td> -->
@@ -187,8 +191,8 @@
 					<th>연출의도 plot</th>
 				    <td><textarea name="indiePlot" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를"></textarea> </td>
 				  </tr> 
-				   
-				  
+			
+				 
 				   
 		
 			

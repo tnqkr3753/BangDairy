@@ -41,7 +41,7 @@
 	insert into movie_still_img (movie_id,still_addr) 
 	<foreach collection="list" item="item" separator=" UNION ">
 	SELECT #{item.movieId},#{item.stillAddr} FROM dual
-	WHERE not exists (SELECT * FROM movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
+	WHERE not exists (SELECT * FROM movie_still_img WHERE movie_id=#{item.movieId} AND still_addr=#{item.stillAddr})
 	</foreach>
 </insert>
 <!-- 영화 삽입  -->

@@ -57,4 +57,7 @@
  	INSERT INTO wish_movie (movie_id,user_id,reg_date)
  	VALUES (#{movieId},#{userId},now())
  </insert>
+ <select id="getStill" parameterType="movie" resultType="still">
+	SELECT * FROM movie_still_img WHERE movie_id = #{movieId} 	
+ </select>
 </mapper>  

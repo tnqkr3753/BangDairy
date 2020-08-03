@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kosmo.bangdairy.vo.IndieVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -101,14 +103,17 @@
 									</tr>
 								</thead>
 
+							<%	List<IndieVO> result=(List<IndieVO>)request.getAttribute("result"); %>
+					
 								<tbody>
 									<!-- 하나의 영화 START -->
+									<% for (IndieVO vo : result){ %>
 									<tr>
-										<td><a href="indieDetail"><img src="resources/images/movieList/movieSam1.jpg"
-											width="100px" height="100px"></a></td>
-										<td>반도</td>
-										<td>액션</td>
-										<td>2020.07.15</td>
+										<td><img src="resources/images/movieList/movieSam1.jpg"
+											width="100px" height="100px"></td>
+										<td><%=vo.getIndieTitle() %></td>
+										<td><%=vo.getGenreId()%></td>
+										<td><%=vo.getIndieUpdateDate() %></td>
 										<td>
 											<div class="starRev">
 												<span class="starR on">별1</span> <span class="starR">별2</span>
@@ -118,76 +123,7 @@
 										</td>
 									</tr>
 									<!-- 하나의 영화 END -->
-									<tr>
-										<td><img src="resources/images/movieList/movieSam2.jpg"
-											width="100px" height="100px"></td>
-										<td>온워드: 단 하루의 기적</td>
-										<td>판타지</td>
-										<td>2020.06.17</td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td><img src="resources/images/movieList/movieSam3.jpg"
-											width="100px" height="100px"></td>
-										<td>원데이</td>
-										<td>드라마</td>
-										<td>2020.07.08</td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td><img src="resources/images/movieList/movieSam4.jpg"
-											width="100px" height="100px"></td>
-										<td>소리꾼</td>
-										<td>드라마</td>
-										<td>2020.07.01</td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td><img src="resources/images/movieList/movieSam5.jpg"
-											width="100px" height="100px"></td>
-										<td>결백</td>
-										<td>드라마</td>
-										<td>2020.06.10</td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td><img src="resources/images/movieList/movieSam6.jpg"
-											width="100px" height="100px"></td>
-										<td>이웃집 토토로</td>
-										<td>애니메이션</td>
-										<td>2001.07.28</td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
-										</td>
-									</tr>
+								<%}; %>
 								</tbody>
 							</table>
 						</div>
