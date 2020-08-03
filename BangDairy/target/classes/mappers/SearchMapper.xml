@@ -5,10 +5,15 @@
 <mapper namespace="SearchDAO">
 	<!-- 키워드 검색 (영화명) -->
 	<select id="searchMovie" parameterType="hashmap" resultType="hashmap">
-	SELECT m.*, f.gtitle, v.score FROM movie_info m inner join (SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
-	inner join genre_info g on mg.genre_id = g.genre_id where movie_id in (select movie_id from movie_info where movie_title like '%${movieTitle}%')
-	group by movie_id) f ON m.movie_id = f.movie_id left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
-	ON v.movie_id = m.movie_id
+ 	 SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
+ 	(SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
+	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
+ 	(SELECT movie_id FROM movie_info WHERE movie_title LIKE '%${movieTitle}%')
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
+ 	ON v.movie_id = m.movie_id
+ 	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
+ 	ON f.movie_id=u.movie_id
 
 	<if test="selectOrder.equals('title')">
 	ORDER BY movie_title
@@ -17,17 +22,21 @@
 	ORDER BY opening_date DESC
 	</if>
 	
- 	 LIMIT #{firstRow}, #{endRow}
+ 	LIMIT #{firstRow}, #{endRow}
 	</select>
 	
 	<!-- 키워드 검색 (감독명) -->
 	<select id="searchDirector" parameterType="hashmap" resultType="hashmap">
- 	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN 
+ 	 SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN 
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
- 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_director WHERE director_id IN 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
+ 	(SELECT movie_id FROM movie_director WHERE director_id IN 
  	(SELECT director_id FROM director_info WHERE director_name LIKE '%${directorName}%'))
- 	GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
-	ON v.movie_id = m.movie_id
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+  	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
+ 	ON v.movie_id = m.movie_id
+ 	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
+ 	ON f.movie_id = u.movie_id
  	
  	<if test="selectOrder.equals('title')">
 	ORDER BY movie_title
@@ -36,18 +45,22 @@
 	ORDER BY opening_date DESC
 	</if>
  	
- 	 LIMIT #{firstRow}, #{endRow}
+ 	LIMIT #{firstRow}, #{endRow}
 	</select>
 	
 	<!-- 키워드 검색 (배우명) -->
 	<select id="searchActor" parameterType="hashmap" resultType="hashmap">
- 	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN 
+ 	 SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN 
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
- 	(SELECT movie_id FROM starring WHERE actor_id IN (SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
- 	GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
-	ON v.movie_id = m.movie_id
- 	
+ 	(SELECT movie_id FROM starring WHERE actor_id IN
+ 	(SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id 
+   	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
+ 	ON v.movie_id = m.movie_id
+ 	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
+ 	ON f.movie_id = u.movie_id
+ 
  	<if test="selectOrder.equals('title')">
 	ORDER BY movie_title
 	</if>
@@ -61,10 +74,15 @@
 		
 	<!-- 키워드 검색 (키워드) -->
  	<select id="searchKeywords" parameterType="hashmap" resultType="hashmap">
-	 SELECT m.*, f.gtitle, v.score FROM movie_info m INNER JOIN (SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
-	 INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_info WHERE keyword LIKE '%${keyword}%')
- 	 GROUP BY movie_id) f ON m.movie_id = f.movie_id  left outer join (SELECT movie_id, round(avg(score), 2) as score FROM movie_score GROUP BY movie_id) v 
-	 ON v.movie_id = m.movie_id
+ 	SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
+ 	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
+ 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
+ 	(SELECT movie_id FROM movie_info WHERE keyword LIKE '%${keyword}%')
+ 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+    LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
+ 	ON v.movie_id = m.movie_id
+ 	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
+ 	ON f.movie_id = u.movie_id
 	 
 	<if test="selectOrder.equals('title')">
 	ORDER BY movie_title
@@ -73,7 +91,7 @@
 	ORDER BY opening_date DESC
 	</if>
 	
-	  LIMIT #{firstRow}, #{endRow}
+	LIMIT #{firstRow}, #{endRow}
  	</select>
  	
  	<!-- 페이징 : 행의 개수 구하기 (영화제목) -->
@@ -108,4 +126,9 @@
 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
  	</select>
  	
+ 	<!-- 사용자가 입력한 평점 DB에 넣기 -->
+ 	<insert id="insertStarScore" parameterType="comment">
+ 	INSERT INTO movie_score(movie_id, user_id, score, score_predict) VALUES('${movieId}', '${userId}', '${commentScore}', 0)
+ 	</insert>
+
 </mapper>  

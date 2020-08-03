@@ -17,7 +17,7 @@
 	<select id="getMovieAsGenre" parameterType="hashmap" resultType="movie">
 		<![CDATA[SELECT m.* FROM movie_info m inner join (SELECT b.movie_id FROM
 		(SELECT s.movie_id,ROW_NUMBER() OVER(order by s.score desc) as rnum 
-		FROM movie_score s left outer join 
+		FROM movie_score s inner join 
 		(SELECT movie_id FROM movie_genre where genre_id = #{genreId}) 
 		a ON s.movie_id = a.movie_id
     	group by s.movie_id) b WHERE b.rnum>=1 AND b.rnum <=10) c 

@@ -1,6 +1,19 @@
 $(document).ready(function(){ 
-	getMovieWithScore();
-	getGenreWithHits();
+	getSessionId();
+	/* 		메소드 명 		: getListAsNormal
+	* 		기능			: 로그인 되지 않은 유저들의 리스트를 띄워줌
+	*		변수			: None
+	*		작성자			: 박윤태
+	*/
+	function getListAsNormal(){
+		getMovieWithScore();
+		getGenreWithHits();
+	}
+	/* 		메소드 명 		: bxstart
+	* 		기능			: 리스트를 bx슬라이더로 만들어준다
+	*		변수			: None
+	*		작성자			: 박윤태
+	*/
 	function bxstart (){
 		var bx = $('.bxslider').bxSlider({ 
 			auto: false,	//자동으로 슬라이드
@@ -24,9 +37,8 @@ $(document).ready(function(){
 	    	
 	    }); 
 	$(".bx-start").hide();	//onload시 시작버튼 숨김. 
-
-	$('div.entry__thumb').click(function () {
-		var movieId = $(this).attr('mid');
+	$(document).on('click',".entry__thumb",function(){
+		var movieId = $(this).find(".movieId").val();
 		location.href="detail?movieId="+movieId;
 	});
 	/* 		메소드 명 		: getMovieWithScore
@@ -96,6 +108,30 @@ $(document).ready(function(){
 			error: function(request,status,error){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				alert("장르 별 영화 불러오기 실패");
+			}
+			
+		});
+	}
+	/* 		메소드 명 		: getSessionId
+	* 		기능			: 서버에서 session Id의 존재 여부를 얻어온다
+	*		변수			: None
+	*		작성자			: 박윤태
+	*/
+	function getSessionId(){
+		$.ajax({
+			type: "POST",
+			async : true,
+			url: "check/session",
+			dataType: "text",
+			success: function (response) {
+				if(response=='true'){
+				}else{
+					getListAsNormal();
+				}
+			},
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("세션 가져오기 실패");
 			}
 			
 		});

@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.dao.SearchDAO;
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
@@ -17,46 +19,46 @@ public class SearchServiceImpl implements SearchService {
 	SearchDAO searchDAO;
 	int totalRecordCount;
 	int pageTotalCount;
-	int countPerPage = 10;	// ÇÑ ÆäÀÌÁö¿¡ µé¾î°¥ ·¹ÄÚµå °³¼ö
-	int blockPageNumcount = 5; // ºí·°¿¡ Á¸ÀçÇÏ´Â ÆäÀÌÁö °³¼ö
+	int countPerPage = 10;	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+	int blockPageNumcount = 5; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int pNum, String selectOrder) {		// ¿µÈ­ Á¦¸ñÀ¸·Î °Ë»ö
+	public List<HashMap> searchMovie(MovieVO vo, int pNum, String selectOrder, String userId) {		// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;	// Limit firstRow, endRow : endRow °ªÀº Ç×»ó 10!
+		int endRow = 10;	// Limit firstRow, endRow : endRow ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ 10!
 
-		return searchDAO.searchMovie(vo, firstRow, endRow, selectOrder);
+		return searchDAO.searchMovie(vo, firstRow, endRow, selectOrder, userId);
 	}
 
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int pNum, String selectOrder) {	// °¨µ¶ ÀÌ¸§À¸·Î °Ë»ö
+	public List<HashMap> searchDirector(DirectorVO vo, int pNum, String selectOrder, String userId) {	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;	// Limit firstRow, endRow : endRow °ªÀº Ç×»ó 10!
+		int endRow = 10;	// Limit firstRow, endRow : endRow ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ 10!
 		
-		return searchDAO.searchDirector(vo, firstRow, endRow, selectOrder);		
+		return searchDAO.searchDirector(vo, firstRow, endRow, selectOrder, userId);		
 	}
 
 	@Override
-	public List<HashMap> searchActor(ActorVO vo, int pNum, String selectOrder) {	// ¹è¿ì ÀÌ¸§À¸·Î °Ë»ö
+	public List<HashMap> searchActor(ActorVO vo, int pNum, String selectOrder, String userId) {	// ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;	// Limit firstRow, endRow : endRow °ªÀº Ç×»ó 10!
+		int endRow = 10;	// Limit firstRow, endRow : endRow ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ 10!
 		
-		return searchDAO.searchActor(vo, firstRow, endRow, selectOrder);		
+		return searchDAO.searchActor(vo, firstRow, endRow, selectOrder, userId);		
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int pNum, String selectOrder) {	// Å°¿öµå·Î °Ë»ö
+	public List<HashMap> searchKeywords(MovieVO vo, int pNum, String selectOrder, String userId) {	// Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;	// Limit firstRow, endRow : endRow °ªÀº Ç×»ó 10!
+		int endRow = 10;	// Limit firstRow, endRow : endRow ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ 10!
 		
-		return searchDAO.searchKeywords(vo, firstRow, endRow, selectOrder);
+		return searchDAO.searchKeywords(vo, firstRow, endRow, selectOrder, userId);
 	}
 
 	@Override
-	public int searchCountTitle(MovieVO vo) {	// ¿µÈ­ ÀÌ¸§À¸·Î °Ë»öÇßÀ» ¶§ ÀüÃ¼ ÆäÀÌÁö ¼ö
-		totalRecordCount = searchDAO.searchCountTitle(vo);	// ÀüÃ¼ ·¹ÄÚµå(rows) °³¼ö
+	public int searchCountTitle(MovieVO vo) {	// ï¿½ï¿½È­ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		totalRecordCount = searchDAO.searchCountTitle(vo);	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½(rows) ï¿½ï¿½ï¿½ï¿½
 		
-		pageTotalCount = totalRecordCount/countPerPage; // ÀüÃ¼ÆäÀÌÁö ¼ö, ÀüÃ¼ ·¹ÄÚµå ¼ö/ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö
+		pageTotalCount = totalRecordCount/countPerPage; // ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½
 		
 		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
 		
@@ -64,21 +66,10 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public int searchCountDirector(DirectorVO vo) {	// °¨µ¶ ÀÌ¸§À¸·Î °Ë»öÇßÀ» ¶§ ÀüÃ¼ ÆäÀÌÁö ¼ö
-		totalRecordCount = searchDAO.searchCountDirector(vo);	// ÀüÃ¼ ·¹ÄÚµå(rows) °³¼ö
+	public int searchCountDirector(DirectorVO vo) {	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		totalRecordCount = searchDAO.searchCountDirector(vo);	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½(rows) ï¿½ï¿½ï¿½ï¿½
 		
-		pageTotalCount = totalRecordCount/countPerPage; // ÀüÃ¼ÆäÀÌÁö ¼ö, ÀüÃ¼ ·¹ÄÚµå ¼ö/ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö
-		
-		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
-		
-		return pageTotalCount;
-	}
-
-	@Override
-	public int searchCountActor(ActorVO vo) {	// ¹è¿ì ÀÌ¸§À¸·Î °Ë»öÇßÀ» ¶§ ÀüÃ¼ ÆäÀÌÁö ¼ö
-		totalRecordCount = searchDAO.searchCountActor(vo);	// ÀüÃ¼ ·¹ÄÚµå(rows) °³¼ö
-		
-		pageTotalCount = totalRecordCount/countPerPage; // ÀüÃ¼ÆäÀÌÁö ¼ö, ÀüÃ¼ ·¹ÄÚµå ¼ö/ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö
+		pageTotalCount = totalRecordCount/countPerPage; // ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½
 		
 		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
 		
@@ -86,13 +77,30 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public int searchCountKeywords(MovieVO vo) {	// Å°¿öµå·Î °Ë»öÇßÀ» ¶§ ÀüÃ¼ ÆäÀÌÁö ¼ö
-		totalRecordCount = searchDAO.searchCountKeywords(vo);	// ÀüÃ¼ ·¹ÄÚµå(rows) °³¼ö
+	public int searchCountActor(ActorVO vo) {	// ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		totalRecordCount = searchDAO.searchCountActor(vo);	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½(rows) ï¿½ï¿½ï¿½ï¿½
 		
-		pageTotalCount = totalRecordCount/countPerPage; // ÀüÃ¼ÆäÀÌÁö ¼ö, ÀüÃ¼ ·¹ÄÚµå ¼ö/ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö
+		pageTotalCount = totalRecordCount/countPerPage; // ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½
 		
 		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
 		
 		return pageTotalCount;
+	}
+
+	@Override
+	public int searchCountKeywords(MovieVO vo) {	// Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		totalRecordCount = searchDAO.searchCountKeywords(vo);	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½(rows) ï¿½ï¿½ï¿½ï¿½
+		
+		pageTotalCount = totalRecordCount/countPerPage; // ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½
+		
+		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
+		
+		return pageTotalCount;
+	}
+	
+	// ì‚¬ìš©ìê°€ ì…ë ¥í•œ í‰ì  DBì— INSERT
+	@Override
+	public int insertStarScore(CommentVO vo) {
+		return searchDAO.insertStarScore(vo);
 	}
 }

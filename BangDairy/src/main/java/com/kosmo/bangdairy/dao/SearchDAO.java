@@ -4,17 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 public interface SearchDAO {	
-	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder);		// ¿µÈ­ Á¦¸ñÀ¸·Î °Ë»ö
-	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder);	// °¨µ¶ ÀÌ¸§À¸·Î °Ë»ö
-	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder);	// ¹è¿ì ÀÌ¸§À¸·Î °Ë»ö
-	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder);	// Å°¿öµå·Î °Ë»ö
+	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId);		// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder, String userId);	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder, String userId);	// ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId);	// Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	
-	public int searchCountTitle(MovieVO vo);	// ÀüÃ¼ ÆäÀÌÁö ¼ö
+	public int searchCountTitle(MovieVO vo);	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public int searchCountDirector(DirectorVO vo);
 	public int searchCountActor(ActorVO vo);
 	public int searchCountKeywords(MovieVO vo);
-};
+	
+	public int insertStarScore(CommentVO vo); // ì‚¬ìš©ìê°€ ì…ë ¥í•œ í‰ì  DBì— INSERT
+}

@@ -84,5 +84,12 @@ public class IndexController {
 		mv.addObject("list", mList);
 		return mv;
 	}
+	@RequestMapping(value = "/check/session",method = RequestMethod.POST)
+	@ResponseBody
+	public boolean getSessionId(HttpSession session) {
+		String id = (String)session.getAttribute("userId");
+		if(id == null) return false;
+		else return true;
+	}
 	
 }

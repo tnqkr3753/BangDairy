@@ -3,6 +3,8 @@ package com.kosmo.bangdairy.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,27 +17,29 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.SearchService;
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Controller
 public class SearchController {
 	@Autowired
 	SearchService searchService;
 	
-	String searchWord; // °Ë»ö¾î
-	List<HashMap> list; // ¿µÈ­ Á¤º¸ ´ãÀ» ¸®½ºÆ®
+	String searchWord; // ê²€ìƒ‰ì–´
+	List<HashMap> list; // ì˜í™” ì •ë³´ ë‹´ì„ ë¦¬ìŠ¤íŠ¸
 	
-	/* ¸Ş¼Òµå¸í : searchMovie
-	 * ±â´É : ¿À¸¥ÂÊ »ó´ÜÀÇ °Ë»öÃ¢¿¡ °Ë»ö¾î ÀÔ·ÂÇÏ¸é ¿µÈ­ ¸®½ºÆ® ÆäÀÌÁö·Î ³Ñ°ÜÁÜ
-	 * º¯¼ö : searchWord
-	 * ÀÛ¼ºÀÚ : ¹èÀºÁÖ
+	/* ë©”ì†Œë“œëª… : searchMovie
+	 * ê¸°ëŠ¥ : ì˜¤ë¥¸ìª½ ìƒë‹¨ì˜ ê²€ìƒ‰ì°½ì— ê²€ìƒ‰ì–´ ì…ë ¥í•˜ë©´ ì˜í™” ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ë¡œ ë„˜ê²¨ì¤Œ
+	 * ë³€ìˆ˜ : searchWord
+	 * ì‘ì„±ì : ë°°ì€ì£¼
 	 */
-	@RequestMapping(value = "search", method = RequestMethod.POST)
+	@RequestMapping(value = "search", method = RequestMethod.GET)
 	public ModelAndView searchMovie(@RequestParam(value="movieSearch") String searchWord) {
 		MovieVO vo = new MovieVO();
 		
-		this.searchWord = searchWord; // °Ë»ö¾î
+		this.searchWord = searchWord; // ê²€ìƒ‰ì–´
 
 		LoggerAspect.logger.info("searchController title : " + searchWord);
 		
@@ -45,28 +49,28 @@ public class SearchController {
 		
 		LoggerAspect.logger.info(list);
 		
-		mv.setViewName("movieList/movieList"); // movieList ÆäÀÌÁö·Î ³Ñ±è
+		mv.setViewName("movieList/movieList"); // movieList í˜ì´ì§€ë¡œ ë„˜ê¹€
 		
 		return mv;
 	}
 	
 	
-	/* ¸Ş¼Òµå¸í : searchBy
-	 * ±â´É : ¿µÈ­ ¸®½ºÆ® ÆäÀÌÁö¿¡¼­ ¶óµğ¿À ¹öÆ° Å¬¸¯ÇÏ¸é ÇØ´ç ±âÁØ(+°Ë»ö¾î)¿¡ ¸Â´Â ¿µÈ­ ¸®½ºÆ® º¸¿©ÁÜ, ÆäÀÌÂ¡
-	 * º¯¼ö : tabName, pageNum, selectOrder
-	 * ÀÛ¼ºÀÚ : ¹èÀºÁÖ
+	/* ë©”ì†Œë“œëª… : searchBy
+	 * ê¸°ëŠ¥ : ì˜í™” ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ì—ì„œ ë¼ë””ì˜¤ ë²„íŠ¼ í´ë¦­í•˜ë©´ í•´ë‹¹ ê¸°ì¤€(+ê²€ìƒ‰ì–´)ì— ë§ëŠ” ì˜í™” ë¦¬ìŠ¤íŠ¸ ë³´ì—¬ì¤Œ, í˜ì´ì§•, í‰ì  ì…ë ¥
+	 * ë³€ìˆ˜ : tabName, pageNum, selectOrder
+	 * ì‘ì„±ì : ë°°ì€ì£¼
 	 */
 	@ResponseBody
 	@RequestMapping(value = "searchBy/{tabName}/{pNum}/{selectOrder}", method = RequestMethod.POST)
-	public ModelAndView searchBy(@PathVariable(value = "tabName", required = true) String tabName,
+	public ModelAndView searchBy(HttpSession session, @PathVariable(value = "tabName", required = true) String tabName,
 			@PathVariable(value = "pNum", required = true) String pageNum,
 			@PathVariable(value = "selectOrder", required = false) String selectOrder) {
 		
 		ModelAndView mv = new ModelAndView(); 
 		
-		int pNum = Integer.parseInt(pageNum); // ÇöÀç ¼±ÅÃÇÑ ÆäÀÌÁö ¹øÈ£ ¹Ş¾Æ¿Í¼­ Çü º¯È¯
+		int pNum = Integer.parseInt(pageNum); // í˜„ì¬ ì„ íƒí•œ í˜ì´ì§€ ë²ˆí˜¸ ë°›ì•„ì™€ì„œ í˜• ë³€í™˜
 		
-		System.out.println("***** ÇöÀç ³»°¡ ¼±ÅÃÇÑ ÆäÀÌÁö ¹øÈ£ ***** : " + pNum);
+		System.out.println("***** í˜„ì¬ ë‚´ê°€ ì„ íƒí•œ í˜ì´ì§€ ë²ˆí˜¸ ***** : " + pNum);
 				
 		MovieVO mvo = new MovieVO();
 		DirectorVO dvo = new DirectorVO();
@@ -74,45 +78,79 @@ public class SearchController {
 		
 		mv.setViewName("movieList/searchTab");
 		
-		int totalPage;	// ÀüÃ¼ ÆäÀÌÁö ¼ö
+		int totalPage;	// ì „ì²´ í˜ì´ì§€ ìˆ˜
 		
-		if (tabName.contains("Title")) {						 // "Title" ¶óµğ¿À ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§			
+		String userId = (String)session.getAttribute("userId");
+		
+		if (tabName.contains("Title")) {						 // "Title" ë¼ë””ì˜¤ ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ			
 			mvo.setMovieTitle(searchWord);
 			
-			totalPage = searchService.searchCountTitle(mvo);	// ÀüÃ¼ ÆäÀÌÁö ¼ö ±¸ÇÏ±â
+			totalPage = searchService.searchCountTitle(mvo);	// ì „ì²´ í˜ì´ì§€ ìˆ˜ êµ¬í•˜ê¸°
 			
-			System.out.println("***** ÀüÃ¼ ÆäÀÌÁö¼ö È®ÀÎ ***** : " + totalPage);
-
+			System.out.println("***** ì „ì²´ í˜ì´ì§€ìˆ˜ í™•ì¸ ***** : " + totalPage);
+			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchMovie(mvo, pNum, selectOrder));
-		} else if (tabName.contains("Director")) { 				// "Director" ¶óµğ¿À ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§	
+			mv.addObject("mList", searchService.searchMovie(mvo, pNum, selectOrder, userId));
+
+		} else if (tabName.contains("Director")) { 				// "Director" ë¼ë””ì˜¤ ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ	
 			dvo.setDirectorName(searchWord);	
 
 			totalPage = searchService.searchCountDirector(dvo);
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchDirector(dvo, pNum, selectOrder));
-		}  else if (tabName.contains("Actor")) { 				// "Actor" ¶óµğ¿À ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§	
+			mv.addObject("mList", searchService.searchDirector(dvo, pNum, selectOrder, userId));
+		}  else if (tabName.contains("Actor")) { 				// "Actor" ë¼ë””ì˜¤ ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ	
 			avo.setActorName(searchWord);
 			
 			totalPage = searchService.searchCountActor(avo);
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchActor(avo, pNum, selectOrder));
-		}  else if (tabName.contains("Keywords")) {		 		// "Keywords" ¶óµğ¿À ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§
+			mv.addObject("mList", searchService.searchActor(avo, pNum, selectOrder, userId));
+		}  else if (tabName.contains("Keywords")) {		 		// "Keywords" ë¼ë””ì˜¤ ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ
 			mvo.setKeyword(searchWord);
 			
 			totalPage = searchService.searchCountKeywords(mvo);
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchKeywords(mvo, pNum, selectOrder));
+			mv.addObject("mList", searchService.searchKeywords(mvo, pNum, selectOrder, userId));
 		}
-
+		
 		return mv;
+	}
+	
+	/* ë©”ì†Œë“œëª… : insertStar
+	 * ê¸°ëŠ¥ : ì˜í™” ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ì—ì„œ í‰ì  ì…ë ¥í•˜ë©´ DBì˜ˆ insert
+	 * ë³€ìˆ˜ : starLength, movieId
+	 * ì‘ì„±ì : ë°°ì€ì£¼
+	 */
+	@ResponseBody
+	@RequestMapping(value = "insertStar/{starLength}/{movieId}", method = RequestMethod.POST)
+	public int insertStar(HttpSession session, 
+			@PathVariable(value = "starLength", required = true) int starLength,
+			@PathVariable(value = "movieId", required = true) String movieId
+			) {
+		
+		// System.out.println("******** insertStar ì»¨íŠ¸ë¡¤ëŸ¬ ********");
+		
+		System.out.println("********** ë³„ ê°œìˆ˜ í™•ì¸ : " + starLength);
+		
+		String userId = (String)session.getAttribute("userId");
+		
+		System.out.println("========== ìœ ì € ì•„ì´ë”” : " + userId);
+		
+		System.out.println("========== ì˜í™” ID : " + movieId);
+		
+		CommentVO vo = new CommentVO();
+		
+		vo.setUserId(userId);
+		vo.setMovieId(movieId);
+		vo.setCommentScore(starLength);
+		
+		return searchService.insertStarScore(vo);
 	}
 
 }

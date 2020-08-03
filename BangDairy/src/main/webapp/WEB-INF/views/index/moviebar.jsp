@@ -15,7 +15,7 @@
                 <div class="grid-sizer">
              		<article class="masonry__brick entry format-standard" data-aos="fade-up" style="background-color: black">
                     	<div class="entry__thumb" style="background-color: black" >
-                    
+                    		<input type="hidden" value="${vo.movieId }" class="movieId">
 	                        <a href="#" class="entry__thumb-link" >
 	                        <img src="${vo.posterAddr }" class="entry__thumb-link1"
 	                                    <c:if test="${not empty vo.posterAddr }">
@@ -37,7 +37,6 @@
                                		<a href="#"><div  align="right">${vo.viewingClass }</div></a>
                             	</div>
                         		<div class="entry__excerpt" style="background-color: black">
-                          
                         		</div>
 		                        <div class="entry__meta" style="background-color: black">
 		                            <span class="entry__meta-links">

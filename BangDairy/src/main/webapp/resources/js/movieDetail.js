@@ -54,7 +54,6 @@ $(document).ready(function(){
 				if(response!=0&&response%commentPerPage==0){
 					totalpage-=1;
 				}
-				alert(totalpage);
 			},
 			error: function(request,status,error){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

@@ -22,11 +22,15 @@
 	VALUES (#{indieId})
 	
 	</insert> -->
-	
-	
 	<select id="indieGnareSelect" resultType="genre">
-	     select * from  genre_info; 
+	     select * from  genre_info 
 	
 	</select>
+	<select id="selectIndieInfo" resultType="indie">
+	select * from indie_movie_info
+	
+	
+	</select>
+	
 	
 </mapper>

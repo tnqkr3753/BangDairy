@@ -60,6 +60,25 @@
 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
 				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
+							<div class="entry__content">
+								<span class="entry__category"><a href="#0">Management</a></span>
+
+								<h1>
+									<a href="#0" title="">The Pomodoro Technique Really Works.</a>
+								</h1>
+
+								<div class="entry__info">
+									<a href="#0" class="entry__profile-pic"> <img
+										class="avatar" src="resources/images/avatars/user-03.jpg"
+										alt="">
+									</a>
+
+									<ul class="entry__meta">
+										<li><a href="#0">John Doe</a></li>
+										<li>December 27, 2017</li>
+									</ul>
+								</div>
+							</div>
 				</div>
 			</div>
 			<!-- end col-full -->
@@ -88,21 +107,23 @@
 
 		<!-- s-content
     ================================================== -->
-		 <div id="title_movie_list">
-
-                
-    	</div>
-		 <div id="first_movie_list">
-
-                
-    	</div>
-    	<div id="second_movie_list">
-
-                
-    	</div>
-    	<div id="third_movie_list">
-
-                
+		 <div id="list_container">
+			 <div id="title_movie_list">
+	
+	                
+	    	</div>
+			 <div id="first_movie_list">
+	
+	                
+	    	</div>
+	    	<div id="second_movie_list">
+	
+	                
+	    	</div>
+	    	<div id="third_movie_list">
+	
+	                
+	    	</div>
     	</div>
 		<!-- end s-extra -->
 		<%@ include file="footer.jsp"%>
