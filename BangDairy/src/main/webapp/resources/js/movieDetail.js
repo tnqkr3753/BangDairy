@@ -46,18 +46,19 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			async : true,
-			contentType:'application/x-www-form-urlencoded;charset=UTF-8',
 			url: "comment/count/" + movieId,
 			dataType: "text",
 			success: function (response) {
-				$('#comment-count').text(response);
+				$('#comment-count').text(response+" Comments");
 				totalpage = response/commentPerPage+1;
 				if(response!=0&&response%commentPerPage==0){
 					totalpage-=1;
 				}
+				alert(totalpage);
 			},
-			error: function(e){
-				alert("commentCount 불러오기 실패 :"+e);
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("commentCount 불러오기 실패");
 			}
 			
 		});

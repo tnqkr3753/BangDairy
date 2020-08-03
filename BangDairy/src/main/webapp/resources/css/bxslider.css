@@ -92,15 +92,15 @@ ul.bxslider {
 /* DIRECTION CONTROLS (NEXT / PREV) */
 .bx-wrapper .bx-prev {
   left: 10px;
-  background: url('../images/icons8-sort-right-64 (1).png') repeat-y 0 -32px;
+  background: url('../images/icons/icon-arrow-left-w.svg') no-repeat  0 0px;
 }
-.bx-wrapper .bx-prev:hover,
+/* .bx-wrapper .bx-prev:hover,
 .bx-wrapper .bx-prev:focus {
   background-position: 0 0;
-}
+} */
 .bx-wrapper .bx-next {
   right: 10px;
-  background: url('../images/icons8-sort-right-64 (1).png') repeat-y 0 -32px;
+  background: url('../images/icons/icon-arrow-right-w.svg') no-repeat 0 0px;
 }
 .bx-wrapper .bx-next:hover,
 .bx-wrapper .bx-next:focus {
@@ -108,7 +108,7 @@ ul.bxslider {
 }
 .bx-wrapper .bx-controls-direction a {
   position: absolute;
-  top: 50%;
+  top: 95%;
   margin-top: -16px;
   outline: 0;
   width: 32px;

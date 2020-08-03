@@ -88,75 +88,22 @@
 
 		<!-- s-content
     ================================================== -->
-		 <div >
-<%for(int b=0; b<3;b++){ %> <!-- for문 시작  -->
-        <div class="row masonry-wrap"  >
-       
-        <span class=title>AI추천</span>
-        <br/> 
-         <div class="bxslider" id="stastistical-part"> 
-         <%for(int a=0;a<5;a++){ %> <!-- for문 시작 -->
-        	
-            <div class="masonry"style="background-color: black">
+		 <div id="title_movie_list">
 
-                <div class="grid-sizer">
-
-             <article class="masonry__brick entry format-standard" data-aos="fade-up" style="background-color: black">
-                         
-                    <div class="entry__thumb"style="background-color: black">
-                    
-                        <a href="#" class="entry__thumb-link" >
-                            <img src="resources/images/thumbs/masonry/lamp-400.jpg" class="entry__thumb-link1"
-                                    srcset="resources/images/아이유.jpg 1x, resources/images/thumbs/masonry/lamp-800.jpg 2x" alt="">
-                    
-                        </a>
-                    </div>
-    
-    <div class="board" style="background-color: black">
-  
-  
-                    <div class="entry__text" style="background-color: black">
-                        <div class="entry__header" style="background-color: black">
-                           
-                            <h1 class="entry__title"><a href="Independent.do"><p class=rr>트랜스포머: 패자의 역습 (제목)</p></a></h1>
-                            
-                        </div>
-                         <div class="entry__date" style="background-color: black">
-                               <a href=https://people.search.naver.com/search.naver?sm=tab_hty&where=nexearch&query=이지은&x=0&y=0><div  align="right">이지(감독? 배우?)</div></a>
-                            </div>
-                        <div class="entry__excerpt" style="background-color: black">
-                          
-                        </div>
-                        <div class="entry__meta" style="background-color: black">
-                            <span class="entry__meta-links">
-                                 <a href="https://www.naver.com/"><span><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
-                                <!-- 아이콘 색 변경하려면  -->
-                                <a href="#0" style="color:red"><span><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
-                            </span>
-                        </div>
-                         </div>
-                         
-                         </div>
-                         </article>
-                    </div>
-                    </div>
-                    <%} %> <!-- for문 끝 -->
-                 </div>
-                 </div>
-                <%};%>   <!-- for문 끝 -->
                 
-             
-  <!-- 아래 슬라이더 필요하면 주석풀기 -->
-<%-- <div class="home__slider"> 
-    <div class="bxslider1">
-    <%for(int d=1;d<=8;d++){ %> 
-        <a href="https://www.youtube.com/watch?v=N7vJxDDFmPY"><div><img src="resources/images/<%=d%>.jpg" alt="그림1"></div></a>
-     
-         <%} %>
-    </div> 
-</div>  --%>
+    	</div>
+		 <div id="first_movie_list">
 
-    </div>
+                
+    	</div>
+    	<div id="second_movie_list">
+
+                
+    	</div>
+    	<div id="third_movie_list">
+
+                
+    	</div>
 		<!-- end s-extra -->
 		<%@ include file="footer.jsp"%>
 		<!-- preloader

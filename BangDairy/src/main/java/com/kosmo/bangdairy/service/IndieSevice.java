@@ -1,5 +1,6 @@
 package com.kosmo.bangdairy.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.kosmo.bangdairy.vo.ActorVO;
@@ -14,6 +15,5 @@ public interface IndieSevice {
 	public void indiegenreInsert(IndieVO ivo);
 	public List<IndieGenreVO>selectId();
 	public List<IndieVO>indieGnareSelect();
-	
 	
 }
