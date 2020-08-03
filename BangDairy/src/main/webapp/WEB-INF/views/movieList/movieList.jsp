@@ -54,7 +54,6 @@
 
 		<div id="comments" class="row">
 			<div class="col-full">
-
 				<!-- respond
                     ================================================== -->
 				<div class="respond">
