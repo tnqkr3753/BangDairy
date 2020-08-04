@@ -1,6 +1,7 @@
 package com.kosmo.bangdairy.controller;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -109,8 +110,8 @@ public class AccountForm {
 
 				//쓰기
 				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+				out.println("recommend");
 				out.println(vo.getUserId());
-				
 				//읽기
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));
