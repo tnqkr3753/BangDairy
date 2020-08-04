@@ -117,6 +117,7 @@ $(document).ready(function(){
 			success: function (response) {
 				if(response=='true'){
 					getActorMovieWithWish($('#first_movie_list'));
+					getMovieWithUserGenre($('#second_movie_list'));
 				}else{
 					getListAsNormal();
 				}
@@ -138,6 +139,28 @@ $(document).ready(function(){
 			type: "POST",
 			async : true,
 			url: "getm/wish",
+			dataType: "html",
+			success: function (response) {
+				div.html(response);
+				bxstart();
+			},
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("장르 별 영화 불러오기 실패");
+			}
+			
+		});
+	}
+		/* 		메소드 명 		: getMovieWithUserGenre
+	* 		기능			: 유저가 남긴 평점 줌 평균이 높은 장르의 영화 중 조회수가 높은 영화 중 내가 보지 않은 영화
+	*		변수			: None
+	*		작성자			: 박윤태
+	*/
+	function getMovieWithUserGenre(div){
+		$.ajax({
+			type: "POST",
+			async : true,
+			url: "getm/scoregenre",
 			dataType: "html",
 			success: function (response) {
 				div.html(response);

@@ -5,8 +5,9 @@
 <!-- 영화 리스트 시작 -->
 <div>
 <div class="row masonry-wrap"  >
-       
+       	<div class="title-wrap">
         <span class=title>${title }</span>
+        </div>
         <br/> 
  		<div class="bxslider" id="stastistical-part"> 
          <c:if test="${not empty vo.posterAddr }"></c:if>
@@ -23,7 +24,7 @@
 	                                    srcset="${vo.posterAddr } 1x" </c:if>
 	                                    <c:if test="${empty vo.posterAddr }">
 	                                    srcset="resources/images/thumbs/default_movie.png 1x" </c:if>
-	                                    alt="" onerror="resources/images/thumbs/default_movie.png">
+	                                    alt="" onerror="resources/images/thumbs/default_movie.png" height = "320" width="220">
 	                    	</a>
                     	</div>
     

@@ -119,13 +119,27 @@ public class IndexController {
 		return mv;
 	}
 	/*
-	 * 메소드명 		: getActorMovieWithWish
-	 * 기능 			: 위시리스트에 최근에 넣은 3개의 영화에 출연한 배우 중 랜덤 한명이 출연한 작품들의 목록을 띄워줌
+	 * 메소드명 		: getMovieWithUserGenre
+	 * 기능 			: 유저가 남긴 평점 줌 평균이 높은 장르의 영화 중 조회수가 높은 영화 중 내가 보지 않은 영화
 	 * 변수 			: Session
 	 * 작성자 			: 박윤태
 	 */
-//	@ResponseBody
-//	@RequestMapping(value = "getm/wish", method = RequestMethod.POST)
-//	public 
+	@ResponseBody
+	@RequestMapping(value = "getm/scoregenre", method = RequestMethod.POST)
+	public ModelAndView  getMovieWithUserGenre(HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		AccountFormVO vo = new AccountFormVO();
+		List<MovieVO> list = null;
+		if(userId !=null) {
+			vo.setUserId(userId);
+			list =indexService.getMovieWithUserGenre(vo);
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("title", userId+"님이 보지 않으신 좋아하실만한 영화");
+		mv.addObject("list", list);
+		mv.setViewName("index/moviebar");
+		LoggerAspect.logger.info(list);
+		return mv;
+	}
 	
 }
