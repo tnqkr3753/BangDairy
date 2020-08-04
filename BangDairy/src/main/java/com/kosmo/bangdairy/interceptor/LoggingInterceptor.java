@@ -20,7 +20,7 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info(request.getRemoteAddr()+"\t"+request.getRequestURL()+"\t"+request.getSession().getAttribute("userId")+"\t"+request.getServletPath()+"\t"+request.getHeader("referer")+"\t"+response.getLocale());
+		logger.info(request.getRemoteAddr()+","+request.getRequestURL()+","+request.getSession().getAttribute("userId")+","+request.getServletPath()+","+request.getHeader("referer")+","+response.getLocale());
 		return super.preHandle(request, response, handler);
 	}
 		

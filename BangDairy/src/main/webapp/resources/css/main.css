@@ -81,15 +81,19 @@
  .header__social #show-login:hover{
 	cursor:pointer;
 }
+.title-wrap{
+   text-align: center;
+}
  .title{
 color: #292a32;
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 700;
     -webkit-letter-spacing: -0.4px;
     -moz-letter-spacing: -0.4px;
     -ms-letter-spacing: -0.4px;
     letter-spacing: -0.4px;
     line-height: 30px;
+    padding-bottom: 10px;
 }
 html {
    font-size: 10px;
@@ -1551,7 +1555,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__text {
-   padding: 3rem 2.8rem 3.6rem;
+   /* padding: 0rem 2.8rem 3.6rem; */
    background-color: #FFFFFF;
 }
 
@@ -1622,9 +1626,9 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .format-quote .entry__thumb,
 .format-link .entry__thumb {
-   display: table;
+   display: table;   
    background: #FFFFFF;
-   padding: 2.4rem 3rem 4.8rem;
+   /* padding: 2.4rem 3rem 2.4rem; */
    min-height: 324px;
    width: 100%;
    position: relative;
@@ -1806,10 +1810,10 @@ div.header_sticky{
  * ## header logo
  * ------------------------------------------------------------------- */
 .header__logo {
-   display: inline-block;
-   margin-left: 400px;
+   display: block;
    padding: 0;
    z-index: 501;
+   text-align: center;
 }
 
 .header__logo a {
@@ -2171,7 +2175,7 @@ body.search-is-visible {
    margin-top: 15px;
    border-top: 1px solid rgba(255, 255, 255, 0.04);
    padding-top: 15px;
-   margin-left: 300px;
+   margin-left: 0px;
 }
 
 .header__nav-wrap a {
@@ -2194,10 +2198,10 @@ body.search-is-visible {
 }
 
 .header__nav {
-
+   text-align: center;
    list-style: none;
    margin: 0;
-   padding: 0;
+   padding-left: 40px;
    font-family: "metropolis-medium", sans-serif;
    font-size: 15px;
 }
@@ -2205,7 +2209,7 @@ body.search-is-visible {
 .header__nav li {
    display: inline-block;
    position: relative;
-   padding: 0 2rem;
+   padding: 0 4rem;
 }
 
 .header__nav li.has-children {
@@ -3005,7 +3009,7 @@ html.no-csstransitions .featured {
 }
 
 .masonry .grid-sizer, .masonry__brick {
-   width: 360px;
+   width: 240px;
 }
 
 .masonry__brick {
@@ -3030,7 +3034,7 @@ html.no-csstransitions .featured {
    }
 
    .masonry .grid-sizer, .masonry .masonry__brick {
-      width: 340px;
+      width: 300px;
    }
 
 }
@@ -3041,7 +3045,7 @@ html.no-csstransitions .featured {
    }
 
    .masonry .grid-sizer, .masonry .masonry__brick {
-      width: 370px;
+      width: 300px;
    }
 
 }

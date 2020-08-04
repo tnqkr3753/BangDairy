@@ -326,6 +326,4 @@ public class ApiConnectionService {
 			threadInsertService.insertStill(arr);
 		}
 	}
-	
-
 }

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.ActorVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Repository("searchDAO")
 public class SearchDAOImpl implements SearchDAO {
@@ -17,62 +19,65 @@ public class SearchDAOImpl implements SearchDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder) {					// ¿µÈ­ Á¦¸ñÀ¸·Î °Ë»ö
+	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId) {					// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("movieTitle", vo.getMovieTitle());
 		m.put("selectOrder", selectOrder);
-		
+		m.put("userId", userId);
+
 		return sqlSession.selectList("SearchDAO.searchMovie", m);
 	}
 	
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder) {	// °¨µ¶ ÀÌ¸§À¸·Î °Ë»ö
+	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("directorName", vo.getDirectorName());
 		m.put("selectOrder", selectOrder);
-		
+		m.put("userId", userId);
+
 		return sqlSession.selectList("SearchDAO.searchDirector", m);
 	}
 
 	@Override
-	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder) {	// ¹è¿ì ÀÌ¸§À¸·Î °Ë»ö
+	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("actorName", vo.getActorName());
 		m.put("selectOrder", selectOrder);
-		
+		m.put("userId", userId);
+
 		return sqlSession.selectList("SearchDAO.searchActor", m);
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder) {	// Å°¿öµå·Î °Ë»ö
+	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
 		m.put("endRow", endRow);
 		m.put("keyword", vo.getKeyword());
 		m.put("selectOrder", selectOrder);
-		
+		m.put("userId", userId);
+
 		return sqlSession.selectList("SearchDAO.searchKeywords", m);
 	}
 
 	@Override
-	public int searchCountTitle(MovieVO vo) {	// ÀüÃ¼ ÆäÀÌÁö ¼ö
+	public int searchCountTitle(MovieVO vo) {	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		return sqlSession.selectOne("SearchDAO.searchCountTitle", vo);
 	}
 
 	@Override
 	public int searchCountDirector(DirectorVO vo) {
 		return sqlSession.selectOne("SearchDAO.searchCountDirector", vo);
-
 	}
 
 	@Override
@@ -85,5 +90,10 @@ public class SearchDAOImpl implements SearchDAO {
 	public int searchCountKeywords(MovieVO vo) {
 		return sqlSession.selectOne("SearchDAO.searchCountKeywords", vo);
 
+	}
+
+	@Override
+	public int insertStarScore(CommentVO vo) {
+		return sqlSession.insert("SearchDAO.insertStarScore", vo);
 	}
 }

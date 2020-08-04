@@ -1,6 +1,6 @@
 $(document).ready(function(){
 		
-	alert("movieList 확인이야");
+	// alert("movieList 확인이야");
 	radioClick();
 	
 //	// 영화정보 리스트 페이지가 처음 로드되었을때 강제로 title 눌러줌
@@ -9,6 +9,7 @@ $(document).ready(function(){
 //	setTimeout(function() {
 //		$('#titleTrigger').trigger('click');
 //	}, 1000);
+	
 	// 평점 클릭했을때
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
@@ -38,10 +39,11 @@ $(document).ready(function(){
 		radioClick();
 	});
 	
+	// 셀렉트 박스가 변경되었을때
 	$("#orderBy").on('change', function() {
-		alert("select box 변경")
+		// alert("select box 변경")
 		selectOrder = $("#orderBy").val();
-		alert(selectOrder);
+		// alert(selectOrder);
 		
 		$.ajax({
 			type : 'POST',	// 요청 메소드 타입
@@ -57,10 +59,11 @@ $(document).ready(function(){
 		
 	});
 	
+	// 라디오 버튼을 클릭했을때
 	function radioClick() {
 		pNum = 1;
 		tabName = $('input:radio[name="searchTab"]:checked').val(); // 선택된 라디오 버튼의 value 값
-		alert(tabName);
+		// alert(tabName);
 		
 		selectOrder = $("#orderBy").val();
 		

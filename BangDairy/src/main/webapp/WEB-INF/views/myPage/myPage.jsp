@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -26,8 +27,7 @@
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/c
-ss/myPage.css">
+<link rel="stylesheet" href="resources/css/myPage.css">
 
 <!-- script
     ================================================== -->
@@ -44,8 +44,7 @@ ss/myPage.css">
 </head>
 
 <body id="top">
-	<%@ include file="../../../header_menu.jsp"%>
-
+	<%@ include file = "../../../header_menu.jsp" %>
 	<!-- s-content
     ================================================== -->
 	<section
@@ -130,7 +129,6 @@ ss/myPage.css">
     ================================================= -->
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
-	
 
 </body>
 

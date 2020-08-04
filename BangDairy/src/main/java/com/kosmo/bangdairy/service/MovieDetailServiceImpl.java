@@ -66,6 +66,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 			startRow = (pNum-1)*commentPerPage+1;
 			endRow = (pNum)*commentPerPage;
 		}
+		LoggerAspect.logger.info("start : " + startRow + ", end : " + endRow);
 		HashMap hash = new HashMap();
 		hash.put("startRow", startRow);
 		hash.put("endRow", endRow);

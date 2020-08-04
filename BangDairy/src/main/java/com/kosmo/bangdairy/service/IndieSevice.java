@@ -1,5 +1,6 @@
 package com.kosmo.bangdairy.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,5 @@ public interface IndieSevice {
 	public List<IndieVO>selectIndieInfo();
 	public List<IndieVO>indieGnareSelect();
 	public IndieVO selectIndieDetail(IndieVO ivo);
-	
 	
 }

@@ -46,21 +46,20 @@
                 </ul> <!-- end header__social -->
                 
                 <a class="header__search-trigger" href="#0"></a>
-                
-				<!-- 2020.07.31 은주 수정 -->
+
                 <div class="header__search">
-                    <form role="search" method="GET" class="header__search-form" action="./search">
+                    <form role="search" method="get" class="header__search-form" action="#">
                         <label>
                             <span class="hide-content">Search for:</span>
-                            <input type="search" id="search-field" class="search-field" placeholder="2626526" name="movieSearch" title="Sear:" autocomplete="off">
+                            <input type="search" class="search-field" placeholder="2626526" value="" name="s" title="Sear:" autocomplete="off">
                         </label>
-                        <input type="submit" class="search-submit">
+                        <input type="submit" class="search-submit" value="Search">
                     </form>
         
                     <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
 
                 </div>  <!-- end header__search -->
-				<!-- 2020.07.31 은주 수정 -->
+
 
                 <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
 
@@ -89,7 +88,6 @@
                          
                           <ul>
                 
-
                             <li><a href="indieList.do">인디영화</a></li>
                             <li><a href="Independent.do">신청</a></li>
                            
