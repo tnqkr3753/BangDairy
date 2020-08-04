@@ -1,3 +1,7 @@
+<%@page import="com.kosmo.bangdairy.vo.GenreVO"%>
+<%@page import="com.kosmo.bangdairy.vo.IndieGenreVO"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -57,21 +61,32 @@
     ================================================== -->
     
 <%@ include file = "../../../header_menu.jsp" %>
-<%@ include file="../../../account_form.jsp"%>
-<%@ include file="../../../Sign_In.jsp"%>
 
 
  <section class="s-content">
-<form name="frm" id="frm" method="post" action="index.jsp"  enctype="Multipart/form-data">
+<form name="frm" id="frm" method="GET" action="indieinsert"  enctype="Multipart/form-data" accept="image/png, image/jpeg">
 			<div class="distribution" title="배급신청" style="display: block" id="box" >
 				<h4>신청인</h4>
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
-				  <tbody><tr>
-					<th>감독</th>
-				    <td><input type="text" name="distri_name" id="distri_name" class="type01" style="width:30%;" msg="감독을"value="123"> </td>
-				  </tr>
+				  <tbody>
 				  <tr>
+					<th>감독</th>
+				    <td><input type="text" name="indieDirector"  class="type01" style="width:30%;" msg="감독을"> </td>
+				  </tr>
+				   <tr>
+					<th>배우</th>
+				    <td><input type="text" name="indieActor"  class="type01" style="width:30%;" msg="감독을"> </td>
+				  </tr>
+				  
+ 				  <tr> 
+				 <th>포스터url</th>
+				    <td><input type="file" name="indiePosterAddr"  > </td>
+				  </tr>
+				   
+				  
+				   
+				<!--   <tr>
 					<th>e-mail</th>
 				   <td><input type="text" name="distri_email" id="distri_email" class="type01" style="width:30%;" msg="이메일을"value="123"> </td>
 				  </tr>
@@ -90,7 +105,7 @@
 		              <input type="text" name="distri_phone2" id="distri_phone2" title="휴대전화 중간자리 입력" value="123" maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)"> -
 		              <input type="text" name="distri_phone3" id="distri_phone3" title="휴대전화 마지막자리 입력" value="123" maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)">
 					</td>
-				  </tr>
+				  </tr> -->
 				</tbody></table>
 				
 				<h4>작품정보</h4>
@@ -98,8 +113,9 @@
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
 					<th>한글제목</th>
-				    <td><input type="text" value="123"name="distri_movie_subject" id="distri_movie_subject" class="type01" style="width:20%;" msg="한글제목을"> </td>
+				    <td><input type="text" name="indieTitle" id="distri_movie_subject" class="type01" style="width:20%;" msg="한글제목을"> </td>
 				  </tr>
+				
 <!-- 				  <tr> -->
 <!-- 					<th>영문제목</th> -->
 <!-- 				   <td><input type="text" value="123"name="distri_movie_esubject" id="distri_movie_esubject" class="type01" style="width:20%;" msg="영문제목을"> </td> -->
@@ -119,16 +135,24 @@
 <!-- 				  </tr> -->
 				  <tr>
 					<th>업데이트날짜</th>
-				   <td><input type="text" name="distri_movie_year" value="123"id="distri_movie_year" class="type01" style="width:10%;"msg="제작년도를" onkeydown="onlyNumber(this)"> 년&nbsp;&nbsp;  <input type="text" name="distri_movie_month"value ="423" id="distri_movie_month" class="type01" style="width:10%;" msg="제작월을" onkeydown="onlyNumber(this)"> 월 </td>
+				   <td>
+<!-- 				   <input type="text" name="indieMakedate " value="123"id="distri_movie_year" class="type01" style="width:10%;"msg="제작년도를" onkeydown="onlyNumber(this)"> 년&nbsp;&nbsp;   -->
+<!-- 				   <input type="text" name="indieMakedate"value ="423" id="distri_movie_month" class="type01" style="width:10%;" msg="제작월을" onkeydown="onlyNumber(this)"> 월  -->
+<!-- 				   <input type="text" name="indieMakedate"value ="423" id="distri_movie_day" class="type01" style="width:10%;" msg="제작일을" onkeydown="onlyNumber(this)"> 월  -->
+				   </td>
 				  </tr>
 				  
-				  <tr>
+			  <tr>
 					<th>키워드?</th>
-				   <td><input type="text" name="distri_movie_year" value="123"id="distri_movie_year" class="type01" style="width:10%;"msg="제작년도를" onkeydown="onlyNumber(this)"> 년&nbsp;&nbsp;  <input type="text" name="distri_movie_month"value ="423" id="distri_movie_month" class="type01" style="width:10%;" msg="제작월을" onkeydown="onlyNumber(this)"> 월 </td>
-				  </tr>
+				   <td>
+				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
+				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
+				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
+				  </td>
+				  </tr> 
 				  <tr>
-					<th>주소 누구주소?</th>
-				   <td><input type="text" name="distri_movie_year" value="123"id="distri_movie_year" class="type01" style="width:10%;"msg="제작년도를" onkeydown="onlyNumber(this)"> 년&nbsp;&nbsp;  <input type="text" name="distri_movie_month"value ="423" id="distri_movie_month" class="type01" style="width:10%;" msg="제작월을" onkeydown="onlyNumber(this)"> 월 </td>
+					<th>작품링크</th>
+				   <td><input type="text" name="indieAddr" value="123" class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
 				  </tr>
 <!-- 				  <tr> -->
 <!-- 					<th>제작포맷</th> -->
@@ -140,32 +164,39 @@
 				  </tr> -->
 				  <tr>
 					<th>나라</th>
-				    <td><input type="text" name="distri_movie_lang" value="123"id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
+				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
 				  </tr>
 <!-- 				  <tr> -->
 <!-- 					<th>컬러/흑백</th> -->
 <!-- 				    <td><input type="text" name="distri_movie_color" value="123"id="distri_movie_color" class="type01" style="width:20%;" msg="컬러/흑백을"> </td> -->
 <!-- 				  </tr> -->
-				  <tr>
-					<th>장르</th>
-				    <td><input type="radio" name="distri_movie_genre"value="123" style="width:%;" id="distri_movie_genre" value="1"> 극영화&nbsp;&nbsp; <input type="radio" name="distri_movie_genre" id="distri_movie_genre" value="2"> 실험영화&nbsp;&nbsp; <input type="radio" name="distri_movie_genre" id="distri_movie_genre" value="3"> 다큐멘터리&nbsp;&nbsp; <input type="radio" name="distri_movie_genre" id="distri_movie_genre" value="4"> 애니메이션</td>
-				  </tr>
-<!-- 				  <tr> -->
-<!-- 					<th>시놉시스</th> -->
-<!-- 				    <td><textarea name="distri_movie_synop" id="distri_movie_synop" rows="5" style="width:100%;" cols="" msg="시놉시스를"></textarea> </td> -->
-<!-- 				  </tr> -->
+				  
+				  <th>장르</th>
+				
+				<td id="ganre"><!-- GenreVO 에 있는 db값을 없어와서 옵션에 넣어준다. -->
+				<% List<GenreVO> result =  (List<GenreVO>)request.getAttribute("result"); %>
+						<select title="장르" style="width:80px;" name="genreId" id="genreTitle">
+						<% for (GenreVO vo : result){ %>
+							<option value=<%=vo.getGenreTitle()%>><%=vo.getGenreTitle() %></option>     
+						<%}; %>  
+		              </select>
+		              <select title="장르" style="width:80px;" name="genreId" id="genreTitle">
+						<% for (GenreVO vo : result){ %>
+							<option value=<%=vo.getGenreTitle()%>><%=vo.getGenreTitle() %></option>     
+						<%}; %>  
+		              </select>
+					</td>
+              
 				  <tr>
 					<th>연출의도 plot</th>
-				    <td><textarea name="distri_movie_direct" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를"></textarea> </td>
+				    <td><textarea name="indiePlot" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를"></textarea> </td>
 				  </tr> 
-				   <tr>
-					<th>포스터</th>
-					<td>
-      			  포스터제목 : <input type="text" name="Poster" />
-       				 파일명 : <input type="file" name="fileName1" />
-
-</td>
-				
+			
+				 
+				   
+		
+			
+				                                
 <!-- 				  <tr> -->
 <!-- 					<th>영화제 상영리스트</th> -->
 <!-- 				    <td><textarea name="distri_movie_festival" id="distri_movie_festival" rows="5" style="width:100%;" cols="" msg="영화제 상영리스트를"></textarea> </td> -->
@@ -184,39 +215,7 @@
 				  </tr>
 				</tbody></table>
 
-				<h4>배우</h4>
-				<table class="music_table">
-				  <colgroup><col width=""><col width="20%"><col width="13%"><col width="15%"><col width="11%"><col width="15%"><col width="8%"></colgroup>
-				  <thead>
-					  <tr>
-						<th>이름</th>
-						<th>나이</th>
-						<th>성별</th>
-						<th>소속사</th>
-						<th>배우id<br>예) 송준기 12153</th>
-						<th>작품참고링크</th>
-						<th>추가/삭제</th>
-					  </tr>
-				  </thead>
-				  <tbody id="music_tbody">
-
-					  <tr id="seq_1">
-						<td><input type="text" value="123"name="music_title[]" class="type02" style="width:100%;"> </td>
-						<td><input type="text" value="123"name="music_writer[]" class="type02" style="width:100%;"> </td>
-						<td><input type="text" value="123"name="music_player[]" class="type02" style="width:100%;"> </td>
-						<td><input type="text" value="123"name="music_album_title[]" class="type02" style="width:100%;"> </td>
-						<td><input type="text" value="123"name="music_time[]" class="type02" style="width:100%;"> </td>
-						<td>
-							<select title="저작원" style="width:100%;" name="music_copyright" id="music_copyright">
-								<option value="예" selected="">유</option> 
-								<option value="아니오">무</option>                      
-							</select>
-						</td>
-						<td class="c"><a href="javascript:fn_Choice()"><i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i></a></td>
-					  </tr>
-
-				  </tbody>
-				</table>
+			
 				<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/아이유.jpg" alt=""></a></p>				
 
 			</div></form>

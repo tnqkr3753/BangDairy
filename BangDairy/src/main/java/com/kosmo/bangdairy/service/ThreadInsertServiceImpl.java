@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.dao.ThreadInsertDAO;
 import com.kosmo.bangdairy.dao.ThreadInsertDAOImpl;
 import com.kosmo.bangdairy.vo.ActorVO;
@@ -81,8 +82,14 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 						}
 					}
 					//스틸 영화 컬럼 db저장
-					if (vo.getMovieStill()!=null && !vo.getMovieStill().isEmpty()) {
-						threadInsertDAO.insertStillImg(vo.getMovieStill());
+					ArrayList<StillVO> svoList = vo.getMovieStill();
+					ArrayList<StillVO> newSvoList = new ArrayList<StillVO>();
+					if (svoList!=null && !svoList.isEmpty()) {
+						for (StillVO svo : svoList) {
+							svo.setMovieId(vo.getMovieId());
+							newSvoList.add(svo);
+						}
+						threadInsertDAO.insertStillImg(newSvoList);
 					}
 				}catch (Exception e) {
 					logger.error("db 영화 입력 실패 exception : " + vo + "에러메세지 : " +e.getMessage());
@@ -94,6 +101,25 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 	public void updateMovieOpening(List<MovieVO> vo) {
 		threadInsertDAO.updateMovieOpening(vo);
 	}
-
-	
+	@Override
+	public void insertStill(List<MovieVO> arr) {
+		LoggerAspect.logger.info(arr);
+		for (MovieVO vo : arr) {
+			if (vo != null) {
+				try {
+					ArrayList<StillVO> svoList = vo.getMovieStill();
+					ArrayList<StillVO> newSvoList = new ArrayList<StillVO>();
+					if (svoList!=null && !svoList.isEmpty()) {
+						for (StillVO svo : svoList) {
+							svo.setMovieId(vo.getMovieId());
+							newSvoList.add(svo);
+						}
+						threadInsertDAO.insertStillImg(newSvoList);
+					}
+				}catch (Exception e) {
+					logger.error("db 영화 스틸이미지 실패 exception : " + vo + "에러메세지 : " +e.getMessage());
+				}
+			}
+		}
+	}
 }

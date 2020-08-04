@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -33,6 +34,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="resources/js/modernizr.js"></script>
 <script src="resources/js/pace.min.js"></script>
+<script src="resources/js/myPage.js"></script>
 
 <!-- favicons
     ================================================== -->
@@ -42,8 +44,7 @@
 </head>
 
 <body id="top">
-	<%@ include file="header_menu.jsp"%>
-
+	<%@ include file = "../../../header_menu.jsp" %>
 	<!-- s-content
     ================================================== -->
 	<section
@@ -57,7 +58,7 @@
 						<img class="img-circle" src="resources/images/myPage/user.png"
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
-						<h2>My Profile</h2>
+						<h2>내 정보</h2>
 						<p>나의 정보를 볼 수 있으며<br/> 수정, 탈퇴가 가능합니다.</p>
 						<p>
 							<button class="btn btn-default" id="btnMyProfile"
@@ -71,7 +72,7 @@
 						<img class="img-circle" src="resources/images/myPage/heart.png"
 							alt="Generic placeholder image" width="140" height="140"
 							style="border: 3px solid black; padding: 0.5em;">
-						<h2>Wish List</h2>
+						<h2>찜 목록</h2>
 						<p>내가 보고싶은 영화에 추가한<br/>영화들을 볼 수 있습니다.</p>
 						<p>
 							<button class="btn btn-default" id="btnWish" href="#" role="button">GO»</button>
@@ -108,7 +109,7 @@
 	</div>
 	<!-- s-content -->
 
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../../../footer.jsp"%>
 
 	<!-- preloader
     ================================================== -->
@@ -128,7 +129,6 @@
     ================================================= -->
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
-	<script src="resources/js/myPage.js"></script>
 
 </body>
 

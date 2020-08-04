@@ -68,10 +68,10 @@ function remove_ajax(_this){
 function fn_submit(){
 
 	if(checkForm("frm")){
-		if($(':radio[name="distri_movie_genre"]:checked').length < 1){
-			alert('장르를 눌러주세요');
-			return;
-		}
+//		if($('[name="genreTitle"]')){
+//			alert('장르를 눌러주세요');
+//			return;
+//		}
 		alert("등록이 완료되었습니다.")
 		$("#frm").submit();
 	}

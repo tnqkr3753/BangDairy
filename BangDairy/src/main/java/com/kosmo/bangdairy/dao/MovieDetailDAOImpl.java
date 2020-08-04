@@ -14,6 +14,8 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.StillVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 @Repository("MovieDetailDAO")
 public class MovieDetailDAOImpl implements MovieDetailDAO {
 	@Autowired
@@ -52,6 +54,14 @@ public class MovieDetailDAOImpl implements MovieDetailDAO {
 	@Override
 	public int increaseHist(MovieVO vo) {
 		return sqlSession.update("MovieDetailDAO.increaseHits",vo);
+	}
+	@Override
+	public int insertWishMovie(WishMovieVO vo) {
+		return sqlSession.insert("MovieDetailDAO.insertWishMovie",vo);
+	}
+	@Override
+	public List<StillVO> selectStill(MovieVO vo) {
+		return sqlSession.selectList("MovieDetailDAO.getStill",vo);
 	}
 	
 

@@ -5,4 +5,35 @@
 	<select id="selectUserInfo" resultType="account" parameterType="account">
 		SELECT * from user_info where user_id = #{userId}
 	</select>
+	<update id="updateUserInfo" parameterType="account">
+		UPDATE user_info SET user_password=#{userPassword}
+		<if test="userProfileSize!=null and userProfileSize!=0">
+			, user_profile = #{userProfile} , user_profile_size=#{userProfileSize}
+		</if>
+		WHERE user_id = #{userId}
+	</update>
+	<delete id="deleteUserInfo">
+		DELETE FROM user_info where user_id=#{userId} and user_password=#{userPassword}
+	</delete>
+	<select id="selectWishMovie" parameterType="wish" resultType="wish">
+		SELECT w.movie_id as movie_id , w.user_id as user_id , w.reg_date as reg_date,
+		m.movie_title as movie_title , m.viewing_class as viewing_class , m.poster_addr as poster_addr
+		FROM wish_movie w inner join movie_info m
+		ON w.movie_id = m.movie_id 
+		WHERE user_id = #{userId}
+		ORDER BY reg_date desc
+	</select>
+	<delete id="deleteWishMovie" parameterType="wish">
+		DELETE FROM wish_movie WHERE movie_id = #{movieId} AND user_id = #{userId}
+	</delete>
+	<select id="selectQna" parameterType="qna" resultType="qna">
+		SELECT * FROM user_qna WHERE user_id = #{userId}
+	</select>
+	<insert id="insertQna" parameterType="qna">
+		INSERT INTO user_qna (user_id,qna_title,qna_content,qna_reg_date)
+		VALUES (#{userId},#{qnaTitle},#{qnaContent},now())
+	</insert>
+	<select id="selectQnaOne" parameterType="qna" resultType="qna">
+		SELECT * FROM user_qna WHERE qna_id = #{qnaId} AND user_id = #{userId}
+	</select>
 </mapper>  

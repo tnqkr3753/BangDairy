@@ -30,6 +30,14 @@ jQuery(document).ready(function ($) {
 	 * 작성자			: 박윤태
 	 */
 	function clickUpdate() {
+		var pass= $('input[name=userPassword]').val();
+		var chkPass = $('#passwordCheck').val();
+		if(pass!=""){
+			if(pass!=chkPass){
+				alert("비밀번호가 일치하지 않습니다");
+				return false;
+			}
+		}
 		var formData = new FormData($("#account")[0]);
 		$.ajax({
 			type: "POST",
@@ -45,8 +53,8 @@ jQuery(document).ready(function ($) {
 					$('.mypage-content').html(response);
 				}
 			},
-			error: function(e){
-				alert("comment 추가 후 불러오기 실패 :"+e);
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 		})
 	}

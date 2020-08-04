@@ -16,13 +16,13 @@
 
 									<div class="comment__meta">
 										
-										<time class="comment__time"><fmt:formatDate value="${comment.commentRegDate }" type="both"/></time>
+										<time class="comment__time"><fmt:formatDate value="${comment.commentRegDate }"  type="date" dateStyle="full" /></time>
 									</div>
 								</div>
 								<div class="comment__text">
 									<p>${comment.comment }</p>
 								</div>
-								<div class="starRev">
+								<div class="starRevC">
 									<c:forEach begin="1" end="${comment.commentScore }">
 									<span class="starR on">별</span>
 									</c:forEach>

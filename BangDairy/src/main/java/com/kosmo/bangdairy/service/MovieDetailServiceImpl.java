@@ -14,9 +14,11 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
+import com.kosmo.bangdairy.vo.StillVO;
+import com.kosmo.bangdairy.vo.WishMovieVO;
 @Service("movieDetailService")
 public class MovieDetailServiceImpl implements MovieDetailService {
-	int commentPerPage = 10;
+	int commentPerPage = 5;
 	@Autowired
 	MovieDetailDAO movieDetailDAO;
 	/*
@@ -28,6 +30,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	@Override
 	public MovieVO selectOneMovie(MovieVO vo) {
 		MovieVO rvo = movieDetailDAO.selectOneMovie(vo);
+		if (rvo==null) return null;
 		ArrayList<GenreVO> gvo =  (ArrayList<GenreVO>)movieDetailDAO.selectMovieGenre(vo);
 		rvo.setMovieGenre(gvo);
 		HashMap<ActorVO, String> star = new HashMap<ActorVO, String>();
@@ -63,6 +66,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 			startRow = (pNum-1)*commentPerPage+1;
 			endRow = (pNum)*commentPerPage;
 		}
+		LoggerAspect.logger.info("start : " + startRow + ", end : " + endRow);
 		HashMap hash = new HashMap();
 		hash.put("startRow", startRow);
 		hash.put("endRow", endRow);
@@ -73,7 +77,6 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 		HashMap hm = new HashMap();
 		hm.put("movieId", movieId);
 		return ((Long)movieDetailDAO.getCommentCount(hm).get("cnt")).intValue();
-		
 	}
 	/*
 	 * 메소드명	: insertComment
@@ -85,6 +88,12 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	public int insertComment(CommentVO vo) {
 		return movieDetailDAO.insertComment(vo);
 	}
-	
-	
+	@Override
+	public int insertWishMovie(WishMovieVO vo) {
+		return movieDetailDAO.insertWishMovie(vo);
+	}
+	@Override
+	public List<StillVO> selectStill(MovieVO vo) {
+		return movieDetailDAO.selectStill(vo);
+	}
 }

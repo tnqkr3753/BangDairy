@@ -42,7 +42,7 @@
 		<%@ include file="../../../Sign_In.jsp"%>
         <div class='preloader'>
             <div class='loaded'>&nbsp;</div>
-        </div>
+        </div>G
 
         <div class="culmn">
             <section id="features" class="features">
