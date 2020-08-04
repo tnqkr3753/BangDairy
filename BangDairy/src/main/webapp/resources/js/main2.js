@@ -22,20 +22,11 @@ $(document).ready(function(){
 			slideWidth:300,
 			slideMargin:30,
 			moveSlides:1,
-			controls: true
+			controls: false,
+			touchEnabled:true,
+			pager:false
 		}); 
 	}
-	    var main = $('.bxslider1').bxSlider({ 
-	    	
-	        auto: true,	//자동으로 슬라이드
-	
-	        minSlides:1,
-	    	maxSlides:10,
-	    	slideWidth:300,
-	    	slideMargin:30,
-	    	moveSlides:1
-	    	
-	    }); 
 	$(".bx-start").hide();	//onload시 시작버튼 숨김. 
 	$(document).on('click',".entry__thumb",function(){
 		var movieId = $(this).find(".movieId").val();
@@ -125,6 +116,7 @@ $(document).ready(function(){
 			dataType: "text",
 			success: function (response) {
 				if(response=='true'){
+					getActorMovieWithWish($('#first_movie_list'));
 				}else{
 					getListAsNormal();
 				}
@@ -132,6 +124,28 @@ $(document).ready(function(){
 			error: function(request,status,error){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				alert("세션 가져오기 실패");
+			}
+			
+		});
+	}
+	/* 		메소드 명 		: getActorMovieWithWish
+	* 		기능			: 마이페이지에 저장한 영화 관련 리스트 가져오기
+	*		변수			: None
+	*		작성자			: 박윤태
+	*/
+	function getActorMovieWithWish(div){
+		$.ajax({
+			type: "POST",
+			async : true,
+			url: "getm/wish",
+			dataType: "html",
+			success: function (response) {
+				div.html(response);
+				bxstart();
+			},
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("장르 별 영화 불러오기 실패");
 			}
 			
 		});

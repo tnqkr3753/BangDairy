@@ -3,6 +3,7 @@
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- 영화 리스트 시작 -->
+<div>
 <div class="row masonry-wrap"  >
        
         <span class=title>${title }</span>
@@ -53,5 +54,6 @@
 				</div>
 	            </c:forEach><!-- forEach 끝  -->
 			</div>
+		</div>
 		</div>
                  <!-- 영화 리스트 끝 -->

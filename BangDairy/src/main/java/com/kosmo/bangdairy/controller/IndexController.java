@@ -24,6 +24,7 @@ import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
 import com.kosmo.bangdairy.service.IndexService;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -84,6 +85,12 @@ public class IndexController {
 		mv.addObject("list", mList);
 		return mv;
 	}
+	/*
+	 * 메소드명 		: getSessionId
+	 * 기능 			: 유저 세션을 확인해 true , false를 리턴
+	 * 변수 			: Session
+	 * 작성자 			: 박윤태
+	 */
 	@RequestMapping(value = "/check/session",method = RequestMethod.POST)
 	@ResponseBody
 	public boolean getSessionId(HttpSession session) {
@@ -91,5 +98,34 @@ public class IndexController {
 		if(id == null) return false;
 		else return true;
 	}
+	/*
+	 * 메소드명 		: getActorMovieWithWish
+	 * 기능 			: 위시리스트에 최근에 넣은 3개의 영화에 출연한 배우 중 랜덤 한명이 출연한 작품들의 목록을 띄워줌
+	 * 변수 			: Session
+	 * 작성자 			: 박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "getm/wish", method = RequestMethod.POST)
+	public ModelAndView getActorMovieWithWish(HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		HashMap hash = new HashMap();
+		hash.put("userId", userId);
+		ActorVO avo = indexService.getActorMovieWithWish(hash);
+		List<MovieVO> mvo = indexService.getMovieWithActor(avo);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index/moviebar");
+		mv.addObject("title",avo.getActorName()+" 배우의 다른 작품들");
+		mv.addObject("list", mvo);
+		return mv;
+	}
+	/*
+	 * 메소드명 		: getActorMovieWithWish
+	 * 기능 			: 위시리스트에 최근에 넣은 3개의 영화에 출연한 배우 중 랜덤 한명이 출연한 작품들의 목록을 띄워줌
+	 * 변수 			: Session
+	 * 작성자 			: 박윤태
+	 */
+//	@ResponseBody
+//	@RequestMapping(value = "getm/wish", method = RequestMethod.POST)
+//	public 
 	
 }

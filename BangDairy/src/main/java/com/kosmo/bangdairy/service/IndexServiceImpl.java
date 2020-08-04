@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.dao.IndexDAO;
+import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.GenreVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 @Service("indexService")
@@ -33,6 +35,25 @@ public class IndexServiceImpl implements IndexService {
 	public GenreVO getGenreTitle(HashMap hash) {
 		return indexDAO.getGenreTitle(hash);
 	}
+
+	@Override
+	public ActorVO getActorMovieWithWish(HashMap hash) {
+		ActorVO vo = indexDAO.getActorMovieWithWish(hash);
+		vo = indexDAO.getActorName(vo);
+		return vo;
+	}
+
+	@Override
+	public List<MovieVO> getMovieWithActor(ActorVO vo) {
+		return indexDAO.getMovieWithActor(vo);
+	}
+
+	@Override
+	public List<MovieVO> getMovieWithUserGenre(AccountFormVO vo) {
+		return indexDAO.getMovieWithUserGenre(vo);
+	}
+	
+	
 	
 	
 }

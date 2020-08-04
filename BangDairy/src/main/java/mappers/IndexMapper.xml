@@ -26,4 +26,29 @@
 	<select id="getGenreTitle" parameterType="hashmap" resultType="genre">
 		SELECT genre_title FROM genre_info WHERE genre_id = #{genreId}
 	</select>
+	<select id="getActorMovieWithWish" parameterType="hashmap" resultType="actor">
+		    SELECT b.actor_id FROM (SELECT actor_id,ROW_NUMBER() OVER(order by rand() desc) as rnum  
+		    FROM starring s WHERE s.movie_id IN
+		    (SELECT a.movie_id FROM (SELECT movie_id,ROW_NUMBER() OVER(order by reg_date desc) as rnum 
+		    FROM wish_movie where user_id = #{userId}) a WHERE a.rnum between 1 and 3) AND s.actor_id != ""
+		    group by actor_id) b where b.rnum = 1;
+		    <!-- 두개로 나누어야함 자세한건 sqlworkbench -->
+	</select>
+	<select id="getMovieWithActor" parameterType="actor" resultType="movie">
+			SELECT m.*,a.actor_name FROM starring s inner join movie_info m ON m.movie_id = s.movie_id 
+		    inner join actor_info a ON a.actor_id = s.actor_id WHERE s.actor_id = 
+		    #{actorId} order by m.opening_date desc limit 10;
+	</select> 
+	<select id="getActorName" parameterType="actor" resultType="actor">
+		SELECT * FROM actor_info where actor_id = #{actorId}
+	</select>
+	<select id="getMovieWithUserGenre" parameterType="account" resultType="movie">
+			SELECT m.* FROM movie_info m inner join (SELECT mg.movie_id FROM movie_genre mg inner join 
+            (SELECT b.genre_id,max(b.scr) FROM (SELECT g.genre_id,avg(a.score) as scr FROM movie_genre g inner join 
+            (SELECT movie_id,score FROM movie_score WHERE user_id=#{userId}) a 
+			ON g.movie_id = a.movie_id group by g.genre_id) b) c ON mg.genre_id = c.genre_id WHERE not exists 
+            (SELECT "X" FROM movie_score WHERE user_id =#{userId} AND movie_id = mg.movie_id)) d
+			ON m.movie_id = d.movie_id order by numbers_hits desc limit 10
+	</select>
+	
 </mapper>
