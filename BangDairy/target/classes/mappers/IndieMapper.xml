@@ -4,7 +4,7 @@
 <mapper namespace="IndieDAO">
 
 	<!-- db에 유저 정보 저장 쿼리-->
-	<insert id="indieInsert" parameterType="Indie" useGeneratedKeys="true" keyProperty="indieId">
+	<insert id="indieInsert" parameterType="indie" useGeneratedKeys="true" keyProperty="indieId">
 			insert into indie_movie_info (indie_title, indie_director, indie_country,
 		indie_makedate, indie_plot, indie_actor, indie_addr, indie_keyword, indie_viewing_hits,
 		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre) 
@@ -23,9 +23,18 @@
 	
 	</insert> -->
 	<select id="indieGnareSelect" resultType="genre">
-	     select * from  genre_info 
+	     select * from  genre_info
 	
 	</select>
+	
+<select id="selectIndieDetail"  resultType="indie" parameterType="indie"> 
+	SELECT * FROM indie_movie_info where indie_id = #{indieId} 
+	</select>
+		
+	
+	
+	
+	
 	<select id="selectIndieInfo" resultType="indie">
 	select * from indie_movie_info
 	

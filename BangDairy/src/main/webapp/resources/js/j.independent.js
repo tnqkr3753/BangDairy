@@ -13,7 +13,24 @@
 		})
 		.css("cursor", "pointer");
 	});
+	
+	 $("#makebtn").click(function() {
+	var dynamicTag = '<input type="text" name="indieActor"  class="type01 " style="width:60px;" msg="감독을">';
+	$("#actorbutton").append(dynamicTag);
+	
+	
+});
 
+	 $("#makeky").click(function() {
+	var dynamic =  "<input type='text' name='indieKeyword' value='123'class='type01' style='width:60px'>";
+	$("#actorbu").append(dynamic);
+	
+	
+});
+
+	
+
+	
 	$($("#ov_items").children().get(0)).attr("src", $($("#ov_items").children().get(0)).attr("ov_src") );
 
 
@@ -67,7 +84,7 @@ function remove_ajax(_this){
 
 function fn_submit(){
 
-	if(checkForm("frm")){
+	
 //		if($('[name="genreTitle"]')){
 //			alert('장르를 눌러주세요');
 //			return;
@@ -76,7 +93,17 @@ function fn_submit(){
 		$("#frm").submit();
 	}
 	
-}
+
+
+
+function indie_list_submit(){
+	
+		$("#frm1212").submit();
+	}
+
+		
+
+	
 
 function onlyNumber(obj) { 
 	e = window.event;

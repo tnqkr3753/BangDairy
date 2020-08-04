@@ -16,6 +16,7 @@ public interface IndieSevice {
 //	public void indiegenreInsert(IndieVO ivo);
 	public List<IndieVO>selectIndieInfo();
 	public List<IndieVO>indieGnareSelect();
+	public IndieVO selectIndieDetail(IndieVO ivo);
 	
 	
 }

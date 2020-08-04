@@ -39,6 +39,14 @@ public class IndieDAOImpl implements IndieDAO {
 		
 		return sqlSession.selectList("selectIndieInfo");
 	}
+
 	
+	  @Override 
+	public IndieVO  selectIndieDetail(IndieVO ivo) { 
+			 return  sqlSession.selectOne("selectIndieDetail", ivo);
+   
+	  
+	  }
+	 	
 	
 }

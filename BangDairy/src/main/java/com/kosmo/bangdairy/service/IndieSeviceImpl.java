@@ -39,8 +39,12 @@ public class IndieSeviceImpl implements IndieSevice {
 //		
 //	}
 
-
-
+	public IndieVO selectIndieDetail(IndieVO ivo){
+		return indieDAO.selectIndieDetail(ivo);
+		
+		
+	}
+	
 	@Override
 	public List<IndieVO> selectIndieInfo() {
 		return indieDAO.selectIndieInfo();
