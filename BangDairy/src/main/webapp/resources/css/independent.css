@@ -8,6 +8,11 @@ color: #fff;
     letter-spacing: -0.4px;
     line-height: 30px;
 }
+#makebtn{
+	width:60px
+}
+
+
 
 /* 반응형폰트 */
 .rr{ font-size: 1vw; 

@@ -38,4 +38,15 @@ public class AccountFormServiceImpl implements AccountFormService {
 		return result;
 	}
 
+	@Override
+	public AccountFormVO checkForKakao(AccountFormVO vo) {
+		return accountFormDAO.checkForKakao(vo);
+	}
+
+	@Override
+	public int joinKakao(AccountFormVO vo) {
+		return accountFormDAO.insertUser(vo);
+	}
+	
+	
 }

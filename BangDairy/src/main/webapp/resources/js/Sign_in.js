@@ -50,5 +50,8 @@ $(document).ready(function(){
     		});
     	});
 
-    clSignIn();
+	clSignIn();
+	$('#kakao_login').on('click',function(){
+		window.location.href="https://kauth.kakao.com/oauth/authorize?client_id=c4811c69bba7091eef9b610a8cc23d5c&redirect_uri=http://localhost:8080/bangdairy/login/kakao&response_type=code"
+	})
 });

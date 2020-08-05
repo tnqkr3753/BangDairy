@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kosmo.bangdairy.vo.IndieVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,6 +22,7 @@
 
 <!-- CSS
     ================================================== -->
+    
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
@@ -42,39 +45,32 @@
 
 </head>
 
-<body id="top">
+<body id="back">
 	<%@ include file="../../../header_menu.jsp"%>
 
 	<!-- s-content
     ================================================== -->
 
-	<!-- Comments START -->
-	<div class="comments-wrap">
 
-		<div id="comments" class="row">
+	
+
+
+		<div id="comments" class="row" style="background:#e5e5e5">
 			<div class="col-full">
 
 				<!-- respond
                     ================================================== -->
 				<div class="respond">
 					<!-- 여기는 제목 -->
-					<h1 class="s-content__header-title">ALL MOVIES</h1>
+			
 
 					<!-- 여기는 상단 네비게이션 바 START -->
-					<nav class="clearfix">
-						<ul class="clearfix">
-							<li id="sa"class="clist"><a href="#">ACTION</a></li>
-							<li id="sb"class="clist"><a href="#">HORROR</a></li>
-							<li id="sc"class="clist"><a href="#">DRAMA</a></li>
-							<li id="sd"class="clist"><a href="#">ANIMATION</a></li>
-							<li id="se"class="clist"><a href="#">FANTASY</a></li>
-							<li id="sf"class="clist"><a href="#">DOCU</a></li>
-						</ul>
-						<a id="pull" href="#">CATEGORY</a>
-					</nav>
+					
 					<!-- 네비게이션 바 END -->
-
+		<h1 class="s-content__header-title">ALL MOVIES</h1>
+	
 					<!-- 검색창과 Select Box -->
+					
 					<div class="select">
 						<!-- 검색창 -->
 						<input class="form-control" type="text" placeholder="Search"
@@ -90,43 +86,62 @@
 
 
 					<!-- 영화리스트 START -->
-					<div class="col-twelve">
-						<div class="table-responsive">
-							<table>
-								<thead>
-									<tr>
-										<th>영화</th>
-										<th>영화제목</th>
-										<th>장르</th>
-										<th>개봉일</th>
-										<th>평점</th>
-									</tr>
-								</thead>
+						<!-- Comments START -->
+	
+	<div class="comments-wrap">        
+	<br/>
+	<br/>
+	<tr>
+	<td>
+	  <form id="frm1212" action="indieDet" method="post"enctype="multipart/form-data" accept="image/png, image/jpeg">
+
+	<table class="table table-striped table-dark" >
+
+  
+  
+
+    <tr>
+      <th scope="col">포스터</th>
+      <th scope="col">제목</th>
+      <th scope="col">감독</th>
+      <th scope="col">장르</th>
+      <th scope="col">평점</th>
+    </tr>
 
 							<%	List<IndieVO> result=(List<IndieVO>)request.getAttribute("result"); %>
-					
-								<tbody>
-									<!-- 하나의 영화 START -->
-									<% for (IndieVO vo : result){ %>
-									<tr>
-										<td><img src="resources/images/movieList/movieSam1.jpg"
-											width="100px" height="100px"></td>
-										<td><%=vo.getIndieTitle() %></td>
-										<td><%=vo.getGenreId()%></td>
-										<td><%=vo.getIndieUpdateDate() %></td>
-										<td>
-											<div class="starRev">
-												<span class="starR on">별1</span> <span class="starR">별2</span>
-												<span class="starR">별3</span> <span class="starR">별4</span>
-												<span class="starR">별5</span>
-											</div>
+		<%int a=1; %>
+		<% for (IndieVO vo : result){ %>
+			<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 ");
+%>				
+    <tr>
+      <th scope="row"><%=a %></th>
+    <%-- <td><a href="#" onclick="indie_list_submit()?"> <input type="submit" name=indieid value=<%=vo.getIndieId()%>><%=vo.getIndieTitle()%></a></td> --%>
+      <td><a href="indieDet?indieid=<%=vo.getIndieId()%>"><%=vo.getIndieTitle() %></a></td>
+      <td><%=vo.getIndieDirector()%></td>
+      <td><%=vo.getGenreId() %></td>
+      <!-- vo.getIndieUpdateDate() -->
+     <td ><div class="starRev" >
+		<span class="starR on">별1</span> <span class="starR">별2</span>
+		<span class="starR">별3</span> <span class="starR">별4</span>
+		<span class="starR">별5</span>
+		</div>
 										</td>
-									</tr>
-									<!-- 하나의 영화 END -->
-								<%}; %>
-								</tbody>
-							</table>
-						</div>
+										
+										
+										
+    </tr>
+  
+           <%a++; %>
+    <%}; %>
+
+
+
+
+</table>
+</form></td></tr>
+
 					</div>
 					<!-- 영화 리스트 END -->
 				</div>
@@ -170,6 +185,7 @@
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/movieList.js"></script>
+	 <script src="resources/js/j.independent.js"></script>
 </body>
 
 </html>
