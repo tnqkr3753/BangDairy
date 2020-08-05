@@ -44,6 +44,7 @@
 </head>
 
 <body id="top">
+				    
 	<%@ include file="../../../header_menu.jsp"%>
 	<!-- s-content
 	================================================== -->
@@ -75,6 +76,17 @@
 					
 				</ul>
 				<button id="wish-add" class="btn btn-default">찜목록에 추가</button>
+				<c:if test="${not empty vo.previewAddrKmdb }"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button>
+				<div id="myModal" class="modal">
+ 
+				      <!-- Modal content -->
+				      <div class="modal-content">
+				        <span class="close">&times;</span>                                                               
+				        <iframe src="${ vo.previewAddrKmdb }"></iframe>
+				      </div>
+				 
+				</div>
+				</c:if>
 				<%-- 평점 --%>
 				<div class="starRevM">
 					<span class="starR on">별1</span> <span class="starR">별2</span> <span
