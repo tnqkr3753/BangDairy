@@ -2,12 +2,11 @@ package com.kosmo.bangdairy.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 import java.util.Map;
@@ -102,61 +101,82 @@ public class MovieDetailController {
 				MovieVO mvo = new MovieVO();
 				mvo.setMovieId(vo.getMovieId());
 				mvo = movieDetailService.selectOneMovie(mvo); //movie 이름을 가져오기 위해 db에 갔다옴
-				byte[] fileByte = null; //파일의 byte를 담을 배열
 				try {
-					fileByte = file.getBytes(); // file을 배열로 바꿔 fileByte에 저장
+					byte []fileByte = file.getBytes(); // file을 배열로 바꿔 fileByte에 저장
+					
+					File file_with_driver = new File(file.getOriginalFilename());
+					file_with_driver.createNewFile();
+					FileOutputStream fos = new FileOutputStream(file_with_driver);
+					fos.write(file.getBytes());
+					fos.close();
 				} catch (IllegalStateException | IOException e) {
 					LoggerAspect.logger.error("파일 transfer 오류 :" + e.getMessage());
 					vo.setReceipt(0);
 				}
 				String host = "192.168.0.22"; //서버의 주소
 				int port =  8765; 					//소켓의 포트
-				LoggerAspect.logger.info(fileByte.length);
+				Socket soc=null;
+				BufferedReader br=null;
+				BufferedOutputStream bos=null;
+				FileInputStream fin=null;
 				try {
 					//TODO
 					soc = new Socket(host,port);
-					sender = new BufferedOutputStream(soc.getOutputStream());
-					InputStream receiver = soc.getInputStream();
-					BufferedReader br = new BufferedReader(new InputStreamReader(receiver));
-					
-							// 타입 보내기
-//							ByteBuffer b = ByteBuffer.allocate(4);
-//							b.order(ByteOrder.LITTLE_ENDIAN);
-//							b.putInt(1);
-					PrintWriter pw = new PrintWriter(soc.getOutputStream());
-					pw.write(1);
-					pw.write(mvo.getMovieTitle());
-					pw.write(fileByte.length);
-					pw.close();
-//					sender.write("1".getBytes());
-//					sender.flush();
-//					sender.write(((Integer.toString(mvo.getMovieTitle().getBytes().length)).getBytes()));
-//					sender.flush();
-//					sender.write(b);
-//							b.order(ByteOrder.LITTLE_ENDIAN);
-//							b.putInt(mvo.getMovieId().getBytes().length);
+					br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 
-//					OutputStreamWriter osw = new OutputStreamWriter(sender, "UTF-8");
-//					osw.write(mvo.getMovieTitle());
-//					osw.flush();
-					//
-					BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(soc.getOutputStream()));
-//					sender.write((mvo.getMovieTitle()).getBytes());
-//					sender.flush();
-//							b.clear();
-//							b.order(ByteOrder.LITTLE_ENDIAN);
-//							b.putInt(fileByte.length);
-//							sender.write(Integer.toString(fileByte.length).getBytes());
-//							sender.flush();
-							sender.write(fileByte); //배열 말고 ByteBuffer에 넣어서 ㄱㄱㄱ
-							sender.flush();
-					close();
+					bos = new BufferedOutputStream(soc.getOutputStream());
+					fin = new FileInputStream(file.getOriginalFilename());
+					
+					int max_title_length = 4;
+					bos.write("1".getBytes());
+		            int title_length = mvo.getMovieTitle().getBytes().length;
+		            bos.write(Integer.toString(title_length).getBytes());
+		            
+		            if (max_title_length - Integer.toString(title_length).getBytes().length !=0 ) {
+		            	for(int i=0; i< max_title_length-Integer.toString(title_length).getBytes().length; i++) {
+		            		System.out.println(i);
+		            		bos.write(" ".getBytes());
+		            	}
+		            }
+		            bos.write(mvo.getMovieTitle().getBytes());
+		            //이미지 시작
+		            int max_img_length = 128;
+		            long img_length = file.getBytes().length;
+		            bos.write(Long.toString(img_length).getBytes());
+		            if (max_img_length - Long.toString(img_length).getBytes().length !=0 ) {
+		            	for(int i=0; i< max_img_length-Long.toString(img_length).getBytes().length; i++) {
+		            		bos.write(" ".getBytes());
+		            	}
+		            }
+		            
+					byte[] buf = new byte[10240];
+		            int read = 0;
+	                while((read=fin.read(buf, 0, buf.length))!=-1){
+	                    bos.write(buf,0,read);
+	                    bos.flush();
+	                }
+	                
+	                
+	                //결과값 받기
+	                String rev;
+					rev = br.readLine();
+					vo.setReceipt(Integer.parseInt(rev));
+					
+					
 				}catch (Exception er) {
 					LoggerAspect.logger.error("파일 송신 오류 :" + er.getMessage());
 					vo.setReceipt(0);
+				}finally {
+					try {
+						fin.close();
+						bos.close();
+						br.close();
+						soc.close();
+					}catch (Exception e) {
+						LoggerAspect.logger.error("Client Close Error :" + e.getMessage());
+					}
 				}
-//			}
-//			else vo.setReceipt(0);
+
 		}
 		vo.setUserId((String)session.getAttribute("userId"));
 		int result =movieDetailService.insertComment(vo);

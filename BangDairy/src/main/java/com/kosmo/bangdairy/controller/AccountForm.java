@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +101,38 @@ public class AccountForm {
 		int result = accountFormService.signInUser(vo);
 		if (result==1) {
 			sess.setAttribute("userId", vo.getUserId());
+			//sess.setMaxInactiveInterval(300);
+
+			try {
+				String HOST = "192.168.0.22";
+				int PORT = 8765;
+				Socket socket = new Socket(HOST,PORT);
+				System.out.println("클라이언트 접속");
+
+				//쓰기
+				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+				
+				//읽기
+				BufferedReader in = new BufferedReader(
+						new InputStreamReader(socket.getInputStream()));
+				
+				ArrayList<String> list = new ArrayList<String>();
+				String rev;
+				while((rev=in.readLine())!=null) {
+					System.out.println("받음:"+rev);
+					list.add(rev);
+				}
+				// 여기서 리스트를 DB에 넘겨서 검색결과 받아오기
+				//=====================================
+				
+				//=====================================
+				in.close();
+				socket.close();
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			
 			sess.setAttribute("userType", vo.getUserType());
 		}
 		return result;
