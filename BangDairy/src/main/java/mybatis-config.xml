@@ -17,7 +17,8 @@
 	<typeAlias alias="still" type="com.kosmo.bangdairy.vo.StillVO"/>
 	<typeAlias alias="comment" type="com.kosmo.bangdairy.vo.CommentVO"/>
 	<typeAlias alias="review" type="com.kosmo.bangdairy.vo.ReviewVO"/>
-	<typeAlias alias="indie" type="com.kosmo.bangdairy.vo.IndieVO"/>
+	
+	
 	<typeAlias alias="indiegenre" type="com.kosmo.bangdairy.vo.IndieGenreVO"/>
 	
 	<!-- 2020-07-23 이경호 수정
@@ -29,6 +30,11 @@
 	<!-- 2020-07-30 박윤태 수정
 		수정내용:QnaVO 추가 -->
 	<typeAlias alias="qna" type="com.kosmo.bangdairy.vo.QnaVO"/>
+	<!-- 2020-07-23 신진섭 추가
+		수정내용:QnaVO 추가 -->
+	<typeAlias alias="indie" type="com.kosmo.bangdairy.vo.IndieVO"/>
+	
+	
 </typeAliases>
 
 </configuration>   

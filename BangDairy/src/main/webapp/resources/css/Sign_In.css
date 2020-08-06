@@ -156,4 +156,15 @@ body.Sign-is-visible{
     width: 90%;
     padding: 15px 15px 30px;
 }
+
+}
+#kakao_login {
+  align-self: center;
+  background-color: #FEE500;
+  background-image: url("../images/login/kakao_login_medium_wide.png");
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  height: 57px;
+  background-repeat: no-repeat;
 }

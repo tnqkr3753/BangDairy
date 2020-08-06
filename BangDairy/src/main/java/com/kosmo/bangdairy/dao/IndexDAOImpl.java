@@ -56,5 +56,4 @@ public class IndexDAOImpl implements IndexDAO {
 		return sqlSession.selectList("IndexDAO.getMovieWithUserGenre",vo);
 	}
 	
-	
 }

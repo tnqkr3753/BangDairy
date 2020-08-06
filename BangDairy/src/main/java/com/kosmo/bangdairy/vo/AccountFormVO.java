@@ -24,7 +24,14 @@ public class AccountFormVO {
 	String userReg;
 	String absoluteFilePath;
 	MultipartFile file;
+	String userType;
 	
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 	public String getAbsoluteFilePath() {
 		return absoluteFilePath;
 	}
@@ -82,12 +89,13 @@ public class AccountFormVO {
 		String formatName = outputImagePath.substring(outputImagePath.lastIndexOf(".")+1);
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
+	
 	@Override
 	public String toString() {
 		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
-				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userReg=" + userReg
-				+ ", userProfile=" + userProfile + ", userProfileSize=" + userProfileSize + ", absoluteFilePath="
-				+ absoluteFilePath + ", file=" + file + "]";
+				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
+				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
+				+ absoluteFilePath + ", file=" + file + ", userType=" + userType + "]";
 	}
 	public String getUserName() {
 		return userName;
@@ -158,6 +166,10 @@ public class AccountFormVO {
 			this.userAge=cal.YEAR-(2000+birth)+1;
 		}
 	}
+	public void setAbsoluteFilePath(String absoluteFilePath) {
+		this.absoluteFilePath = absoluteFilePath;
+	}
+	
 	
 	
 }

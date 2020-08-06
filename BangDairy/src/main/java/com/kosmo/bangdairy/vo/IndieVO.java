@@ -1,9 +1,13 @@
 package com.kosmo.bangdairy.vo;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class IndieVO {
-private String indieId;
+private int indieId;
 private String indieTitle;
 private String indieDirector;
 private String indieCountry;
@@ -14,22 +18,60 @@ private String indieAddr;
 private String indieKeyword;
 private int indieViewingHits;
 private Date indieUpdateDate;
-private String indiePosterAddr;
-private int indiePosterSize;
+
+private long indiePosterSize;
 private String userId;
 private String indieGenre;
 
 private String indieLike;
 private String indieHate;
 private Date regDate;
+private String indiePosterAddr;
+MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변수명
 
+/*
+ * 
+ * 기능		: 파일을 서버에 업로드 하는 정해진 규칙같은 것 
+ * 변수 		: indiePosterAddr,indiePosterSize,file
+ * 작성자		: 신진섭
+ */
+String path="C:\\Users\\KOSMO_14\\git\\BangDairy2\\BangDairy\\src\\main\\webapp\\resources\\upload\\userProfile\\";
+public void setFile(MultipartFile file) {
+	this.file = file;
 
+	// 업로드 파일 접근
+	if(!file.isEmpty()){
+		this.indiePosterAddr = file.getOriginalFilename();
+		this.indiePosterSize = file.getSize();
+		
+		//***********************************************
+		// 해당 경로로 변경
+		File f = new File(path+indiePosterAddr);
+		
+		try {
+			file.transferTo(f);
+			
+		} catch (IllegalStateException e) {				
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+}
 
+public String getIndieGenre() {
+	return indieGenre;
+}
 
-public String getIndieId() {
+public void setIndieGenre(String indieGenre) {
+	this.indieGenre = indieGenre;
+}
+
+public int getIndieId() {
 	return indieId;
 }
-public void setIndieId(String indieId) {
+public void setIndieId(int indieId) {
 	this.indieId = indieId;
 }
 public String getGenreId() {
@@ -38,21 +80,7 @@ public String getGenreId() {
 public void setGenreId(String indieGenre) {
 	this.indieGenre = indieGenre;
 }
-@Override
-public String toString() {
-	return "IndieVO [indieId=" + indieId + ", indieTitle=" + indieTitle + ", indieDirector=" + indieDirector
-			+ ", indieCountry=" + indieCountry + ", indieMakedate=" + indieMakedate + ", indiePlot=" + indiePlot
-			+ ", indieActor=" + indieActor + ", indieAddr=" + indieAddr + ", indieKeyword=" + indieKeyword
-			+ ", indieViewingHits=" + indieViewingHits + ", indieUpdateDate=" + indieUpdateDate + ", indiePosterAddr="
-			+ indiePosterAddr + ", indiePosterSize=" + indiePosterSize + ", userId=" + userId + ", indieLike="
-			+ indieLike + ", indieHate=" + indieHate + ", regDate=" + regDate + "]";
-}
-public String getIndie_id() {
-	return indieId;
-}
-public void setIndie_id(String indieId) {
-	this.indieId = indieId;
-}
+
 public String getIndieTitle() {
 	return indieTitle;
 }
@@ -121,16 +149,17 @@ public Date getIndieUpdateDate() {
 public void setIndieUpdateDate(Date indieUpdateDate) {
 	this.indieUpdateDate = indieUpdateDate;
 }
+
 public String getIndiePosterAddr() {
 	return indiePosterAddr;
 }
 public void setIndiePosterAddr(String indiePosterAddr) {
 	this.indiePosterAddr = indiePosterAddr;
 }
-public int getIndiePosterSize() {
+public long getIndiePosterSize() {
 	return indiePosterSize;
 }
-public void setIndiePosterSize(int indiePosterSize) {
+public void setIndiePosterSize(long indiePosterSize) {
 	this.indiePosterSize = indiePosterSize;
 }
 

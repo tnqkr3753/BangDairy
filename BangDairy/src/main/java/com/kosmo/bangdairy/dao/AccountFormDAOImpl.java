@@ -44,4 +44,15 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 		return list.size();
 	}
 
+	@Override
+	public AccountFormVO checkForKakao(AccountFormVO vo) {
+		return sqlSession.selectOne("AccountFormDAO.checkForKakao",vo);
+	}
+
+	@Override
+	public int joinKakao(AccountFormVO vo) {
+		return sqlSession.insert("AccountFormDAO.joinKakao",vo);
+	}
+	
+
 }
