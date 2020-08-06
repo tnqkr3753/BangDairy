@@ -2,9 +2,12 @@ package com.kosmo.bangdairy.controller;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,17 +20,17 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.mapping.ParameterMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.python.jline.internal.InputStreamReader;
-import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
+import com.kosmo.bangdairy.service.KakaoAPI;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -36,13 +39,11 @@ public class AccountForm {
 	private static final Logger logger = (Logger) LogManager.getLogger("warning");
 	private static final Logger logger2 = (Logger) LogManager.getLogger("");
 	
-	
+	@Autowired
+	private KakaoAPI kakao;
 	//서비스 연결
 	@Autowired
 	private AccountFormServiceImpl accountFormService;
-	
-	// 자바에서 파이썬 파일 실행 함수
-	private static PythonInterpreter interpreter;
 	
 	/*
 	 * 메소드명 : accountForm_idCheck
@@ -110,8 +111,7 @@ public class AccountForm {
 
 				//쓰기
 				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-				out.println("recommend");
-				out.println(vo.getUserId());
+				
 				//읽기
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));
@@ -133,6 +133,7 @@ public class AccountForm {
 			}
 			
 			
+			sess.setAttribute("userType", vo.getUserType());
 		}
 		return result;
 	}
@@ -140,9 +141,41 @@ public class AccountForm {
 	@ResponseBody
 	public int userLogout(HttpSession sess) {
 		sess.removeAttribute("userId");
+		sess.removeAttribute("userType");
 		if(sess.getAttribute("userId")==null) {
 			return 1;
 		}
 		return 0;
+	}
+	/*
+	 * 메소드명 : kakaoLogin
+	 * 기능 : kakao api를 사용해 로그인기능을 수행
+	 * 변수 : 
+	 * 작성자 : 박윤태
+	 */
+	@RequestMapping(value = "login/kakao")
+	@ResponseBody
+	public ModelAndView kakaoLogin(@RequestParam(value = "code") String code,HttpSession session) {
+		String accessToken = kakao.getAccessToken(code);
+		logger.info(accessToken);
+		HashMap<String, Object> userInfo = kakao.getUserInfo(accessToken);
+		AccountFormVO vo = new AccountFormVO();
+		vo.setUserId((String)userInfo.get("email"));
+		vo.setAbsoluteFilePath((String)userInfo.get("profile"));
+		vo.setUserEmail((String)userInfo.get("email"));
+		vo.setUserType("2");
+		AccountFormVO avo = accountFormService.checkForKakao(vo);
+		if (avo != null) {
+			//이미 카카오 계정으로 가입이 되어있는 사람
+			session.setAttribute("userId", avo.getUserId());
+			session.setAttribute("userType", avo.getUserType());
+		}else {
+			accountFormService.joinKakao(vo);
+			session.setAttribute("userId", vo.getUserId());
+			session.setAttribute("userType", vo.getUserType());
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/index.jsp");
+		return mv;
 	}
 }

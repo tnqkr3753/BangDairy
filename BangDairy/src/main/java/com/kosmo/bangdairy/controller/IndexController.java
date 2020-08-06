@@ -114,8 +114,11 @@ public class IndexController {
 		List<MovieVO> mvo = indexService.getMovieWithActor(avo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index/moviebar");
-		mv.addObject("title",avo.getActorName()+" 배우의 다른 작품들");
-		mv.addObject("list", mvo);
+		if (avo!=null) {
+			mv.addObject("title",avo.getActorName()+" 배우의 다른 작품들");
+			mv.addObject("list", mvo);
+		}
+		
 		return mv;
 	}
 	/*

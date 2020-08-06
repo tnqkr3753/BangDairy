@@ -21,6 +21,7 @@
         <span class="input-icon"><i class="fa fa-lock"></i></span>
       </div>   
       <input id="login-btn" type="button" class="login-btn" value="Login"/>     
+      <input type="button" id="kakao_login" class="kakao-login"/>
       <a class="reset-psw" href="#">Forgot your password?</a>
       <div class="seperator"><b>or</b></div>
       <div><input id="login-cancel-btn" class="login-btn" type="button" value="취소"></div>

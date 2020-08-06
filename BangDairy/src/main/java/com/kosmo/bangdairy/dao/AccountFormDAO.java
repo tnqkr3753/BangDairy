@@ -9,4 +9,6 @@ public interface AccountFormDAO {
 	public int selectEmailCheck(String email);
 	public int insertUser(AccountFormVO vo);
 	public int signInUser(AccountFormVO vo);
+	public AccountFormVO checkForKakao(AccountFormVO vo);
+	public int joinKakao(AccountFormVO vo);
 }

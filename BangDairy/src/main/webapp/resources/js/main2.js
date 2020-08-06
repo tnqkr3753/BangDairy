@@ -21,7 +21,7 @@ $(document).ready(function(){
 			maxSlides:10,
 			slideWidth:300,
 			slideMargin:30,
-			moveSlides:1,
+			moveSlides:2,
 			controls: false,
 			touchEnabled:true,
 			pager:false

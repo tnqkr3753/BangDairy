@@ -1383,8 +1383,8 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    display: block;
    width: 45px;
    height: 45px;
-   top: 21px;
-   left: 50%;
+   /* top: 21px; */
+   left: 90%;
    margin-left: -23px;
    font: 0/0 a;
    text-shadow: none;
@@ -2100,6 +2100,9 @@ body.search-is-visible {
    }
 
    .header__search-trigger::before {
+      display: none;
+   }
+   .header__logo{
       display: none;
    }
 
@@ -4269,7 +4272,9 @@ footer h4::after {
 	2020-07-20 占쏙옙호 占쏙옙占쏙옙
 	占쏙옙占쏙옙占쏙옙占쏙옙: 占쏙옙占� 占쌨댐옙占쏙옙 占쏙옙占쏙옙占식� 占쏙옙占쏙옙
 */
-
+#top #list_container {
+   margin: 3rem;
+}
 
 
 

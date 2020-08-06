@@ -33,7 +33,7 @@
   
 		                    <div class="entry__text" style="background-color: black">
 		                        <div class="entry__header" style="background-color: black">
-                            		<h1 class="entry__title"><a href="Independent.do"><p class=rr>${vo.movieTitle}</p></a></h1>
+                            		<h1 class="entry__title"><a href="detail?movieId=${vo.movieId}"><p class=rr>${vo.movieTitle}</p></a></h1>
                             	</div>
                          		<div class="entry__date" style="background-color: black">
                                		<a href="#"><div  align="right">${vo.viewingClass }</div></a>

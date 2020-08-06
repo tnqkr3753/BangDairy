@@ -33,7 +33,6 @@
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
     <link rel="stylesheet" href="resources/css/independent.css">
-  
 
 
 <!-- favicons    ================================================== -->
@@ -56,7 +55,7 @@
 	<div id="main_all">
 		<%@ include file="header_menu.jsp"%>
 
-	<!-- 다이어라 자리 <!--  TODO  -->  -->
+	<!-- 다이어라 자리 <!--  TODO  --> 
 <!-- 		<div class="pageheader-content row"  >
 			<div class="col-full" style="margin-bottom: 1%">
 				<div class="featured" style="background-image: url('resources/images/thumbs/featured/featured-guitarman.jpg');">
