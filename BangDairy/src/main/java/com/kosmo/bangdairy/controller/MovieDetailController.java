@@ -1,5 +1,27 @@
 package com.kosmo.bangdairy.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +47,8 @@ import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Controller
 public class MovieDetailController {
-	
+	BufferedOutputStream sender;
+	Socket soc;
 	@Autowired
 	MovieDetailService movieDetailService;
 	/*
@@ -84,11 +107,87 @@ public class MovieDetailController {
 		if(file==null&&file.isEmpty()) {
 			vo.setReceipt(0);
 		}else {
-			//TODO 파일 입력시 google vision api 로 넘겨서 영화 이름이 있는지 확인해야 함
-			if(file.getSize()==0) {
-				vo.setReceipt(0);
-			}
-			else vo.setReceipt(1);
+			LoggerAspect.logger.info("else 진입");
+//			if(file.getSize()!=0) {
+				MovieVO mvo = new MovieVO();
+				mvo.setMovieId(vo.getMovieId());
+				mvo = movieDetailService.selectOneMovie(mvo); //movie 이름을 가져오기 위해 db에 갔다옴
+				try {
+					byte []fileByte = file.getBytes(); // file을 배열로 바꿔 fileByte에 저장
+					
+					File file_with_driver = new File(file.getOriginalFilename());
+					file_with_driver.createNewFile();
+					FileOutputStream fos = new FileOutputStream(file_with_driver);
+					fos.write(file.getBytes());
+					fos.close();
+				} catch (IllegalStateException | IOException e) {
+					LoggerAspect.logger.error("파일 transfer 오류 :" + e.getMessage());
+					vo.setReceipt(0);
+				}
+				String host = "192.168.0.22"; //서버의 주소
+				int port =  8765; 					//소켓의 포트
+				Socket soc=null;
+				BufferedReader br=null;
+				BufferedOutputStream bos=null;
+				FileInputStream fin=null;
+				try {
+					//TODO
+					soc = new Socket(host,port);
+					br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+
+					bos = new BufferedOutputStream(soc.getOutputStream());
+					fin = new FileInputStream(file.getOriginalFilename());
+					
+					int max_title_length = 4;
+					bos.write("1".getBytes());
+		            int title_length = mvo.getMovieTitle().getBytes().length;
+		            bos.write(Integer.toString(title_length).getBytes());
+		            
+		            if (max_title_length - Integer.toString(title_length).getBytes().length !=0 ) {
+		            	for(int i=0; i< max_title_length-Integer.toString(title_length).getBytes().length; i++) {
+		            		System.out.println(i);
+		            		bos.write(" ".getBytes());
+		            	}
+		            }
+		            bos.write(mvo.getMovieTitle().getBytes());
+		            //이미지 시작
+		            int max_img_length = 128;
+		            long img_length = file.getBytes().length;
+		            bos.write(Long.toString(img_length).getBytes());
+		            if (max_img_length - Long.toString(img_length).getBytes().length !=0 ) {
+		            	for(int i=0; i< max_img_length-Long.toString(img_length).getBytes().length; i++) {
+		            		bos.write(" ".getBytes());
+		            	}
+		            }
+		            
+					byte[] buf = new byte[10240];
+		            int read = 0;
+	                while((read=fin.read(buf, 0, buf.length))!=-1){
+	                    bos.write(buf,0,read);
+	                    bos.flush();
+	                }
+	                
+	                
+	                //결과값 받기
+	                String rev;
+					rev = br.readLine();
+					vo.setReceipt(Integer.parseInt(rev));
+					
+					
+				}catch (Exception er) {
+					LoggerAspect.logger.error("파일 송신 오류 :" + er.getMessage());
+					vo.setReceipt(0);
+				}finally {
+					try {
+						fin.close();
+						bos.close();
+						br.close();
+						soc.close();
+					}catch (Exception e) {
+						LoggerAspect.logger.error("Client Close Error :" + e.getMessage());
+					}
+				}
+
 		}
 		vo.setUserId((String)session.getAttribute("userId"));
 		int result =movieDetailService.insertComment(vo);
@@ -102,10 +201,9 @@ public class MovieDetailController {
 	 * 작성자		: 박윤태
 	 */
 	@ResponseBody
-	@RequestMapping(value = "comment/count/{movieId}",method = RequestMethod.POST,
-	produces = "application/x-www-form-urlencoded;charset=UTF-8")
-	public String commentCount(@PathVariable(value = "movieId",required = true)String movieId) {
-		return movieDetailService.commentCount(movieId)+" Comments";
+	@RequestMapping(value = "comment/count/{movieId}",method = RequestMethod.POST)
+	public int commentCount(@PathVariable(value = "movieId",required = true)String movieId) {
+		return movieDetailService.commentCount(movieId);
 	}
 	/*
 	 * 메소드명	: addWish
@@ -121,5 +219,13 @@ public class MovieDetailController {
 		vo.setUserId(userId);
 		vo.setMovieId(movieId);
 		return movieDetailService.insertWishMovie(vo);
+	}
+	public void close() {
+		try {
+		sender.close();
+		soc.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,0 +1,20 @@
+/* 다이어리 입력 헤더 */
+.insertDiaryTop {
+	font-size: 30px;
+	color: black;
+	font-weight: bold;
+}
+
+/* 날짜 출력 div */
+.insertDiaryDate {
+	font-size: 20px;
+}
+
+/* 테이블 설정 */
+.table th, .table td {
+	vertical-align: middle;
+}
+
+td:first-child {
+	text-align: center;
+}

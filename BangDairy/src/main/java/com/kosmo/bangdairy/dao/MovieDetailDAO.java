@@ -3,7 +3,6 @@ package com.kosmo.bangdairy.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.GenreVO;

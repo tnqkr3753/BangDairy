@@ -1,3 +1,5 @@
+<%@page import="com.sun.org.glassfish.external.statistics.annotations.Reset"%>
+<%@page import="com.kosmo.bangdairy.vo.IndieVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,26 +44,27 @@
 		<%@ include file="../../../Sign_In.jsp"%>
         <div class='preloader'>
             <div class='loaded'>&nbsp;</div>
-        </div>G
-
+        </div>
+				<%	IndieVO result=(IndieVO)request.getAttribute("result"); %>
+				
         <div class="culmn">
             <section id="features" class="features">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="main_features_area sections">
-                                <div class="head_title">
-                                    <h5 style="text-align: center; ">영화제목</h5>
+                                <div class="head_title">	
+                                    <h5 style="text-align: center; "><%=result.getIndieTitle() %></h5>
                                    
                                 </div>
-                                
+                               
                                     <div class="main_features_content">
 
                                         <div class="col-sm-6">
 
                                             
                                                 <div class="single_ft_s_item">
-                                                    <img src="resources/images/images1/최종병기_활_2.jpg" alt="" />
+                                                    <img src="resources/upload/userProfile/<%=result.getIndiePosterAddr() %>" alt="" />
                                                 </div>
                                                
                                            
@@ -69,9 +72,7 @@
                                         <div class="col-sm-6">
                                             <div class="single_features_text">
                                                 <h4 style=font-size:20px>줄거리<h4>
-                                                      <p>1636, 병자호란 위대한 신궁의 전설이 깨어난다.
-50만 포로가 끌려간 병자호란, 치열했던 전쟁의 한 복판에 역사가 기록하지 못한 위대한 신궁이 있었다.
- 역적의 자손이자 조선 최고의 신궁 남이. 유일한 피붙이인 누이 자인의 행복만을 바라며 살아간다.어렵사리 맞이한 자인의 혼인날, 가장 행복한 순간에 청나라 정예부대(니루)의 습격으로 자인과 신랑 서군이 포로로 잡혀가고 만다. 남이는 아버지가 남겨준 활에 의지해 청군의 심장부로 거침없이 전진한다.귀신과도 같은 솜씨로 청나라 정예부대(니루)를 하나 둘씩 처치하는 남이, 한 발 한 발 청군의 본거지로 접근해간다. 남이의 신묘한 활솜씨를 알아챈 청의 명장 쥬신타는 왕자 도르곤과 부하들을 지키기 위해 남이를 추격하기 시작한다. 날아오는 방향을 예측할 수 없는 곡사를 사용하는 남이와 무시무시한 파괴력을 가진 육량시를 사용하는 쥬신타, 가장 소중한 것을 지키기 위한 사상 최대 활의 전쟁을 시작한다. </p>
+                                                      <p><%=result.getIndiePlot() %> </p>
 
                                              
                                             </div>
@@ -86,20 +87,23 @@
 
 
             <section id="video" class="video text-center wow fadeIn"  data-wow-duration="2s" data-wow-dealy="1.5s">
-                <div class="video_overlay"style="margin-left: 10%;margin-right: 10%;   width: 80%;">
+               <!--  <div class="video_overlay"style="margin-left: 10%;margin-right: 10%;   width: 80%;">
                     <div class="container">
                         <div class="row">
                             <div class="main_video" >
                                 <div class="col-sm-12">
-                                    <div class="icon">
-                                        <a href="https://youtu.be/4In_wwRTlSs?t=134" class="youtube-media"><img src="resources/images/images1/play.png" alt="play-icon" /></a>
-                                        <h3>WATCH OUR INTRO</h3>
-                                    </div>
+                                    <div class="icon"> -->
+
+                                     <iframe width="1280" height="720" src="<%=result.getIndieAddr().replace("watch?v=","embed/") %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            
+                                      <!--   <h3>WATCH OUR INTRO영화감상</h3> -->
+                   
+                                   <!--  </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </section>
 
 
@@ -121,70 +125,35 @@
                                                 <div class="about_tabe">
                                                     <!-- Nav tabs -->
                                                        <ul>
-                                                    <li><span style=font-size:20px>배우 :</span>박해일 ,유승룡,문채원 ,이한위,김무</li>
-                                                    <li><span style=font-size:20px>업데이트날자:</span> ????????????????</li>
-                                                    <li><span style=font-size:20px>장르:</span>역사,전쟁,액션</li>
+                                                    <li><span style=font-size:20px>배우 :</span><%=result.getIndieActor() %></li>
+                                                    <li><span style=font-size:20px>업데이트날자:</span><%=result.getIndieMakedate() %></li>
+                                                    <li><span style=font-size:20px>장르:</span><%=result.getGenreId() %></li>
                                                 </ul>
 
                                                 <a href="" class="btn">버튼에 무슨기능 넣을까?</a>
 
                                                     <!-- Tab panes -->
-                                                    <div class="tab-content">
-                                                        
-                                                     
-                                                        <div role="tabpanel" class="tab-pane" id="goal">
-                                                            <div class="single_about_tab">
-                                                                <p>222Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                                                    when an unknown printer took a galley type a scrambled it to make a type specimen book. 
-                                                                    It has survived not only five centuries,</p>
-
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <ul class="single_ab_mision">
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <ul class="single_ab_mision">
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div role="tabpanel" class="tab-pane" id="achivements">
-                                                            <div class="single_about_tab">
-                                                                <p>333Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                                                    when an unknown printer took a galley type a scrambled it to make a type specimen book. 
-                                                                    It has survived not only five centuries,</p>
-
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <ul class="single_ab_mision">
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <ul class="single_ab_mision">
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                            <li><i class="fa fa-check-square"></i> We just want to love our client</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                               
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            
+                                            
+                                         
+                                            <span><input type="image" src="resources/images/Dislike.jpg"width="100px"style="float: right;"></span> 
+                                         <span><input type="image" src="resources/images/like.jpg" width="100px" style="float: right; "></span>
+                                                 
+                                            
+                                            
+                                            </div>
+                                            
+                                            
+                                            
+                                            
+                                            <!-- 좋아요싫어요가 바형태로 나옴  -->
+                                           <!--  <div class="col-sm-6">
                                                 <div class="about_skill">
-                                                    <div class="skillbar" data-percent="79%">
-                                                        <div class="skillbar-title"><h3 class="blue">조회수</h3><span class="sm-text">79%</span></div>
+                                                    <div class="skillbar" data-percent="100%">
+                                                        <div class="skillbar-title"><h3 class="blue">조회수</h3><span class="sm-text">100%</span></div>
                                                         <div class="skillbar-bar blue"></div>
                                                     </div>
 
@@ -200,7 +169,7 @@
 
                                                    
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
 
@@ -233,6 +202,13 @@
         
 <!--         <script src="http://maps.google.com/maps/api/js"></script> -->
 
+<script type="text/javascript">
+/*   $(window).resize(function(){resizeYoutube();});
+  $(function(){resizeYoutube();});
+  function resizeYoutube(){ $("iframe").each(function(){ if( /^https?:\/\/www.youtube.com\/embed\g.test($(this).attr("src")) ){ $(this).css("width","100%"); $(this).css("height",Math.ceil( parseInt($(this).css("width")) * 480 / 854 ) + "px");} }); }
+ */</script>
+
+
 
 
         <script>
@@ -248,10 +224,25 @@
                                             }
         </script>
        
-    
+   <!--체팅기능-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5edd9bd44a7c6258179a1dcf/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+<!--End of Tawk.to Script-->
 
  <script src="resources/js/plugins2.js"></script> 
-        <script src="resources/js/main3.js"></script>
+        <script src="resources/js/indieD.js"></script>
 	<%@ include file="../../../footer.jsp"%>
 
  

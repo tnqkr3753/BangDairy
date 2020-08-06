@@ -38,4 +38,11 @@
 	<select id="SignInUser" resultType="Int" parameterType="account">
 		select count(*) from user_info where user_id = #{userId} and user_password = #{userPassword}
 	</select>
+	<select id="checkForKakao" parameterType="account" resultType="account">
+		SELECT * FROM user_info WHERE user_email=#{userEmail} AND user_id=#{userId}
+	</select>
+	<insert id="joinKakao">
+		INSERT INTO user_info (user_id,user_email,absolute_file_path)
+		VALUES (#{userId},#{userEmail},#{#absoluteFilePath})
+	</insert>
 </mapper>

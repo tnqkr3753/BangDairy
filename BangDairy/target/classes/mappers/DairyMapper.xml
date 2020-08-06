@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dairyDAO">
+
+
+	
+	<select id="listdairy" parameterType="account" resultType="dairy" >
+		SELECT d.diary_id as diary_id, m.movie_title as movie_title, d.diary_title as diary_title, d.diary_hits as diary_hits
+		FROM diary_info d, movie_info m
+		WHERE user_id = #{userId}
+        AND d.movie_id = m.movid_id
+	</select>
+	
+	<select id="recentdairy" parameterType="account" resultType="dairy">
+	   select diary_title, diary_image from diary_info 
+	   where movie_id = (select movie_id from diary_info WHERE diary_id = (select MAX(diary_id) from diary_info WHERE user_id = #{userId} group by user_id)) limit 3;   
+	</select>
+	
+	<select id="topdairy" resultType="dairy">
+	  select * from diary_info order by diary_hits limit 10</select>
+	
+	<select id="recommendairy" parameterType="account" resultType="dairy">
+	select d.user_id, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
+	WHERE m.movie_id = d.movie_id AND d.user_id != #{userId} group by m.movie_id order by c limit 4;
+	</select>
+	
+	<select id="searchDairy" parameterType="hashmap" resultType="hashmap">
+	select distinct d.user_id ui , d.diary_id di ,d.diary_title, d.user_id, d.diary_hits, d.diary_image, m.movie_title 
+	from diary_info d, movie_info m where d.diary_title like '%{diaryTitle}%' OR
+	d.diary_content like '%{diaryContent}%' OR m.movie_title like'%{movieTitle}%'
+
+	</select>
+
+	<select id="searchCountWord" resultType="int">
+	SELECT count(*) from (select distinct d.user_id as di, d.diary_id as di from diary_info d, movie_info m where d.diary_title like '%{diaryTitle}%' OR
+	d.diary_content like '%{diaryContent}%' OR m.movie_title like'%{movieTitle}%')
+	</select>
+	
+	<!-- 여기부터 은주 -->
+	<!-- 사용자가 입력한 단어에 따라 영화 추천검색어 10개 -->
+	<select id="recommendTitle" parameterType="movie" resultType="movie">
+  	SELECT movie_id, movie_title FROM movie_info WHERE movie_title LIKE '${movieTitle}%' LIMIT 0, 10
+	</select>
+	
+	<!-- 사용자가 내용 입력하면 DB에 INSERT -->
+	<insert id="insertDiary" parameterType="dairy">
+	INSERT INTO diary_info 
+	(user_id, diary_title, movie_id, diary_content, viewing_together, viewing_date, viewing_location, diary_hits, diary_image) 
+	VALUES
+	('${userId}', '${diaryTitle}', '${movieId}', '${diaryContent}', '${viewingTogether}', '${viewingDate}','${viewingLocation}', 0, '${diaryImageAddr}')
+	</insert>
+	
+	<select id="userInfo" parameterType="account" resultType="account">
+	SELECT * FROM user_info WHERE user_id = #{userId}
+	</select>
+	
+	<select id="dairyList" parameterType="account" resultType="hashmap">
+SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id;
+	</select>
+	
+</mapper>

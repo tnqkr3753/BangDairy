@@ -23,11 +23,24 @@ public class MovieVO {
 	private Date updateDate;
 	private String posterAddr;
 	private String previewAddr;
+	private String previewAddrKmdb;
 	private HashMap<ActorVO, String> starring;
 	private ArrayList<DirectorVO> movieDirector;
 	private ArrayList<CommentVO> movieComment;
 	private ArrayList<GenreVO> movieGenre;
 	private ArrayList<StillVO> movieStill;
+	
+	@Override
+	public String toString() {
+		return "MovieVO [movieId=" + movieId + ", movieTitle=" + movieTitle + ", MovieEngTitle=" + MovieEngTitle
+				+ ", country=" + country + ", company=" + company + ", openingDateStr=" + openingDateStr
+				+ ", openingDate=" + openingDate + ", plot=" + plot + ", showtimes=" + showtimes + ", viewingClass="
+				+ viewingClass + ", numbersViewers=" + numbersViewers + ", keyword=" + keyword + ", numbersHists="
+				+ numbersHists + ", updateDate=" + updateDate + ", posterAddr=" + posterAddr + ", previewAddr="
+				+ previewAddr + ", previewAddrKmdb=" + previewAddrKmdb + ", starring=" + starring + ", movieDirector="
+				+ movieDirector + ", movieComment=" + movieComment + ", movieGenre=" + movieGenre + ", movieStill="
+				+ movieStill + "]";
+	}
 	public String getMovieId() {
 		return movieId;
 	}
@@ -164,15 +177,11 @@ public class MovieVO {
 	public void setMovieStill(ArrayList<StillVO> movieStill) {
 		this.movieStill = movieStill;
 	}
-	@Override
-	public String toString() {
-		return "MovieVO [movieId=" + movieId + ", movieTitle=" + movieTitle + ", MovieEngTitle=" + MovieEngTitle
-				+ ", country=" + country + ", company=" + company + ", openingDateStr=" + openingDateStr
-				+ ", openingDate=" + openingDate + ", plot=" + plot + ", showtimes=" + showtimes + ", viewingClass="
-				+ viewingClass + ", numbersViewers=" + numbersViewers + ", keyword=" + keyword + ", numbersHists="
-				+ numbersHists + ", updateDate=" + updateDate + ", posterAddr=" + posterAddr + ", previewAddr="
-				+ previewAddr + ", starring=" + starring + ", movieOst=" + ", movieDirector=" + movieDirector
-				+ ", movieComment=" + movieComment + ", movieGenre=" + movieGenre + ", movieStill=" + movieStill + "]";
+	public String getPreviewAddrKmdb() {
+		return previewAddrKmdb;
+	}
+	public void setPreviewAddrKmdb(String previewAddrKmdb) {
+		this.previewAddrKmdb = previewAddrKmdb;
 	}
 	
 	

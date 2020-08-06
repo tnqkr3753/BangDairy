@@ -41,6 +41,7 @@
     <script src="resources/js/modernizr.js"></script>
     <script src="resources/js/pace.min.js"></script>
 
+
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -63,27 +64,41 @@
 <%@ include file = "../../../header_menu.jsp" %>
 
 
+
+
+
+
+
+
+
  <section class="s-content">
-<form name="frm" id="frm" method="GET" action="indieinsert"  enctype="Multipart/form-data" accept="image/png, image/jpeg">
+<form  id="frm"  method='post' action="indieinsert" enctype="multipart/form-data" >
 			<div class="distribution" title="배급신청" style="display: block" id="box" >
 				<h4>신청인</h4>
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody>
 				  <tr>
+				  
 					<th>감독</th>
-				    <td><input type="text" name="indieDirector"  class="type01" style="width:30%;" msg="감독을"> </td>
+				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
 				  </tr>
 				   <tr>
 					<th>배우</th>
-				    <td><input type="text" name="indieActor"  class="type01" style="width:30%;" msg="감독을"> </td>
+				   <td id="actorbutton"></td>
+				   
+				<!--  <td><input type="button"src="resources/images/추가버튼.png"  value="추가"> -->
+			
 				  </tr>
-				  
+				  <td>  <button type="button"><img src="resources/images/추가버튼.png" id="makebtn" style="width:60px"></button>
+				 
  				  <tr> 
 				 <th>포스터url</th>
-				    <td><input type="file" name="indiePosterAddr"  > </td>
+				   <td><input  type="file" name='file'></td>
+			
 				  </tr>
-				   
+<!-- 		<td><input id="profile_img" type="file" name='indiePosterAddr' value="" accept="image/gif,image/jpg,image/png" onchange="chk_file_type(this)" > -->
+				  </tbody>		   
 				  
 				   
 				<!--   <tr>
@@ -112,8 +127,8 @@
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
-					<th>한글제목</th>
-				    <td><input type="text" name="indieTitle" id="distri_movie_subject" class="type01" style="width:20%;" msg="한글제목을"> </td>
+					<th>제목</th>
+				    <td><input type="text" name="indieTitle" id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
 				  </tr>
 				
 <!-- 				  <tr> -->
@@ -134,23 +149,22 @@
 <!-- 				   <td><input type="text" name="distri_movie_length1"value="123" id="distri_movie_length1" class="type01" style="width:10%;" msg="분을" onkeydown="onlyNumber(this)"> 분&nbsp;&nbsp;  <input type="text" value ="423"name="distri_movie_length2" id="distri_movie_length2" class="type01" style="width:10%" msg="초를" onkeydown="onlyNumber(this)"> 초 </td> -->
 <!-- 				  </tr> -->
 				  <tr>
-					<th>업데이트날짜</th>
-				   <td>
-<!-- 				   <input type="text" name="indieMakedate " value="123"id="distri_movie_year" class="type01" style="width:10%;"msg="제작년도를" onkeydown="onlyNumber(this)"> 년&nbsp;&nbsp;   -->
-<!-- 				   <input type="text" name="indieMakedate"value ="423" id="distri_movie_month" class="type01" style="width:10%;" msg="제작월을" onkeydown="onlyNumber(this)"> 월  -->
-<!-- 				   <input type="text" name="indieMakedate"value ="423" id="distri_movie_day" class="type01" style="width:10%;" msg="제작일을" onkeydown="onlyNumber(this)"> 월  -->
-				   </td>
+					<th>만든날짜</th>
+				 <td><input type="text" name="indieMakedate" class="type01" style="width:120px;" date> ex 2020/02/04
 				  </tr>
 				  
 			  <tr>
 					<th>키워드?</th>
-				   <td>
-				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
-				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
-				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:5%;">
+				   <td id=actorbu>
+				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:70px";msg="감독을" maxlen="10">
+				  	  <td ></td>
+				  
 				  </td>
-				  </tr> 
-				  <tr>
+			
+				  </tr> 	
+	 <td> <input type="button" id="makeky" value="추가"></td>
+
+		  <tr>
 					<th>작품링크</th>
 				   <td><input type="text" name="indieAddr" value="123" class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
 				  </tr>
@@ -170,9 +184,8 @@
 <!-- 					<th>컬러/흑백</th> -->
 <!-- 				    <td><input type="text" name="distri_movie_color" value="123"id="distri_movie_color" class="type01" style="width:20%;" msg="컬러/흑백을"> </td> -->
 <!-- 				  </tr> -->
-				  
+				  <tr>
 				  <th>장르</th>
-				
 				<td id="ganre"><!-- GenreVO 에 있는 db값을 없어와서 옵션에 넣어준다. -->
 				<% List<GenreVO> result =  (List<GenreVO>)request.getAttribute("result"); %>
 						<select title="장르" style="width:80px;" name="genreId" id="genreTitle">
@@ -180,16 +193,14 @@
 							<option value=<%=vo.getGenreTitle()%>><%=vo.getGenreTitle() %></option>     
 						<%}; %>  
 		              </select>
-		              <select title="장르" style="width:80px;" name="genreId" id="genreTitle">
-						<% for (GenreVO vo : result){ %>
-							<option value=<%=vo.getGenreTitle()%>><%=vo.getGenreTitle() %></option>     
-						<%}; %>  
-		              </select>
+		             
 					</td>
-              
+              </tr>
+          
 				  <tr>
-					<th>연출의도 plot</th>
-				    <td><textarea name="indiePlot" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를"></textarea> </td>
+				  
+					<th>줄거리</th>
+				    <td><textarea name="indiePlot" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
 				  </tr> 
 			
 				 
@@ -214,17 +225,15 @@
 
 				  </tr>
 				</tbody></table>
-
-			
-				<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/아이유.jpg" alt=""></a></p>				
-
 			</div></form>
 
 
+<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/아이유.jpg" alt=""></a></p>
+
+  
  </section>
 
 
-  
 
 
 
@@ -236,7 +245,7 @@
    <script src="resources/js/main.js"></script>
       <script src="resources/js/j.independent.js"></script>
 <script src="resources/js/j.checkForm.js"></script>
-
+<script src="resources/js/j_ajax.js"></script>
 </body>
 
 </html>
