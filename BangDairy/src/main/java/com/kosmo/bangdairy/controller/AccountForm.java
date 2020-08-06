@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,8 +43,7 @@ public class AccountForm {
 	@Autowired
 	private AccountFormServiceImpl accountFormService;
 	
-	// 자바에서 파이썬 파일 실행 함수
-	private static PythonInterpreter interpreter;
+
 	
 	/*
 	 * 메소드명 : accountForm_idCheck
@@ -110,8 +111,7 @@ public class AccountForm {
 
 				//쓰기
 				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-				out.println("recommend");
-				out.println(vo.getUserId());
+				
 				//읽기
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));
