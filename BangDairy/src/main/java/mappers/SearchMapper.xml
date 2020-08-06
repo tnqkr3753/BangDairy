@@ -5,7 +5,7 @@
 <mapper namespace="SearchDAO">
 	<!-- 키워드 검색 (영화명) -->
 	<select id="searchMovie" parameterType="hashmap" resultType="hashmap">
- 	 SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
+ 	SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
  	(SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
  	(SELECT movie_id FROM movie_info WHERE movie_title LIKE '%${movieTitle}%')
@@ -20,6 +20,9 @@
 	</if>
 	<if test="selectOrder.equals('year')">
 	ORDER BY opening_date DESC
+	</if>
+	<if test="selectOrder.equals('score')">
+	ORDER BY score DESC
 	</if>
 	
  	LIMIT #{firstRow}, #{endRow}
@@ -44,6 +47,9 @@
 	<if test="selectOrder.equals('year')">
 	ORDER BY opening_date DESC
 	</if>
+	<if test="selectOrder.equals('score')">
+	ORDER BY score DESC
+	</if>
  	
  	LIMIT #{firstRow}, #{endRow}
 	</select>
@@ -67,6 +73,9 @@
 	<if test="selectOrder.equals('year')">
 	ORDER BY opening_date DESC
 	</if>
+	<if test="selectOrder.equals('score')">
+	ORDER BY score DESC
+	</if>
 	
 	LIMIT #{firstRow}, #{endRow}
 	
@@ -89,6 +98,9 @@
 	</if>
 	<if test="selectOrder.equals('year')">
 	ORDER BY opening_date DESC
+	</if>
+	<if test="selectOrder.equals('score')">
+	ORDER BY score DESC
 	</if>
 	
 	LIMIT #{firstRow}, #{endRow}

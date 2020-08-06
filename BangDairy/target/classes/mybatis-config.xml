@@ -29,6 +29,9 @@
 	<!-- 2020-07-30 박윤태 수정
 		수정내용:QnaVO 추가 -->
 	<typeAlias alias="qna" type="com.kosmo.bangdairy.vo.QnaVO"/>
+	<!-- 2020-08-03 노예슬 수정
+      수정내용:DairyVO 추가 -->
+    <typeAlias alias="dairy" type="com.kosmo.bangdairy.vo.DairyVO"/>
 </typeAliases>
 
 </configuration>   

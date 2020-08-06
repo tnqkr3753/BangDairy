@@ -95,8 +95,8 @@
 					<!-- 정렬기준 Select Box -->
 					<select name="order" id='orderBy' style="float: right;">
 						<option value="default">정렬기준</option>
-						<option value="title">영화이름순</option>
-						<option value="year">개봉년도순</option>
+						<option value="title">영화제목순</option>
+						<option value="year">개봉일순</option>
 						<option value="score">평점순</option>
 					</select>
 
