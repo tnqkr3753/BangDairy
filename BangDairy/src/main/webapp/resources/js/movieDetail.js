@@ -4,6 +4,7 @@ $(document).ready(function(){
 	var totalpage = 1;
 	var commentPerPage = 10;
 	commentLoad(pageNum,movieId);
+	getWordCloud(movieId);
 	$(".rslides").responsiveSlides({
 		maxwidth:300,
 		pager:false,				 // 페이징
@@ -162,5 +163,47 @@ $(document).ready(function(){
                 modal.style.display = "none";
             }
         }
+	function getWordCloud(movieId){
+		var frequency_list = $.ajax({
+			type: "POST",
+			async : false,
+			url: "detail/wordcloud/"+movieId,
+			dataType: "json",
+			success: function (response) {
+				x = response
+			},
+			error: function(e){
+				alert("워드클라우드 로딩에 실패 :"+e);
+			}
+		}).responseText;
+		var x = JSON.parse(frequency_list);
+		var color = d3.scale.linear()
+				.domain([0,1,2,3,4,5,6,10,15,20,100])
+				.range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
+		d3.layout.cloud().size([800, 300])
+				.words(x)
+				.rotate(0)
+				.fontSize(function(d) { return d.size; })
+				.on("end", draw)
+				.start();
+	
+		function draw(words) {
+			d3.select("#wordcloud").append("svg")
+					.attr("width", 850)
+					.attr("height", 350)
+					.attr("class", "wordcloud")
+					.append("g")
+					.attr("transform", "translate(320,200)")
+					.selectAll("text")
+					.data(words)
+					.enter().append("text")
+					.style("font-size", function(d) { return d.size + "px"; })
+					.style("fill", function(d, i) { return color(i); })
+					.attr("transform", function(d) {
+						return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+					})
+					.text(function(d) { return d.text; });
+		}
+	}
 
 });

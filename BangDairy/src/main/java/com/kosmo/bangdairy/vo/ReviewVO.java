@@ -4,7 +4,6 @@ public class ReviewVO {
 	private int reviewId;
 	private String movieId;
 	private String siteName;
-	private String reviewWriter;
 	private String reviewContent;
 	private float reviewScore;
 	public int getReviewId() {
@@ -24,17 +23,10 @@ public class ReviewVO {
 	}
 	@Override
 	public String toString() {
-		return "ReviewVO [reviewId=" + reviewId + ", movieId=" + movieId + ", siteName=" + siteName + ", reviewWriter="
-				+ reviewWriter + ", reviewContent=" + reviewContent + ", reviewScore=" + reviewScore + "]";
+		return "ReviewVO [reviewId=" + reviewId + ", movieId=" + movieId + ", siteName=" + siteName + ", reviewContent=" + reviewContent + ", reviewScore=" + reviewScore + "]";
 	}
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
-	}
-	public String getReviewWriter() {
-		return reviewWriter;
-	}
-	public void setReviewWriter(String reviewWriter) {
-		this.reviewWriter = reviewWriter;
 	}
 	public String getReviewContent() {
 		return reviewContent;

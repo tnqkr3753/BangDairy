@@ -1,33 +1,21 @@
 package com.kosmo.bangdairy.controller;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.MovieDetailService;
+import com.kosmo.bangdairy.service.WordCloudService;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 import com.kosmo.bangdairy.vo.StillVO;
@@ -49,6 +38,8 @@ public class MovieDetailController {
 	Socket soc;
 	@Autowired
 	MovieDetailService movieDetailService;
+	@Autowired
+	WordCloudService wordCloudService;
 	/*
 	 * 메소드명	: movieDetail
 	 * 기능		: 클릭한 영화의 정보를 보여줌
@@ -65,6 +56,7 @@ public class MovieDetailController {
 		List<StillVO> stillList = null;
 		if(vo!=null) {
 			mv.addObject("vo",vo);
+			wordCloudService.getWordCloud(vo);
 			stillList = movieDetailService.selectStill(vo);
 		}
 		if(stillList !=null) {
@@ -181,6 +173,19 @@ public class MovieDetailController {
 	@RequestMapping(value = "comment/count/{movieId}",method = RequestMethod.POST)
 	public int commentCount(@PathVariable(value = "movieId",required = true)String movieId) {
 		return movieDetailService.commentCount(movieId);
+	}
+	/*
+	 * 메소드명	: getWordCloud
+	 * 기능		: 워드클라우드에 필요한 데이터 리턴
+	 * 변수 		: movieId
+	 * 작성자		: 박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "detail/wordcloud/{movieId}",method = RequestMethod.POST)
+	public List<Map<String, Object>> getWordCloud(@PathVariable(value = "movieId",required = true)String movieId) {
+		MovieVO vo = new MovieVO();
+		vo.setMovieId(movieId);
+		return wordCloudService.getWordCloud(vo);
 	}
 	/*
 	 * 메소드명	: addWish
