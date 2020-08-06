@@ -18,5 +18,7 @@ public interface IndieSevice {
 	public List<IndieVO>selectIndieInfo();
 	public List<IndieVO>indieGnareSelect();
 	public IndieVO selectIndieDetail(IndieVO ivo);
+	public  List<HashMap> searchCountTitle1(int pNum);
 	
+
 }

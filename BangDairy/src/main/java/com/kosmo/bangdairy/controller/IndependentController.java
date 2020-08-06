@@ -9,12 +9,15 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,7 +62,7 @@ public class IndependentController {
 	 * 변수 		:
 	 * 작성자		: 신진섭
 	 */
-	@RequestMapping(value = "/indieList", method=RequestMethod.GET )
+	@RequestMapping(value = "/indieList")
 	public ModelAndView indieList() {
 	ModelAndView mv = new ModelAndView();
 	List<IndieVO> result=(List<IndieVO>)indieSevice.selectIndieInfo();
@@ -69,8 +72,19 @@ public class IndependentController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "indieListPaging/{pNum}", method = RequestMethod.GET)
+	public ModelAndView indieListPaging(@PathVariable(value = "pNum", required = true) String pageNum){
+		ModelAndView mv = new ModelAndView(); 
+		int pNum = Integer.parseInt(pageNum);
+		System.out.println(pNum);
+		mv.addObject("pNum",pNum);
+		mv.addObject("mlist",indieSevice.searchCountTitle1(pNum));
 	
-	
+		mv.setViewName("indie/listIndie");
+		
+		return mv;
+	}
 	/*
 	 * 메소드명	: indieDetail
 	 * 기능		: indielist 에서 인디디테일로 넘어감

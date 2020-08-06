@@ -136,7 +136,21 @@
                                
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            
+                                            
+                                         
+                                            <span><input type="image" src="resources/images/Dislike.jpg"width="100px"style="float: right;"></span> 
+                                         <span><input type="image" src="resources/images/like.jpg" width="100px" style="float: right; "></span>
+                                                 
+                                            
+                                            
+                                            </div>
+                                            
+                                            
+                                            
+                                            
+                                            <!-- 좋아요싫어요가 바형태로 나옴  -->
+                                           <!--  <div class="col-sm-6">
                                                 <div class="about_skill">
                                                     <div class="skillbar" data-percent="100%">
                                                         <div class="skillbar-title"><h3 class="blue">조회수</h3><span class="sm-text">100%</span></div>
@@ -155,7 +169,7 @@
 
                                                    
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
 
@@ -210,7 +224,22 @@
                                             }
         </script>
        
-    
+   <!--체팅기능-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5edd9bd44a7c6258179a1dcf/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+<!--End of Tawk.to Script-->
 
  <script src="resources/js/plugins2.js"></script> 
         <script src="resources/js/indieD.js"></script>
