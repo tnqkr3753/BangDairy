@@ -35,8 +35,8 @@
 	
 	
 	
-	<select id="selectIndieInfo" resultType="indie">
-	select * from indie_movie_info
+	<select id="selectIndieInfo"  parameterType="hashmap" resultType="hashmap">
+	select * from indie_movie_info LIMIT #{firstRow}, #{endRow}
 	
 	
 	</select>

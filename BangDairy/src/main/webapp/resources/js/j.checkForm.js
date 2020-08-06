@@ -37,7 +37,7 @@
 			fMal	= fObj.attr("chkmail");	  // 이메일 체크
 			fLng	= fObj.attr("chklen");    // 길이체크			
 			fNumEng = fObj.attr("chknumeng"); // 영문, 숫자 체크
-
+			fdate   = fObj.attr("date")
 			
 
 			// 체크해야 하는 필수 폼인지 확인
@@ -210,3 +210,5 @@
 
 		return (reg1.test(str) && reg2.test(str) && reg3.test(str));
 	}
+//날짜 입력	
+

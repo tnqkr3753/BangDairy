@@ -11,7 +11,6 @@ import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
-import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {

@@ -1,4 +1,5 @@
 package com.kosmo.bangdairy.dao;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,14 @@ public class IndieDAOImpl implements IndieDAO {
    
 	  
 	  }
+
+	@Override
+	public List<HashMap> searchCountTitle1(int firstRow, int endRow) {
+		HashMap m = new HashMap();
+		m.put("firstRow", firstRow);
+		m.put("endRow", endRow);
+		return sqlSession.selectList("selectIndieInfo",m);
+	}
 	 	
 	
 }

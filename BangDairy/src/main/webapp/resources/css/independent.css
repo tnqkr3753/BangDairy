@@ -13,6 +13,7 @@ color: #fff;
 }
 
 
+td:nth-of-type(n+10) { display: none; }
 
 /* 반응형폰트 */
 .rr{ font-size: 1vw; 

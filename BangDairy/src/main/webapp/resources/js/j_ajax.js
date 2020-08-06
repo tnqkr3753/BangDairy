@@ -1,9 +1,9 @@
 //ajax listindie 페이지기능
 
 $(document).ready(function(){
-var a =0
-var main="mainAjax"
-var jsp=".jsp"
+//var a =0
+//var main="mainAjax"
+//var jsp=".jsp"
 /*$('.movie_thema').click(function(){
 	movieType = $(this).attr("value");
 	*/
@@ -11,14 +11,14 @@ var jsp=".jsp"
 	a=1
     $.ajax({
         type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+        url : dd.jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
         dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
         error : function(){
             alert('통신실패!!');
         },
         success : function(Parse_data){
         	
-            $(".Parse_Area1").append(Parse_data); //div에 받아온 값을 넣는다.
+            $(".Parse_Area1").href(Parse_data); //div에 받아온 값을 넣는다.
           
         }
              })
@@ -35,7 +35,7 @@ $('#sb').click(function(){
         },
         success : function(Parse_data){
         	
-        	  $(".Parse_Area2").append(Parse_data); //div에 받아온 값을 넣는다.
+        	  $(".Parse_Area2").html(Parse_data); //div에 받아온 값을 넣는다.
           
         }
              })
