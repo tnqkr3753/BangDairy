@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kosmo.bangdairy.dao.AdminDAO;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
+import com.kosmo.bangdairy.vo.QnaVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
@@ -29,5 +30,26 @@ public class AdminServiceImpl implements AdminService {
 	public List<DairyVO> getDiary(HashMap hash) {
 		return adminDAO.getDiary(hash);
 	}
+
+	@Override
+	public List<HashMap> getComment(HashMap hash) {
+		return adminDAO.getComment(hash);
+	}
+
+	@Override
+	public List<QnaVO> getQna(HashMap hash) {
+		return adminDAO.getQna(hash);
+	}
+
+	@Override
+	public int updateQnaAnswer(QnaVO vo) {
+		return adminDAO.updateQnaAnswer(vo);
+	}
+
+	@Override
+	public QnaVO getQnaAnswer(QnaVO vo) {
+		return adminDAO.getQnaAnswer(vo);
+	}
+	
 	
 }

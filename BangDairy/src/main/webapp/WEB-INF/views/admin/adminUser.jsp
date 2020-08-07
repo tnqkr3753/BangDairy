@@ -8,7 +8,7 @@
 						<div class="col-md-12">
 							<div class="page-header">
 								<h1>
-									영화 정보<c:if test="${not empty search }"> <span>${search } => </span></c:if>
+									유저 정보<c:if test="${not empty search }"> <span>${search } => </span></c:if>
 								</h1>
 							</div>
 						</div>
@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					<div class="form-inline">
-						<input class="form-control mr-sm-2" type="text" placeholder="ID 검색" /> 
+						<input class="form-control mr-sm-2 search" type="text" placeholder="ID 검색" /> 
 						<button class="btn btn-primary my-2 my-sm-0 btn-search">
 							Search
 						</button>
@@ -73,6 +73,6 @@
 							</div>
 							</c:when>
 							<c:otherwise>
-								<span> 영화 정보가 없습니다.</span>
+								<span> 유저 정보가 없습니다.</span>
 							</c:otherwise>
 							</c:choose>

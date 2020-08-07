@@ -21,13 +21,37 @@
 	order by join_date desc
 	LIMIT ${page}
 </select>
-<select id="getDiary" parameterType="hashmap" resultType="diary">
+<select id="getDiary" parameterType="hashmap" resultType="dairy">
 	SELECT * FROM diary_info
 	<if test="searchWord != null">
 	WHERE replace(user_id,' ','') like "${searchWord}%"
 	</if>
 	ORDER BY reg_date desc
 	LIMIT ${page}
+</select>
+<select id="getComment" parameterType="hashmap" resultType="hashmap">
+	SELECT mc.*,m.movie_title FROM movie_comment mc INNER JOIN movie_info m
+	ON mc.movie_id = m.movie_id
+	<if test="searchWord != null">
+	WHERE replace(mc.user_id,' ','') like "${searchWord}%"
+	</if>
+	ORDER BY mc.comment_reg_date
+	LIMIT ${page}
+</select>
+<select id="getQna" parameterType="hashmap" resultType="qna">
+	SELECT * FROM user_qna
+	<if test="searchWord != null">
+	WHERE replace(user_id,' ','') like "${searchWord}%"
+	</if>
+	ORDER BY qna_status asc,qna_reg_date desc
+	LIMIT ${page}
+</select>
+<update id="updateQnaAnswer" parameterType="qna">
+	UPDATE user_qna SET qna_answer=#{qnaAnswer},qna_status=#{qnaStatus}
+	WHERE qna_id = #{qnaId}
+</update>
+<select id="getQnaAnswer" parameterType="qna" resultType="qna">
+	SELECT * FROM user_qna WHERE qna_id = #{qnaId}
 </select>
 	
 	

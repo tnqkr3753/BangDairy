@@ -8,7 +8,7 @@
 						<div class="col-md-12">
 							<div class="page-header">
 								<h1>
-									영화 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
+									Q&A 정보<c:if test="${not empty search }"> <span>${search } => </span></c:if>
 								</h1>
 							</div>
 						</div>
@@ -17,44 +17,46 @@
 						<div class="col-md-12">
 							<div class="page-header">
 								<h1>
-									영화 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
+									Q&A<c:if test="${not empty search }"> <span>${search } => 검색 결과</span></c:if>
 								</h1>
 							</div>
 						</div>
 					</div>
-    				<div class="form-inline">
-						<input class="form-control mr-sm-2 search" type="text" placeholder="영화 제목 검색"/> 
+					<div class="form-inline">
+						<input class="form-control mr-sm-2 search" type="text" placeholder="ID 검색" /> 
 						<button class="btn btn-primary my-2 my-sm-0 btn-search">
 							Search
 						</button>
 					</div>
-					<!-- 영화리스트 START -->
+
+					<!-- 유저리스트 START -->
 							<c:choose>
 							<c:when test="${not empty list }">
 							<div class="table-responsive">
-							<table class="table table-hover">
+							<table  class="table table-hover">
 								<thead>
 									<tr>
-										<th>영화</th>
-										<th>영화제목</th>
-										<th>장르</th>
-										<th>개봉일</th>
+										<th>Q&A번호</th>
+										<th>유저 아이디</th>
+										<th>Q&A 제목</th>
+										<th>Q&A 내용</th>
+										<th>Q&A 상태</th>
+										<th>Q&A 작성 날짜</th>
 									</tr>
 								</thead>
-
 								<tbody>
-									
-										
-									
 									<c:forEach items="${list }" var="vo">
-									<!-- 하나의 영화 START -->
+									<!-- 하나의 유저 START -->
 									<tr>
-										<td><img src="${vo.poster_addr }"
-										onerror="this.src='resources/images/movieList/noImage.png'"
-											width="100px" height="100px"></td>
-										<td>${vo.movie_title }</td>
-										<td>${vo.genre }</td>
-										<td>${vo.opening_date }</td>
+										<td>${vo.qnaId }</td>
+										<td>${vo.userId }</td>
+										<td>${vo.qnaTitle }</td>
+										<td>${vo.qnaContent }</td>
+										<c:choose>
+										<c:when test="${vo.qnaStatus eq 1 }"><td data-status="required"><button class="btn btn-primary show-qna">답변 완료</button></td></c:when>
+										<c:when test="${vo.qnaStatus eq 0 }"><td data-status="required"><button class="btn btn-warning write-qna">답변 작성</button></td></c:when>
+										</c:choose>
+										<td><fmt:formatDate value="${vo.qnaRegDate }" type="date" dateStyle="full" /></td>
 									</tr>
 									<!-- 하나의 영화 END -->
 									</c:forEach>
@@ -66,6 +68,6 @@
 							</div>
 							</c:when>
 							<c:otherwise>
-								<span> 영화 정보가 없습니다.</span>
+								<span> Q&A 정보가 없습니다.</span>
 							</c:otherwise>
 							</c:choose>

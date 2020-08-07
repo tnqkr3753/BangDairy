@@ -8,7 +8,7 @@
 						<div class="col-md-12">
 							<div class="page-header">
 								<h1>
-									영화 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
+									코맨트 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
 								</h1>
 							</div>
 						</div>
@@ -17,13 +17,13 @@
 						<div class="col-md-12">
 							<div class="page-header">
 								<h1>
-									영화 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
+									코맨트 정보<c:if test="${not empty search }"> <small>${search } => 검색 결과</small></c:if>
 								</h1>
 							</div>
 						</div>
 					</div>
     				<div class="form-inline">
-						<input class="form-control mr-sm-2 search" type="text" placeholder="영화 제목 검색"/> 
+						<input class="form-control mr-sm-2 search" type="text" placeholder="쓴 사람 검색"/> 
 						<button class="btn btn-primary my-2 my-sm-0 btn-search">
 							Search
 						</button>
@@ -35,10 +35,12 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>영화</th>
-										<th>영화제목</th>
-										<th>장르</th>
-										<th>개봉일</th>
+										<th>영화 제목</th>
+										<th>쓴 사람</th>
+										<th>영수증 첨부 여부</th>
+										<th>코맨트 내용</th>
+										<th>별점</th>
+										<th>작성 날짜</th>
 									</tr>
 								</thead>
 
@@ -47,16 +49,16 @@
 										
 									
 									<c:forEach items="${list }" var="vo">
-									<!-- 하나의 영화 START -->
+									<!-- 하나의 코맨트 START -->
 									<tr>
-										<td><img src="${vo.poster_addr }"
-										onerror="this.src='resources/images/movieList/noImage.png'"
-											width="100px" height="100px"></td>
 										<td>${vo.movie_title }</td>
-										<td>${vo.genre }</td>
-										<td>${vo.opening_date }</td>
+										<td>${vo.user_id }</td>
+										<td>${vo.receipt }</td>
+										<td>${vo.comment }</td>
+										<td>${vo.comment_score }</td>
+										<td><fmt:formatDate value="${vo.comment_reg_date }" type="date" dateStyle="full" /></td>
 									</tr>
-									<!-- 하나의 영화 END -->
+									<!-- 하나의 코맨트 END -->
 									</c:forEach>
 								</tbody>
 							</table>
@@ -66,6 +68,6 @@
 							</div>
 							</c:when>
 							<c:otherwise>
-								<span> 영화 정보가 없습니다.</span>
+								<span> 코맨트 정보가 없습니다.</span>
 							</c:otherwise>
 							</c:choose>

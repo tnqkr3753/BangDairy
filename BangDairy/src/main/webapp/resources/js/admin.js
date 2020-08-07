@@ -13,19 +13,84 @@ $(function(){
         show(type,searchWord,page);
     });
     /* 검색  */
-    $(document).on("keydown",".form-control",function(key){
+    // 엔터칠 때
+    $(document).on("keydown",".search",function(key){
         if(key.keyCode == 13){
             searchWord = $(this).val();
+            if(searchWord == "") {
+                searchWord = "all";
+            }
             page = 1;
             show(type,searchWord,page)
         }
-    })
+    });
+    // 버튼 눌렀을 때
     $(document).on("click",".btn-search",function(){
         searchWord = $(".form-control").val();
+        if(searchWord == "") {
+            searchWord = "all";
+        }
         page = 1;
         show(type,searchWord,page)
+    });
+    /* Q&A 작성 및 보기 */
+    //Q&A 작성하기
+    $(document).on("click",'.write-qna',function(e){
+        var status =$(this).closest('td').data('status');
+        if(status=="required") {
+            var qnaid = $(this).closest('tr').find('td:first-child').text();
+            var tr = "<tr><td colspan='5' data-qnaid='"+qnaid+"'><textarea style='height:300px' class='form-control write-text'></textarea></td>"+
+            "<td><input type='button' value='작성완료' class='btn btn-primary qna-submit'/></td></tr>"
+            $(this).closest('tr').after(tr);
+            $(this).closest('td').data('status',"writing");
+        }else if (status=="writing"){
+            $(this).closest('tr').next().remove();
+            $(this).closest('td').data('status',"required");
+        }
+    });
+    //Q&A 작성 완료
+    $(document).on('click','.qna-submit',function(){
+        updateAnswer($(this));
     })
-    //보여주기
+    //이미 입력한 답변 보기
+    $(document).on("click",'.show-qna',function(){
+        var id = $(this).closest('tr').find('td:first-child').text();
+        var inputData = {"qnaId":id};
+        var status =$(this).closest('td').data('status');
+        var qnaid = $(this).closest('tr').find('td:first-child').text();
+        var tr = "";
+        if(status=="required") {
+            $.ajax({
+                type:"POST",
+                url:"admin/"+type+"/answer/get",
+                async : false,
+                data:inputData,
+                dataType: "text",
+                success: function (data) {
+                        tr = "<tr><td colspan='5' data-qnaid='"+qnaid+"'><textarea style='height:300px' class='form-control write-text' readonly='readonly'>"+data+"</textarea></td>"+
+                        "<td><input type='button' value='수정' class='btn btn-primary qna-modify'/></td></tr>"
+                        
+                },
+                error:function(e){
+                    alert("답변 불러오기 오류");
+                }
+            });
+            $(this).closest('tr').after(tr);
+            if(tr!="") $(this).closest('td').data('status',"writing");
+        }else if (status=="writing"){
+            $(this).closest('tr').next().remove();
+            $(this).closest('td').data('status',"required");
+        }
+    });
+
+    /* 입력한 답변 수정 */
+    $(document).on('click','.qna-modify',function(){
+        $(this).closest('tr').find("textarea").removeAttr("readonly");
+        $(this).closest('tr').find("textarea").addClass("write-text")
+        $(this).val("수정완료");
+        $(this).addClass("qna-submit");
+    });
+    /* 보여주기 함수 */
     function show(type,searchWord,page){
         $.ajax({
             type:"POST",
@@ -34,9 +99,34 @@ $(function(){
             dataType: "html",
             success: function (data) {
                 $('.content-admin').html(data);
+
             },
             error:function(e){
                 alert(e);
+            }
+        });
+    }
+    /* qna db에 저장하는 함수 */
+    function updateAnswer(input){
+        var answer =  input.closest('tr').find('.write-text').val();
+        var id = input.closest('tr').find('td:first-child').data('qnaid');
+        var inputData = {"qnaId":id,"qnaAnswer":answer}
+        $.ajax({
+            type:"POST",
+            url:"admin/"+type+"/answer",
+            async : false,
+            data:inputData,
+            dataType: "text",
+            success: function (data) {
+                if(data == 1){
+                    alert("답변 입력 성공");
+                    show(type,searchWord,page);
+                }else{
+                    alert("답변 입력 실패");
+                }
+            },
+            error:function(e){
+                alert("답변 입력 오류");
             }
         });
     }

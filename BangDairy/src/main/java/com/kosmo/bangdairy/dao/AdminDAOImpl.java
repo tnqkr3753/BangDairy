@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
+import com.kosmo.bangdairy.vo.QnaVO;
 
 @Repository("adminDAO")
 public class AdminDAOImpl implements AdminDAO {
@@ -27,5 +28,23 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<DairyVO> getDiary(HashMap hash) {
 		return sqlSession.selectList("AdminDAO.getDiary",hash);
 	}
+	@Override
+	public List<HashMap> getComment(HashMap hash) {
+		return sqlSession.selectList("AdminDAO.getComment",hash);
+	}
+	@Override
+	public List<QnaVO> getQna(HashMap hash) {
+		return sqlSession.selectList("AdminDAO.getQna",hash);
+	}
+	@Override
+	public int updateQnaAnswer(QnaVO vo) {
+		return sqlSession.update("AdminDAO.updateQnaAnswer",vo);
+	}
+	@Override
+	public QnaVO getQnaAnswer(QnaVO vo) {
+		return sqlSession.selectOne("AdminDAO.getQnaAnswer",vo);
+	}
+	
+	
 	
 }
