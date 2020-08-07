@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="dairyDAO">
-
+<mapper namespace="DairyDAO">
+	<insert id="dairyInsert" parameterType="dairy">
+		insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
+		 values (0, "A03091", #{userId}, #{diaryTitle},#{diaryContent},#{viewingTogether}, #{viewingLocation}, #{viewingDate}, #{diaryImage})
+	</insert>
+	
 	<select id="listdairy" parameterType="account" resultType="dairy" >
 		SELECT d.diary_id as diary_id, m.movie_title as movie_title, d.diary_title as diary_title, d.diary_hits as diary_hits
 		FROM diary_info d, movie_info m
@@ -12,30 +15,25 @@
 	</select>
 	
 	<select id="recentdairy" parameterType="account" resultType="dairy">
-	   select diary_title, diary_image from diary_info 
-	   where movie_id = (select movie_id from diary_info WHERE diary_id = (select MAX(diary_id) from diary_info WHERE user_id = #{userId} group by user_id)) limit 3;   
-	</select>
+	   select * from diary_info 
+	   where movie_id = 
+       (select movie_id from diary_info WHERE user_id = #{userId} order by diary_id desc limit 1)
+        and user_id != #{userId} order by diary_id desc limit 3 </select>
 	
 	<select id="topdairy" resultType="dairy">
-	  select * from diary_info order by diary_hits limit 10</select>
+	  select * from diary_info order by diary_hits DESC limit 5</select>
 	
 	<select id="recommendairy" parameterType="account" resultType="dairy">
-	select d.user_id, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
-	WHERE m.movie_id = d.movie_id AND d.user_id != #{userId} group by m.movie_id order by c limit 4;
+	  select d.user_id, d.diary_image, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
+	  WHERE m.movie_id = d.movie_id AND d.user_id != #{userId} group by m.movie_id order by d.user_id limit 4;
 	</select>
 	
-	<select id="searchDairy" parameterType="hashmap" resultType="hashmap">
-	select distinct d.user_id ui , d.diary_id di ,d.diary_title, d.user_id, d.diary_hits, d.diary_image, m.movie_title 
-	from diary_info d, movie_info m where d.diary_title like '%{diaryTitle}%' OR
-	d.diary_content like '%{diaryContent}%' OR m.movie_title like'%{movieTitle}%'
-
-	</select>
-
-	<select id="searchCountWord" resultType="int">
-	SELECT count(*) from (select distinct d.user_id as di, d.diary_id as di from diary_info d, movie_info m where d.diary_title like '%{diaryTitle}%' OR
-	d.diary_content like '%{diaryContent}%' OR m.movie_title like'%{movieTitle}%')
-	</select>
-	
+	<select id="searchddairy" parameterType="hashmap" resultType="dairy">
+	  select distinct d.user_id, d.diary_id,d.diary_content, d.user_id, d.diary_hits, d.diary_image
+	  from diary_info d, movie_info m where d.diary_title like '%${searchWord}%' OR
+	  d.diary_content like '%${searchWord}%' OR movie_title like'%{searchWord}%'
+	  ORDER BY diary_hits DESC LIMIT 0, 5 
+	 </select>
 	<!-- 여기부터 은주 -->
 	<!-- 사용자가 입력한 단어에 따라 영화 추천검색어 10개 -->
 	<select id="recommendTitle" parameterType="movie" resultType="movie">

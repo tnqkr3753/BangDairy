@@ -54,41 +54,40 @@
         
 		<article class="row format-video">
 		<article class="mydairy_up">
-		
-		<form>
-			<!-- 검색창 -->
-			<input type="search" id="dairySearch" name="dairySearch">
-			
-			<button type="submit" onclick="location.href='dairySearch'" placeholder="검색" ></button>
-		</form>
-		
+
+
+	<form method="post" action="dairySearch">
+      <p><label>검색 : <input style="width: 25%;" type="text" name="searchWord"></label></p>
+    </form>
+	
 				<h3 class="title">
 					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
 						class="link" bg-nclick="htp.htp">다이어리 >> </a>
 					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
-						class="link" bg-nclick="htp.htp">내다이어리</a>	
+						class="link" bg-nclick="htp.htp">내가 최근에 쓴 다이어리와 같 DIARY</a>	
 				</h3>
-			<div class="s-content__header col-full">
-			
+	
 			<div id="ramdairy" class="heading">          
-               <article id="darinsaram-blog-image" class="masonry__brick entry format-video" data-aos="fade-up">
-                    <c:forEach items="${recentdairy}" var="recent">       
-      				<div id="threepersent">
-                        <div class="entry__thumb blog-image">
-                        <img src="${recent.diaryImage }" >
-                    </div>
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            <div class="entry__date">
-                                <a href="single-video.html"> ${recent.diaryTitle }</a>
-                            </div>
-                     
-                    </div></div>    
-         			</div>
-         			</c:forEach>
-                </article>
-                <article style="padding-top: 500px;" id="listbar_mydairy">
-                <br/><br/><br/>
+      
+                   
+                   <div style="width: "></div>
+         					<table >
+								<thead>	
+									<tr >
+										<c:forEach items="${recentdairy}" var="recent">       
+	      		      					  <td><img style="max-width: auto; max-height: 200px;; " src="${recent.diaryImage }" ></td>
+         								</c:forEach>	
+									
+									</tr>
+									<tr>
+										<c:forEach items="${recentdairy}" var="recent">       
+	                                <td><a style="width: 30%; padding-left: 40% "> ${recent.diaryTitle }</a></td>
+         								</c:forEach>
+         							</tr>	
+							</thead>
+							</table>
+         			
+
                 <p class="s-content__tags">
 					<span class="s-content__tag-list"> 
 					<a href="#0">1</a> <a href="#0">2</a> <a href="#0">3</a></br>
@@ -97,8 +96,7 @@
 				</article>
                </div>
 
-			</article>
-<br/><br/><br/>
+
 			<div class = "mydairy">
 			<div class="left-dairy-maintab">
 			<div id="mydairyimg">
@@ -110,12 +108,14 @@
       			<h4 class="s-content__author-name">
 				<img src="resources/images/avatars/user-03.jpg" alt="">
 				</br>
-				<a href="#0">${top.userId }</a><a>${top.viewingDate }</a>
+				<a href="#0">${top.userId }</a>
 				</h4>								
 				<div class="s-content__author-name2">
-				<img src="${top.diaryImage }" alt="">
-				<h2>${top.diaryTitle }</h2>
-				<p>${top.diaryContent }</p><p> 조회수 : ${top.diaryHits }</p>
+				<h2 style="text-align: center;">${top.diaryTitle }</h2>
+				<img src="${top.diaryImage }" style="">
+				<h5 style="padding-left: 80%"> 조회수 : ${top.diaryHits }</h5>
+				<h5>${top.diaryContent }</h5>
+				
 				</div>
 			</c:forEach>
 			
@@ -162,16 +162,20 @@
 				</div>
 				
 				<div id="rigthotherdiary">
-				<h3>이런 다이어리는 어때?</h3></br>
-				<c:forEach items="${recommendairy}" var="recommend">
-					<p>${recommend.userId }</p></br>
-					<p>${recommend.diaryTitle }</p></br>
+				<h3 style="margin: inherit; line-height: inherit; text-align: center;">이런    다이어리는 </h3>
+				<h1 style="margin: inherit; line-height: inherit; text-align: center; border-bottom: ">어때?</h1></br>
+				<c:forEach items="${recommendairy}"  var="recommend">
+				<img alt="" src="${recommend.diaryImage }">
+					<h3 style="font-size: 18px;  margin: inherit; line-height: inherit; ">${recommend.userId }<br/>
+				  : ${recommend.diaryTitle }</h3></br>
 					
 				</c:forEach>	
 				</div>
-				
-
-</div></div></div></article></section>
+              </div>
+			</div>
+		</div>
+	</article>
+</section>
 		<%@ include file="../../../footer.jsp"%>
 
     <!-- Java Script

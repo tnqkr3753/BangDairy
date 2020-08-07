@@ -35,10 +35,14 @@ $(document).ready(function(){
     			url:"SignInUser",
     			data: userData,
     			success: function (data) {
+					alert(data)
     				if(data==1){
     					alert("로그인 성공");
     					window.location.href="index.jsp"
-    				}
+    				}else if(data==2){
+						alert("관리자 로그인 성공");
+						window.location.href="admin"
+					}
     				else {
     					alert("로그인 실패");
     				}

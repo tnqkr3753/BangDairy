@@ -12,7 +12,7 @@
     background-color: #f6f6f7;
     color: #888;
     font-size: 12px;
-    font-family: "Tahoma","Malgun Gothic","¸¼Àº °íµñ","Dotum","µ¸¿ò","Helvetica","Apple SD Gothic Neo","sans-serif";
+    font-family: "Tahoma","Malgun Gothic","ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½","Dotum","ï¿½ï¿½ï¿½ï¿½","Helvetica","Apple SD Gothic Neo","sans-serif";
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-decoration: none;
@@ -68,12 +68,12 @@
 }
 
 .left-dairy-maintab{
-	width: 75%;
+	width: 65%;
 	float: left;
 }
 
 .right-dairy-maintab {
-	width: 20%;
+	width: 30%;
 	float: right;
 }
 

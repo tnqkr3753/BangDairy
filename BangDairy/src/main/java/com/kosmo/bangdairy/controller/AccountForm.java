@@ -1,18 +1,7 @@
 package com.kosmo.bangdairy.controller;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -98,10 +87,16 @@ public class AccountForm {
 	@RequestMapping(value="/SignInUser", method = RequestMethod.POST)
 	@ResponseBody
 	public int signInUser( AccountFormVO vo,HttpSession sess,HttpServletRequest request) {
-		int result = accountFormService.signInUser(vo);
-		if (result==1) {
-			sess.setAttribute("userId", vo.getUserId());
-			sess.setAttribute("userType", vo.getUserType());
+		AccountFormVO avo = accountFormService.signInUser(vo);
+		int result = 0;
+		if (avo!=null) {
+			result=1;
+			sess.setAttribute("userId", avo.getUserId());
+			sess.setAttribute("userType", avo.getUserType());
+			System.out.println(avo);
+			if(avo.getUserType().equals("0")) {
+				result = 2; //admin
+			}
 		}
 		return result;
 	}
@@ -132,18 +127,22 @@ public class AccountForm {
 		vo.setAbsoluteFilePath((String)userInfo.get("profile"));
 		vo.setUserEmail((String)userInfo.get("email"));
 		vo.setUserType("2");
+		ModelAndView mv = new ModelAndView();
 		AccountFormVO avo = accountFormService.checkForKakao(vo);
 		if (avo != null) {
 			//이미 카카오 계정으로 가입이 되어있는 사람
 			session.setAttribute("userId", avo.getUserId());
 			session.setAttribute("userType", avo.getUserType());
+			if(avo.getUserType().equals("0")) {
+				mv.setViewName("admin/adminMain");
+			}
+			else mv.setViewName("redirect:/index.jsp");
 		}else {
 			accountFormService.joinKakao(vo);
 			session.setAttribute("userId", vo.getUserId());
 			session.setAttribute("userType", vo.getUserType());
+			mv.setViewName("redirect:/index.jsp");
 		}
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/index.jsp");
 		return mv;
 	}
 }
