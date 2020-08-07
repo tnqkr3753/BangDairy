@@ -20,7 +20,9 @@ public class DairyVO {
 	private String viewingLocation;
 	private String diaryImage;
 	private String diaryHits;
+	private Date regDate;
 	
+
 	private String diaryImageAddr;	// 이미지 이름
 	private long diaryImageSize;	// 이미지 사이즈
 	MultipartFile file;
@@ -92,7 +94,7 @@ public class DairyVO {
 	public String toString() {
 		return "DairyVO [userId="+userId+",diaryTitle="+diaryTitle+
 				"diaryContent="+diaryContent+",viewingTogether="+viewingTogether+
-				",viewingLocation="+viewingLocation+",diaryImage="+diaryImage+"]";
+				",viewingLocation="+viewingLocation+",diaryImage="+diaryImage+",regDate="+regDate+"]";
 	}
 		
 	public MultipartFile getFile() {
@@ -113,12 +115,19 @@ public class DairyVO {
 			String outputImagePath = path + diaryImageAddr;	// 전체 경로
 			
 			try {
-				//TODO 수정필요
-				//
+				// TODO 수정필요
 				file.transferTo(f);
 			}catch (Exception e) {
 				LoggerAspect.logger.error("파일 전송 에러 : " + e.getMessage());
 			}
 		}
+	}
+	
+	public Date getRegDate() {
+		return regDate;
+	}
+	
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 }

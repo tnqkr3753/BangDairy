@@ -13,12 +13,6 @@ import com.kosmo.bangdairy.vo.MovieVO;
 
 @Service
 public interface DairyService {
-	
-	
-	public List<HashMap> getDairyList(AccountFormVO vo);
-	
-	public void create(DairyVO vo);
-	
 	public List<DairyVO> showList(AccountFormVO vo);
 	
 	public List<DairyVO> recentDairy(AccountFormVO vo);
@@ -35,5 +29,13 @@ public interface DairyService {
 	public int insertDiary(DairyVO dvo);	// 다이어리 작성 후 DB에 입력
 	
 	public List<AccountFormVO> userInfo(AccountFormVO avo);
+	
+	public int countDiaryByUser(AccountFormVO avo);
+	
+	public List<HashMap> getDairyList(AccountFormVO vo, int pNum);
+	
+	public List<HashMap> getDetailDiary(DairyVO dvo);
+
+	
 }
 

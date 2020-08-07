@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,17 +57,6 @@ public class DairyController {
 		mv.setViewName("diary/write_dairy");
 		return mv;
 	}
-	
-	@RequestMapping(value ="insertdairy")
-	public ModelAndView insertdairy(Model model, DairyVO vo, HttpSession session) throws Exception { 
-		ModelAndView mv = new ModelAndView();
-		String userId = (String)session.getAttribute("userId");
-		vo.setUserId(userId);		
-		dairyService.create(vo);
-		model.addAttribute("result", "성공");
-		mv.setViewName("diary/write_dairy");
-        return mv;
-     }
 	
 	@RequestMapping(value = "maindairy")
 	public ModelAndView main_dairy() {
@@ -114,9 +104,6 @@ public class DairyController {
 		return mv;
 	}
 	//--------------------------은주--------------------------
-	
-	MovieVO mvo = new MovieVO();
-	DairyVO dvo = new DairyVO();
 
 	/* 메소드명 : writeDairy
 	 * 기능 : 메인페이지의 헤더에서 내 다이어리를 눌렀을때 다이어리 작성 페이지로 넘김
@@ -142,7 +129,7 @@ public class DairyController {
 	public ModelAndView recommendTitle(@PathVariable(value = "movieTitle", required = false) String movieTitle) {
 		// System.out.println("***** searchTitle 확인 *****");
 		// System.out.println("----- movieTitle -----" + movieTitle);
-		
+		MovieVO mvo = new MovieVO();
 		mvo.setMovieTitle(movieTitle);
 		
 		List recommendList = dairyService.recommendTitle(mvo);	// 검색해서 받아온 리스트
@@ -183,8 +170,6 @@ public class DairyController {
 		dvo.setViewingTogether(dvo.getViewingTogether());
 		dvo.setViewingDate(dvo.getViewingDate());
 		dvo.setViewingLocation(dvo.getViewingLocation());
-		
-		
 		int insertResult = dairyService.insertDiary(dvo);
 		
 		if (insertResult == 1) {	// 다이어리 입력에 성공했는지 확인
@@ -201,9 +186,32 @@ public class DairyController {
 	 * 변수 : ****************************************************
 	 * 작성자 : 배은주
 	 */
-	@RequestMapping(value ="getdairy")
+	@RequestMapping(value = "getdairy")
 	public ModelAndView myDiary(HttpSession session){ 
 		ModelAndView mv = new ModelAndView();
+		String userId = (String)session.getAttribute("userId");
+		AccountFormVO avo = new AccountFormVO();
+		avo.setUserId(userId);
+//		
+		// user 정보를 가져올거야...
+		List<AccountFormVO> userInfo = dairyService.userInfo(avo);
+		System.out.println("user 정보 확인 : " + userInfo);
+		mv.addObject("userInfo", userInfo);
+		
+//		List<HashMap> result = dairyService.getDairyList(avo);
+//		
+//		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%^^" + result);
+//        mv.addObject("myDiaryList", result);
+        mv.setViewName("diary/myDiary");
+        return mv;
+     }
+	
+	@ResponseBody
+	@RequestMapping(value = "showDiaryList/{pNum}", method = RequestMethod.POST)
+	public ModelAndView diaryList(HttpSession session,
+			@PathVariable(value = "pNum", required = true) String pageNum) {
+		ModelAndView mv = new ModelAndView();
+
 		String userId = (String)session.getAttribute("userId");
 		AccountFormVO avo = new AccountFormVO();
 		avo.setUserId(userId);
@@ -213,11 +221,41 @@ public class DairyController {
 		System.out.println("user 정보 확인 : " + userInfo);
 		mv.addObject("userInfo", userInfo);
 		
-		List<HashMap> result = dairyService.getDairyList(avo);
 		
-		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%^^" + result);
+		// totalPage 구하기
+		int totalPage = dairyService.countDiaryByUser(avo);
+		// System.out.println("*************** total Page : " + totalPage);
+		
+		int pNum = Integer.parseInt(pageNum);
+		System.out.println("현재 내가 선택한 페이지 번호는 ? " + pNum);
+
+		mv.addObject("pNum", pNum);
+		mv.addObject("totalPage", totalPage);
+		List<HashMap> result = dairyService.getDairyList(avo, pNum);
+		
+		
+		System.out.println("여기에--------------------------" + result);
+		
         mv.addObject("myDiaryList", result);
-        mv.setViewName("diary/myDiary");
-        return mv;
-     }
+		
+		
+		mv.setViewName("diary/diaryListAjax");
+		return mv;
+	}
+	
+	@RequestMapping(value = "showDetailList/{diaryId}", method = RequestMethod.POST)
+	public ModelAndView showDetailList(@PathVariable(value = "diaryId", required = true) int diaryId) {
+		ModelAndView mv = new ModelAndView();
+
+		DairyVO dvo = new DairyVO();
+		dvo.setDiaryId(diaryId);
+		
+		System.out.println("***** diaryId ***** " + diaryId);
+		
+		List<HashMap> result = dairyService.getDetailDiary(dvo);
+
+		mv.addObject("diaryDetailList", result);
+		mv.setViewName("diary/diaryDetailAjax");
+		return mv;
+	}
 }
