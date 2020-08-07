@@ -22,7 +22,6 @@ public class DairyVO {
 	private Date regDate;
 	
 
-	private String diaryImageAddr;	// 이미지 이름
 	private long diaryImageSize;	// 이미지 사이즈
 	MultipartFile file;
 
@@ -43,48 +42,63 @@ public class DairyVO {
 	public String getUserId() {
 		return userId;
 	}
+	
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
 	public String getDiaryTitle() {
 		return diaryTitle;
 	}
+	
 	public void setDiaryTitle(String diaryTitle) {
 		this.diaryTitle = diaryTitle;
 	}
+	
 	public String getDiaryContent() {
 		return diaryContent;
 	}
+	
 	public void setDiaryContent(String diaryContent) {
 		this.diaryContent = diaryContent;
 	}
+	
 	public String getViewingTogether() {
 		return viewingTogether;
 	}
+	
 	public void setViewingTogether(String viewingTogether) {
 		this.viewingTogether = viewingTogether;
 	}
+	
 	public Date getViewingDate() {
 		return viewingDate;
 	}
+	
 	public void setViewingDate(Date viewingDate) {
 		this.viewingDate = viewingDate;
 	}
+	
 	public String getViewingLocation() {
 		return viewingLocation;
 	}
+	
 	public void setViewingLocation(String viewingLocation) {
 		this.viewingLocation = viewingLocation;
 	}
+	
 	public String getDiaryImage() {
 		return diaryImage;
 	}
+	
 	public void setDiaryImage(String diaryImage) {
 		this.diaryImage = diaryImage;
 	}
+	
 	public String getDiaryHits() {
 		return diaryHits;
 	}
+	
 	public void setDiaryHits(String diaryHits) {
 		this.diaryHits = diaryHits;
 	}
@@ -107,11 +121,11 @@ public class DairyVO {
 		String path = "C:\\Users\\KOSMO_22\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\diary\\";
 
 		if(!file.isEmpty()) {	// file이 비어있지 않으면
-			this.diaryImageAddr = file.getOriginalFilename();	// file 이름
+			this.diaryImage = file.getOriginalFilename();	// file 이름
 			this.diaryImageSize = file.getSize();	// file 크기
 			
-			File f = new File(path + diaryImageAddr);	// 파일로 저장
-			String outputImagePath = path + diaryImageAddr;	// 전체 경로
+			File f = new File(path + diaryImage);	// 파일로 저장
+			String outputImagePath = path + diaryImage;	// 전체 경로
 			
 			try {
 				// TODO 수정필요

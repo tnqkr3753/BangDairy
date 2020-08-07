@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,7 +59,7 @@ public class DairyController {
 		return mv;
 	}
 	
-	@RequestMapping(value ="insertrecentdairy")
+	@RequestMapping(value = "insertrecentdairy")
 	public ModelAndView recentDairy(HttpSession session) throws Exception { 
 		ModelAndView mv = new ModelAndView();
 		String userId = (String)session.getAttribute("userId");
@@ -130,7 +131,7 @@ public class DairyController {
 	
 	/* 메소드명 : insertdiary
 	 * 기능 : 다이어리 내용 입력하면 DB에 넣어줌
-	 * 변수 : DairyVO
+	 * 변수 : DairyVO, session
 	 * 작성자 : 배은주
 	 */
 	@RequestMapping(value = "insertdiary", method = RequestMethod.POST)
@@ -168,29 +169,32 @@ public class DairyController {
 	
 	/* 메소드명 : myDiary
 	 * 기능 : 헤더 메뉴에서 나의 다이어리를 누르면 마이 다이어리 페이지로 넘어감
-	 * 변수 : ****************************************************
+	 * 변수 : session
 	 * 작성자 : 배은주
 	 */
 	@RequestMapping(value = "getdairy")
 	public ModelAndView myDiary(HttpSession session){ 
 		ModelAndView mv = new ModelAndView();
-		String userId = (String)session.getAttribute("userId");
+		
+		String userId = (String)session.getAttribute("userId");	// 로그인한 유저아이디 가져오기
+		
 		AccountFormVO avo = new AccountFormVO();
 		avo.setUserId(userId);
-//		
-		// user 정보를 가져올거야...
-		List<AccountFormVO> userInfo = dairyService.userInfo(avo);
-		System.out.println("user 정보 확인 : " + userInfo);
-		mv.addObject("userInfo", userInfo);
 		
-//		List<HashMap> result = dairyService.getDairyList(avo);
-//		
-//		System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%^^" + result);
-//        mv.addObject("myDiaryList", result);
+		List<AccountFormVO> userInfo = dairyService.userInfo(avo);	// 유저 정보
+		// System.out.println("user 정보 확인 : " + userInfo);
+		
+		mv.addObject("userInfo", userInfo);
         mv.setViewName("diary/myDiary");
+        
         return mv;
      }
 	
+	/* 메소드명 : diaryList
+	 * 기능 : 다이어리 리스트와 페이지 구해서 ajax 통신으로 붙임
+	 * 변수 : session, pageNum
+	 * 작성자 : 배은주
+	 */
 	@ResponseBody
 	@RequestMapping(value = "showDiaryList/{pNum}", method = RequestMethod.POST)
 	public ModelAndView diaryList(HttpSession session,
@@ -201,33 +205,26 @@ public class DairyController {
 		AccountFormVO avo = new AccountFormVO();
 		avo.setUserId(userId);
 		
-		// user 정보를 가져올거야...
-		List<AccountFormVO> userInfo = dairyService.userInfo(avo);
-		System.out.println("user 정보 확인 : " + userInfo);
-		mv.addObject("userInfo", userInfo);
-		
-		
 		// totalPage 구하기
-		int totalPage = dairyService.countDiaryByUser(avo);
-		// System.out.println("*************** total Page : " + totalPage);
-		
+		int totalPage = dairyService.countDiaryByUser(avo); // user별 등록한 다이어리 수대로 전체 페이지 수 구함
 		int pNum = Integer.parseInt(pageNum);
-		System.out.println("현재 내가 선택한 페이지 번호는 ? " + pNum);
 
 		mv.addObject("pNum", pNum);
 		mv.addObject("totalPage", totalPage);
-		List<HashMap> result = dairyService.getDairyList(avo, pNum);
 		
-		
-		System.out.println("여기에--------------------------" + result);
+		List<HashMap> result = dairyService.getDairyList(avo, pNum);	// 유저가 작성한 다이어리 리스트 (5개씩)
 		
         mv.addObject("myDiaryList", result);
-		
-		
 		mv.setViewName("diary/diaryListAjax");
+		
 		return mv;
 	}
 	
+	/* 메소드명 : showDetailList
+	 * 기능 : 다이어리 리스트에서 다이어리 클릭하면 다이어리 내용 ajax 통신으로 붙임
+	 * 변수 : diaryId
+	 * 작성자 : 배은주
+	 */
 	@RequestMapping(value = "showDetailList/{diaryId}", method = RequestMethod.POST)
 	public ModelAndView showDetailList(@PathVariable(value = "diaryId", required = true) int diaryId) {
 		ModelAndView mv = new ModelAndView();
@@ -235,12 +232,89 @@ public class DairyController {
 		DairyVO dvo = new DairyVO();
 		dvo.setDiaryId(diaryId);
 		
-		System.out.println("***** diaryId ***** " + diaryId);
+		// System.out.println("***** diaryId ***** " + diaryId);
 		
-		List<HashMap> result = dairyService.getDetailDiary(dvo);
+		List<HashMap> result = dairyService.getDetailDiary(dvo);	// 다이어리 ID별로 가져온 상세페이지 리스트
 
 		mv.addObject("diaryDetailList", result);
 		mv.setViewName("diary/diaryDetailAjax");
+		
+		return mv;
+	}
+	
+	/* 메소드명 : deleteDiary
+	 * 기능 : 다이어리 삭제
+	 * 변수 : diaryId
+	 * 작성자 : 배은주
+	 */
+	@RequestMapping(value = "diaryDelete")
+	public ModelAndView deleteDiary(@RequestParam(value = "diaryId") int diaryId) {
+		ModelAndView mv = new ModelAndView();
+		
+		// System.out.println("삭제 컨트롤러로 넘어옴");
+		// System.out.println("======= 넘어온 다이어리 ID : " + diaryId);
+		
+		DairyVO dvo = new DairyVO();
+		dvo.setDiaryId(diaryId);
+		
+		dairyService.deleteDiary(dvo);
+		
+		mv.setViewName("redirect:index.jsp");
+		return mv;
+	}
+	
+	/* 메소드명 : diaryModify
+	 * 기능 : 다이어리 수정 페이지로 넘겨줌
+	 * 변수 : diaryId
+	 * 작성자 : 배은주
+	 */
+	@RequestMapping(value = "diaryModify")
+	public ModelAndView diaryModify(@RequestParam(value = "diaryId") int diaryId) {
+		ModelAndView mv = new ModelAndView();
+		
+		// System.out.println("수정 컨트롤러로 넘어옴");
+		// System.out.println("======= 넘어온 다이어리 ID : " + diaryId);
+		
+		DairyVO dvo = new DairyVO();
+		dvo.setDiaryId(diaryId);
+		
+		List<HashMap> result = dairyService.getDetailDiary(dvo); // 이미 다이어리에 입력되어 있는 내용
+		
+		// System.out.println("==========확인========" + result);
+		
+		mv.addObject("result", result);
+		mv.setViewName("diary/modifyDiary");
+		
+		return mv;
+	}
+	
+	/* 메소드명 : modifyDiary
+	 * 기능 : 다이어리 수정
+	 * 변수 : diaryId, dvo
+	 * 작성자 : 배은주
+	 */
+	@RequestMapping(value = "modifyDiary")
+	public ModelAndView modifyDiary(DairyVO dvo, @RequestParam(value = "diaryId") int diaryId) {
+		ModelAndView mv = new ModelAndView();
+
+		dvo.setDiaryId(diaryId);
+		
+		String movieId = dvo.getMovieId();
+		
+		// DB에는 movieId 넣어줘야하니까 영화제목에서 movieId만 잘라줌
+		String movieId2 = movieId.substring(movieId.length()-7, movieId.length()-1); // 영화 아이디
+		
+		// 폼 안에 입력한 내용 dvo에 지정
+		dvo.setDiaryTitle(dvo.getDiaryTitle());
+		dvo.setMovieId(movieId2);
+		dvo.setDiaryContent(dvo.getDiaryContent());
+		dvo.setViewingTogether(dvo.getViewingTogether());
+		dvo.setViewingDate(dvo.getViewingDate());
+		dvo.setViewingLocation(dvo.getViewingLocation());
+		
+		dairyService.updateDiary(dvo);
+		
+		mv.setViewName("redirect:index.jsp");
 		return mv;
 	}
 }

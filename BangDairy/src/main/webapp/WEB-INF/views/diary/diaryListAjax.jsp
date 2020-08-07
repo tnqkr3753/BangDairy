@@ -1,43 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html>
 
-				<div class="table-responsive">
-					<table>
-						<thead>
-							<tr>
-								<th>이미지</th>
-								<th>다이어리 제목</th>
-								<th>영화 제목</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						
-						<div class="tab-search">
-							<tbody class="diaryList">
-													<c:forEach items="${myDiaryList}" var="myDiaryList">
-				
-								<tr>
-										<input type="hidden" value="${myDiaryList.diary_id}">
-									<td>
-									<c:if test="${not empty myDiaryList.diary_image}">
-									<img src="resources/upload/diary/${myDiaryList.diary_image}" style="width:100px; height:100px;">
-									</c:if>
-									<c:if test="${empty myDiaryList.diary_image}">
-									<img src="resources/images/defaultImage.png" style="width:100px; height:100px;">
-									</c:if>
-									</td>
-									<td>${myDiaryList.diary_title}</td>
-									<td>${myDiaryList.movieTitle}</td>
-									<td style="width:15%;">${myDiaryList.diary_hits}</td>
-								</tr>
-								</c:forEach>
-								
-							</tbody>
-						</div>
-					</table>
-				</div>
+<!DOCTYPE html>
+<div class="table-responsive">
+	<table>
+		<thead>
+			<tr>
+				<th>이미지</th>
+				<th>다이어리 제목</th>
+				<th>영화 제목</th>
+				<th>조회수</th>
+			</tr>
+		</thead>
+
+		<div class="tab-search">
+			<tbody class="diaryList">
+				<!-- 다이어리 리스트에서 하나씩 뽑아옴 -->
+				<c:forEach items="${myDiaryList}" var="myDiaryList">
+
+					<tr>
+						<input type="hidden" value="${myDiaryList.diary_id}">
+						<!-- 다이어리 이미지 -->
+						<td><c:if test="${not empty myDiaryList.diary_image}">
+								<img src="resources/upload/diary/${myDiaryList.diary_image}"
+									style="width: 100px; height: 100px;">
+							</c:if>
+							<c:if test="${empty myDiaryList.diary_image}">
+								<img src="resources/images/defaultImage.png"
+									style="width: 100px; height: 100px;">
+							</c:if>
+						</td>
+						<!-- 다이어리 제목 -->
+						<td>${myDiaryList.diary_title}</td>
+						<!-- 영화 제목 -->
+						<td>${myDiaryList.movieTitle}</td>
+						<!-- 다이어리 조회수 -->
+						<!-- **************************** 수정필요 **************************** -->
+						<td style="width: 15%;">${myDiaryList.diary_hits}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</div>
+	</table>
+</div>
 
 <div class="row">
 	<div class="col-full">
@@ -95,10 +101,10 @@
 
 <script type="text/javascript">
 
+// 다이어리 리스트 버튼 클릭했을때
 $(".btnDiaryList").click(function() {
 	pNum = $(this).val();
-	alert(pNum);
-
+	// alert(pNum);
 
 	$.ajax({
 		type : 'POST',	// 요청 메소드 타입
@@ -108,18 +114,23 @@ $(".btnDiaryList").click(function() {
 			alert('diaryAjax 통신실패' + e);
 		},
 		success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-			$('.myRightTap').html(data);	// searchTab의 아이디가 movieSearch인 div에 붙임
+			$('.myRightTap').html(data);
 		}
 	});
 });
 
+// 커서 : 포인트
 $(".diaryList tr").hover(function() {
 	$(this).css("cursor", "pointer");
 });
 
+// 다이어리 리스트 클릭하면 Ajax로 상세페이지 붙이기
 $(".diaryList tr").click(function() {
-	alert("tr 클릭");
-	alert("선택한 행의 다이어리번호 : " + $(this).find('input[type="hidden"]').val());
+	
+	// alert("tr 클릭");
+	// alert("선택한 행의 다이어리번호 : " + $(this).find('input[type="hidden"]').val());
+	
+	// 지금 선택한 다이어리의 인덱스 번호
 	diaryId = $(this).find('input[type="hidden"]').val();
 
 	$.ajax({
@@ -130,7 +141,7 @@ $(".diaryList tr").click(function() {
 			alert('showDetailList 통신실패' + e);
 		},
 		success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-			$('.diaryDetail').html(data);	// searchTab의 아이디가 movieSearch인 div에 붙임
+			$('.diaryDetail').html(data);
 		}
 	});
 });

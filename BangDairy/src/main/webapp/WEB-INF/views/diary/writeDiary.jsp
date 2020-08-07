@@ -205,8 +205,6 @@
 				alert("날짜는 yyyy-mm-dd 형식으로 입력해주세요.");
 				return false;
 			}
-
-			alert("성공적으로 입력되었습니다.");
 		});
 	});
 </script>
