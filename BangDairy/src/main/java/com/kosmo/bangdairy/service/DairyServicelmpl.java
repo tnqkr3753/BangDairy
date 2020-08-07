@@ -21,12 +21,6 @@ public class DairyServicelmpl implements DairyService {
 	int blockPageNumcount = 5;
 
 	@Override
-	public List<HashMap> getDairyList(AccountFormVO vo) {
-		return dairyDAO.getDairyList(vo);
-		
-	}
-
-	@Override
 	public List<DairyVO> showList(AccountFormVO vo) {
 		return dairyDAO.showList(vo);
 	}
@@ -73,5 +67,27 @@ public class DairyServicelmpl implements DairyService {
 	@Override
 	public List<AccountFormVO> userInfo(AccountFormVO avo) {
 		return dairyDAO.userInfo(avo);
+	}
+	int totalDiaryCount;	// 총 다이어리 리스트 개수
+	@Override
+	public int countDiaryByUser(AccountFormVO avo) {
+		totalDiaryCount = dairyDAO.countDiaryByUser(avo);
+		pageTotalCount = totalDiaryCount/5;
+		if (totalDiaryCount % 5 > 0) pageTotalCount++;
+		return pageTotalCount;
+	}
+	
+	@Override
+	public List<HashMap> getDairyList(AccountFormVO vo, int pNum) {
+		
+		int firstRow = (pNum-1) * 5;
+		int endRow = 5;
+		return dairyDAO.getDairyList(vo, firstRow, endRow);
+		
+	}
+
+	@Override
+	public List<HashMap> getDetailDiary(DairyVO dvo) {
+		return dairyDAO.getDetailDiary(dvo);
 	}
 }

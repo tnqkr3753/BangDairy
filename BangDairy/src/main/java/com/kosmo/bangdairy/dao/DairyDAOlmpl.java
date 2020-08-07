@@ -20,10 +20,6 @@ public class DairyDAOlmpl implements DairyDAO {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<HashMap> getDairyList(AccountFormVO vo) {
-		return sqlSession.selectList("dairyList",vo);
-	}
-	@Override
 	public List<DairyVO> showList(AccountFormVO vo) {
 		return sqlSession.selectList("listdairy",vo);
 	}
@@ -74,8 +70,32 @@ public class DairyDAOlmpl implements DairyDAO {
 	public int insertDiary(DairyVO dvo) {	// 다이어리 작성 후 DB에 입력
 		return sqlSession.insert("dairyDAO.insertDiary", dvo);
 	}
+	
 	@Override
 	public List<AccountFormVO> userInfo(AccountFormVO avo) {
 		return sqlSession.selectList("dairyDAO.userInfo", avo);
+	}
+	
+	@Override
+	public int countDiaryByUser(AccountFormVO avo) {
+		return sqlSession.selectOne("dairyDAO.countDiaryByUser", avo);
+	}
+	
+	@Override
+	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow) {
+		HashMap m = new HashMap();
+		
+		System.out.println("daoImpl ========== " + firstRow);
+		System.out.println("daoImpl ========== " + endRow);
+
+		m.put("firstRow", firstRow);
+		m.put("endRow", endRow);
+		m.put("userId", vo.getUserId());
+		return sqlSession.selectList("dairyDAO.dairyList", m);
+	}
+
+	@Override
+	public List<HashMap> getDetailDiary(DairyVO dvo) {
+		return sqlSession.selectList("dairyDAO.getDetailDiary", dvo);
 	}
 }

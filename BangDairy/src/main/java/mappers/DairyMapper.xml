@@ -56,8 +56,18 @@
 	SELECT * FROM user_info WHERE user_id = #{userId}
 	</select>
 	
-	<select id="dairyList" parameterType="account" resultType="hashmap">
-SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id;
+	<select id="dairyList" parameterType="hashmap" resultType="hashmap">
+SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id 
+ORDER BY reg_date DESC
+ LIMIT ${firstRow}, ${endRow}
 	</select>
 	
+	<!-- 페이징 (유저별 다이어리 총 개수) -->
+	<select id="countDiaryByUser" parameterType="account" resultType="int">
+	SELECT count(*) FROM diary_info WHERE user_id = "${userId}"
+	</select>
+	
+	<select id="getDetailDiary" parameterType="dairy" resultType="hashmap">
+	SELECT d.*, i.movie_title AS mtitle FROM diary_info d INNER JOIN movie_info i WHERE d.diary_id='${diaryId}' AND d.movie_id=i.movie_id
+	</select>
 </mapper>
