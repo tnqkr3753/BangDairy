@@ -1,7 +1,9 @@
+
 <%@page import="com.kosmo.bangdairy.vo.DairyVO"%>
 <%@page import="com.kosmo.bangdairy.vo.MovieVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -23,7 +25,7 @@
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/css/movieList.css">
+<link rel="stylesheet" href="resources/css/dairycss/dairyList.css">
 
 <!-- script
     ================================================== -->
@@ -47,12 +49,15 @@
     ================================================== -->
 
 	<!-- Comments START -->
+	<!-- Comments START -->
 	<div class="comments-wrap">
 
 		<div id="comments" class="row">
 			<div class="col-full">
 
 				<!-- respond
+                 
+                 
                     ================================================== -->
 				<div class="respond">
 					<!-- 여기는 제목 -->
@@ -61,9 +66,8 @@
 					<!-- 여기는 상단 네비게이션 바 START -->
 					<nav class="clearfix">
 						<ul class="clearfix">
-							<li class="clist"><a href="#">제목</a></li>
-							<li class="clist"><a href="#">영화</a></li>
-							<li class="clist"><a href="#">내용</a></li>
+							
+							<li class="clist"><a href="#"></a></li>
 						</ul>
 						<a id="pull" href="#">CATEGORY</a>
 					</nav>
@@ -72,57 +76,50 @@
 					<!-- 검색창과 Select Box -->
 					<div class="select">
 						<!-- 검색창 -->
-						<input class="form-control" type="text" placeholder="Search"
-							style="float: left">
-						<!-- 정렬기준 Select Box -->
-						<select name="order" id='order'>
-							<option value="">정렬기준</option>
-							<option value="">최신순</option>
-							<option value="">조회순</option>
-							<option value="">좋아요순</option>
-						</select>
+						<form method="post" action="dairySearch">
+					      <p><label style="font-size: 30px;">상세 검색 : <input style="width: 20%" type="text" name="searchWord"></label></p>
+					    </form>
 					</div>
-
-
+				
 					<!-- 영화리스트 START -->
-					<div class="col-twelve">
+					<div class="col-twelve" >
 						<div class="table-responsive">
-							<table>
+							<table >
 								<thead>
-									<tr>
-										<th>이름</th>
-										<th>영화제목</th>
-										<th>내용</th>
-										<th>작성날짜</th>
-										<th>조회수</th>
+								
+									<tr >
+										<th style="font-size:20px; ">사진</th>
+										<th style="font-size:20px;  width: 15%;">제목</th>
+										<th style="font-size:20px;  ">내용</th>
+										<th style="font-size:20px;  width: 15%;">유저 아이디</th>
+										<th style="font-size:20px;  width: 15%; ">조회수 </th>		
+										<th style="font-size:20px;   ">다이어리 이동 </th>		
+									
+									</tr>
 										
+								
+								 <c:forEach items="${list }" var="search" >   
+								 <tbody>    
+									<tr >
+										<td><img src="${search.diaryImage }"
+											 height="400px"></td>
+										<td style="align-self: center; width: 60px;">${search.diaryTitle } </td>
+								
+										<td >${search.diaryContent } </td>
+										<td >${search.userId } </td>
+										<td >${search.diaryHits} </td>
+										<td ><button>이동</button> </td>
 									
 									</tr>
-								</thead>
-
-								<tbody>
-									<!-- 하나의 영화 START -->
-								 <c:forEach items="${tabName}" var="search">       
-									<tr>
-										<td><img src="${search.diaryImage } "
-											width="100px" height="100px"></td>
-										<td>${search.diaryTitle } </td>
-										<td>${search.movieTitle } </td>
-										<td>${search.userId } </td>
-										<td>${search.diaryHits} </td>
-									
-									</tr>
+									</tbody>
 								</c:forEach>
-								</tbody>
+							</thead>
 							</table>
 						</div>
 					</div>
-				</div>
-			</div>	
-		</div>
 		
 		<div class="row">
-			<div class="col-full">
+			
 				<nav class="pgn">
 					<!-- 페이징 -->
 					<ul>
@@ -137,9 +134,13 @@
 						<li><a class="pgn__next" href="#0">Next</a></li>
 					</ul>
 				</nav>
-			</div>
+			
+		</div></div>
 		</div>
-	</div>
+		</div>
+		</article>
+		</section>
+	<!-- </div> -->
 	<!-- end comments-wrap -->
 	<!-- Comments END -->
 
@@ -164,7 +165,7 @@
 
 	<!-- Java Script
     ================================================== -->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/movieList.js"></script>

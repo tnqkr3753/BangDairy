@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosmo.bangdairy.dao.DairyDAO;
+import com.kosmo.bangdairy.dao.DairyDAOlmpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
@@ -14,7 +14,8 @@ import com.kosmo.bangdairy.vo.MovieVO;
 public class DairyServicelmpl implements DairyService {
 	
 	@Autowired
-	DairyDAO dairyDAO;
+	DairyDAOlmpl dairyDAO;
+	
 	int totalRecordCount;
 	int pageTotalCount;
 	int countPerPage = 10;
@@ -25,7 +26,10 @@ public class DairyServicelmpl implements DairyService {
 		return dairyDAO.getDairyList(vo);
 		
 	}
-
+	@Override
+	public void create(DairyVO vo) {
+		dairyDAO.create(vo);
+	}
 	@Override
 	public List<DairyVO> showList(AccountFormVO vo) {
 		return dairyDAO.showList(vo);
@@ -45,21 +49,12 @@ public class DairyServicelmpl implements DairyService {
 	public List<DairyVO> recommenDairy(AccountFormVO vo){
 		return dairyDAO.recommenDairy(vo);
 	}
-	@Override
-	public List<HashMap> searchWord(DairyVO vo, int pNum, String selectdOrder) {
-		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;
-		return dairyDAO.searchWord(vo, firstRow, endRow, selectdOrder);
-				
-	}
-	@Override
-	public int searchCountWord(DairyVO vo) {
-		totalRecordCount = dairyDAO.searchCountWord(vo);	
-		pageTotalCount = totalRecordCount/countPerPage;
-		if (totalRecordCount % countPerPage > 0) pageTotalCount++;
-		return pageTotalCount;
-	}
 	
+	@Override
+	public List<DairyVO> searchDdairy(HashMap hash) {
+		return dairyDAO.searchDdairy(hash);		
+	}
+
 	//--------------------------은주--------------------------
 	@Override
 	public List<MovieVO> recommendTitle(MovieVO mvo) {	// 영화제목 검색 후 리스트 받아옴

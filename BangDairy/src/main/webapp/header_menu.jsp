@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 </head>
 <body>
 	<div class="header_sticky">
@@ -70,19 +69,24 @@
 
                     <ul class="header__nav">
                         <li class="current"><a href="index.jsp" title="">메인</a></li>
-						<li class="has-children"><a href="#0" title="">영화</a>
-							<ul class="sub-menu">
-								<li><a href="movieList.jsp">영화정보</a></li>
-							</ul></li>
-						<li class="has-children"><a href="#0" title="">다이어리</a>
-							<ul class="sub-menu">
-								<li><a href="insertrecentdairy">다이어리 메인</a></li>
-								<li><a href="getdairy">내 다이어리</a></li>
-								<li><a href="writediary">다이어리 작성</a></li>
-							</ul></li>
-						<li class="has-children"><a href="#0" title="">인디극장</a>
-
-							<ul>
+                        <li class="has-children">
+                            <a href="#0" title="">영화</a>
+                            <ul class="sub-menu">
+                            <li><a href="movieList.jsp">영화정보</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#0" title="">다이어리</a>
+                            <ul class="sub-menu">
+                            <li><a href="insertrecentdairy">다이어리 메인</a></li>
+							<li><a href="getdairy">내 다이어리</a></li>
+							<li><a href="insertdairy">다이어리 작성</a></li></ul>
+                        </li>
+                       
+                        <li class="has-children">
+                         <a href="#0" title="">인디극장</a>
+                         
+                          <ul>
 
 
 								<li><a href="indieList.do">인디영화</a></li>

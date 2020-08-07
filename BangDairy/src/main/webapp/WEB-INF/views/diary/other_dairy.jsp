@@ -24,6 +24,7 @@
 
     <!-- script
     ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
 
@@ -168,7 +169,6 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="resources/js/jquery-3.2.1.min.js"></script>
     <script src="resources/js/plugins.js"></script>
     <script src="resources/js/main.js"></script>
     <script src="resources/jquery.min.js"></script>
@@ -180,10 +180,6 @@
 	<script src="https://use.fontawesome.com/5ac93d4ca8.js"></script>
 	<script src="/path/to/cdn/jquery.min.js"></script>
 	<script src="/path/to/jquery.simplePagination.js"></script>
-	
-
-
-
 
 
 </body>

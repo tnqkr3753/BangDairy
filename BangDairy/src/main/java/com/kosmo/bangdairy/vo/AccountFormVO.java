@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 
@@ -23,9 +24,16 @@ public class AccountFormVO {
 	long userProfileSize;
 	String userReg;
 	String absoluteFilePath;
+	Date joinDate;
 	MultipartFile file;
 	String userType;
 	
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
 	public String getUserType() {
 		return userType;
 	}
@@ -132,7 +140,7 @@ public class AccountFormVO {
 	}
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
-		String path = "C:\\Users\\KOSMO_25\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\userProfile\\";
+		String path = "resources/upload/userProfile/";
 		this.absoluteFilePath = path+userProfile;
 	}
 	public long getUserProfileSize() {
@@ -153,17 +161,22 @@ public class AccountFormVO {
 	public void setUserReg(String userReg) {
 		this.userReg = userReg;
 		Calendar cal = Calendar.getInstance();
-		char lastNum = userReg.charAt(6);
-		int birth = Integer.parseInt(userReg.substring(0, 2));
-		if ( lastNum =='1' || lastNum =='3') {
-			this.userGender = 1;
-		}else if (lastNum=='2' || lastNum=='4') {
-			this.userGender =2;
+		try {
+			char lastNum = userReg.charAt(6);
+			int birth = Integer.parseInt(userReg.substring(0, 2));
+			if ( lastNum =='1' || lastNum =='3') {
+				this.userGender = 1;
+			}else if (lastNum=='2' || lastNum=='4') {
+				this.userGender =2;
+			}
+			if(lastNum =='1' || lastNum =='2') {
+				this.userAge=cal.YEAR-(1900+birth)+1;
+			}else if(lastNum =='3' || lastNum =='4') {
+				this.userAge=cal.YEAR-(2000+birth)+1;
+			}
 		}
-		if(lastNum =='1' || lastNum =='2') {
-			this.userAge=cal.YEAR-(1900+birth)+1;
-		}else if(lastNum =='3' || lastNum =='4') {
-			this.userAge=cal.YEAR-(2000+birth)+1;
+		catch (Exception e) {
+			LoggerAspect.logger.error("생년월일 파싱 실패");
 		}
 	}
 	public void setAbsoluteFilePath(String absoluteFilePath) {

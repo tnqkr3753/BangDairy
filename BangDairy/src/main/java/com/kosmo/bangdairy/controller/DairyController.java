@@ -1,5 +1,6 @@
 package com.kosmo.bangdairy.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,15 +8,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosmo.bangdairy.aop.LoggerAspect;
-import com.kosmo.bangdairy.service.DairyService;
+import com.kosmo.bangdairy.service.DairyServicelmpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
@@ -23,11 +24,9 @@ import com.kosmo.bangdairy.vo.MovieVO;
 public class DairyController {
 
 	@Autowired
-	DairyService dairyService;
+	DairyServicelmpl dairyService;
 	
-	String searchWord;
-	List<HashMap> list;
-	
+
 	@RequestMapping(value = "mydairy")
 	public ModelAndView my_dairy() {
 		ModelAndView mv = new ModelAndView();
@@ -50,6 +49,25 @@ public class DairyController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "writedairy")
+	public ModelAndView write_dairy() {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("ModelAndView");
+		mv.setViewName("diary/write_dairy");
+		return mv;
+	}
+	
+	@RequestMapping(value ="insertdairy")
+	public ModelAndView insertdairy(Model model, DairyVO vo, HttpSession session) throws Exception { 
+		ModelAndView mv = new ModelAndView();
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);		
+		dairyService.create(vo);
+		model.addAttribute("result", "성공");
+		mv.setViewName("diary/write_dairy");
+        return mv;
+     }
+	
 	@RequestMapping(value = "maindairy")
 	public ModelAndView main_dairy() {
 		ModelAndView mv = new ModelAndView();
@@ -66,8 +84,10 @@ public class DairyController {
 		vo.setUserId(userId);
 		List<DairyVO> result = dairyService.recentDairy(vo);
 		mv.addObject("recentdairy", result);
+		
 		List<DairyVO> result2 = dairyService.recommenDairy(vo);
         mv.addObject("recommendairy", result2);
+        
 		List<DairyVO> result3 = dairyService.topDairy();
 		mv.addObject("topdairy", result3);
 		mv.setViewName("diary/main_dairy");
@@ -75,18 +95,24 @@ public class DairyController {
      }
 
 	@RequestMapping(value = "dairySearch", method = RequestMethod.POST)
-	public ModelAndView go_search_diary() {
+	public ModelAndView go_search_diary(@RequestParam(value="searchWord") String searchWord) {
+		
 		ModelAndView mv = new ModelAndView();
-		DairyVO vo = new DairyVO();
-//		this.searchWord = searchWord;
-		LoggerAspect.logger.info("dairyController title : " + searchWord);
-		LoggerAspect.logger.info(list);
-		mv.setViewName("diary/diaryList"); 
+		HashMap hash = new HashMap();
+		hash.put("searchWord", searchWord);
+		List<DairyVO> list = dairyService.searchDdairy(hash);
+		mv.addObject("list", list);
+		
+		int totalpage = list.size();
+		int pagenum = totalpage/10 +1;
+		
+		mv.addObject("totalpage", totalpage);
+		mv.addObject("pagenum",pagenum);
+		
+		mv.setViewName("diary/diaryList");
+
 		return mv;
 	}
-	
-
-	
 	//--------------------------은주--------------------------
 	
 	MovieVO mvo = new MovieVO();
@@ -158,9 +184,6 @@ public class DairyController {
 		dvo.setViewingDate(dvo.getViewingDate());
 		dvo.setViewingLocation(dvo.getViewingLocation());
 		
-		MultipartFile file = dvo.getFile(); // file = 사용자가 첨부한 파일
-		
-		dvo.setFile(file);
 		
 		int insertResult = dairyService.insertDiary(dvo);
 		
