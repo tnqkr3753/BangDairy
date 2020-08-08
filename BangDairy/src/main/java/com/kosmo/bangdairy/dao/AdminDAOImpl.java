@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
+import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
 
 @Repository("adminDAO")
@@ -43,6 +44,14 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public QnaVO getQnaAnswer(QnaVO vo) {
 		return sqlSession.selectOne("AdminDAO.getQnaAnswer",vo);
+	}
+	@Override
+	public List<IndieVO> getIndieList(HashMap hash) {
+		return sqlSession.selectList("AdminDAO.getIndieList", hash);
+	}
+	@Override
+	public IndieVO getIndieOne(IndieVO vo) {
+		return sqlSession.selectOne("AdminDAO.getIndieOne",vo);
 	}
 	
 	

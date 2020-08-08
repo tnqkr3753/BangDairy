@@ -18,6 +18,7 @@ import com.kosmo.bangdairy.service.AdminService;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
+import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
 
 @Controller
@@ -90,6 +91,10 @@ public class AdminController {
 				 list = adminService.getQna(hash);
 				mv.setViewName("admin/adminQna");
 				break;
+			case "indie":
+				 list = adminService.getIndieList(hash);
+				mv.setViewName("admin/adminIndie");
+				break;
 			default:
 				break;
 		}
@@ -123,6 +128,15 @@ public class AdminController {
 		QnaVO qvo =adminService.getQnaAnswer(vo);
 		System.out.println(qvo);
 		return qvo.getQnaAnswer();
+	}
+	@ResponseBody
+	@RequestMapping(value = "/admin/indie/show")
+	public ModelAndView getIndieOne(IndieVO vo) {
+		IndieVO ivo = adminService.getIndieOne(vo);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo", ivo);
+		mv.setViewName("admin/indieInfo");
+		return mv;
 	}
 	
 }

@@ -53,6 +53,17 @@
 <select id="getQnaAnswer" parameterType="qna" resultType="qna">
 	SELECT * FROM user_qna WHERE qna_id = #{qnaId}
 </select>
+<select id="getIndieList" parameterType="hashmap" resultType="indie">
+	SELECT * FROM indie_movie_info 
+	<if test="searchWord != null">
+	WHERE replace(indie_title,' ','') like "${searchWord}%"
+	</if>
+	ORDER BY indie_confirm asc,indie_update_date desc
+	LIMIT ${page}
+</select>
+<select id="getIndieOne" parameterType="indie" resultType="indie">
+	SELECT * FROM indie_movie_info WHERE indie_id = #{indieId}
+</select>
 	
 	
 </mapper>

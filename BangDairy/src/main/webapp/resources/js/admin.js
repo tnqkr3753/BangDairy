@@ -82,7 +82,6 @@ $(function(){
             $(this).closest('td').data('status',"required");
         }
     });
-
     /* 입력한 답변 수정 */
     $(document).on('click','.qna-modify',function(){
         $(this).closest('tr').find("textarea").removeAttr("readonly");
@@ -90,6 +89,51 @@ $(function(){
         $(this).val("수정완료");
         $(this).addClass("qna-submit");
     });
+
+    /* 인디 영화 부분 */
+    //허가요청, 허가, 비허가 클릭할 때
+    $(document).on('click','.indie',function(){
+        var id = $(this).closest('tr').find('td:first-child').text();
+        var status =$(this).closest('td').data('status');
+        var inputData = {"indieId":id};
+        var tr = "";
+        if(status=="required") {
+            $.ajax({
+                type:"POST",
+                url:"admin/"+type+"/show",
+                async : false,
+                data:inputData,
+                dataType: "html",
+                success: function (data) {
+                        tr = data;
+                },
+                error:function(e){
+                    alert("인디영화 불러오기 오류");
+                }
+            });
+            $(this).closest('tr').after(tr);
+            if(tr!="") $(this).closest('td').data('status',"writing");
+        }else if (status=="writing"){
+            $(this).closest('tbody').find("tr[name="+id+"]").remove();
+            $(this).closest('td').data('status',"required");
+        }
+    })
+    // TODO 승인, 벤 버튼 이벤트
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     /* 보여주기 함수 */
     function show(type,searchWord,page){
         $.ajax({
