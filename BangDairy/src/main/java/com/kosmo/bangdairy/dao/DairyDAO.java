@@ -23,12 +23,15 @@ public interface DairyDAO {
 	
 	public int insertDiary(DairyVO dvo);	// 다이어리 작성 후 DB에 입력
 	
-	public List<AccountFormVO> userInfo(AccountFormVO avo);
+	public List<AccountFormVO> userInfo(AccountFormVO avo); // 유저정보 가져옴
 	
-	public int countDiaryByUser(AccountFormVO avo);
+	public int countDiaryByUser(AccountFormVO avo); // 다이어리 총 개수 COUNT
 	
-	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow);
+	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow);	// 다이어리 리스트 목록 가져옴
 
-	public List<HashMap> getDetailDiary(DairyVO dvo);
-
+	public List<HashMap> getDetailDiary(DairyVO dvo);	// 다이어리 상세정보 가져옴
+	
+	public int deleteDiary(DairyVO dvo);	// 다이어리 삭제
+	
+	public int updateDiary(DairyVO dvo);	// 다이어리 수정
 }

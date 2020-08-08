@@ -4,6 +4,9 @@
 <%@page import="com.kosmo.bangdairy.vo.DairyVO"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -76,84 +79,92 @@
 					vo.setUserId(id);
 					%>
 
-					<!-- TOP START -->
 					<div class="insertDiaryTop">
 						<img src="resources/images/diary/diary.png"
 							style="height: 40px; width: 40px;">
-
-						<%=vo.getUserId()%>님의 다이어리 작성 <img
+						<%=vo.getUserId()%>님의 다이어리 수정 <img
 							src="resources/images/diary/diary.png"
 							style="height: 40px; width: 40px;">
-
 					</div>
+					
 					<div class="insertDiaryDate">
 						오늘은
 						<%=sf.format(nowTime)%>입니다.
 					</div>
-					<!-- TOP END -->
 
-					<!-- 입력 폼 START -->
-					<form action="insertdiary" method="post"
-						enctype="multipart/form-data">
+					<!-- 다이어리 수정 폼 START -->
+					<form action="modifyDiary" method="post" enctype="multipart/form-data">
 						<div class="sm-12 pt-3">
 							<table class="table">
 								<tbody>
-									<tr style="line-height: 32px;">
-										<td>다이어리 제목</td>
-										<td><input class="form-control" id="diaryTitle"
-											name="diaryTitle" placeholder="다이어리 제목을 입력해주세요."
-											style="width: 100%; height: 50px; text-align: center"
-											autocomplete="off" /></td>
-									</tr>
-									<tr>
-										<td>영화 제목</td>
-										<td><input class="form-control" name="movieId"
-											id="movieTitle" placeholder="영화 제목을 검색해주세요."
-											style="width: 93%; height: 50px; text-align: center"
-											autocomplete="off" />&nbsp;&nbsp; <i class="fa fa-search"
-											id="searchMovieTitle"></i>
+									<c:forEach items="${result}" var="result">
+										<input type="hidden" value="${result.diary_id}" name="diaryId">
+										<tr style="line-height: 32px;">
+										<!-- 다이어리 제목 -->
+											<td>다이어리 제목</td>
+											<td><input class="form-control" id="diaryTitle"
+												name="diaryTitle" placeholder="다이어리 제목을 입력해주세요."
+												style="width: 100%; height: 50px; text-align: center"
+												autocomplete="off" value="${result.diary_title}" /></td>
+										</tr>
+										<!-- 영화 제목 -->
+										<tr>
+											<td>영화 제목</td>
+											<td><input class="form-control" name="movieId"
+												id="movieTitle" placeholder="영화 제목을 검색해주세요."
+												style="width: 93%; height: 50px; text-align: center"
+												autocomplete="off"
+												value="${result.mtitle} [${result.movie_id}]" />&nbsp;&nbsp;
+												<i class="fa fa-search" id="searchMovieTitle"></i>
 
-											<div class="recommendTitle">
-												<!-- 여기가 AJAX로 붙일 부분 -->
-											</div></td>
-									</tr>
-									<tr>
-										<td>영화 내용</td>
-										<td><input class="form-control" name="diaryContent"
-											placeholder="영화 내용을 입력해주세요."
-											style="width: 100%; height: 200px; text-align: center"
-											autocomplete="off" /></td>
-									</tr>
-									<tr>
-										<td>누구와 함께 보셨나요?</td>
-										<td><input id="viewingTogether" name="viewingTogether"
-											style="height: 50px; width: 32.2%; font-size: 20px; display: inline"
-											autocomplete="off"></td>
-									</tr>
-									<tr>
-										<td>언제 보셨나요?</td>
-										<td><input type="date" id="viewingDate" name="viewingDate"
-											placeholder=" yyyy-mm-dd"
-											style="height: 50px; width: 40%; display: inline; font-size: 20px;"
-											autocomplete="off"></td>
-									</tr>
-									<tr>
-										<td>어디서 보셨나요?</td>
-										<td><input id="viewingLocation" name="viewingLocation"
-											style="height: 50px; width: 32.2%; display: inline; font-size: 20px;"
-											autocomplete="off"></td>
-									</tr>
-									<tr>
-										<td>이미지 첨부</td>
-										<td><input type="file" id="file" name="file" /></td>
-									</tr>
+												<div class="recommendTitle">
+													<!-- 여기가 AJAX로 붙일 부분 -->
+												</div></td>
+										</tr>
+										<!-- 영화 내용 -->
+										<tr>
+											<td>영화 내용</td>
+											<td><input class="form-control" name="diaryContent"
+												placeholder="영화 내용을 입력해주세요."
+												style="width: 100%; height: 200px; text-align: center"
+												autocomplete="off" value="${result.diary_content}" /></td>
+										</tr>
+										<!-- 누구와? -->
+										<tr>
+											<td>누구와 함께 보셨나요?</td>
+											<td><input id="viewingTogether" name="viewingTogether"
+												style="height: 50px; width: 32.2%; font-size: 20px; display: inline"
+												autocomplete="off" value="${result.viewing_together}"></td>
+										</tr>
+										<!-- 언제? -->
+										<tr>
+											<td>언제 보셨나요?</td>
+											<td><input type="date" id="viewingDate"
+												name="viewingDate" placeholder=" yyyy-mm-dd"
+												style="height: 50px; width: 40%; display: inline; font-size: 20px;"
+												autocomplete="off"
+												value="<fmt:formatDate value="${result.viewing_date}" pattern="yyyy-MM-dd" />"></td>
+										</tr>
+										<!-- 어디서? -->
+										<tr>
+											<td>어디서 보셨나요?</td>
+											<td><input id="viewingLocation" name="viewingLocation"
+												style="height: 50px; width: 32.2%; display: inline; font-size: 20px;"
+												autocomplete="off" value="${result.viewing_location}"></td>
+										</tr>
+										<!-- 이미지 -->
+										<tr>
+											<td>이미지 첨부</td>
+											<td><input type="file" id="file" name="file"/></td>
+										</tr>
+									</c:forEach>
 								</tbody>
-							</table>
-							<input type="submit" value="등록" id="submitCheck">
-							<!-- 등록 버튼 -->
-					</form>
-					<!-- 입력 폼 END -->
 
+							</table>
+							<input type="submit" value="수정" id="submitModify">
+							<!-- 수정 버튼 -->
+					</form>
+					<!-- 다이어리 수정 폼 END -->
 				</div>
 			</div>
 		</article>
@@ -174,11 +185,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#submitCheck').click(function() {	// 등록버튼 클릭했을때
-
+		movieTitle1 = $('#movieTitle').val();	// 내가 기존에 입력했던 영화제목
+		
+		$('#submitModify').click(function() {	// 등록버튼 클릭했을때
+			
 			// 사용자가 현재 입력한 값들 얻어옴
 			diaryTitle = $('#diaryTitle').val();
-			movieTitle = $('#movieTitle').val();
+			movieTitle2 = $('#movieTitle').val();	// 사용자가 입력한 영화제목
 			diaryContent = $('#diaryContent').val();
 			viewingTogether = $('#viewingTogether').val();
 			viewingDate = $('#viewingDate').val();
@@ -190,12 +203,6 @@
 				return false;
 
 			}
-
-			// DB에서 받아온 값과 사용자의 입력폼 영화 타이틀 비교
-			if ($("#recommendSelect option:selected").val() != $('#movieTitle').val()) {
-				alert("영화는 검색 후 선택해주세요");
-				return false;
-			}
 			
 			// 날짜 체크 정규식
 			var datatimeRegexp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
@@ -205,6 +212,15 @@
 				alert("날짜는 yyyy-mm-dd 형식으로 입력해주세요.");
 				return false;
 			}
+			
+			movieTitle3 = $('#recommendSelect option:selected').text();	// 셀렉트 박스에 선택된 영화 제목
+			
+			if(movieTitle1 != movieTitle2) {	// 만약 사용자가 영화 제목을 바꾸었다면
+				if (movieTitle2 != movieTitle3) {	// 셀렉트박스와 바꾼 영화제목이 일치하는지 확인
+					alert("검색 후 입력해주세요.")
+					return false;}
+				}
 		});
 	});
+	
 </script>

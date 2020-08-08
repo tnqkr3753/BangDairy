@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="DairyDAO">
 	<insert id="dairyInsert" parameterType="dairy">
 		insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
@@ -45,25 +45,45 @@
 	INSERT INTO diary_info 
 	(user_id, diary_title, movie_id, diary_content, viewing_together, viewing_date, viewing_location, diary_hits, diary_image) 
 	VALUES
-	('${userId}', '${diaryTitle}', '${movieId}', '${diaryContent}', '${viewingTogether}', '${viewingDate}','${viewingLocation}', 0, '${diaryImageAddr}')
+	('${userId}', '${diaryTitle}', '${movieId}', '${diaryContent}', '${viewingTogether}', '${viewingDate}','${viewingLocation}', 0, '${diaryImage}')
 	</insert>
 	
+	<!-- 유저 정보 가져오기 -->
 	<select id="userInfo" parameterType="account" resultType="account">
 	SELECT * FROM user_info WHERE user_id = #{userId}
 	</select>
 	
+	<!-- 페이지별로 다이어리 리스트 가져오기 -->
 	<select id="dairyList" parameterType="hashmap" resultType="hashmap">
-SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id 
-ORDER BY reg_date DESC
- LIMIT ${firstRow}, ${endRow}
+	SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id 
+	ORDER BY reg_date DESC LIMIT ${firstRow}, ${endRow}
 	</select>
 	
-	<!-- 페이징 (유저별 다이어리 총 개수) -->
+	<!-- 각 유저별 다이어리 총 개수 -->
 	<select id="countDiaryByUser" parameterType="account" resultType="int">
 	SELECT count(*) FROM diary_info WHERE user_id = "${userId}"
 	</select>
 	
+	<!-- 다이어리 상세페이지 -->
 	<select id="getDetailDiary" parameterType="dairy" resultType="hashmap">
-	SELECT d.*, i.movie_title AS mtitle FROM diary_info d INNER JOIN movie_info i WHERE d.diary_id='${diaryId}' AND d.movie_id=i.movie_id
+	SELECT d.*, i.movie_title AS mtitle FROM diary_info d INNER JOIN movie_info i WHERE d.diary_id=${diaryId} AND d.movie_id = i.movie_id
 	</select>
+	
+	<!-- 다이어리 삭제 -->
+	<delete id="deleteDiary">
+	DELETE FROM diary_info WHERE diary_id = ${diaryId}
+	</delete>
+	
+	<!-- 다이어리 수정 -->
+	<update id="updateUserInfo" parameterType="dairy">
+	UPDATE diary_info SET movie_id='${movieId}', diary_title='${diaryTitle}', diary_content='${diaryContent}', 
+    viewing_together='${viewingTogether}', viewing_date='${viewingDate}', viewing_location='${viewingLocation}' 
+    
+    <if test="diaryImage != null">	<!-- 이미지 첨부 안하면 기존 이미지 저장 -->
+    , diary_image='${diaryImage}'
+    </if>
+    
+    WHERE diary_id=${diaryId}
+	</update>
+	
 </mapper>

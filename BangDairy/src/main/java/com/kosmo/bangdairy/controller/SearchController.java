@@ -57,7 +57,7 @@ public class SearchController {
 	
 	/* 메소드명 : searchBy
 	 * 기능 : 영화 리스트 페이지에서 라디오 버튼 클릭하면 해당 기준(+검색어)에 맞는 영화 리스트 보여줌, 페이징, 평점 입력
-	 * 변수 : tabName, pageNum, selectOrder
+	 * 변수 : tabName, pageNum, selectOrder, session
 	 * 작성자 : 배은주
 	 */
 	@ResponseBody
@@ -124,7 +124,7 @@ public class SearchController {
 	
 	/* 메소드명 : insertStar
 	 * 기능 : 영화 리스트 페이지에서 평점 입력하면 DB예 insert
-	 * 변수 : starLength, movieId
+	 * 변수 : starLength, movieId, session
 	 * 작성자 : 배은주
 	 */
 	@ResponseBody

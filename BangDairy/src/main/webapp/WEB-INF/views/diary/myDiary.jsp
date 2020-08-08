@@ -1,13 +1,9 @@
-<%@page import="com.kosmo.bangdairy.vo.DairyVO"%>
-<%@page import="com.kosmo.bangdairy.vo.MovieVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kosmo.bangdairy.vo.AccountFormVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -56,10 +52,6 @@
 <link rel="stylesheet" href="resources/css/dairycss/writeDiary.css">
 
 
-
-
-
-	
 <!-- script
     ================================================== -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -83,81 +75,56 @@
 		class="s-content s-content--narrow s-content--no-padding-bottom">
 		<article class="row format-audio">
 
-		<!-- 로그인 정보 -->
-		<%
-		AccountFormVO vo = new AccountFormVO();
-        HttpSession sess = request.getSession();
-        String id = (String) sess.getAttribute("userId");
-        vo.setUserId(id);
-		%>
+
+			
 			<c:forEach items="${userInfo}" var="userInfo">
-		
-			<p style="font-size: 35px">${userInfo.userId}님 다이어리</p>
-	
-			<!-- 나의 프로필 START -->
-			<div class="myleftTap">
-				<h3 class="s-content__author-name5">
-					</br>
-					</br> <img src="resources/images/avatars/user-03.jpg" alt=""> </br>
-					</br>
-					${userInfo.userId} 님</br>
-					<a href="#0">나의 프로필 보기</a>
-					</h4>
-					<hr/>
-					<div id="myrightprofile">
-						<h4>
-						이메일 : ${userInfo.userEmail}
-						<br/>
-						생년월일 : ${fn:substring(userInfo.userReg, 2, 4)}월 
-						${fn:substring(userInfo.userReg, 4, 6)}일
-						<br/>
-						<c:if test="${userInfo.userGender == 2}">
-						성별 : 여자
-						</c:if>
-						<c:if test="${userInfo.userGender == 1}">
-						성별 : 남자
-						</c:if>
-						</h4>
-					</div>
-					<hr/>
-					<div id="rigthmakediary">
-						</br>
-						</br>
-						<input type="button" class="submit btn--primary btn--large full-width" onclick="location.href='writediary'" value="새글등록">
-					</div>
-			</div>
-			<!-- 나의 프로필 END -->
+				<p style="font-size: 35px">${userInfo.userId}님 다이어리</p>
+
+				<!-- 나의 프로필 START -->
+				<div class="myleftTap">
+					<h3 class="s-content__author-name5">
+					
+						<!-- 프로필 사진 -->
+						</br></br><img src="resources/images/avatars/user-03.jpg" alt=""></br></br>
+						${userInfo.userId}님</br>
+						<a href="#0">나의 프로필 보기</a>
+						<hr/>
+						
+						<div id="myProfile">
+							이메일 : ${userInfo.userEmail} <br/>
+							생년월일 : ${fn:substring(userInfo.userReg, 2, 4)}월
+									${fn:substring(userInfo.userReg, 4, 6)}일 <br/>
+							
+							<!-- 성별 -->
+							<c:if test="${userInfo.userGender == 2}">
+								성별 : 여자
+							</c:if>
+							<c:if test="${userInfo.userGender == 1}">
+								성별 : 남자
+							</c:if>
+						</div><hr/>
+					
+					<!-- 글 등록 버튼 -->
+					<input type="button" class="submit btn--primary btn--large full-width"
+					onclick="location.href='writediary'" value="새글등록">
+				</div>
+				<!-- 나의 프로필 END -->
 			</c:forEach>
-<div class="diaryDetail" style="margin-left:300px;">
-
-<!-- Ajax로 다이어리 디테일 붙이는곳 -->
-</div>			
-			<div class="myRightTap">
-
-<!-- Ajax로 다이어리 리스트, 페이지 번호 붙이는 곳 -->
-
-
-
-
-
-
-
-
-
-
-
-
+			
+			<div class="diaryDetail" style="margin-left:300px;">
+				<!-- Ajax로 다이어리 디테일 붙이는곳 -->
 			</div>
-
+			
+			<div class="myRightTap">
+				<!-- Ajax로 다이어리 리스트, 페이지 번호 붙이는 곳 -->
+			</div>
 		</article>
 	</section>
-
 
 	<!-- Java Script
     ================================================== -->
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
 	<%@ include file="../../../footer.jsp"%>
-
 </body>
 </html>
