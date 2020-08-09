@@ -61,6 +61,11 @@ public class AdminServiceImpl implements AdminService {
 	public IndieVO getIndieOne(IndieVO vo) {
 		return adminDAO.getIndieOne(vo);
 	}
+
+	@Override
+	public int updateIndieConfirm(IndieVO vo) {
+		return adminDAO.updateIndieConfirm(vo);
+	}
 	
 	
 }

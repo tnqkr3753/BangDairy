@@ -53,6 +53,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public IndieVO getIndieOne(IndieVO vo) {
 		return sqlSession.selectOne("AdminDAO.getIndieOne",vo);
 	}
+	@Override
+	public int updateIndieConfirm(IndieVO vo) {
+		return sqlSession.update("AdminDAO.updateIndieConfirm",vo);
+	}
 	
 	
 	

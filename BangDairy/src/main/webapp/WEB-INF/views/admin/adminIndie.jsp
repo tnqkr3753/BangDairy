@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					<div class="form-inline">
-						<input class="form-control mr-sm-2 search" type="text" placeholder="ID 검색" /> 
+						<input class="form-control mr-sm-2 search" type="text" placeholder="제목 검색" /> 
 						<button class="btn btn-primary my-2 my-sm-0 btn-search">
 							Search
 						</button>

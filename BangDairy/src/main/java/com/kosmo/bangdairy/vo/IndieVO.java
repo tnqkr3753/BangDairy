@@ -195,6 +195,18 @@ public String getIndieConfirm() {
 public void setIndieConfirm(String indieConfirm) {
 	this.indieConfirm = indieConfirm;
 }
+
+@Override
+public String toString() {
+	return "IndieVO [indieId=" + indieId + ", indieTitle=" + indieTitle + ", indieDirector=" + indieDirector
+			+ ", indieCountry=" + indieCountry + ", indieMakedate=" + indieMakedate + ", indiePlot=" + indiePlot
+			+ ", indieActor=" + indieActor + ", indieAddr=" + indieAddr + ", indieKeyword=" + indieKeyword
+			+ ", indieViewingHits=" + indieViewingHits + ", indieUpdateDate=" + indieUpdateDate + ", indiePosterSize="
+			+ indiePosterSize + ", userId=" + userId + ", indieGenre=" + indieGenre + ", indieConfirm=" + indieConfirm
+			+ ", indieLike=" + indieLike + ", indieHate=" + indieHate + ", regDate=" + regDate + ", indiePosterAddr="
+			+ indiePosterAddr + ", file=" + file + ", path=" + path + "]";
+}
+
 }
 
 

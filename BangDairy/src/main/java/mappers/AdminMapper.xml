@@ -54,16 +54,22 @@
 	SELECT * FROM user_qna WHERE qna_id = #{qnaId}
 </select>
 <select id="getIndieList" parameterType="hashmap" resultType="indie">
-	SELECT * FROM indie_movie_info 
+	SELECT im.*,sum(nvl(iu.indie_like,"0")) as indie_like,sum(nvl(iu.indie_hate,"0")) as indie_hate  FROM indie_movie_info im left outer join indie_user iu
+	ON im.indie_id = iu.indie_id
 	<if test="searchWord != null">
-	WHERE replace(indie_title,' ','') like "${searchWord}%"
+	WHERE replace(im.indie_title,' ','') like "${searchWord}%"
 	</if>
-	ORDER BY indie_confirm asc,indie_update_date desc
+	GROUP BY im.indie_id
+	ORDER BY im.indie_confirm asc,im.indie_update_date desc
 	LIMIT ${page}
 </select>
 <select id="getIndieOne" parameterType="indie" resultType="indie">
 	SELECT * FROM indie_movie_info WHERE indie_id = #{indieId}
 </select>
+<update id="updateIndieConfirm" parameterType="indie">
+	UPDATE indie_movie_info SET indie_confirm = #{indieConfirm}
+	WHERE indie_id = #{indieId}
+</update>
 	
 	
 </mapper>

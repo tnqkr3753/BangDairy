@@ -11,7 +11,7 @@
 	<th colspan="2">줄거리</th>
 	<th>영화 링크</th>
 	<th>키워드</th>
-	<th><c:if test="${vo.indieConfirm ne 'y' }"><button class="btn btn-primary request-indie">허가</button></c:if></th>
+	<th><c:if test="${vo.indieConfirm ne 'y' }"><button class="btn btn-primary manage-indie" value="permit">허가</button></c:if></th>
 </tr>
 <tr name="${vo.indieId}">
 	<td>${vo.indieCountry }</td>
@@ -19,7 +19,7 @@
 	<td>${vo.indieActor }</td>
 	<td><fmt:formatDate value="${vo.indieMakedate }" type="date" dateStyle="full" /></td>
 	<td colspan="2">${vo.indiePlot }</td>
-	<td><a href="${vo.indieAddr }">${vo.indieAddr }</a></td>
+	<td><a href="${vo.indieAddr }" target="_blank">${vo.indieAddr }</a></td>
 	<td>${vo.indieKeyword }</td>
-	<td><button class="btn btn-danger request-indie">벤</button></td>
+	<td><button class="btn btn-danger manage-indie" value="ban">벤</button></td>
 </tr>

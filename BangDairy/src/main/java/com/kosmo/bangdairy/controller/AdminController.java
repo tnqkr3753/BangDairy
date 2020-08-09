@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.AdminService;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.CommentVO;
@@ -93,6 +94,7 @@ public class AdminController {
 				break;
 			case "indie":
 				 list = adminService.getIndieList(hash);
+				 LoggerAspect.logger.info("IndieList : "+list);
 				mv.setViewName("admin/adminIndie");
 				break;
 			default:
@@ -129,14 +131,32 @@ public class AdminController {
 		System.out.println(qvo);
 		return qvo.getQnaAnswer();
 	}
+	/*
+	 * 메소드명		: getIndieOne
+	 * 기능			: 저장된 인디영화의 정보를 html로 띄워줌
+	 * 변수			: IndieVO
+	 * 작성자			: 박윤태
+	 */
 	@ResponseBody
-	@RequestMapping(value = "/admin/indie/show")
+	@RequestMapping(value = "/admin/indie/show",method = RequestMethod.POST)
 	public ModelAndView getIndieOne(IndieVO vo) {
 		IndieVO ivo = adminService.getIndieOne(vo);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("vo", ivo);
 		mv.setViewName("admin/indieInfo");
 		return mv;
+	}
+	/*
+	 * 메소드명		: updateIndieConfirm
+	 * 기능			: 인디 영화의 허가 여부를 바꾼다
+	 * 변수			: IndieVO
+	 * 작성자			: 박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/admin/indie/confirm",method = RequestMethod.POST)
+	public int updateIndieConfirm(IndieVO vo) {
+		int result = adminService.updateIndieConfirm(vo);
+		return result;
 	}
 	
 }

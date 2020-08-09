@@ -1,4 +1,5 @@
 $(function(){
+    /* 관리 페이지 */
     var searchWord = "all";
     var page = 1;
     var type = null;
@@ -118,21 +119,40 @@ $(function(){
             $(this).closest('td').data('status',"required");
         }
     })
-    // TODO 승인, 벤 버튼 이벤트
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /* TODO 승인, 벤 버튼 이벤트 */
+    //허가     //벤
+    $(document).on('click',".manage-indie",function(){
+        var indietype = $(this).val();
+        var indieConfirm = "n";
+        if(indietype=="ban") {
+            indieConfirm = "b";
+        }else if (indietype =="permit"){
+            indieConfirm = "y";
+        }
+        var id = $(this).closest("tr").attr('name');
+        var result = confirm(id+ "번 영화를 " + indietype + " 하시겠습니까?");
+        var inputData = {"indieId":id,"indieConfirm":indieConfirm}
+        if(result){
+            $.ajax({
+                type:"POST",
+                url:"admin/"+type+"/confirm",
+                async : false,
+                data:inputData,
+                dataType: "text",
+                success: function (data) {
+                        if(data == 1){
+                            alert("성공적으로 수정되었습니다.");
+                            show(type,searchWord,page);
+                        }else{
+                            alert("수정에 실패하였습니다.");
+                        }
+                },
+                error:function(e){
+                    alert("인디영화 수정 오류");
+                }
+            });
+        }
+    })
     
     /* 보여주기 함수 */
     function show(type,searchWord,page){
@@ -174,4 +194,7 @@ $(function(){
             }
         });
     }
+
+
+    /* 통계 페이지 */
 });
