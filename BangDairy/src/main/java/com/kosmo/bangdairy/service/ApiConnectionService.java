@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -45,8 +46,8 @@ public class ApiConnectionService {
 		 /*URL*/ 
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
 		String dts = df.format(cal.getTime());
-		cal.add(Calendar.MONTH, 1);
-		String dtsPlus = df.format(cal.getTime());
+		Calendar now  = Calendar.getInstance();
+		String dtsPlus = df.format(now.getTime());
 		  StringBuilder urlBuilder = new StringBuilder("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y");//
 		 
 		  /*Service Key*/ 
@@ -312,8 +313,8 @@ public class ApiConnectionService {
 	public void runService(Calendar cal) {
 		ArrayList<MovieVO> movieArr = null;
 		try {
-			movieArr = getMovieStill(cal);
-//			movieArr = getMovie(cal);
+//			movieArr = getMovieStill(cal);
+			movieArr = getMovie(cal);
 //			movieArr = updateMovieOpening(cal);
 		} catch (Exception e) {
 			logger.error("api접근 오류 : "+e.getMessage());
@@ -325,5 +326,9 @@ public class ApiConnectionService {
 		if (arr != null) {
 			threadInsertService.insertStill(arr);
 		}
+	}
+	public Date getLastUpdate() {
+		MovieVO vo = threadInsertService.getLastUpdate();
+		return vo.getUpdateDate();
 	}
 }

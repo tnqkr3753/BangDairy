@@ -8,7 +8,7 @@ public interface AccountFormService {
 	public int idCheck(String id);
 	public int emailCheck(String email);
 	public int insertUser(AccountFormVO vo);
-	public int signInUser(AccountFormVO vo);
+	public AccountFormVO signInUser(AccountFormVO vo);
 	public AccountFormVO checkForKakao(AccountFormVO vo);
 	public int joinKakao(AccountFormVO vo);
 }

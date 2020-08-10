@@ -88,8 +88,8 @@
                          
                           <ul>
                 
-                            <li><a href="indieList.do">인디영화</a></li>
-                            <li><a href="Independent.do">신청</a></li>
+                            <li><a href="indieList">인디영화</a></li>
+                            <li><a href="Independent">신청</a></li>
                            
                             </ul>
                     <!-- end header__nav -->

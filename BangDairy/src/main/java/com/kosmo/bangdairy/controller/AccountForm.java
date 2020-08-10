@@ -11,9 +11,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -100,52 +97,15 @@ public class AccountForm {
 	@RequestMapping(value="/SignInUser", method = RequestMethod.POST)
 	@ResponseBody
 	public int signInUser( AccountFormVO vo,HttpSession sess,HttpServletRequest request) {
-		int result = accountFormService.signInUser(vo);
-		if (result==1) {
-			sess.setAttribute("userId", vo.getUserId());
-			sess.setAttribute("userType", vo.getUserType());
-			//sess.setMaxInactiveInterval(300);
-			// 소켓 시작
-			
-			String HOST = "192.168.0.22";
-			int PORT = 8765;
-			Socket socket=null;
-			BufferedOutputStream bos=null;
-			try {
-				
-				socket = new Socket(HOST,PORT);
-				System.out.println("클라이언트 접속");
-				
-				//쓰기
-				bos.write("2".getBytes());
-				int max_title_length = 4;
-	            int title_length = 0; //유저의 영화목록 불러오기	
-	            bos.write(Integer.toString(title_length).getBytes());
-	            
-	            if (max_title_length - Integer.toString(title_length).getBytes().length !=0 ) {
-	            	for(int i=0; i< max_title_length-Integer.toString(title_length).getBytes().length; i++) {
-	            		System.out.println(i);
-	            		bos.write(" ".getBytes());
-	            	}
-	            }
-				//읽기
-				BufferedReader in = new BufferedReader(
-						new InputStreamReader(socket.getInputStream()));
-				
-				ArrayList<String> list = new ArrayList<String>();
-				String rev;
-				while((rev=in.readLine())!=null) {
-					System.out.println("받음:"+rev);
-					list.add(rev);
-				}
-				// 여기서 리스트를 DB에 넘겨서 검색결과 받아오기
-				//=====================================
-				
-				//=====================================
-				in.close();
-				socket.close();
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
+		AccountFormVO avo = accountFormService.signInUser(vo);
+		int result = 0;
+		if (avo!=null) {
+			result=1;
+			sess.setAttribute("userId", avo.getUserId());
+			sess.setAttribute("userType", avo.getUserType());
+			System.out.println(avo);
+			if(avo.getUserType().equals("0")) {
+				result = 2; //admin
 			}
 		}
 		return result;
@@ -177,18 +137,22 @@ public class AccountForm {
 		vo.setAbsoluteFilePath((String)userInfo.get("profile"));
 		vo.setUserEmail((String)userInfo.get("email"));
 		vo.setUserType("2");
+		ModelAndView mv = new ModelAndView();
 		AccountFormVO avo = accountFormService.checkForKakao(vo);
 		if (avo != null) {
 			//이미 카카오 계정으로 가입이 되어있는 사람
 			session.setAttribute("userId", avo.getUserId());
 			session.setAttribute("userType", avo.getUserType());
+			if(avo.getUserType().equals("0")) {
+				mv.setViewName("admin/adminMain");
+			}
+			else mv.setViewName("redirect:/index.jsp");
 		}else {
 			accountFormService.joinKakao(vo);
 			session.setAttribute("userId", vo.getUserId());
 			session.setAttribute("userType", vo.getUserType());
+			mv.setViewName("redirect:/index.jsp");
 		}
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/index.jsp");
 		return mv;
 	}
 }

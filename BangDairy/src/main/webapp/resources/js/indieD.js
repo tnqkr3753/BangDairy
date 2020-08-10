@@ -1,5 +1,13 @@
 "use strict";
 jQuery(document).ready(function ($) {
+	
+	
+	
+	
+	
+	
+	
+	
 
     $(window).load(function () {
         $(".loaded").fadeOut();
@@ -104,12 +112,12 @@ jQuery(document).ready(function ($) {
 
 //skillbar section
 
-    var skillBarTopPos = jQuery('.skillbar').position().top;
-    jQuery(document).scroll(function () {
-        var scrolled_val = $(document).scrollTop().valueOf();
-        if (scrolled_val > skillBarTopPos - 250)
-            startAnimation();
-    });
+//    var skillBarTopPos = jQuery('.skillbar').position().top;
+//    jQuery(document).scroll(function () {
+//        var scrolled_val = $(document).scrollTop().valueOf();
+//        if (scrolled_val > skillBarTopPos - 250)
+//            startAnimation();
+//    });
 
     function startAnimation() {
         jQuery('.skillbar').each(function () {
@@ -180,6 +188,10 @@ jQuery(document).ready(function ($) {
     });
 
     //End
+   
+    
+    
+    
 
 });
 

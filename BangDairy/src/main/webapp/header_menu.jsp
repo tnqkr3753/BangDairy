@@ -14,7 +14,7 @@
 
                 <div class="header__logo">
                     <a class="logo" href="index.jsp">
-                        <img src="/bangdairy/resources/images/123.png" alt="Homepage" >
+                        <img src="/bangdairy/resources/images/logoMovie.png" alt="Homepage" >
                     </a>
                 </div> <!-- end header__logo -->
 
@@ -90,8 +90,8 @@
                           <ul>
                 
 
-                            <li><a href="indieList.do">인디영화</a></li>
-                            <li><a href="Independent.do">신청</a></li>
+                            <li><a href="indieList">인디영화</a></li>
+                            <li><a href="Independent">신청</a></li>
                            
                             </ul>
                     <!-- end header__nav -->

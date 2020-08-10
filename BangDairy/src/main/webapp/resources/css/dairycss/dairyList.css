@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+/* 평점 */
+
+.starR {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starR.on{background-position:0 0;}
+
+td, th {
+	text-align: center;
+}
+
+/* 영화정보 테이블 반응형 리스트 */
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "영화"; }
+	td:nth-of-type(2):before { content: "영화제목"; }
+	td:nth-of-type(3):before { content: "장르"; }
+	td:nth-of-type(4):before { content: "개봉일"; }
+	td:nth-of-type(5):before { content: "평점"; }
+}
+
+/* clearfix */
+.clearfix:before, .clearfix:after{
+	content:"";, display: table;
+}
+.clearfix:after{
+	clear:both;
+}
+.clearfix{
+	*zoom:1;
+}
+
+/* Basic Styles */
+.clearfix {
+	height: 40px;
+	width: 100%;
+	background: #555555;
+	font-size: 11pt;
+	font-family: 'PT Sans', Arial, Sans-serif;
+	font-weight: bold;
+	position: relative;
+	border-bottom: 2px solid #444444;
+}
+.clearfix ul{
+	padding: 0;
+	margin: 0 auto;
+	width: 600px;
+	height: 40px;
+}
+.clist{
+	display: inline;
+	float: left;
+}
+.clearfix a{
+	color: black;
+	display: inline-block;
+	width: 95px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 40px;
+	text-shadow: 1px 1px 0px #283744;
+}
+.clist a{
+	border-right: 1px solid #444444;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	color: white;
+}
+.clist:last-child a{
+	border-right: 0;
+    }
+.clearfix a:hover, .clearfix a:active{
+	background-color: #8c99a4;
+}
+.clearfix a#pull{
+	display: none;
+}
+
+/*Styles for screen 600px and lower*/
+@media only screen and (max-width : 600px) {
+	.clearfix {
+		border-bottom: 0;
+		height: auto;
+	}
+	.clearfix ul {
+		display: none;
+		height: auto;
+	}
+	.clearfix a {
+	  	text-align: left;
+	  	width: 100%;
+	  	text-indent: 25px;
+  	}
+	.clearfix a#pull {
+		display: block;
+		background-color: #151515;
+		width: 100%;
+		position: relative;
+		color: white;
+	}
+	.clearfix a#pull:after {
+		content:"";
+		background: url('nav-icon.png') no-repeat;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 15px;
+		top: 10px;
+	}
+	.clist {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+	.clist a {
+		border-bottom: 1px solid #444444;
+	}
+}
+
+/* Select Box */
+#order {
+	float:right;
+}
+
+.comments-wrap {
+	margin-top: 0rem;
+	padding: 0rem;
+}
+
+#comments {
+    max-width: 1500px;
+    z-index: 10000;
+}

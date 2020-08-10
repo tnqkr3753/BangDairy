@@ -33,6 +33,8 @@
 <!-- script
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 <!-- <script src="resources/js/modernizr.js"></script> -->
 <!-- <script src="resources/js/pace.min.js"></script> -->
 
@@ -113,7 +115,7 @@
 				<p>${vo.plot }</p>
 
 				<%-- 영화 감독 TODO --%>
-				<h2>DIRECTOR</h2> 
+				<h2>감독</h2> 
 				
 				<section id="two" class="wrapper alt spotlight style2">
 						<div class="inner">
@@ -152,7 +154,7 @@
 				<%-- 영화 감독 끝 --%>
 
 				<%-- 영화 배우 시작 --%>
-				<h2>ACTOR</h2>
+				<h2>배우</h2>
 				<div class="col-twelve">
 					<div class="table-responsive">
 						<table>
@@ -194,9 +196,13 @@
 				<%-- 영화 배우정보 끝 --%>
 
 				<%-- 영화 그래프 시작 --%>
-				<h2>GRAPH</h2>
-				여기다 그래프를
-				넣어~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				<h2>타 사이트 댓글 반응</h2>
+				<div id="wordcloud" align="center" >
+		        </div>
+		        <div class="legend"  align="center" style="width:60%;">
+		          빈도수가 높은 단어는 크지만 흐립니다. 빈도수가 낮은 단어는 작지만 진합니다.
+		       
+		        </div>
 				<%-- 영화 그래프 끝 --%>
 
 			</div>

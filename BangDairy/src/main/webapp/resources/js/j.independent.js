@@ -15,7 +15,7 @@
 	});
 	
 	 $("#makebtn").click(function() {
-	var dynamicTag = '<input type="text" name="indieActor"  class="type01 " style="width:60px;" msg="감독을">';
+	var dynamicTag = '<input type="text" name="indieActor"  class="type01 " style="width:60px;" msg="배우를">';
 	$("#actorbutton").append(dynamicTag);
 	
 	
@@ -27,9 +27,7 @@
 	
 	
 });
-
-	
-
+	 
 	
 	$($("#ov_items").children().get(0)).attr("src", $($("#ov_items").children().get(0)).attr("ov_src") );
 
@@ -85,14 +83,14 @@ function remove_ajax(_this){
 function fn_submit(){
 
 	
-//		if($('[name="genreTitle"]')){
-//			alert('장르를 눌러주세요');
-//			return;
-//		}
-		alert("등록이 완료되었습니다.")
+	if(checkForm("frm")){
+	
 		$("#frm").submit();
 	}
+}
 	
+
+
 
 
 

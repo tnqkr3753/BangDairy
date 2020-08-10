@@ -18,6 +18,11 @@ public interface IndieSevice {
 	public List<IndieVO>selectIndieInfo();
 	public List<IndieVO>indieGnareSelect();
 	public IndieVO selectIndieDetail(IndieVO ivo);
-	
-	
+	public int selectTotalCount(String searchWord);
+	public List<HashMap> selectIndiepaging(int pNum,String searchWord);
+	public int goodInsert(int goodId1, String userId);
+	public int badInsert(int badid1, String userId);
+	public int selectEqulegood(int goodId1, String userId);
+	public int selectNull(int goodId1, String userId);
+
 }

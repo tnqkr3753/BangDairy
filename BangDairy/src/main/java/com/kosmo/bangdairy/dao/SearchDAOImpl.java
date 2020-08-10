@@ -19,7 +19,7 @@ public class SearchDAOImpl implements SearchDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId) {					// ��ȭ �������� �˻�
+	public List<HashMap> searchMovie(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId, String genre) {					// ��ȭ �������� �˻�
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
@@ -27,12 +27,13 @@ public class SearchDAOImpl implements SearchDAO {
 		m.put("movieTitle", vo.getMovieTitle());
 		m.put("selectOrder", selectOrder);
 		m.put("userId", userId);
-
+		m.put("genre", genre);
+		
 		return sqlSession.selectList("SearchDAO.searchMovie", m);
 	}
 	
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// ���� �̸����� �˻�
+	public List<HashMap> searchDirector(DirectorVO vo, int firstRow, int endRow, String selectOrder, String userId, String genre) {	// ���� �̸����� �˻�
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
@@ -40,12 +41,13 @@ public class SearchDAOImpl implements SearchDAO {
 		m.put("directorName", vo.getDirectorName());
 		m.put("selectOrder", selectOrder);
 		m.put("userId", userId);
+		m.put("genre", genre);
 
 		return sqlSession.selectList("SearchDAO.searchDirector", m);
 	}
 
 	@Override
-	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// ��� �̸����� �˻�
+	public List<HashMap> searchActor(ActorVO vo, int firstRow, int endRow, String selectOrder, String userId, String genre) {	// ��� �̸����� �˻�
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
@@ -53,12 +55,13 @@ public class SearchDAOImpl implements SearchDAO {
 		m.put("actorName", vo.getActorName());
 		m.put("selectOrder", selectOrder);
 		m.put("userId", userId);
+		m.put("genre", genre);
 
 		return sqlSession.selectList("SearchDAO.searchActor", m);
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId) {	// Ű����� �˻�
+	public List<HashMap> searchKeywords(MovieVO vo, int firstRow, int endRow, String selectOrder, String userId, String genre) {	// Ű����� �˻�
 		HashMap m = new HashMap();
 		
 		m.put("firstRow", firstRow);
@@ -66,30 +69,46 @@ public class SearchDAOImpl implements SearchDAO {
 		m.put("keyword", vo.getKeyword());
 		m.put("selectOrder", selectOrder);
 		m.put("userId", userId);
-
+		m.put("genre", genre);
+		
 		return sqlSession.selectList("SearchDAO.searchKeywords", m);
 	}
 
 	@Override
-	public int searchCountTitle(MovieVO vo) {	// ��ü ������ ��
-		return sqlSession.selectOne("SearchDAO.searchCountTitle", vo);
+	public int searchCountTitle(MovieVO vo, String genre) {	// ��ü ������ ��
+		HashMap m = new HashMap();
+		m.put("genre", genre);
+		m.put("movieTitle", vo.getMovieTitle());
+		
+		return sqlSession.selectOne("SearchDAO.searchCountTitle", m);
 	}
 
 	@Override
-	public int searchCountDirector(DirectorVO vo) {
-		return sqlSession.selectOne("SearchDAO.searchCountDirector", vo);
+	public int searchCountDirector(DirectorVO vo, String genre) {
+		HashMap m = new HashMap();
+		m.put("genre", genre);
+		m.put("directorName", vo.getDirectorName());
+		
+		return sqlSession.selectOne("SearchDAO.searchCountDirector", m);
 	}
 
 	@Override
-	public int searchCountActor(ActorVO vo) {
-		return sqlSession.selectOne("SearchDAO.searchCountActor", vo);
+	public int searchCountActor(ActorVO vo, String genre) {
+		HashMap m = new HashMap();
+		m.put("genre", genre);
+		m.put("actorName", vo.getActorName());
+		
+		return sqlSession.selectOne("SearchDAO.searchCountActor", m);
 
 	}
 
 	@Override
-	public int searchCountKeywords(MovieVO vo) {
-		return sqlSession.selectOne("SearchDAO.searchCountKeywords", vo);
-
+	public int searchCountKeywords(MovieVO vo, String genre) {
+		HashMap m = new HashMap();
+		m.put("genre", genre);
+		m.put("keyword", vo.getKeyword());
+		
+		return sqlSession.selectOne("SearchDAO.searchCountKeywords", m);
 	}
 
 	@Override
