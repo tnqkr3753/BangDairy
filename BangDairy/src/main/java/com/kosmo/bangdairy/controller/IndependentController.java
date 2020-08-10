@@ -55,6 +55,29 @@ public class IndependentController {
 		mv.setViewName("indie/Independent");
 		return mv;}
 	
+	/*
+	 * 메소드명	: indiePnum
+	 * 기능		: pNum을 보내
+	 * 변수 		:
+	 * 작성자		: 신진섭
+	 */
+	@ResponseBody
+	@RequestMapping(value = "indieList/{pNum1}", method = RequestMethod.GET)
+	public ModelAndView indiePnum(@PathVariable(value = "pNum1", required = true) String pageNum) {
+		
+		ModelAndView mv = new ModelAndView(); 
+		
+		int pNum = Integer.parseInt(pageNum); // 현재 선택한 페이지 번호 받아와서 형 변환
+		System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+		System.out.println(pNum);
+		mv.addObject("pNum", pNum);
+		mv.setViewName("indie/listIndie");
+			// 전체 페이지 수 구하기
+
+		return mv;
+	}
+	
+	
 	
 	/*
 	 * 메소드명	: indieList
@@ -62,29 +85,122 @@ public class IndependentController {
 	 * 변수 		:
 	 * 작성자		: 신진섭
 	 */
-	@RequestMapping(value = "/indieList")
+
+	@RequestMapping(value = {"/indieList"})
 	public ModelAndView indieList() {
-	ModelAndView mv = new ModelAndView();
-	List<IndieVO> result=(List<IndieVO>)indieSevice.selectIndieInfo();
-	mv.addObject("result",result);
+		
+		ModelAndView mv = new ModelAndView();
+	System.out.println("+++++++++++++++++++++++++");
+
+	mv.addObject("result",(List<IndieVO>)indieSevice.selectIndieInfo());
+	mv.addObject("totalPage",indieSevice.selectTotalCount());
+	
 	mv.setViewName("indie/listIndie");
 	return mv;
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "indieListPaging/{pNum}", method = RequestMethod.GET)
-	public ModelAndView indieListPaging(@PathVariable(value = "pNum", required = true) String pageNum){
-		ModelAndView mv = new ModelAndView(); 
-		int pNum = Integer.parseInt(pageNum);
-		System.out.println(pNum);
-		mv.addObject("pNum",pNum);
-		mv.addObject("mlist",indieSevice.searchCountTitle1(pNum));
 	
-		mv.setViewName("indie/listIndie");
+	
+	/*
+	 * 메소드명	: listIndie2
+	 * 기능		: 페이지를 넘김
+	 * 변수 		:
+	 * 작성자		: 신진섭
+	 */
+	@ResponseBody
+	@RequestMapping(value = "listIndie2/{pNum}", method = RequestMethod.GET)
+	public ModelAndView indieListPaging(@PathVariable(value = "pNum", required = true) String pageNum) {
 		
+		ModelAndView mv = new ModelAndView(); 
+		
+		int pNum = Integer.parseInt(pageNum); // 현재 선택한 페이지 번호 받아와서 형 변환
+		
+		System.out.println("***** 현재 내가 선택한 페이지 번호 ***** : " + pNum);
+		mv.addObject("result",indieSevice.selectIndiepaging(pNum));
+		mv.addObject("totalPage",indieSevice.selectTotalCount()); 
+		mv.addObject("pNum", pNum);
+		mv.setViewName("indie/listIndie2");
+			// 전체 페이지 수 구하기
+
 		return mv;
 	}
+	
+	
+	
+	
+	/*
+	 * 메소드명	: goodId
+	 * 기능		: 좋아요를 1 증가시킴 
+	 * 변수 		:
+	 * 작성자		: 신진섭
+	 */
+	@ResponseBody
+	@RequestMapping(value = "goodId/{goodId}", method = RequestMethod.GET)
+	public ModelAndView goodId(HttpSession session,@PathVariable(value = "goodId", required = true) String goodId) {
+		System.out.println("-------------------------------------------------------------)))))))))))))))");
+	ModelAndView mv = new ModelAndView(); 
+		String userId =(String)session.getAttribute("userId");
+		 
+		System.out.println(userId);
+		System.out.println(userId);
+		int goodId1 = Integer.parseInt(goodId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
+		int Null=indieSevice.selectNull(goodId1,userId);        
+		int like= indieSevice.selectEqulegood(goodId1,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
+		if (Null==0) {                                          //인서트해온게 널이면  값을 인서트해줌
+			indieSevice.goodInsert(goodId1,userId);
+		}
+		else if (Null==1 && like==1) {
+			/* indieSevice.updateLike(); */
+		System.out.println("넘겨야할4 인디 아이디" + goodId1);
+		System.out.println("like가 0이고 hate가 1 그러므로 값을 update해야함"+like);
+		 }
+//		 mv.addObject("result2",result);
+		 mv.setViewName("indie/indieDetail");
+		 return mv;
+		/*
+		 * mv.addObject("result"); mv.setViewName("indie/listIndie2");
+		 */
+			// 전체 페이지 수 구하기
+
+//		return mv;
+	}
+
+
+	/*
+	 * 메소드명	: goodId
+	 * 기능		: 싫어요를 1 증가시킴 
+	 * 변수 		:
+	 * 작성자		: 신진섭
+	 */
+	@ResponseBody
+	@RequestMapping(value = "badId/{badId}", method = RequestMethod.GET)
+	public ModelAndView badId(HttpSession session,@PathVariable(value = "badId", required = true) String badId) {
+		System.out.println("-------------------------------------------------------------)))))))))))))))");
+	ModelAndView mv = new ModelAndView(); 
+		String userId =(String)session.getAttribute("userId");
+		System.out.println(userId);
+		System.out.println(userId);
+		int badId1 = Integer.parseInt(badId); // 현재 선택한 페이지 번호 받아와서 형 변환
+		
+		System.out.println("넘겨야할;; 인디 아이디" + badId1);
+//		int hate=indieSevice.badselect(badId1,userId); 
+		indieSevice.badInsert(badId1,userId);
+		 
+		 return mv;
+		/*
+		 * mv.addObject("result"); mv.setViewName("indie/listIndie2");
+		 */
+			// 전체 페이지 수 구하기
+
+//		return mv;
+	}
+	
+	
+	
+	
+	
+
 	/*
 	 * 메소드명	: indieDetail
 	 * 기능		: indielist 에서 인디디테일로 넘어감
@@ -92,10 +208,9 @@ public class IndependentController {
 	 * 작성자		: 신진섭
 	 */
 	@RequestMapping(value = "indieDet" )
-	
-	public ModelAndView indieDetail(IndieVO ivo ,@RequestParam(required = true,value = "indieid")int indieId ) {
+	public ModelAndView indieDetail(HttpSession session, IndieVO ivo ,@RequestParam(required = true,value = "indieid")int indieId ) {
 		ModelAndView mv = new ModelAndView();	
-		
+		String userId =(String)session.getAttribute("userId");
 		ivo.setIndieId(indieId);
 		System.out.println(indieId);
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
@@ -105,11 +220,16 @@ public class IndependentController {
 		System.out.println(result22); 
 		System.out.println("=======================================================");
 		System.out.println(result22);
+		mv.addObject("userId",userId);
 		mv.addObject("result",result22);
 		mv.setViewName("indie/indieDetail");
 		
 		return mv;
 		}
+	
+	
+	
+	
 	
 	/*
 	 * 메소드명	: movieAppImsert

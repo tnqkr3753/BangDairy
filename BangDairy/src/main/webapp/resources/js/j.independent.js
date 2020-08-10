@@ -92,6 +92,8 @@ function fn_submit(){
 
 
 
+
+
 function indie_list_submit(){
 	
 		$("#frm1212").submit();

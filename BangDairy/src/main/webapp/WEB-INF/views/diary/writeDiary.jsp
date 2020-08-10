@@ -119,10 +119,10 @@
 									</tr>
 									<tr>
 										<td>영화 내용</td>
-										<td><input class="form-control" name="diaryContent"
+										<td><textarea class="form-control" name="diaryContent"
 											placeholder="영화 내용을 입력해주세요."
-											style="width: 100%; height: 200px; text-align: center"
-											autocomplete="off" /></td>
+											style="wrap: physical; width: 100%; height: 200px; text-align: left"
+											autocomplete="off"></textarea></td>
 									</tr>
 									<tr>
 										<td>누구와 함께 보셨나요?</td>
@@ -174,8 +174,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#submitCheck').click(function() {	// 등록버튼 클릭했을때
 
+		$('#submitCheck').click(function() {	// 등록버튼 클릭했을때
+			
 			// 사용자가 현재 입력한 값들 얻어옴
 			diaryTitle = $('#diaryTitle').val();
 			movieTitle = $('#movieTitle').val();
@@ -203,6 +204,12 @@
 			// 날짜가 정규식에 맞지 않으면
 			if (!datatimeRegexp.test($('#viewingDate').val())) {
 				alert("날짜는 yyyy-mm-dd 형식으로 입력해주세요.");
+				return false;
+			}
+
+			var result = confirm('입력하시겠습니까?');
+
+			if (!result) {
 				return false;
 			}
 		});

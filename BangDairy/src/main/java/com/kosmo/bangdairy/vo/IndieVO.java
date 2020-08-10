@@ -7,6 +7,10 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class IndieVO {
+	
+	
+	
+	
 private int indieId;
 private String indieTitle;
 private String indieDirector;
@@ -27,6 +31,7 @@ private String indieLike;
 private String indieHate;
 private Date regDate;
 private String indiePosterAddr;
+
 MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변수명
 
 /*

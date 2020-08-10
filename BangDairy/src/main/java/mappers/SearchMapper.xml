@@ -8,12 +8,29 @@
  	SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
  	(SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
- 	(SELECT movie_id FROM movie_info WHERE movie_title LIKE '%${movieTitle}%')
+ 	(SELECT movie_id FROM movie_info WHERE REPLACE(movie_title, ' ', '') LIKE '%${movieTitle}%')
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
  	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
  	ON v.movie_id = m.movie_id
  	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
- 	ON f.movie_id=u.movie_id
+ 	ON f.movie_id = u.movie_id
 
 	<if test="selectOrder.equals('title')">
 	ORDER BY movie_title
@@ -34,8 +51,25 @@
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
  	(SELECT movie_id FROM movie_director WHERE director_id IN 
- 	(SELECT director_id FROM director_info WHERE director_name LIKE '%${directorName}%'))
+ 	(SELECT director_id FROM director_info WHERE REPLACE(director_name, ' ', '') LIKE '%${directorName}%'))
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
   	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
  	ON v.movie_id = m.movie_id
  	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
@@ -60,8 +94,25 @@
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
  	(SELECT movie_id FROM starring WHERE actor_id IN
- 	(SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
+ 	(SELECT actor_id FROM actor_info WHERE REPLACE(actor_name, ' ', '') LIKE '%${actorName}%'))
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id 
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
    	LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
  	ON v.movie_id = m.movie_id
  	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
@@ -86,8 +137,25 @@
  	SELECT m.*, f.gtitle, v.score AS score, ifnull(cnt, 0) count FROM movie_info m INNER JOIN
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
- 	(SELECT movie_id FROM movie_info WHERE keyword LIKE '%${keyword}%')
+ 	(SELECT movie_id FROM movie_info WHERE REPLACE(keyword, ' ', '') LIKE '%${keyword}%')
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
     LEFT OUTER JOIN (SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
  	ON v.movie_id = m.movie_id
  	LEFT OUTER JOIN (SELECT movie_id, count(user_id) cnt FROM movie_score WHERE user_id='${userId}' GROUP BY movie_id) u
@@ -107,35 +175,103 @@
  	</select>
  	
  	<!-- 페이징 : 행의 개수 구하기 (영화제목) -->
-	<select id="searchCountTitle" resultType="int">
+	<select id="searchCountTitle" parameterType="hashmap" resultType="int">
 	SELECT count(*) FROM movie_info m inner join (SELECT group_concat(g.genre_title) as gtitle, movie_id from movie_genre mg 
  	inner join genre_info g on mg.genre_id = g.genre_id where movie_id in (select movie_id from movie_info where movie_title like '%${movieTitle}%')
 	group by movie_id) f ON m.movie_id = f.movie_id
+	
+	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
 	</select> 
 	
 	 <!-- 페이징 : 행의 개수 구하기 (감독이름) -->
-	<select id="searchCountDirector" resultType="int">
+	<select id="searchCountDirector" parameterType="hashmap" resultType="int">
 	SELECT count(*) FROM movie_info m INNER JOIN 
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_director WHERE director_id IN 
  	(SELECT director_id FROM director_info WHERE director_name LIKE '%${directorName}%'))
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
  	</select> 
  	
  	<!-- 페이징 : 행의 개수 구하기 (배우이름) -->
- 	<select id="searchCountActor" resultType="int">
+ 	<select id="searchCountActor" parameterType="hashmap" resultType="int">
  	SELECT count(*) FROM movie_info m INNER JOIN 
  	(SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
  	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN
  	(SELECT movie_id FROM starring WHERE actor_id IN (SELECT actor_id FROM actor_info WHERE actor_name LIKE '%${actorName}%'))
  	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+ 	
+ 	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
  	</select> 
  	
  	<!-- 페이징 : 행의 개수 구하기 (키워드) -->
- 	<select id="searchCountKeywords" resultType="int">
+ 	<select id="searchCountKeywords" parameterType="hashmap" resultType="int">
     SELECT count(*) FROM movie_info m INNER JOIN (SELECT group_concat(g.genre_title) AS gtitle, movie_id FROM movie_genre mg 
 	INNER JOIN genre_info g ON mg.genre_id = g.genre_id WHERE movie_id IN (SELECT movie_id FROM movie_info WHERE keyword LIKE'%${keyword}%')
 	GROUP BY movie_id) f ON m.movie_id = f.movie_id
+	
+	<if test="genre.equals('코메디')">
+	AND gtitle LIKE '%코메디%'
+ 	</if>
+ 	<if test="genre.equals('판타지')">
+	AND gtitle LIKE '%판타지%'
+ 	</if>
+ 	<if test="genre.equals('로맨스')">
+	AND gtitle LIKE '%로맨스%'
+ 	</if>
+ 	<if test="genre.equals('가족')">
+	AND gtitle LIKE '%가족%'
+ 	</if>
+ 	<if test="genre.equals('공포')">
+	AND gtitle LIKE '%공포%'
+ 	</if>
+ 	
  	</select>
  	
  	<!-- 사용자가 입력한 평점 DB에 넣기 -->

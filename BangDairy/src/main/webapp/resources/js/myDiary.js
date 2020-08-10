@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	alert("js 연결 확인");
+	// alert("js 연결 확인");
 	
 	pNum = 1;
 

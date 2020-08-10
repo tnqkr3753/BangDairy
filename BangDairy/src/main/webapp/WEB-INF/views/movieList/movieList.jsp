@@ -68,12 +68,12 @@
 					<!-- 여기는 상단 네비게이션 바 START -->
 					<nav class="clearfix">
 						<ul class="clearfix">
-							<li class="clist"><a href="#">ACTION</a></li>
-							<li class="clist"><a href="#">HORROR</a></li>
-							<li class="clist"><a href="#">DRAMA</a></li>
-							<li class="clist"><a href="#">ANIMATION</a></li>
-							<li class="clist"><a href="#">FANTASY</a></li>
-							<li class="clist"><a href="#">DOCU</a></li>
+							<li class="clist active"><a href="#">전체</a></li>
+							<li class="clist"><a href="#">코메디</a></li>
+							<li class="clist"><a href="#">판타지</a></li>
+							<li class="clist"><a href="#">로맨스</a></li>
+							<li class="clist"><a href="#">가족</a></li>
+							<li class="clist"><a href="#">공포</a></li>
 						</ul>
 						<a id="pull" href="#">CATEGORY</a>
 					</nav>
@@ -82,8 +82,10 @@
 					<!-- 검색창과 Select Box -->
 					<div class="select">
 						<!-- 검색창 -->
-						<input class="form-control" type="text" placeholder="Search"
+						<form action="./search">
+						<input class="form-control" type="text" placeholder="Search" name="movieSearch"
 							style="float: left;">
+						</form>
 
 						<div class="search__tab" style="font-size: 30px; float: right;">
 							<input type="radio" value="Title" name="searchTab"

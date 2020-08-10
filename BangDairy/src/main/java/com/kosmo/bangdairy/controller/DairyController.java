@@ -152,7 +152,8 @@ public class DairyController {
 	@RequestMapping(value = "insertdiary", method = RequestMethod.POST)
 	public ModelAndView insertDairy(DairyVO dvo, HttpSession session) { 
 		// System.out.println("***** insertDiary 확인 *****");
-		
+		ModelAndView mv = new ModelAndView();
+
 		String userId = (String)session.getAttribute("userId"); // 사용자 아이디
 		// System.out.println("***** 사용자 아이디 출력 : " + userId);
 		
@@ -176,7 +177,6 @@ public class DairyController {
 			System.out.println("다이어리 입력 성공");
 		}
 		
-		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:index.jsp");	// index 페이지로 넘겨줌
         return mv;
      }
@@ -196,7 +196,7 @@ public class DairyController {
 		avo.setUserId(userId);
 		
 		List<AccountFormVO> userInfo = dairyService.userInfo(avo);	// 유저 정보
-		// System.out.println("user 정보 확인 : " + userInfo);
+		System.out.println("user 정보 확인 : " + userInfo);
 		
 		mv.addObject("userInfo", userInfo);
         mv.setViewName("diary/myDiary");

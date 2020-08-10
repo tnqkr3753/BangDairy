@@ -143,6 +143,9 @@
 	});
 	
 	$(".btnPaging").click(function() {
+
+		genre = $('.active').text();
+		
 		// alert("페이지 버튼 클릭 확인");
 		tabName = $('input:radio[name="searchTab"]:checked').val(); // 선택된 라디오 버튼의 value 값
 		pNum = $(this).val(); // 현재 클릭한 페이지 num
@@ -154,7 +157,7 @@
 
 		$.ajax({
 			type : 'POST', // 요청 메소드 타입
-			url : "searchBy/" + tabName + "/" + pNum + "/" + selectOrder, // 클라이언트가 HTTP 요청을 보낼 서버의 주소
+			url : "searchBy/" + tabName + "/" + pNum + "/" + selectOrder + "/" + genre, // 클라이언트가 HTTP 요청을 보낼 서버의 주소
 			dataType : "html", // 서버가 리턴하는 데이터 타입
 			error : function(e) { // 통신 실패시
 				alert('btnPaging 통신실패' + e);

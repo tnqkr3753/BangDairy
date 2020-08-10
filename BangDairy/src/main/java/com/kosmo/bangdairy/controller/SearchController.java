@@ -36,10 +36,12 @@ public class SearchController {
 	 * 작성자 : 배은주
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.GET)
-	public ModelAndView searchMovie(@RequestParam(value="movieSearch") String searchWord) {
+	public ModelAndView searchMovie(@RequestParam(value="movieSearch") String searchWord2) {
 		MovieVO vo = new MovieVO();
 		
-		this.searchWord = searchWord; // 검색어
+		// this.searchWord = searchWord; // 검색어
+
+		this.searchWord = searchWord2.replaceAll(" ", "");
 
 		LoggerAspect.logger.info("searchController title : " + searchWord);
 		
@@ -54,17 +56,34 @@ public class SearchController {
 		return mv;
 	}
 	
+	/* 메소드명 : movieInfo
+	 * 기능 : 헤더메뉴에서 영화정보 입력하면 movieList(영화 전체) 페이지로 이동
+	 * 변수 : 
+	 * 작성자 : 배은주
+	 */
+	@RequestMapping(value = "movieInfo", method = RequestMethod.GET)
+	public ModelAndView movieInfo() {
+		searchWord = "";
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("movieList/movieList"); // movieList 페이지로 넘김
+		
+		return mv;
+	}
 	
 	/* 메소드명 : searchBy
 	 * 기능 : 영화 리스트 페이지에서 라디오 버튼 클릭하면 해당 기준(+검색어)에 맞는 영화 리스트 보여줌, 페이징, 평점 입력
-	 * 변수 : tabName, pageNum, selectOrder, session
+	 * 변수 : tabName, pageNum, selectOrder, session, genre
 	 * 작성자 : 배은주
 	 */
 	@ResponseBody
-	@RequestMapping(value = "searchBy/{tabName}/{pNum}/{selectOrder}", method = RequestMethod.POST)
+	@RequestMapping(value = "searchBy/{tabName}/{pNum}/{selectOrder}/{genre}", method = RequestMethod.POST)
 	public ModelAndView searchBy(HttpSession session, @PathVariable(value = "tabName", required = true) String tabName,
 			@PathVariable(value = "pNum", required = true) String pageNum,
-			@PathVariable(value = "selectOrder", required = false) String selectOrder) {
+			@PathVariable(value = "selectOrder", required = false) String selectOrder,
+			@PathVariable(value = "genre", required = false) String genre) {
+		
+		System.out.println("-------------- 장르 출력 : " + genre);
 		
 		ModelAndView mv = new ModelAndView(); 
 		
@@ -85,38 +104,44 @@ public class SearchController {
 		if (tabName.contains("Title")) {						 // "Title" 라디오 버튼을 클릭했을 때			
 			mvo.setMovieTitle(searchWord);
 			
-			totalPage = searchService.searchCountTitle(mvo);	// 전체 페이지 수 구하기
+			totalPage = searchService.searchCountTitle(mvo, genre);	// 전체 페이지 수 구하기
 			
-			System.out.println("***** 전체 페이지수 확인 ***** : " + totalPage);
+			System.out.println("***** Title 전체 페이지수 확인 ***** : " + totalPage);
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchMovie(mvo, pNum, selectOrder, userId));
+			mv.addObject("mList", searchService.searchMovie(mvo, pNum, selectOrder, userId, genre));
 
 		} else if (tabName.contains("Director")) { 				// "Director" 라디오 버튼을 클릭했을 때	
 			dvo.setDirectorName(searchWord);	
 
-			totalPage = searchService.searchCountDirector(dvo);
+			totalPage = searchService.searchCountDirector(dvo, genre);
+
+			System.out.println("***** Director 전체 페이지수 확인 ***** : " + totalPage);
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchDirector(dvo, pNum, selectOrder, userId));
+			mv.addObject("mList", searchService.searchDirector(dvo, pNum, selectOrder, userId, genre));
 		}  else if (tabName.contains("Actor")) { 				// "Actor" 라디오 버튼을 클릭했을 때	
 			avo.setActorName(searchWord);
 			
-			totalPage = searchService.searchCountActor(avo);
+			totalPage = searchService.searchCountActor(avo, genre);
 			
+			System.out.println("***** Actor 전체 페이지수 확인 ***** : " + totalPage);
+
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchActor(avo, pNum, selectOrder, userId));
+			mv.addObject("mList", searchService.searchActor(avo, pNum, selectOrder, userId, genre));
 		}  else if (tabName.contains("Keywords")) {		 		// "Keywords" 라디오 버튼을 클릭했을 때
 			mvo.setKeyword(searchWord);
 			
-			totalPage = searchService.searchCountKeywords(mvo);
-			
+			totalPage = searchService.searchCountKeywords(mvo, genre);
+		
+			System.out.println("***** Keywords전체 페이지수 확인 ***** : " + totalPage);
+
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
-			mv.addObject("mList", searchService.searchKeywords(mvo, pNum, selectOrder, userId));
+			mv.addObject("mList", searchService.searchKeywords(mvo, pNum, selectOrder, userId, genre));
 		}
 		
 		return mv;
@@ -152,5 +177,4 @@ public class SearchController {
 		
 		return searchService.insertStarScore(vo);
 	}
-
 }

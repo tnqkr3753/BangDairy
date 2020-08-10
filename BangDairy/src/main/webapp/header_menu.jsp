@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!-- 세션에서 아이디 가져오기 -->
 <%String userId = (String)session.getAttribute("userId");%>
 <!DOCTYPE html>
 <html>
 <head>
+
 </head>
 <body>
 	<div class="header_sticky">
@@ -79,30 +79,26 @@
                         <li class="has-children">
                             <a href="#0" title="">다이어리</a>
                             <ul class="sub-menu">
-                            <li><a href="insertrecentdairy">다이어리 메인</a></li>
-							<li><a href="getdairy">내 다이어리</a></li>
-							<li><a href="insertdairy">다이어리 작성</a></li></ul>
+                            <li><a href="main_dairy.jsp">다이어리 메인</a></li>
+                            <li><a href="my_dairy.jsp">내 다이어리</a></li>
+                            <li><a href="write_dairy.jsp">다이어리 작성</a></li>
+                            </ul>
                         </li>
-                       
                         <li class="has-children">
                          <a href="#0" title="">인디극장</a>
                          
                           <ul>
+                
 
+                            <li><a href="indieList">인디영화</a></li>
+                            <li><a href="Independent">신청</a></li>
+                           
+                            </ul>
+                    <!-- end header__nav -->
 
-								<li><a href="indieList.do">인디영화</a></li>
-								<li><a href="Independent.do">신청</a></li>
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
 
-							</ul> 
-						</li>
-						<c:if test="${sessionScope.userType eq '0' }">
-							<li><a href="admin">관리자 페이지</a>
-							</li>
-						</c:if>
-						
-						
-					</ul><!-- end header__nav --> <a href="#0" title="Close Menu"
-							class="header__overlay-close close-mobile-menu">Close</a></nav> <!-- end header__nav-wrap -->
+                </nav> <!-- end header__nav-wrap -->
 
             </div> <!-- header-content -->
         </header> <!-- header -->
