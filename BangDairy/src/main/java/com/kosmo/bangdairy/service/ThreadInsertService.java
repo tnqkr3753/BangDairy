@@ -8,4 +8,5 @@ public interface ThreadInsertService {
 	public void insertMovie(List<MovieVO> vo);
 	public void updateMovieOpening(List<MovieVO> vo);
 	public void insertStill(List<MovieVO> vo);
+	public MovieVO getLastUpdate();
 }

@@ -1,6 +1,7 @@
 package com.kosmo.bangdairy.dao;
 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,4 +24,5 @@ public interface ThreadInsertDAO {
 	public DirectorVO selectDirectorInfo(DirectorVO vo);
 	public GenreVO selectGenreInfo(GenreVO vo);
 	public int updateMovieOpening(List<MovieVO> list);
+	public MovieVO getLastUpdate();
 }

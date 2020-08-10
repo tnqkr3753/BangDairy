@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kosmo.bangdairy.dao.AdminDAO;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.DairyVO;
+import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
 
 @Service("adminService")
@@ -49,6 +50,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public QnaVO getQnaAnswer(QnaVO vo) {
 		return adminDAO.getQnaAnswer(vo);
+	}
+
+	@Override
+	public List<IndieVO> getIndieList(HashMap hash) {
+		return adminDAO.getIndieList(hash);
+	}
+
+	@Override
+	public IndieVO getIndieOne(IndieVO vo) {
+		return adminDAO.getIndieOne(vo);
+	}
+
+	@Override
+	public int updateIndieConfirm(IndieVO vo) {
+		return adminDAO.updateIndieConfirm(vo);
 	}
 	
 	

@@ -77,6 +77,13 @@ public class ThreadInsertDAOImpl implements ThreadInsertDAO {
 	public int updateMovieOpening(List<MovieVO> list) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("ThreadInsertDAO.updateMovieOpening",list);
+	}
+
+	@Override
+	public MovieVO getLastUpdate() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ThreadInsertDAO.getLastUpdate");
 	}	
+	
 	
 }
