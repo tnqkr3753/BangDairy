@@ -164,7 +164,9 @@ public class IndependentController {
 	 * 작성자		: 신진섭
 	 */
 		@RequestMapping(value = "indieinsert", method=RequestMethod.POST )
-	public ModelAndView indieInsert(IndieVO ivo){	
+	public ModelAndView indieInsert(HttpSession session,IndieVO ivo){	
+		String id = (String) session.getAttribute("userId");
+		ivo.setApplicant(id);
 		indieSevice.indieInsert(ivo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/indieList");

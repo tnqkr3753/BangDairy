@@ -22,8 +22,8 @@ private String indieAddr;
 private String indieKeyword;
 private int indieViewingHits;
 private Date indieUpdateDate;
-
 private long indiePosterSize;
+private String Applicant;
 private String userId;
 private String indieGenre;
 private String indieConfirm;
@@ -201,16 +201,25 @@ public void setIndieConfirm(String indieConfirm) {
 	this.indieConfirm = indieConfirm;
 }
 
+public String getApplicant() {
+	return Applicant;
+}
+
+public void setApplicant(String applicant) {
+	Applicant = applicant;
+}
+
 @Override
 public String toString() {
 	return "IndieVO [indieId=" + indieId + ", indieTitle=" + indieTitle + ", indieDirector=" + indieDirector
 			+ ", indieCountry=" + indieCountry + ", indieMakedate=" + indieMakedate + ", indiePlot=" + indiePlot
 			+ ", indieActor=" + indieActor + ", indieAddr=" + indieAddr + ", indieKeyword=" + indieKeyword
 			+ ", indieViewingHits=" + indieViewingHits + ", indieUpdateDate=" + indieUpdateDate + ", indiePosterSize="
-			+ indiePosterSize + ", userId=" + userId + ", indieGenre=" + indieGenre + ", indieConfirm=" + indieConfirm
-			+ ", indieLike=" + indieLike + ", indieHate=" + indieHate + ", regDate=" + regDate + ", indiePosterAddr="
-			+ indiePosterAddr + ", file=" + file + ", path=" + path + "]";
+			+ indiePosterSize + ", Applicant=" + Applicant + ", userId=" + userId + ", indieGenre=" + indieGenre
+			+ ", indieConfirm=" + indieConfirm + ", indieLike=" + indieLike + ", indieHate=" + indieHate + ", regDate="
+			+ regDate + ", indiePosterAddr=" + indiePosterAddr + ", file=" + file + ", path=" + path + "]";
 }
+
 
 }
 
