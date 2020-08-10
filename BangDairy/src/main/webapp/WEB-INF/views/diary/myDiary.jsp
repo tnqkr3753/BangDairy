@@ -73,39 +73,52 @@
     ================================================== -->
 	<section
 		class="s-content s-content--narrow s-content--no-padding-bottom">
-		<article class="row format-audio">
+		<article class="row format-audio" id="parents">
 
-
-			
 			<c:forEach items="${userInfo}" var="userInfo">
-				<p style="font-size: 35px">${userInfo.userId}님 다이어리</p>
+				<p class="myDiaryHeader" style="font-size: 35px;">
+				
+				<img src="resources/images/diary/cinema.png" style="width:10%; height:10%;">
+				${userInfo.userId}님의 다이어리
+				<img src="resources/images/diary/cinema.png" style="width:10%; height:10%;">
+				<hr/>
+				</p>
 
 				<!-- 나의 프로필 START -->
-				<div class="myleftTap">
+				<div class="myleftTap" style="border:3px solid black; border-radius:20px; padding:10px; margin:10px;">
 					<h3 class="s-content__author-name5">
 					
+						"${userInfo.userId}" 님
+						</br></br>
 						<!-- 프로필 사진 -->
-						</br></br><img src="resources/images/avatars/user-03.jpg" alt=""></br></br>
-						${userInfo.userId}님</br>
-						<a href="#0">나의 프로필 보기</a>
+						<c:choose>
+						<c:when test="${!empty userInfo.userProfile}">
+						<img src="resources/upload/userProfile/${userInfo.userProfile}" alt=""></c:when>
+						<c:otherwise> <!-- 마이프로필에 등록된 이미지가 없으면 -->
+						<img src="resources/upload/userProfile/userDefaultImage.png" style="width:70%; height:70%;"> </c:otherwise>
+						</c:choose>
+						</br></br>
+						<a href="myPage">마이페이지로<br/>이동하기</a>
 						<hr/>
 						
-						<div id="myProfile">
-							이메일 : ${userInfo.userEmail} <br/>
-							생년월일 : ${fn:substring(userInfo.userReg, 2, 4)}월
-									${fn:substring(userInfo.userReg, 4, 6)}일 <br/>
-							
+						<div id="myProfile" style="font-size:32px;">
+							<ul>
+							<!-- 생일 -->
+							<br/>
+							<li style="text-align:left;">생년월일 <br/>: ${fn:substring(userInfo.userReg, 2, 4)}월
+																	  ${fn:substring(userInfo.userReg, 4, 6)}일</li><br/>
 							<!-- 성별 -->
+							<li style="text-align:left;">
 							<c:if test="${userInfo.userGender == 2}">
 								성별 : 여자
 							</c:if>
 							<c:if test="${userInfo.userGender == 1}">
 								성별 : 남자
-							</c:if>
-						</div><hr/>
+							</c:if></li><br/>
+						</div><hr/><br/>
 					
 					<!-- 글 등록 버튼 -->
-					<input type="button" class="submit btn--primary btn--large full-width"
+					<input type="button" id="btnRegisterDiary"
 					onclick="location.href='writediary'" value="새글등록">
 				</div>
 				<!-- 나의 프로필 END -->
@@ -113,6 +126,7 @@
 			
 			<div class="diaryDetail" style="margin-left:300px;">
 				<!-- Ajax로 다이어리 디테일 붙이는곳 -->
+				<br/>아래의 리스트에서<br/>다이어리를<br/>선택해주세요!
 			</div>
 			
 			<div class="myRightTap">

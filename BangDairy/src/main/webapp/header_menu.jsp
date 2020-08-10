@@ -72,7 +72,7 @@
                         <li class="has-children">
                             <a href="#0" title="">영화</a>
                             <ul class="sub-menu">
-                            <li><a href="movieList.jsp">영화정보</a></li>
+                            <li><a href="movieInfo">영화정보</a></li>
                             </ul>
                         </li>
                         <li class="has-children">

@@ -3,12 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
 <!DOCTYPE html>
-<div class="table-responsive">
+<div id="diaryListAjax" class="table-responsive">
+	<c:if test="${empty myDiaryList}">
+	<h3 style="font-size:30px;"><hr/><br/><br/>작성한 다이어리가 없습니다.<br/>먼저 다이어리를 작성해주세요!<br/><br/><hr/></h3>
+	</c:if>
+	
+	<c:if test="${!empty myDiaryList}">
 	<table>
 		<thead>
 			<tr>
 				<th>이미지</th>
-				<th>다이어리 제목</th>
+				<th>다이어리<br/>제목</th>
 				<th>영화 제목</th>
 				<th>조회수</th>
 			</tr>
@@ -37,12 +42,13 @@
 						<td>${myDiaryList.movieTitle}</td>
 						<!-- 다이어리 조회수 -->
 						<!-- **************************** 수정필요 **************************** -->
-						<td style="width: 15%;">${myDiaryList.diary_hits}</td>
+						<td>${myDiaryList.diary_hits}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</div>
 	</table>
+	</c:if>
 </div>
 
 <div class="row">
@@ -117,6 +123,10 @@ $(".btnDiaryList").click(function() {
 			$('.myRightTap').html(data);
 		}
 	});
+
+	// 버튼 눌렀을때 리스트의 상단으로 스크롤 이동
+	var offset = $(".myRightTap").offset();
+	$('html, body').animate({scrollTop:offset.top}, 400);
 });
 
 // 커서 : 포인트
@@ -144,6 +154,10 @@ $(".diaryList tr").click(function() {
 			$('.diaryDetail').html(data);
 		}
 	});
+
+	// tr 눌렀을때 다이어리 내용 볼수있게 스크롤 이동
+	var offset = $(".myDiaryHeader").offset();
+	$('html, body').animate({scrollTop:offset.top}, 400);
 });
 
 </script>

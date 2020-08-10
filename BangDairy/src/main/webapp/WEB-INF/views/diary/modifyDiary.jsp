@@ -124,10 +124,10 @@
 										<!-- 영화 내용 -->
 										<tr>
 											<td>영화 내용</td>
-											<td><input class="form-control" name="diaryContent"
+											<td><textarea class="form-control" name="diaryContent"
 												placeholder="영화 내용을 입력해주세요."
-												style="width: 100%; height: 200px; text-align: center"
-												autocomplete="off" value="${result.diary_content}" /></td>
+												style="wrap: physical; width: 100%; height: 200px; text-align: left"
+												autocomplete="off"">${result.diary_content}</textarea></td>
 										</tr>
 										<!-- 누구와? -->
 										<tr>
@@ -220,6 +220,12 @@
 					alert("검색 후 입력해주세요.")
 					return false;}
 				}
+
+			var result = confirm('수정하시겠습니까?');
+
+			if (!result) {
+				return false;
+			}
 		});
 	});
 	

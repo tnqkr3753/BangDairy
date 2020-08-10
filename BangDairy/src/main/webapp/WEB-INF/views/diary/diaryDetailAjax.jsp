@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 
 <div id="diaryDetail" style="text-align: center;">
-	<section style="border: 3px solid black; border-radius: 2em; padding: 10px; background: white;">
+	<section style="border: 3px solid black; border-radius: 2em; padding: 10px; background: white; font-size:9px;">
 		
 		<!-- 다이어리 상세 정보 -->
 		<c:forEach items="${diaryDetailList}" var="diaryDetailList">
@@ -33,10 +33,10 @@
 			</c:if>
 			
 			<!-- 영화 제목 -->
-			<p style="font-size: 25px;">[${diaryDetailList.mtitle}]</p>
+			<span><br/>[${diaryDetailList.mtitle}]</span>
 
 			<!-- 다이어리 내용 -->
-			<p>${diaryDetailList.diary_content}</p>
+			<pre><br/>${diaryDetailList.diary_content}</pre>
 			
 			<!-- 누구와? 언제? 어디서? -->
 			<ul>
@@ -59,16 +59,19 @@ $('#btnDiaryDelete').click(function() {
 
 	// alert("디테일 다이어리의 인덱스 번호 : " + $("#diaryDetail").find('input[type="hidden"]').val());
 	
-	// 현재 다이어리의 인덱스
-	diaryId = $("#diaryDetail").find('input[type="hidden"]').val()
+	var result = confirm('삭제하시겠습니까?');
 
-	location.href = "diaryDelete?diaryId=" + diaryId;
+	if (result) {
+		// 현재 다이어리의 인덱스
+		diaryId = $("#diaryDetail").find('input[type="hidden"]').val()
+		location.href = "diaryDelete?diaryId=" + diaryId;
+	}
 });
 
 // 수정 버튼을 클릭했을때
 $('#btnDiaryModify').click(function() {
 	// alert("수정버튼 클릭");
-
+	
 	// 현재 다이어리의 인덱스
 	diaryId = $("#diaryDetail").find('input[type="hidden"]').val()
 	location.href = "diaryModify?diaryId=" + diaryId;

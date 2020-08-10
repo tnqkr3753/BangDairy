@@ -54,12 +54,12 @@ public class DairyDAOlmpl implements DairyDAO{
 	
 	@Override
 	public List<AccountFormVO> userInfo(AccountFormVO avo) { // 유저정보 가져옴
-		return sqlSession.selectList("dairyDAO.userInfo", avo);
+		return sqlSession.selectList("DairyDAO.userInfo", avo);
 	}
 	
 	@Override
 	public int countDiaryByUser(AccountFormVO avo) { // 다이어리 총 개수 COUNT
-		return sqlSession.selectOne("dairyDAO.countDiaryByUser", avo);
+		return sqlSession.selectOne("DairyDAO.countDiaryByUser", avo);
 	}
 	
 	@Override	// 다이어리 리스트 목록 가져옴
@@ -73,21 +73,21 @@ public class DairyDAOlmpl implements DairyDAO{
 		m.put("endRow", endRow);
 		m.put("userId", vo.getUserId());
 		
-		return sqlSession.selectList("dairyDAO.dairyList", m);
+		return sqlSession.selectList("DairyDAO.dairyList", m);
 	}
 
 	@Override
 	public List<HashMap> getDetailDiary(DairyVO dvo) {	// 다이어리 상세정보 가져옴
-		return sqlSession.selectList("dairyDAO.getDetailDiary", dvo);
+		return sqlSession.selectList("DairyDAO.getDetailDiary", dvo);
 	}
 
 	@Override
 	public int deleteDiary(DairyVO dvo) {	// 다이어리 삭제
-		return sqlSession.delete("dairyDAO.deleteDiary", dvo);
+		return sqlSession.delete("DairyDAO.deleteDiary", dvo);
 	}
 
 	@Override
 	public int updateDiary(DairyVO dvo) {	// 다이어리 수정
-		return sqlSession.update("dairyDAO.updateUserInfo", dvo);
+		return sqlSession.update("DairyDAO.updateUserInfo", dvo);
 	}
 }
