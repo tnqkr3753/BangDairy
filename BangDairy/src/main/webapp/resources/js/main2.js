@@ -26,6 +26,7 @@ $(document).ready(function(){
 			touchEnabled:true,
 			pager:false
 		}); 
+		$('.bx-wrapper').attr("style","max-width:3270px;background:#19191b;");
 	}
 	$(".bx-start").hide();	//onload시 시작버튼 숨김. 
 	$(document).on('click',".entry__thumb",function(){
