@@ -36,9 +36,11 @@ $(document).ready(function(){
     			data: userData,
     			success: function (data) {
     				if(data==1){
-    					alert("로그인 성공");
     					window.location.href="index.jsp"
-    				}
+    				}else if(data==2){
+						alert("관리자 로그인 성공");
+						window.location.href="admin"
+					}
     				else {
     					alert("로그인 실패");
     				}
@@ -51,6 +53,7 @@ $(document).ready(function(){
     	});
 
 	clSignIn();
+	//카카오 로그인
 	$('#kakao_login').on('click',function(){
 		window.location.href="https://kauth.kakao.com/oauth/authorize?client_id=c4811c69bba7091eef9b610a8cc23d5c&redirect_uri=http://localhost:8080/bangdairy/login/kakao&response_type=code"
 	})

@@ -35,8 +35,8 @@
 		)
 	</insert>
 	<!-- 유저가 로그인 하려 할때 해당 정보가 db에 존재하는지 질의하는 쿼리 -->
-	<select id="SignInUser" resultType="Int" parameterType="account">
-		select count(*) from user_info where user_id = #{userId} and user_password = #{userPassword}
+	<select id="SignInUser" resultType="account" parameterType="account">
+		select * from user_info where user_id = #{userId} and user_password = #{userPassword}
 	</select>
 	<select id="checkForKakao" parameterType="account" resultType="account">
 		SELECT * FROM user_info WHERE user_email=#{userEmail} AND user_id=#{userId}

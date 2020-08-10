@@ -28,6 +28,7 @@ only screen and (max-width: 760px),
 	/* Force table to not be like tables anymore */
 	table, thead, tbody, th, td, tr { 
 		display: block; 
+		vertical-align:center;
 	}
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
@@ -181,4 +182,13 @@ only screen and (max-width: 760px),
 #comments {
     max-width: 1500px;
     z-index: 10000;
+}
+
+.active {
+	background-color: white;
+}
+
+.active a {
+	color: black;
+	font-size: 20px;
 }

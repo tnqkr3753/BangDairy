@@ -173,14 +173,7 @@
     <script src="resources/js/plugins.js"></script>
     <script src="resources/js/main.js"></script>
     <script src="resources/jquery.min.js"></script>
-    <script src="/dist/jquery.metisMenu.js"></script>
-    <script src="/path/to/cdn/jquery.min.js"></script>
-	<script src="/path/to/build/bootstrap-rating-input.min.js"></script>
-	<script src="/path/to/build/bootstrap4-rating-input.min.js"></script>
-	<script src="/path/to/cdn/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/5ac93d4ca8.js"></script>
-	<script src="/path/to/cdn/jquery.min.js"></script>
-	<script src="/path/to/jquery.simplePagination.js"></script>
 	
 
 

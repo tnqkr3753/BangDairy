@@ -26,23 +26,12 @@ private Date indieUpdateDate;
 private long indiePosterSize;
 private String userId;
 private String indieGenre;
-
+private String indieConfirm;
 private String indieLike;
 private String indieHate;
 private Date regDate;
 private String indiePosterAddr;
 
-private String indieConfirm;
-
-
-
-public String getIndieConfirm() {
-	return indieConfirm;
-}
-
-public void setIndieConfirm(String indieConfirm) {
-	this.indieConfirm = indieConfirm;
-}
 MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변수명
 
 /*
@@ -51,7 +40,7 @@ MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변
  * 변수 		: indiePosterAddr,indiePosterSize,file
  * 작성자		: 신진섭
  */
-String path="C:\\Users\\KOSMO_14\\git\\BangDairy2\\BangDairy\\src\\main\\webapp\\resources\\upload\\userProfile\\";
+String path="C:\\Users\\KOSMO_14\\git\\BangDairy2\\BangDairy\\src\\main\\webapp\\resources\\upload\\indie\\";
 public void setFile(MultipartFile file) {
 	this.file = file;
 
@@ -204,9 +193,24 @@ public void setRegDate(Date regDate) {
 	this.regDate = regDate;
 }
 
+public String getIndieConfirm() {
+	return indieConfirm;
+}
 
+public void setIndieConfirm(String indieConfirm) {
+	this.indieConfirm = indieConfirm;
+}
 
-
+@Override
+public String toString() {
+	return "IndieVO [indieId=" + indieId + ", indieTitle=" + indieTitle + ", indieDirector=" + indieDirector
+			+ ", indieCountry=" + indieCountry + ", indieMakedate=" + indieMakedate + ", indiePlot=" + indiePlot
+			+ ", indieActor=" + indieActor + ", indieAddr=" + indieAddr + ", indieKeyword=" + indieKeyword
+			+ ", indieViewingHits=" + indieViewingHits + ", indieUpdateDate=" + indieUpdateDate + ", indiePosterSize="
+			+ indiePosterSize + ", userId=" + userId + ", indieGenre=" + indieGenre + ", indieConfirm=" + indieConfirm
+			+ ", indieLike=" + indieLike + ", indieHate=" + indieHate + ", regDate=" + regDate + ", indiePosterAddr="
+			+ indiePosterAddr + ", file=" + file + ", path=" + path + "]";
+}
 
 }
 

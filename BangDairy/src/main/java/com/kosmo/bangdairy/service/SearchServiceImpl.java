@@ -11,7 +11,6 @@ import com.kosmo.bangdairy.vo.ActorVO;
 import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DirectorVO;
 import com.kosmo.bangdairy.vo.MovieVO;
-import com.kosmo.bangdairy.vo.WishMovieVO;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
@@ -23,40 +22,40 @@ public class SearchServiceImpl implements SearchService {
 	int blockPageNumcount = 5; // ���� �����ϴ� ������ ����
 
 	@Override
-	public List<HashMap> searchMovie(MovieVO vo, int pNum, String selectOrder, String userId) {		// ��ȭ �������� �˻�
+	public List<HashMap> searchMovie(MovieVO vo, int pNum, String selectOrder, String userId, String genre) {		// ��ȭ �������� �˻�
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow ���� �׻� 10!
 
-		return searchDAO.searchMovie(vo, firstRow, endRow, selectOrder, userId);
+		return searchDAO.searchMovie(vo, firstRow, endRow, selectOrder, userId, genre);
 	}
 
 	@Override
-	public List<HashMap> searchDirector(DirectorVO vo, int pNum, String selectOrder, String userId) {	// ���� �̸����� �˻�
-		int firstRow = (pNum-1)*countPerPage;
-		int endRow = 10;	// Limit firstRow, endRow : endRow ���� �׻� 10!
-		
-		return searchDAO.searchDirector(vo, firstRow, endRow, selectOrder, userId);		
-	}
-
-	@Override
-	public List<HashMap> searchActor(ActorVO vo, int pNum, String selectOrder, String userId) {	// ��� �̸����� �˻�
+	public List<HashMap> searchDirector(DirectorVO vo, int pNum, String selectOrder, String userId, String genre) {	// ���� �̸����� �˻�
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow ���� �׻� 10!
 		
-		return searchDAO.searchActor(vo, firstRow, endRow, selectOrder, userId);		
+		return searchDAO.searchDirector(vo, firstRow, endRow, selectOrder, userId, genre);		
 	}
 
 	@Override
-	public List<HashMap> searchKeywords(MovieVO vo, int pNum, String selectOrder, String userId) {	// Ű����� �˻�
+	public List<HashMap> searchActor(ActorVO vo, int pNum, String selectOrder, String userId, String genre) {	// ��� �̸����� �˻�
 		int firstRow = (pNum-1)*countPerPage;
 		int endRow = 10;	// Limit firstRow, endRow : endRow ���� �׻� 10!
 		
-		return searchDAO.searchKeywords(vo, firstRow, endRow, selectOrder, userId);
+		return searchDAO.searchActor(vo, firstRow, endRow, selectOrder, userId, genre);		
 	}
 
 	@Override
-	public int searchCountTitle(MovieVO vo) {	// ��ȭ �̸����� �˻����� �� ��ü ������ ��
-		totalRecordCount = searchDAO.searchCountTitle(vo);	// ��ü ���ڵ�(rows) ����
+	public List<HashMap> searchKeywords(MovieVO vo, int pNum, String selectOrder, String userId, String genre) {	// Ű����� �˻�
+		int firstRow = (pNum-1)*countPerPage;
+		int endRow = 10;	// Limit firstRow, endRow : endRow ���� �׻� 10!
+		
+		return searchDAO.searchKeywords(vo, firstRow, endRow, selectOrder, userId, genre);
+	}
+
+	@Override
+	public int searchCountTitle(MovieVO vo, String genre) {	// ��ȭ �̸����� �˻����� �� ��ü ������ ��
+		totalRecordCount = searchDAO.searchCountTitle(vo, genre);	// ��ü ���ڵ�(rows) ����
 		
 		pageTotalCount = totalRecordCount/countPerPage; // ��ü������ ��, ��ü ���ڵ� ��/�������� ���ڵ� ��
 		
@@ -66,8 +65,8 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public int searchCountDirector(DirectorVO vo) {	// ���� �̸����� �˻����� �� ��ü ������ ��
-		totalRecordCount = searchDAO.searchCountDirector(vo);	// ��ü ���ڵ�(rows) ����
+	public int searchCountDirector(DirectorVO vo, String genre) {	// ���� �̸����� �˻����� �� ��ü ������ ��
+		totalRecordCount = searchDAO.searchCountDirector(vo, genre);	// ��ü ���ڵ�(rows) ����
 		
 		pageTotalCount = totalRecordCount/countPerPage; // ��ü������ ��, ��ü ���ڵ� ��/�������� ���ڵ� ��
 		
@@ -77,8 +76,8 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public int searchCountActor(ActorVO vo) {	// ��� �̸����� �˻����� �� ��ü ������ ��
-		totalRecordCount = searchDAO.searchCountActor(vo);	// ��ü ���ڵ�(rows) ����
+	public int searchCountActor(ActorVO vo, String genre) {	// ��� �̸����� �˻����� �� ��ü ������ ��
+		totalRecordCount = searchDAO.searchCountActor(vo, genre);	// ��ü ���ڵ�(rows) ����
 		
 		pageTotalCount = totalRecordCount/countPerPage; // ��ü������ ��, ��ü ���ڵ� ��/�������� ���ڵ� ��
 		
@@ -88,8 +87,8 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public int searchCountKeywords(MovieVO vo) {	// Ű����� �˻����� �� ��ü ������ ��
-		totalRecordCount = searchDAO.searchCountKeywords(vo);	// ��ü ���ڵ�(rows) ����
+	public int searchCountKeywords(MovieVO vo, String genre) {	// Ű����� �˻����� �� ��ü ������ ��
+		totalRecordCount = searchDAO.searchCountKeywords(vo, genre);	// ��ü ���ڵ�(rows) ����
 		
 		pageTotalCount = totalRecordCount/countPerPage; // ��ü������ ��, ��ü ���ڵ� ��/�������� ���ڵ� ��
 		

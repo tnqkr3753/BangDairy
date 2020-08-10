@@ -1,16 +1,6 @@
-$(document).ready(function(){//없어도가능
-		
-	//alert("movieList 확인이야");
+$(document).ready(function(){
 	radioClick();
-	
-//	// 영화정보 리스트 페이지가 처음 로드되었을때 강제로 title 눌러줌
-//	$('#titleTrigger').trigger('click');
-//
-//	setTimeout(function() {
-//		$('#titleTrigger').trigger('click');
-//	}, 1000);
-	
-	// 평점 클릭했을때
+		// 평점 클릭했을때
 	$('.starRev span').click(function(){
 		$(this).parent().children('span').removeClass('on');
 		$(this).addClass('on').prevAll('span').addClass('on');

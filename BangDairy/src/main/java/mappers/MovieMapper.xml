@@ -138,4 +138,8 @@
  	WHERE a.movie_id = b.mvid 
 
  </update>
+ <!-- 마지막 업데이트 일 -->
+ <select id="getLastUpdate" resultType="movie">
+ 	SELECT * FROM movie_info order by update_date desc LIMIT 1
+ </select>
 </mapper>  

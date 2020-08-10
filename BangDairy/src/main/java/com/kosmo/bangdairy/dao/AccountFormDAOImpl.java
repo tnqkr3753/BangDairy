@@ -33,9 +33,9 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 	}
 
 	@Override
-	public int signInUser(AccountFormVO vo) {
-		int result = sqlSession.selectOne("SignInUser", vo);
-		return result;
+	public AccountFormVO signInUser(AccountFormVO vo) {
+		return  sqlSession.selectOne("SignInUser", vo);
+		
 	}
 
 	@Override

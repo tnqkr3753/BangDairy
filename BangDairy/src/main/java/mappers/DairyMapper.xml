@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DairyDAO">
+	<insert id="dairyInsert" parameterType="dairy">
+		insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
+		 values (0, "A03091", #{userId}, #{diaryTitle},#{diaryContent},#{viewingTogether}, #{viewingLocation}, #{viewingDate}, #{diaryImage})
+	</insert>
+	
+	<select id="listdairy" parameterType="account" resultType="dairy" >
+		SELECT d.diary_id as diary_id, m.movie_title as movie_title, d.diary_title as diary_title, d.diary_hits as diary_hits
+		FROM diary_info d, movie_info m
+		WHERE user_id = #{userId}
+        AND d.movie_id = m.movid_id
+	</select>
+	
+	<select id="recentdairy" parameterType="account" resultType="dairy">
+	   select * from diary_info 
+	   where movie_id = 
+       (select movie_id from diary_info WHERE user_id = #{userId} order by diary_id desc limit 1)
+        and user_id != #{userId} order by diary_id desc limit 3 </select>
+	
+	<select id="topdairy" resultType="dairy">
+	  select * from diary_info order by diary_hits DESC limit 5</select>
+	
+	<select id="recommendairy" parameterType="account" resultType="dairy">
+	  select d.user_id, d.diary_image, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
+	  WHERE m.movie_id = d.movie_id AND d.user_id != #{userId} group by m.movie_id order by d.user_id limit 4;
+	</select>
+	
+	<select id="searchddairy" parameterType="hashmap" resultType="dairy">
+	  select distinct d.user_id, d.diary_id,d.diary_content, d.user_id, d.diary_hits, d.diary_image
+	  from diary_info d, movie_info m where d.diary_title like '%${searchWord}%' OR
+	  d.diary_content like '%${searchWord}%' OR movie_title like'%{searchWord}%'
+	  ORDER BY diary_hits DESC LIMIT 0, 5 
+	 </select>
+	<!-- 여기부터 은주 -->
+	<!-- 사용자가 입력한 단어에 따라 영화 추천검색어 10개 -->
+	<select id="recommendTitle" parameterType="movie" resultType="movie">
+  	SELECT movie_id, movie_title FROM movie_info WHERE movie_title LIKE '${movieTitle}%' LIMIT 0, 10
+	</select>
+	
+	<!-- 사용자가 내용 입력하면 DB에 INSERT -->
+	<insert id="insertDiary" parameterType="dairy">
+	INSERT INTO diary_info 
+	(user_id, diary_title, movie_id, diary_content, viewing_together, viewing_date, viewing_location, diary_hits, diary_image) 
+	VALUES
+	('${userId}', '${diaryTitle}', '${movieId}', '${diaryContent}', '${viewingTogether}', '${viewingDate}','${viewingLocation}', 0, '${diaryImage}')
+	</insert>
+	
+	<!-- 유저 정보 가져오기 -->
+	<select id="userInfo" parameterType="account" resultType="account">
+	SELECT * FROM user_info WHERE user_id = #{userId}
+	</select>
+	
+	<!-- 페이지별로 다이어리 리스트 가져오기 -->
+	<select id="dairyList" parameterType="hashmap" resultType="hashmap">
+	SELECT d.*, m.movie_title as movieTitle FROM diary_info d INNER JOIN movie_info m WHERE d.user_id = #{userId} and d.movie_id = m.movie_id 
+	ORDER BY reg_date DESC LIMIT ${firstRow}, ${endRow}
+	</select>
+	
+	<!-- 각 유저별 다이어리 총 개수 -->
+	<select id="countDiaryByUser" parameterType="account" resultType="int">
+	SELECT count(*) FROM diary_info WHERE user_id = "${userId}"
+	</select>
+	
+	<!-- 다이어리 상세페이지 -->
+	<select id="getDetailDiary" parameterType="dairy" resultType="hashmap">
+	SELECT d.*, i.movie_title AS mtitle FROM diary_info d INNER JOIN movie_info i WHERE d.diary_id=${diaryId} AND d.movie_id = i.movie_id
+	</select>
+	
+	<!-- 다이어리 삭제 -->
+	<delete id="deleteDiary">
+	DELETE FROM diary_info WHERE diary_id = ${diaryId}
+	</delete>
+	
+	<!-- 다이어리 수정 -->
+	<update id="updateUserInfo" parameterType="dairy">
+	UPDATE diary_info SET movie_id='${movieId}', diary_title='${diaryTitle}', diary_content='${diaryContent}', 
+    viewing_together='${viewingTogether}', viewing_date='${viewingDate}', viewing_location='${viewingLocation}' 
+    
+    <if test="diaryImage != null">	<!-- 이미지 첨부 안하면 기존 이미지 저장 -->
+    , diary_image='${diaryImage}'
+    </if>
+    
+    WHERE diary_id=${diaryId}
+	</update>
+	
+</mapper>
