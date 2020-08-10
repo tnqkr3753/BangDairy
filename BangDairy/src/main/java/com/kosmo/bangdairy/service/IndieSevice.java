@@ -19,4 +19,5 @@ public interface IndieSevice {
 	public List<IndieVO>indieGnareSelect();
 	public IndieVO selectIndieDetail(IndieVO ivo);
 	
+	
 }

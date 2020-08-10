@@ -50,5 +50,21 @@
             (SELECT "X" FROM movie_score WHERE user_id =#{userId} AND movie_id = mg.movie_id)) d
 			ON m.movie_id = d.movie_id order by numbers_hits desc limit 10
 	</select>
+	<select id="getUserMovies" parameterType="String" resultType="movie">
+<!-- 		select movie_title
+		from movie_info 
+		where movie_id in (select movie_id from movie_score where user_id = #{userId}); -->
+		select movie_id from movie_score where user_id = #{userId}
+	</select>
+	
+	<select id="getRecommendedMovieDetail" parameterType="java.util.List" resultType="movie">
+		select * from movie_info where movie_id in 
+		(
+		<foreach collection="list" item="vo" separator=",">
+			#{vo.movieId}
+		</foreach>
+		)
+	</select>
+
 	
 </mapper>

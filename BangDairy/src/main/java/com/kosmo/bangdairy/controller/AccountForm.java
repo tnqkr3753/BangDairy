@@ -1,5 +1,6 @@
 package com.kosmo.bangdairy.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
 import com.kosmo.bangdairy.service.KakaoAPI;
+import com.kosmo.bangdairy.service.MovieDetailServiceImpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -101,17 +103,31 @@ public class AccountForm {
 		int result = accountFormService.signInUser(vo);
 		if (result==1) {
 			sess.setAttribute("userId", vo.getUserId());
+			sess.setAttribute("userType", vo.getUserType());
 			//sess.setMaxInactiveInterval(300);
-
+			// 소켓 시작
+			
+			String HOST = "192.168.0.22";
+			int PORT = 8765;
+			Socket socket=null;
+			BufferedOutputStream bos=null;
 			try {
-				String HOST = "192.168.0.22";
-				int PORT = 8765;
-				Socket socket = new Socket(HOST,PORT);
-				System.out.println("클라이언트 접속");
-
-				//쓰기
-				PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 				
+				socket = new Socket(HOST,PORT);
+				System.out.println("클라이언트 접속");
+				
+				//쓰기
+				bos.write("2".getBytes());
+				int max_title_length = 4;
+	            int title_length = 0; //유저의 영화목록 불러오기	
+	            bos.write(Integer.toString(title_length).getBytes());
+	            
+	            if (max_title_length - Integer.toString(title_length).getBytes().length !=0 ) {
+	            	for(int i=0; i< max_title_length-Integer.toString(title_length).getBytes().length; i++) {
+	            		System.out.println(i);
+	            		bos.write(" ".getBytes());
+	            	}
+	            }
 				//읽기
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(socket.getInputStream()));
@@ -131,9 +147,6 @@ public class AccountForm {
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
-			
-			sess.setAttribute("userType", vo.getUserType());
 		}
 		return result;
 	}

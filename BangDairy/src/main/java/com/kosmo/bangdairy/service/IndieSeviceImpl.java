@@ -51,9 +51,4 @@ public class IndieSeviceImpl implements IndieSevice {
 		 
 	}
 
-
-
-
-	
-
 }
