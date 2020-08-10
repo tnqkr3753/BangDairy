@@ -56,13 +56,27 @@
 	select * from indie_movie_info where indie_confirm="y" LIMIT  0,10
 	</select>
 	
-	<select id="selectTotalCount" resultType="int">
-	select count(*) from indie_movie_info  where indie_confirm="y"<!-- 관리자가 where indie_confirm="y"을 n으로 바꾸면 안나오게함 -->
+	<select id="selectTotalCount" parameterType="hashmap" resultType="int">
+	select count(*) from indie_movie_info  where
+	<if test="searchWord != 'all' ">
+	indie_title like "${searchWord}%" AND
+	</if>
+	 indie_confirm="y"<!-- 관리자가 where indie_confirm="y"을 n으로 바꾸면 안나오게함 -->
 	</select>
 	
 	<select id="selectIndiepaging" resultType="indie" parameterType="hashmap">
-	select * from indie_movie_info where indie_confirm="y" LIMIT ${firstRow},${endRow}
+	select * from indie_movie_info where
+	<if test="searchWord != 'all' ">
+	indie_title like "${searchWord}%" AND
+	</if>
+	 indie_confirm="y" LIMIT ${firstRow},${endRow}
 	</select>
+	<!--박윤태  -->
+	<update id="increaseHits" parameterType="indie">
+	UPDATE indie_movie_info SET indie_viewing_hits = indie_viewing_hits+1
+	WHERE indie_id = #{indieId}
+		
+	</update>
 	
 	
 	

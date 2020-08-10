@@ -12,14 +12,15 @@
         <title>Logic - Free Html  Business Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	
      <!--필요  --><link rel="stylesheet" href="resources/css/bootstrap.min.css">
  
     <link rel="stylesheet" href="resources/css/base.css">
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
 	<link rel="stylesheet" href="resources/css/independent.css">
-	
+	<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
         <!--For Plugins external css-->
@@ -41,9 +42,6 @@
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="200" style=background-color="red">
 	<%@ include file="../../../header_menu.jsp"%>
-<<<<<<< HEAD
-		<%@ include file="../../../account_form.jsp"%>
-		<%@ include file="../../../Sign_In.jsp"%>
         <div class='preloader'>
             <div class='loaded'>&nbsp;</div>
         </div>
