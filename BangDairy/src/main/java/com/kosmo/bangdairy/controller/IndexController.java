@@ -1,5 +1,10 @@
 package com.kosmo.bangdairy.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,6 +147,112 @@ public class IndexController {
 		mv.addObject("list", list);
 		mv.setViewName("index/moviebar");
 		LoggerAspect.logger.info(list);
+		return mv;
+	}
+	/*
+	 * 메소드명 : getRecommender
+	 * 기능 : 사용자의 정보를 기반으로 다음으로 볼 추천 영화 리스트를 페이지에 반환한다.
+	 * 변수 : session
+	 * 작성자 : 이경호
+	 */
+	@RequestMapping(value = "getm/recommender",method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView getRecommender(HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		ArrayList<MovieVO> list = null;
+		ArrayList<MovieVO> recommend_list = null;
+		if (userId != null) {
+			//접속한 유저가 평점을 매긴 영화 리스트 가져온다.
+			List<MovieVO> title_list =  indexService.getUserMovies(userId);
+			
+			System.out.println("리스트 갯수:"+title_list.size());
+			//소켓 연결 및 소켓을 통해 영화 추천리스트 받아오기
+			String HOST = "192.168.0.22";
+			int PORT = 8765;
+			Socket socket=null;
+			BufferedOutputStream bos=null;
+			BufferedReader in = null;
+			try {
+				//파이썬과 통신시 한번에 보낼 수 있는 최대 바이트 수 9999까지 수용 가능
+				int max_title_length = 4;
+				//파이썬과 통신시 한번에 보낼 수 최대 리스트 사이즈 9999까지 수용 가능
+				int max_list_size = 4;
+				socket = new Socket(HOST,PORT);
+				System.out.println("클라이언트 접속");
+				bos = new BufferedOutputStream(socket.getOutputStream());
+				
+				//쓰기, 파이썬 서버에 사용할 메소드 번호를 먼저 보낸다
+				System.out.println("소켓 사전 준비 완료");
+				bos.write("2".getBytes());
+				bos.flush();
+				System.out.println("메소드 선택 인자 전송 완료");
+				
+				bos.write(userId.getBytes());
+				if (20-userId.getBytes().length!=0) {
+					for(int i=0; i<20-userId.getBytes().length;i++) {
+						bos.write(" ".getBytes());
+					}
+				}
+				bos.flush();
+				
+				bos.write(Integer.toString(title_list.size()).getBytes());
+				bos.flush();
+				//리스트의 사이즈를 바이트로 변환 후 바이트의 길이
+				int list_byte_size = Integer.toString(title_list.size()).getBytes().length;
+				if (max_list_size - list_byte_size != 0) {
+					//부족한 바이트 수만큼 공백을 보낸다.
+					for (int i=0; i< max_list_size-list_byte_size;i++) {
+						bos.write(" ".getBytes());
+					}
+				}
+				System.out.println("리스트 크기 정상 전송");
+				bos.flush();
+				//리스트에서 하나씩 영화이름을 소켓으로 전송
+				for (MovieVO vo : title_list) {
+					//아이디 길이 = 6
+					bos.write(vo.getMovieId().getBytes());
+				}
+				bos.flush();
+//				읽기
+				
+				System.out.println("읽기 모드");
+				in = new BufferedReader(
+						new InputStreamReader(socket.getInputStream()));
+		
+				list = new ArrayList<MovieVO>();
+				String rev;
+				while((rev=in.readLine())!=null) {
+					
+					System.out.println("받음:"+rev);
+					MovieVO vo = new MovieVO();
+					vo.setMovieId(rev);
+					list.add(vo);
+				}
+				
+				
+				
+			}catch (Exception e) {
+				System.out.println("소켓 통신 오류:"+e.getMessage());
+			}finally {
+				try {
+					in.close();
+					bos.close();
+					socket.close();
+					System.out.println("소켓 정상 종료");
+					
+					recommend_list = (ArrayList<MovieVO>) indexService.getRecommendedMovieDetail(list);
+					
+				}catch (Exception e) {
+					System.out.println("소켓 클로즈 오류:"+e.getMessage());
+				}
+			}
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("title", userId+"님 에게 추천하는 영화");
+		mv.addObject("list", recommend_list);
+		mv.setViewName("index/moviebar");
+		LoggerAspect.logger.info(recommend_list);
 		return mv;
 	}
 	

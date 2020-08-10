@@ -16,4 +16,6 @@ public interface IndexService {
 	public ActorVO getActorMovieWithWish(HashMap hash);
 	public List<MovieVO> getMovieWithActor(ActorVO vo);
 	public List<MovieVO> getMovieWithUserGenre(AccountFormVO vo); 
+	public List<MovieVO> getUserMovies(String userId);
+	public List<MovieVO> getRecommendedMovieDetail(List<MovieVO> list);
 }

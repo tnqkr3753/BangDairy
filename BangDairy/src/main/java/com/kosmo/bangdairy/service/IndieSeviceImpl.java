@@ -50,7 +50,6 @@ public class IndieSeviceImpl implements IndieSevice {
 	public List<IndieVO> selectIndieInfo() {
 		return indieDAO.selectIndieInfo();
 	}
-
 	@Override
 	public int selectTotalCount(String searchWord) {
 		HashMap hash = new HashMap();
@@ -89,6 +88,5 @@ public class IndieSeviceImpl implements IndieSevice {
 	public int selectNull(int goodId1, String userId) {
 		 return indieDAO.selectNull( goodId1, userId);
 	}
-	
 }
 	
