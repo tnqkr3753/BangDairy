@@ -6,57 +6,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head>
 
-<!--- basic page needs
-    ================================================== -->
-<meta charset="utf-8">
-<title>Video Post Format - Philosophy</title>
-<meta name="description" content="">
-<meta name="author" content="">
-
-<!-- mobile specific metas
-    ================================================== -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<!-- CSS
-    ================================================== -->
-    
-<link rel="stylesheet" href="resources/css/base.css">
-<link rel="stylesheet" href="resources/css/vendor.css">
-<link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/css/movieList.css">
-
-
-<!-- script
-    ================================================== -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="resources/js/modernizr.js"></script>
-<script src="resources/js/pace.min.js"></script>
-
-<!-- favicons
-    ================================================== -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<!-- jquery lib import -->
-
-</head>
-
-<body id="back">
-	<%@ include file="../../../header_menu.jsp"%>
 
 	<!-- s-content
     ================================================== -->
 
-
-	
-<div id="movie-list">
-
-		<div id="comments" class="row" style="background:#e5e5e5">
+						<div>
+    							<div id="comments" class="row" style="background:#e5e5e5">
 			<div class="col-full">
 
 				<!-- respond
@@ -140,15 +96,15 @@
 		<nav class="pgn">
 		
 			<!-- ********** 페이징 ********** -->
-		<%-- 	<c:if test="${totalPage < 5}"> --%>
+		<c:if test="${totalPage < 5}"> 
 				<!-- 전체페이지 수가 5보다 작을때 -->
-				<c:forEach var="i" begin="1" end="5">
+				<c:forEach var="i" begin="1" end="${totalPage}">
 					<button class="btnPaging" value='${i}'>${i}</button>
 					
 				</c:forEach>
-		<%-- 	</c:if> --%>
+	 	</c:if> 
 
-<%-- 			<c:if test="${totalPage >= 5}">
+	<c:if test="${totalPage >= 5}">
 				<!-- 전체페이지 수가 5보다 클때 -->
 				<c:if test="${pNum == 1}">
 					<!-- 현재 페이지가 1페이지일때 뒤 4개의 페이지 보여줌 -->
@@ -181,38 +137,17 @@
 						<button class="btnPaging" value='${i}'>${i}</button>
 					</c:forEach>
 				</c:if>
-			</c:if> --%>
+			</c:if> 
 			<!-- ********** 페이징 ********** -->
 
-<%-- 			<c:if test="${totalPage > 5 and pNum < totalPage-2}"> --%>
+ 			<c:if test="${totalPage > 5 and pNum < totalPage-2}"> 
 				<!-- 전체 페이지의 개수 표시 -->
 			... <button class="btnPaging" value='${totalPage}'>${totalPage}</button>
-<%-- 			</c:if> --%>
+ 			</c:if> 
 		</nav>
 	</div>
 </div>
-	</div>
-	<!-- end comments-wrap -->
-	<!-- Comments END -->
-
-	<%@ include file="../../../footer.jsp"%>
-
-<script type="text/javascript">
+</div>
 
 
-
-		</script>
-		
-
-
-	<!-- Java Script
-    ================================================== -->
-	
 <script src="resources/js/j_ajax.js"></script>
-	<script src="resources/js/plugins.js"></script>
-	<script src="resources/js/main.js"></script>
-	
-	 <script src="resources/js/j.independent.js"></script>
-</body>
-
-</html>

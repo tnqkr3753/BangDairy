@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function(){//없어도가능
 		
-	// alert("movieList 확인이야");
+	//alert("movieList 확인이야");
 	radioClick();
 	
 //	// 영화정보 리스트 페이지가 처음 로드되었을때 강제로 title 눌러줌
@@ -29,6 +29,7 @@ $(document).ready(function(){
 	});
 	
 	$(window).resize(function(){
+		
 		var w=$(window).width();
 		if(w>600 && menu.is(':hidden'))
 		{menu.removeAttr('style');}
@@ -36,12 +37,14 @@ $(document).ready(function(){
 	
 	// 영화 리스트 페이지에서 라디오 버튼(조건)을 클릭했을때
 	$(".search__tab").click(function() {
+		alert("라디오 버튼 클릭했을때")
 		radioClick();
+	
 	});
 	
 	// 셀렉트 박스가 변경되었을때
 	$("#orderBy").on('change', function() {
-		// alert("select box 변경")
+		 alert("select box 변경")
 		selectOrder = $("#orderBy").val();
 		// alert(selectOrder);
 		

@@ -77,11 +77,14 @@
 				<h4>신청인</h4>
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
+				  
 				  <tbody>
+				  
 				  <tr>
 				  
 					<th>감독</th>
-				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
+				    <td><input type="text" name="indieDirector" id="distri_name"  value="123"class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
+				  <td><input type="hidden" name=indieConfirm value="y"></td>
 				  </tr>
 				   <tr>
 					<th>배우</th>
@@ -128,7 +131,7 @@
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
 					<th>제목</th>
-				    <td><input type="text" name="indieTitle" id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
+				    <td><input type="text" name="indieTitle" value="123" id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
 				  </tr>
 				
 <!-- 				  <tr> -->
@@ -146,11 +149,13 @@
 <!-- 				  </tr> -->
 <!-- 				  <tr> -->
 <!-- 					<th>길이</th> -->
-<!-- 				   <td><input type="text" name="distri_movie_length1"value="123" id="distri_movie_length1" class="type01" style="width:10%;" msg="분을" onkeydown="onlyNumber(this)"> 분&nbsp;&nbsp;  <input type="text" value ="423"name="distri_movie_length2" id="distri_movie_length2" class="type01" style="width:10%" msg="초를" onkeydown="onlyNumber(this)"> 초 </td> -->
+<!-- 				   <td><input type="text" name="distri_movie_length1"value="123" id="distri_movie_length1" class="type01" style=
+
+"width:10%;" msg="분을" onkeydown="onlyNumber(this)"> 분&nbsp;&nbsp;  <input type="text" value ="423"name="distri_movie_length2" id="distri_movie_length2" class="type01" style="width:10%" msg="초를" onkeydown="onlyNumber(this)"> 초 </td> -->
 <!-- 				  </tr> -->
 				  <tr>
 					<th>만든날짜</th>
-				 <td><input type="text" name="indieMakedate" class="type01" style="width:120px;" date> ex 2020/02/04
+				 <td><input type="text" name="indieMakedate" value="2020/02/04"class="type01" style="width:120px;" date> ex 2020/02/04
 				  </tr>
 				  
 			  <tr>
@@ -178,7 +183,7 @@
 				  </tr> -->
 				  <tr>
 					<th>나라</th>
-				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
+				    <td><input type="text" value="123"name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
 				  </tr>
 <!-- 				  <tr> -->
 <!-- 					<th>컬러/흑백</th> -->
@@ -200,7 +205,7 @@
 				  <tr>
 				  
 					<th>줄거리</th>
-				    <td><textarea name="indiePlot" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
+				    <td><textarea name="indiePlot"  value="123" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
 				  </tr> 
 			
 				 
@@ -228,7 +233,7 @@
 			</div></form>
 
 
-<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/아이유.jpg" alt=""></a></p>
+<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/신청.jpg" alt=""></a></p>
 
   
  </section>
