@@ -3,7 +3,7 @@ $(function(){
     var searchWord = "all";
     var page = 1;
     var type = null;
-    $(".dropdown-item").click(function(){
+    $(".drop-type").click(function(){
         page = 1;
         searchWord = "all";
         type = $(this).data("type")
@@ -197,4 +197,24 @@ $(function(){
 
 
     /* 통계 페이지 */
+    //영화 통계
+    $('.manage-a').click(function(){
+        var a = $(this).data('a');
+        showManage(a);
+    })
+    function showManage(a){
+        $.ajax({
+            type:"POST",
+            url:"admin/manage/"+a,
+            async : false,
+            dataType: "html",
+            success: function (data) {
+                $('.content-admin').html(data);
+
+            },
+            error:function(e){
+                alert(e);
+            }
+        });
+    }
 });
