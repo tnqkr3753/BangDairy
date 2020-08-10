@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!-- 세션에서 아이디 가져오기 -->
 <%String userId = (String)session.getAttribute("userId");%>
 <!DOCTYPE html>
@@ -92,7 +93,15 @@
 								<li><a href="indieList.do">인디영화</a></li>
 								<li><a href="Independent.do">신청</a></li>
 
-							</ul> <!-- end header__nav --> <a href="#0" title="Close Menu"
+							</ul> 
+						</li>
+						<c:if test="${sessionScope.userType eq '0' }">
+							<li><a href="admin">관리자 페이지</a>
+							</li>
+						</c:if>
+						
+						
+					</ul><!-- end header__nav --> <a href="#0" title="Close Menu"
 							class="header__overlay-close close-mobile-menu">Close</a></nav> <!-- end header__nav-wrap -->
 
             </div> <!-- header-content -->

@@ -122,4 +122,9 @@ public class ThreadInsertServiceImpl implements ThreadInsertService{
 			}
 		}
 	}
+	@Override
+	public MovieVO getLastUpdate() {
+		return threadInsertDAO.getLastUpdate();
+	}
+	
 }

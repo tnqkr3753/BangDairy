@@ -217,4 +217,21 @@ $(function(){
             }
         });
     }
+    /* 영화 정보 받아오기 */
+    $('#getMovieapp').click(function(){
+        alert("데이터 가져오기")
+        $.ajax({
+            type:"POST",
+            url:"api/conn/movie",
+            async : true,
+            dataType: "text",
+            success: function () {
+                alert("성공적으로 데이터를 가져왔습니다.");
+
+            },
+            error:function(e){
+                alert("데이터 가져오기에 실패했습니다.");
+            }
+        });
+    })
 });

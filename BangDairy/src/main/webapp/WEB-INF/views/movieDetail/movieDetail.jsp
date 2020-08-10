@@ -196,7 +196,7 @@
 				<%-- 영화 배우정보 끝 --%>
 
 				<%-- 영화 그래프 시작 --%>
-				<h2>왓챠피디아 반응</h2>
+				<h2>타 사이트 댓글 반응</h2>
 				<div id="wordcloud" align="center" >
 		        </div>
 		        <div class="legend"  align="center" style="width:60%;">
