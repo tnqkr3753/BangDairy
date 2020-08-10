@@ -115,15 +115,42 @@ if (totalPage < page) {
 	public int selectEqulegood(int goodId1, String userId) {
 		 return indieDAO.selectEqulegood( goodId1, userId);
 	}
+	
+	@Override
+	public int selectEqulebad(int badIdInt, String userId) {
+		 return indieDAO.selectEqulegood( badIdInt, userId);
+	}
 
 
 
 	@Override
-	public int selectNull(int goodId1, String userId) {
-		 return indieDAO.selectNull( goodId1, userId);
+	public int selectHateNum(int goodId1, String userId) {
+		 return indieDAO.selectHateNum( goodId1, userId);
 	
 	}
 	
+	
+	@Override
+	public int selectLikeNum(int badIdInt, String userId) {
+		 return indieDAO.selectHateNum( badIdInt, userId);
+	
+	}
+
+
+
+
+	@Override
+	public void updateLike(int goodId1, String userId) {
+		 indieDAO.updateLike( goodId1, userId);
+	}
+	
+	@Override
+	public void updateHate(int badIdInt, String userId) {
+		 indieDAO.updateLike( badIdInt, userId);
+	}
+	
+	
+
 
 	}
 	

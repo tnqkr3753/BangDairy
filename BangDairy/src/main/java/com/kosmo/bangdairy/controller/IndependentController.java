@@ -143,15 +143,18 @@ public class IndependentController {
 		String userId =(String)session.getAttribute("userId");
 		 
 		System.out.println(userId);
-		System.out.println(userId);
+		System.out.println(goodId);
 		int goodId1 = Integer.parseInt(goodId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
-		int Null=indieSevice.selectNull(goodId1,userId);        
+		int hateNum=indieSevice.selectHateNum(goodId1,userId);        
 		int like= indieSevice.selectEqulegood(goodId1,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
-		if (Null==0) {                                          //인서트해온게 널이면  값을 인서트해줌
+		System.out.println(hateNum);
+		System.out.println(like);
+		
+		if (hateNum==0) {                                          //인서트해온게 널이면  값을 인서트해줌
 			indieSevice.goodInsert(goodId1,userId);
 		}
-		else if (Null==1 && like==1) {
-			/* indieSevice.updateLike(); */
+		else if (hateNum==1 && like==1) {
+			 indieSevice.updateLike(goodId1,userId); 
 		System.out.println("넘겨야할4 인디 아이디" + goodId1);
 		System.out.println("like가 0이고 hate가 1 그러므로 값을 update해야함"+like);
 		 }
@@ -177,16 +180,28 @@ public class IndependentController {
 	@RequestMapping(value = "badId/{badId}", method = RequestMethod.GET)
 	public ModelAndView badId(HttpSession session,@PathVariable(value = "badId", required = true) String badId) {
 		System.out.println("-------------------------------------------------------------)))))))))))))))");
-	ModelAndView mv = new ModelAndView(); 
+		ModelAndView mv = new ModelAndView(); 
 		String userId =(String)session.getAttribute("userId");
-		System.out.println(userId);
-		System.out.println(userId);
-		int badId1 = Integer.parseInt(badId); // 현재 선택한 페이지 번호 받아와서 형 변환
-		
-		System.out.println("넘겨야할;; 인디 아이디" + badId1);
-//		int hate=indieSevice.badselect(badId1,userId); 
-		indieSevice.badInsert(badId1,userId);
 		 
+		System.out.println(userId);
+		System.out.println(badId);
+		int badIdInt = Integer.parseInt(badId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
+		int likeNum=indieSevice.selectLikeNum(badIdInt,userId);        
+	
+		int hate= indieSevice.selectEqulebad(badIdInt,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
+		System.out.println(likeNum);
+		System.out.println(hate);
+		
+		if (likeNum==0) {                                          //인서트해온게 널이면  값을 인서트해줌
+			indieSevice.badInsert(badIdInt,userId);
+		}
+		else if (likeNum==1 && hate==1) {
+			 indieSevice.updateHate(badIdInt,userId); 
+		System.out.println("넘겨야할4 인디 아이디" + badIdInt);
+		System.out.println("like가1이고 hate가 0 그러므로 값을 update해야함"+hate);
+		 }
+//		 mv.addObject("result2",result);
+		 mv.setViewName("indie/indieDetail");
 		 return mv;
 		/*
 		 * mv.addObject("result"); mv.setViewName("indie/listIndie2");

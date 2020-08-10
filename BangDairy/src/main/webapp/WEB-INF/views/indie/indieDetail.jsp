@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="main_features_area sections">
-                                <div class="head_title">	
+                                <div class="head_title">
                                                            <div class="head_title">   
                                     <h5 style="text-align: center; "><%=result.getIndieTitle() %></h5>
                                    
@@ -146,12 +146,13 @@
                                           <c:choose>
   											<c:when test="${userId ne null}">
                                             <span><input type="image" src="resources/images/Dislike.jpg" width="100px" id="bad" value="<%=result.getIndieId()%>" style="float: right;"></span> 
+                                            
                                              <span><input type="image" src="resources/images/like.jpg" width="100px" id="good" value="<%=result.getIndieId()%>" style="float: right; "></span>
                                               </c:when>
                                               <c:otherwise>
-                    <span>  <a href='javascript:login_need();'><img  src="resources/images/Dislike.jpg"width="100px" style="float: right"></a></span>
+                    <span>  <a href='javascript:login_need();'><img  src="resources/images/Dislike.jpg" width="100px" style="float: right"></a></span>
                                          
-             <span>  <a href='javascript:login_need();'><img  src="resources/images/like.jpg"width="100px" style="float: right"></a></span>
+             <span>  <a href='javascript:login_need();'><img  src="resources/images/like.jpg" width="100px" style="float: right"></a></span>
                                                  
                                       
                                                </c:otherwise>

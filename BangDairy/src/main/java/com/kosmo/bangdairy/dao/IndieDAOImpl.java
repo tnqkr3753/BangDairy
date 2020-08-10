@@ -94,21 +94,70 @@ public class IndieDAOImpl implements IndieDAO {
 	    System.out.println("3번"+goodId1);
 		System.out.println("4번"+userId);
 		
-		return sqlSession.selectOne("selectEqulegood", m3);
-		
-	 	
-	
+		return sqlSession.selectOne("selectEqulegood", m3);	
 }
-
+	
+	
+@Override
+public int selectEqulebad(int badIdInt, String userId) {
+    HashMap<String, Object> m3 = new HashMap<String, Object>();
+    m3.put("badIdInt",badIdInt);
+    m3.put("userId",userId);
+    System.out.println("3번"+badIdInt);
+	System.out.println("4번"+userId);
+	
+	return sqlSession.selectOne("selectEqulegood", m3);	
+}
 	@Override
-	public int selectNull(int goodi1, String userId) {
+	public int selectHateNum(int goodi1, String userId) {
 		 HashMap<String, Object> m3 = new HashMap<String, Object>();
 		    m3.put("goodId1",goodi1);
 		    m3.put("userId",userId);
 		    System.out.println("3번"+goodi1);
 			System.out.println("4번"+userId);
 			
-			return sqlSession.selectOne("selectNull", m3);
+			return sqlSession.selectOne("selectHateNum", m3);
 	
 	}
-}
+	
+	
+	public int selectLikeNum(int badIdInt, String userId) {
+		 HashMap<String, Object> m3 = new HashMap<String, Object>();
+		    m3.put("goodId1",badIdInt);
+		    m3.put("userId",userId);
+		    System.out.println("3번"+badIdInt);
+			System.out.println("4번"+userId);
+			
+			return sqlSession.selectOne("selectLikeNum", m3);
+	
+	}
+	
+	
+	
+
+	@Override
+	public void updateLike(int goodi1, String userId) {
+		 HashMap<String, Object> m3 = new HashMap<String, Object>();
+		    m3.put("goodId1",goodi1);
+		    m3.put("userId",userId);
+		    System.out.println("3번"+goodi1);
+			System.out.println("4번"+userId);
+			
+			 sqlSession.update("updateLike", m3);
+	
+	}
+	
+	@Override
+	public void updateHate(int badIdInt, String userId) {
+		 HashMap<String, Object> m3 = new HashMap<String, Object>();
+		    m3.put("badIdInt",badIdInt);
+		    m3.put("userId",userId);
+		    System.out.println("3번"+badIdInt);
+			System.out.println("4번"+userId);
+			
+			 sqlSession.update("updateHate", m3);
+	
+	}
+	
+	}
+
