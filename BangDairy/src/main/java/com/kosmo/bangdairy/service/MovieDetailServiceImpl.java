@@ -96,4 +96,9 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 	public List<StillVO> selectStill(MovieVO vo) {
 		return movieDetailDAO.selectStill(vo);
 	}
+	
+	@Override // 영화 평점 얻어오기
+	public float selectDetailStarScore(MovieVO vo) {
+		return movieDetailDAO.selectDetailStarScore(vo);
+	}
 }

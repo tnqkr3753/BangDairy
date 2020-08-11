@@ -36,7 +36,7 @@
                             		<h1 class="entry__title"><a href="detail?movieId=${vo.movieId}"><p class=rr>${vo.movieTitle}</p></a></h1>
                             	</div>
                          		<div class="entry__date" style="background-color: #19191b">
-                               		<a href="#"><div  align="right">${vo.viewingClass }</div></a>
+                               		<a href="#"><div style="font-size:20px;" align="right">${vo.viewingClass }</div></a>
                             	</div>
                         		<div class="entry__excerpt" style="background-color: #19191b">
                         		</div>

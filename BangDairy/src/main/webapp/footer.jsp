@@ -14,10 +14,10 @@
                 
                 <div class="col-two md-four mob-full s-footer__sitelinks">
                         
-                    <h4>Quick Links</h4>
+                    <h4>바로가기</h4>
 
                     <ul class="s-footer__linklist">
-                        <li><a href="#0">Home</a></li>
+                        <li><a href="#0">영화정보</a></li>
                         <li><a href="#0">Blog</a></li>
                         <li><a href="#0">Styles</a></li>
                         <li><a href="#0">About</a></li>
@@ -84,8 +84,7 @@
             <div class="row">
                 <div class="col-full">
                     <div class="s-footer__copyright">
-                        <span>© Copyright Philosophy 2018</span> 
-                        <span>Site Template by <a href="https://colorlib.com/">Colorlib</a></span>
+                        <span>© Copyright Movieary 2020</span> 
                     </div>
 
                     <div class="go-top">

@@ -52,7 +52,7 @@ public class MovieDetailController {
 		vo.setMovieId(movieId);
 		vo = movieDetailService.selectOneMovie(vo);
 		
-//		float detailStarScore = movieDetailService.selectDetailStarScore(vo);
+		float detailStarScore = movieDetailService.selectDetailStarScore(vo);	// 영화 평점 얻어오기
 		
 		LoggerAspect.logger.info("movieDetail 결과 vo : "+vo);
 		List<StillVO> stillList = null;
@@ -61,6 +61,11 @@ public class MovieDetailController {
 			wordCloudService.getWordCloud(vo);
 			stillList = movieDetailService.selectStill(vo);
 		}
+		
+		if(detailStarScore != 0) {
+			mv.addObject("starScore", detailStarScore);
+		}
+		
 		if(stillList !=null) {
 			mv.addObject("sList",stillList);
 		}

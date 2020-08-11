@@ -1,4 +1,4 @@
-.title{
+.title2{
 color: #fff;
     font-size: 22px;
     font-weight: 700;
@@ -16,7 +16,7 @@ color: #fff;
 td:nth-of-type(n+10) { display: none; }
 
 /* 반응형폰트 */
-.rr{ font-size: 1vw; 
+.rr{ font-size: 30px; 
 }
 
 input[type="text"],
@@ -46,3 +46,10 @@ div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97
 
 .masonry{top:15px}
 
+.header__nav {
+	font-size: 25px;
+}
+
+.sub-menu a {
+	font-size: 20px;
+}

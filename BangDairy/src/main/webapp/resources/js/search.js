@@ -50,7 +50,7 @@ $(document).ready(function(){
 	            e.stopPropagation();
 	        });
 	            
-	        searchField.attr({placeholder: 'Type Keywords', autocomplete: 'off'});
+	        searchField.attr({placeholder: '검색어를 입력해주세요!', autocomplete: 'off'});
 	    
 	    };
 	    /* Initialize

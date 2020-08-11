@@ -21,4 +21,6 @@ public interface MovieDetailDAO {
 	public int increaseHist(MovieVO vo);
 	public int insertWishMovie(WishMovieVO vo);
 	public List<StillVO> selectStill(MovieVO vo);
+	
+	public float selectDetailStarScore(MovieVO vo); // 영화 평점 얻어오기
 }
