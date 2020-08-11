@@ -70,6 +70,8 @@
 	UPDATE indie_movie_info SET indie_confirm = #{indieConfirm}
 	WHERE indie_id = #{indieId}
 </update>
-	
+<update id="banUser" parameterType="account">
+	UPDATE user_info SET user_type = '-1' WHERE user_id = #{userId}
+</update>
 	
 </mapper>

@@ -19,4 +19,5 @@ public interface AdminService {
 	public List<IndieVO> getIndieList(HashMap hash);
 	public IndieVO getIndieOne(IndieVO vo);
 	public int updateIndieConfirm(IndieVO vo);
+	public int banUser(AccountFormVO vo);
 }

@@ -14,7 +14,7 @@
 
                 <div class="header__logo">
                     <a class="logo" href="index.jsp">
-                        <img src="/bangdairy/resources/images/123.png" alt="Homepage" >
+                        <img src="/bangdairy/resources/images/logoMovie.png" alt="Homepage" >
                     </a>
                 </div> <!-- end header__logo -->
 

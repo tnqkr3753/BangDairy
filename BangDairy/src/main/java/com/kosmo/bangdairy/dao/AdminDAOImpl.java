@@ -57,6 +57,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public int updateIndieConfirm(IndieVO vo) {
 		return sqlSession.update("AdminDAO.updateIndieConfirm",vo);
 	}
+	@Override
+	public int banUser(AccountFormVO vo) {
+		return sqlSession.update("AdminDAO.banUser",vo);
+	}
 	
 	
 	
