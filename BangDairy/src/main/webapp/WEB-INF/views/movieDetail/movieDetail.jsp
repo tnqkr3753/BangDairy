@@ -63,22 +63,33 @@
 			<div class="s-content__header col-full">
 				<%-- 영화 이름 --%>
 				<h1 class="s-content__header-title">${vo.movieTitle }</h1>
+				
+				<%-- 평점 --%>
+				<div class="starRevM">
+					<span class="starR on">별1</span> <span class="starR">별2</span> <span
+						class="starR">별3</span> <span class="starR">별4</span> <span
+						class="starR">별5</span> <!-- 해야함 -->
+				</div>
 
 				<%-- 영화 정보 --%>
-				<ul class="s-content__header-meta">
-					<li>${vo.openingDateStr }
-					<li><c:forEach items="${vo.movieGenre}" var="genre">
+				<ul class="s-content__header-meta" style="border:2px solid gray; font-size:15px;">
+					<li>▶ 개봉일 : ${vo.openingDateStr }</li>
+					<li>▶ 장르 : <c:forEach items="${vo.movieGenre}" var="genre">
 					${genre.genreTitle} &nbsp;
-					</c:forEach>
-					<li>${vo.showtimes } 분
+					</c:forEach></li>
+					<li>▶ 상영시간 : ${vo.showtimes} 분</li>
 					<br />
-					<li>${vo.viewingClass} 
-					<li>${vo.company }
-					<li>${vo.country }</li>
-					
+					<li>▶ 관람등급 : ${vo.viewingClass}</li>
+					<li>▶ 제작사 : ${vo.company}</li>
+					<li>▶ 제조국가 : ${vo.country}</li>
 				</ul>
-				<button id="wish-add" class="btn btn-default">찜목록에 추가</button>
-				<c:if test="${not empty vo.previewAddrKmdb }"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button>
+				
+				<br/><button id="wish-add" class="btn btn-default">
+				<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+				</svg>
+				찜 추가</button>
+				<c:if test="${not empty vo.previewAddrKmdb }"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button><br/>
 				<div id="myModal" class="modal">
  
 				      <!-- Modal content -->
@@ -89,12 +100,7 @@
 				 
 				</div>
 				</c:if>
-				<%-- 평점 --%>
-				<div class="starRevM">
-					<span class="starR on">별1</span> <span class="starR">별2</span> <span
-						class="starR">별3</span> <span class="starR">별4</span> <span
-						class="starR">별5</span> <!-- 해야함 -->
-				</div>
+				
 				<br />
 			
 				<%-- 영화 포스터 rslides Start --%>
@@ -112,19 +118,21 @@
 			<div class="col-full s-content__main">
 
 				<%-- 영화 줄거리 --%>
-				<p>${vo.plot }</p>
+				<p style="border-bottom:2px solid gray; border-top:2px solid gray; font-size:19px;">&nbsp;${vo.plot }</p>
 
 				<%-- 영화 감독 TODO --%>
-				<h2>감독</h2> 
+				<h2>[감독]</h2> 
 				
-				<section id="two" class="wrapper alt spotlight style2">
+				<!-- <section id="two" class="wrapper alt spotlight style2"> -->
 						<div class="inner">
 						<%--
 							<a href="#" class="image"><img
 								src="resources/images/movieDetail/directorSam.jpg" alt=""></a> --%>
 							<div class="content">
 								<c:forEach items="${vo.movieDirector }" var="director">
-								<h2 class="major">${director.directorName }</h2>
+								<h2 class="major" style="text-align:center;">
+								<img src="resources/images/director.png" style="width:100px; height:100px;"/>
+								&nbsp;&nbsp;${director.directorName }</h2>
 								<%-- <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
 									Cras turpis ante, nullam sit amet turpis non, sollicitudin
 									posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
@@ -134,7 +142,7 @@
 							</div>
 						</div>
 					
-				</section>
+				<!-- </section> -->
 
 				<%-- <blockquote>
 					<p>This is a simple example of a styled blockquote. A
@@ -154,27 +162,44 @@
 				<%-- 영화 감독 끝 --%>
 
 				<%-- 영화 배우 시작 --%>
-				<h2>배우</h2>
+				<h2 style="border-top:2px solid gray;"><br/>[배우]</h2>
 				<div class="col-twelve">
-					<div class="table-responsive">
-						<table>
-							<thead>
-								<tr>
-									<th>배우 이름</th>
-									<th>배역</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach items="${vo.starring }" var="hash">
-								<tr>
-									<td>${hash.key.actorName}</td>
-									<td>${hash.value}</td>
-								</tr>
-							</c:forEach>
-							</tbody>
-						</table>
+							<div class="table-responsive" style="font-size:20px;">
+								<table>
+									<thead>
+										<tr>
+											<th>배우 이름</th>
+											<th>배역</th>
+										</tr>
+									</thead>
+									<tbody>
 
-					</div>
+										<c:set var="count" value="0" /> <!-- count = 0 -->
+										<c:forEach items="${vo.starring }" var="hash">
+											<c:if test="${count < 10 }">
+												<tr>
+													<td>${hash.key.actorName}</td> <!-- 배우명 -->
+													<td>${hash.value}</td>	<!-- 배역 -->
+												</tr>
+											</c:if>
+											<c:if test="${count >= 10 }">
+												<tr class="actorMore"> <!-- 더보기를 누르면 보여줄 클래스 -->
+													<td>${hash.key.actorName}</td>
+													<td>${hash.value}</td>
+												</tr>
+											</c:if>
+											<c:set var="count" value="${count+1}" /> <!-- foreach문이 한번 실행될때마다 count=count+1 -->
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+
+							<c:if test="${fn:length(vo.starring) > 10}">	<!-- 배우가 10명 이상이면 배우 전체보기와 숨기기 버튼 생성 -->
+							<div class="row" style="border-bottom:2px solid gray; padding:50px; text-align:center;">
+								<input type="button" id="btnActorShow" class="btn btn-default btn-more btn-block" value="배우 전체보기">
+								<input type="button" id="btnActorHide" class="btn btn-default btn-more btn-block" value="숨기기">
+							</div><br/>
+						</c:if>
 
 				</div>
 				<%-- <section id="two" class="wrapper style1 special">
@@ -196,15 +221,14 @@
 				<%-- 영화 배우정보 끝 --%>
 
 				<%-- 영화 그래프 시작 --%>
-				<h2>타 사이트 댓글 반응</h2>
+				<h2>[타 사이트 댓글 반응]</h2>
 				<div id="wordcloud" align="center" >
 		        </div>
-		        <div class="legend"  align="center" style="width:60%;">
-		          빈도수가 높은 단어는 크지만 흐립니다. 빈도수가 낮은 단어는 작지만 진합니다.
-		       
+		        <br/>
+		        <div class="legend"  align="center" style="width:100%; font-size:18px;">
+		          	빈도수가 높은 단어는 크지만 흐립니다. 빈도수가 낮은 단어는 작지만 진합니다.
 		        </div>
 				<%-- 영화 그래프 끝 --%>
-
 			</div>
 			<%-- 영화 컨텐츠 끝 --%>
 
@@ -217,9 +241,10 @@
 				<div class="col-full">
 
 					<%-- 코멘트 리스폰드 시작 --%>
-					<div class="respond">
 
-						<h3 class="h2">Add Comment</h3>
+						<h3>[코멘트]</h3>
+						<div class="respond" style="border:2px solid gray; margin:30px; padding:30px;">
+						
 						<%-- 커멘트 별점 --%>
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR">별2</span> <span
@@ -233,13 +258,13 @@
 								<input type="hidden" name="movieId" value="${vo.movieId }" id="movieId">
 								<div class="form-field">
 									<input name="comment" type="text" id="cWebsite"
-										class="full-width" placeholder="Your Comment" value="">
+										class="full-width" placeholder="이 영화에 대한 코멘트를 입력해주세요!" value="">
 								</div>
 								<%-- 코멘트 영수증 첨부 --%>
 								<%-- TODO --%>
 								<div class="comment">
 									<input type="file" name="file" id="pct_img" value="file">
-									<button type="button" class="submit btn--primary btn--large" id="btn-insertComment">Register</button>
+									<button type="button" class="submit btn--primary btn--large" id="btn-insertComment" style="float:right;">댓글 등록하기</button>
 
 								</div>
 							</fieldset>
@@ -249,13 +274,13 @@
 					<%-- 코멘트 리스폰드 끝 --%>
 
 					<%-- 다른 코멘트 --%>
-					<h3 class="h2" id="comment-count">1 Comments</h3>
+					<h3 id="comment-count">1 Comments</h3>
 
 					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
 						
 					</ol>
-					<button type="button" class="submit btn--primary" id="btn-moreComment">더보기</button>
+					<button type="button" class="submit btn--primary" id="btn-moreComment" style="float:right;">더보기</button>
 					<%-- 코멘트 끝 --%>
 				</div>
 				<%-- 코멘트 총 끝 --%>
@@ -315,3 +340,17 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.actorMore').hide(); // 11번째 배우부터는 숨겨놓기!
+		
+		$('#btnActorShow').click(function() {	// 배우 전체보기 버튼을 누르면
+			$('.actorMore').show();
+		});
+
+		$('#btnActorHide').click(function() {	// 배우 숨기기 버튼을 누르면
+			$('.actorMore').hide();
+		});
+	});
+</script>
