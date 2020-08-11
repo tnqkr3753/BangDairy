@@ -21,6 +21,9 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
+import com.nexacro17.xapi.data.DataSet;
+import com.nexacro17.xapi.data.DataTypes;
+import com.nexacro17.xapi.data.datatype.DataType;
 
 @Controller
 public class AdminController {
@@ -191,6 +194,34 @@ public class AdminController {
 		mv.setViewName("admin/adminManagePage");
 		return mv;
 	}
+	/*
+	 * 메소드명		: userBanList
+	 * 기능			: 넥사크로 연동
+	 * 변수			: Account_FormVO
+	 * 작성자			: 이경호
+	 */
+	@RequestMapping(value = "/admin/userBanList")
+	public ModelAndView userBanList() {
+		ModelAndView mv = new ModelAndView();
+		//유저 밴목록 DB에서 불러오기
+		List<AccountFormVO> list = adminService.getUserBanList();
+		
+		//넥사크로와 바인딩 될 데이터셋
+		DataSet ds = new DataSet("ar");
+		ds.addColumn("user_id",DataTypes.STRING,10);
+		ds.addColumn("user_id",DataTypes.DATE,10);
+		
+		for(AccountFormVO vo : list) {
+			int row = ds.newRow();
+			ds.set(row, "user_id", vo.getUserId());
+			ds.set(row, "date", vo.getJoinDate());
+			
+		}
+		mv.addObject("ds",ds);
+		mv.setViewName("admin/userBanList");
+		return mv;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/admin/user/ban",method = RequestMethod.POST)
 	public int banUser(AccountFormVO vo) {
