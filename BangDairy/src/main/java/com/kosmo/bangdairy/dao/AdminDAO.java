@@ -20,4 +20,5 @@ public interface AdminDAO {
 	public List<IndieVO> getIndieList(HashMap hash);
 	public IndieVO getIndieOne(IndieVO vo);
 	public int updateIndieConfirm(IndieVO vo);
+	public List<AccountFormVO> getUserBanList();
 }

@@ -66,6 +66,11 @@ public class AdminServiceImpl implements AdminService {
 	public int updateIndieConfirm(IndieVO vo) {
 		return adminDAO.updateIndieConfirm(vo);
 	}
+
+	@Override
+	public List<AccountFormVO> getUserBanList() {
+		return adminDAO.getUserBanList();
+	}
 	
 	
 }

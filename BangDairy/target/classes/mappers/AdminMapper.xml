@@ -70,6 +70,9 @@
 	UPDATE indie_movie_info SET indie_confirm = #{indieConfirm}
 	WHERE indie_id = #{indieId}
 </update>
+<select id="getUserBanList" resultType="account">
+	select * from user_info where user_ban='1'
+</select>
 	
 	
 </mapper>
