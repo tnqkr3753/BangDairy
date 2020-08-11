@@ -19,9 +19,6 @@ public interface AdminService {
 	public List<IndieVO> getIndieList(HashMap hash);
 	public IndieVO getIndieOne(IndieVO vo);
 	public int updateIndieConfirm(IndieVO vo);
-<<<<<<< HEAD
 	public List<AccountFormVO> getUserBanList();
-=======
 	public int banUser(AccountFormVO vo);
->>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
 }
