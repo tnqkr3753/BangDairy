@@ -15,4 +15,6 @@ public interface MovieDetailService {
 	public int insertComment(CommentVO vo);
 	public int insertWishMovie(WishMovieVO vo);
 	public List<StillVO> selectStill(MovieVO vo);
+	
+	//public float selectDetailStarScore(MovieVO vo);
 }

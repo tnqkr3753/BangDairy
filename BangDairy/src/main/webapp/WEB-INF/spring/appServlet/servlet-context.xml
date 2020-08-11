@@ -62,6 +62,11 @@
         	<mapping path="/detail/addWish"/>
         	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
         </interceptor>
+        <interceptor>
+        	<mapping path="/admin/"/>
+        	<mapping path="/admin/**/"/>
+        	<beans:bean id="typeCheckInterceptor" class="com.kosmo.bangdairy.interceptor.TypeCheckInterceptor"></beans:bean>
+        </interceptor>
     </interceptors>
 	
 	

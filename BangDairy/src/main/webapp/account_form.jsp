@@ -9,61 +9,46 @@
     <link rel="stylesheet" href="resources/css/account_form.css">
   </head>
   <body>
-  	<div>
-    <div class="account_container">
-		<h3>회원가입</h3>
-		<form id="account_body" method="post" action="">
+  	<div id = "account_body">
+    <div class="account_form">
 		
-		<input style="display:none;" id="userProfileSize" name="userProfileSize" value="1">
-		<div class="row">
-		<div class="col-md-12 col-sm-12 col">
-			<div>
-				<input id='user_id' type="text" name="userId" required="" minlength="2">
-				<label >아이디</label>
-			</div>
-			<div class="FilterResultId hideResult">
-				<strong id='idCheckResult'> ggg</strong>
-			</div>
-			
-			<div>
+		<form id="accountForm" method="post" action="">
+		<h1>회원가입</h1>
+		<div class="form-group">
+			<strong >아이디&nbsp;<small id="idCheckResult" class="FilterResultId hideResult"></small></strong>
+			<input id='user_id' type="text" name="userId" required="" minlength="2" placeholder="아이디">
+		</div>
+			<div class="form-group">
+				<strong >패스워드&nbsp;<small id="passwdCheckResult" class="FilterResultPasswd hideResult"></small></strong>	
 				<input id="user_passwd" type="password" name="userPassword" required="">
-				<label>패스워드</label>	
-			</div>
-			<div class="FilterResultPasswd hideResult">
-				<strong id="passwdCheckResult">aaa</strong>
 			</div>
 			
-			<div>
+			<div class="form-group">
+				<strong>패스워드-확인&nbsp;<small id="passwdCheckResult2" class="FilterResultPasswd2 hideResult"></small></strong>	
 				<input id="user_passwd2" type="password" required="">
-				<label>패스워드-확인</label>	
-			</div>
-			<div class="FilterResultPasswd2 hideResult">
-				<label id="passwdCheckResult2">bbb</label>
+				
 			</div>
 			
 			
- 			<div id="userRegForm">
-					<input maxlength="6" minlength="6" class="userReg" type="text" required="">
-					<span style="font-size:30px;">-</span>
-					<input maxlength="1" class="userRegB" type="text" required="">
-					<span class="userRegStar">******</span>
-					<label>주민등록번호</label>	
+ 			<div id="userRegForm" class="form-group" >
+ 					<strong>주민등록번호 ex)900101-1&nbsp;</strong>
+					<input maxlength="6" minlength="6" class="userReg" type="text" required="" placeholder="ex)900101">
+					<span class="bar"> -</span>
+					<input maxlength="1" class="userRegB" type="text" required="" placeholder="ex) 1">
+						
 					<input id="saveReg" style="display:none;" name="userReg">
 			</div>
 
-			<div>
+			<div  class="form-group">
+				<strong>e-mail&nbsp;<small id="eMailCheckResult" class="FilterResultEmail hideResult"></small></strong>
 				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
-				<label>e-mail</label>	
-			</div>
-			<div class="FilterResultEmail hideResult">
-				<strong id="eMailCheckResult">eee</strong>
+					
 			</div>
 			
-			<input id="onsubmit" type="submit" value="회원가입">
-			<input type="button" id="account_cancel" value="취소"></button>
-			</div>
-			</div>
-
+			<input id="onsubmit" class="function-btn" type="submit" value="회원가입">
+			<div class="seperator"><b>or</b></div>
+			<input type="button" class="function-btn" id="account_cancel" value="취소"/>
+			
 		</form>
 	</div>
 	</div>
