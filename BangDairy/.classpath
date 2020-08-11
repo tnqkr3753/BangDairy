@@ -46,8 +46,5 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/KOSMO_29/Downloads/nexacro17-xeni_20200619_1/commons-logging-1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/KOSMO_29/Downloads/nexacro17-xeni_20200619_1/nexacro17-xapi-1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/KOSMO_29/Downloads/nexacro17-xeni_20200619_1/nexacro17-xeni-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -33,4 +33,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/github/shin285/KOMORAN/3.3.4/KOMORAN-3.3.4.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/github/shineware/commons/1.0.1/commons-1.0.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/github/shineware/aho-corasick/1.0.9/aho-corasick-1.0.9.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context-support/4.3.4.RELEASE/spring-context-support-4.3.4.RELEASE.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
