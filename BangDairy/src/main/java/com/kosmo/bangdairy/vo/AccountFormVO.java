@@ -27,15 +27,6 @@ public class AccountFormVO {
 	Date joinDate;
 	MultipartFile file;
 	String userType;
-	String userBan;
-	
-	
-	public String getUserBan() {
-		return userBan;
-	}
-	public void setUserBan(String userBan) {
-		this.userBan = userBan;
-	}
 	public Date getJoinDate() {
 		return joinDate;
 	}

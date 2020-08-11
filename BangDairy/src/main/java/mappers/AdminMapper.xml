@@ -71,7 +71,7 @@
 	WHERE indie_id = #{indieId}
 </update>
 <select id="getUserBanList" resultType="account">
-	select * from user_info where user_ban='1'
+	select * from user_info where user_type='9'
 </select>
 	
 	

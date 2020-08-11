@@ -188,7 +188,13 @@ public class AdminController {
 		mv.setViewName("admin/adminManagePage");
 		return mv;
 	}
-	@RequestMapping(value = "/userBanList")
+	/*
+	 * 메소드명		: userBanList
+	 * 기능			: 넥사크로 연동
+	 * 변수			: Account_FormVO
+	 * 작성자			: 이경호
+	 */
+	@RequestMapping(value = "/admin/userBanList")
 	public ModelAndView userBanList() {
 		ModelAndView mv = new ModelAndView();
 		//유저 밴목록 DB에서 불러오기
