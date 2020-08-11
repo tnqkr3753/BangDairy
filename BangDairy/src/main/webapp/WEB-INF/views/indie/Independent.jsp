@@ -83,21 +83,21 @@
 				  <tr>
 				  
 					<th>감독</th>
-				    <td><input type="text" name="indieDirector" id="distri_name"  value="123"class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
+				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
 				  <td><input type="hidden" name=indieConfirm value="y"></td>
 				  </tr>
 				   <tr>
 					<th>배우</th>
-				   <td id="actorbutton"></td>
+				   <td id="actorbutton" msg="배우를" ></td>
 				   
 				<!--  <td><input type="button"src="resources/images/추가버튼.png"  value="추가"> -->
 			
 				  </tr>
-				  <td>  <button type="button"><img src="resources/images/추가버튼.png" id="makebtn" style="width:60px"></button>
+				  <td>  <p style="cursor:pointer"><img src="resources/images/add.ico" id="makebtn" style="width:60px"></a></p></td>
 				 
  				  <tr> 
 				 <th>포스터url</th>
-				   <td><input  type="file" name='file'></td>
+				   <td><input  type="file" name='file' msg="포스터를" class="type01"></td>
 			
 				  </tr>
 <!-- 		<td><input id="profile_img" type="file" name='indiePosterAddr' value="" accept="image/gif,image/jpg,image/png" onchange="chk_file_type(this)" > -->
@@ -106,7 +106,7 @@
 				   
 				<!--   <tr>
 					<th>e-mail</th>
-				   <td><input type="text" name="distri_email" id="distri_email" class="type01" style="width:30%;" msg="이메일을"value="123"> </td>
+				   <td><input type="text" name="distri_email" id="distri_email" class="type01" style="width:30%;" msg="이메일을"> </td>
 				  </tr>
 				  <tr>
 					<th>핸드폰</th>
@@ -120,8 +120,8 @@
 		                <option value="018">018</option>
 		                <option value="019">019</option>                         
 		              </select> -
-		              <input type="text" name="distri_phone2" id="distri_phone2" title="휴대전화 중간자리 입력" value="123" maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)"> -
-		              <input type="text" name="distri_phone3" id="distri_phone3" title="휴대전화 마지막자리 입력" value="123" maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)">
+		              <input type="text" name="distri_phone2" id="distri_phone2" title="휴대전화 중간자리 입력"  maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)"> -
+		              <input type="text" name="distri_phone3" id="distri_phone3" title="휴대전화 마지막자리 입력"  maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)">
 					</td>
 				  </tr> -->
 				</tbody></table>
@@ -131,12 +131,12 @@
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
 					<th>제목</th>
-				    <td><input type="text" name="indieTitle" value="123" id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
+				    <td><input type="text" name="indieTitle"  id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
 				  </tr>
 				
 <!-- 				  <tr> -->
 <!-- 					<th>영문제목</th> -->
-<!-- 				   <td><input type="text" value="123"name="distri_movie_esubject" id="distri_movie_esubject" class="type01" style="width:20%;" msg="영문제목을"> </td> -->
+<!-- 				   <td><input type="text" name="distri_movie_esubject" id="distri_movie_esubject" class="type01" style="width:20%;" msg="영문제목을"> </td> -->
 <!-- 				  </tr> -->
 <!-- 				  <tr> -->
 <!-- 					<th>장편/단편</th> -->
@@ -149,7 +149,7 @@
 <!-- 				  </tr> -->
 <!-- 				  <tr> -->
 <!-- 					<th>길이</th> -->
-<!-- 				   <td><input type="text" name="distri_movie_length1"value="123" id="distri_movie_length1" class="type01" style=
+<!-- 				   <td><input type="text" name="distri_movie_length1" id="distri_movie_length1" class="type01" style=
 
 "width:10%;" msg="분을" onkeydown="onlyNumber(this)"> 분&nbsp;&nbsp;  <input type="text" value ="423"name="distri_movie_length2" id="distri_movie_length2" class="type01" style="width:10%" msg="초를" onkeydown="onlyNumber(this)"> 초 </td> -->
 <!-- 				  </tr> -->
@@ -161,21 +161,21 @@
 			  <tr>
 					<th>키워드?</th>
 				   <td id=actorbu>
-				  <input type="text" name="indieKeyword" value="123"class="type01" style="width:70px";msg="감독을" maxlen="10">
+				  <input type="text" name="indieKeyword" class="type01" style="width:70px";msg="감독을" maxlen="10">
 				  	  <td ></td>
 				  
 				  </td>
 			
 				  </tr> 	
-	 <td> <input type="button" id="makeky" value="추가"></td>
+	 <td> <p style="cursor:pointer"><img src="resources/images/add.ico" id="makeky" style="width:60px" ></p></td>
 
 		  <tr>
 					<th>작품링크</th>
-				   <td><input type="text" name="indieAddr" value="123" class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
+				   <td><input type="text" name="indieAddr"  class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
 				  </tr>
 <!-- 				  <tr> -->
 <!-- 					<th>제작포맷</th> -->
-<!-- 				    <td><input type="text" name="distri_movie_mformat" value="123"id="distri_movie_mformat" class="type01" style="width:30%;" msg="제작포맷을"></td> -->
+<!-- 				    <td><input type="text" name="distri_movie_mformat" id="distri_movie_mformat" class="type01" style="width:30%;" msg="제작포맷을"></td> -->
 <!-- 				  </tr> -->
 				  <!-- <tr>
 					<th>상영포맷</th>
@@ -183,11 +183,11 @@
 				  </tr> -->
 				  <tr>
 					<th>나라</th>
-				    <td><input type="text" value="123"name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
+				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
 				  </tr>
 <!-- 				  <tr> -->
 <!-- 					<th>컬러/흑백</th> -->
-<!-- 				    <td><input type="text" name="distri_movie_color" value="123"id="distri_movie_color" class="type01" style="width:20%;" msg="컬러/흑백을"> </td> -->
+<!-- 				    <td><input type="text" name="distri_movie_color" id="distri_movie_color" class="type01" style="width:20%;" msg="컬러/흑백을"> </td> -->
 <!-- 				  </tr> -->
 				  <tr>
 				  <th>장르</th>
@@ -205,7 +205,7 @@
 				  <tr>
 				  
 					<th>줄거리</th>
-				    <td><textarea name="indiePlot"  value="123" id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
+				    <td><textarea name="indiePlot"   id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
 				  </tr> 
 			
 				 
@@ -232,8 +232,7 @@
 				</tbody></table>
 			</div></form>
 
-
-<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/신청.jpg" alt=""></a></p>
+<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/신청1.JPG" alt="" style="margin-left: 70%"></a></p>
 
   
  </section>

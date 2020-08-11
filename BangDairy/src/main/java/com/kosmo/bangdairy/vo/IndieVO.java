@@ -27,10 +27,12 @@ private String Applicant;
 private String userId;
 private String indieGenre;
 private String indieConfirm;
+			
 private String indieLike;
 private String indieHate;
 private Date regDate;
 private String indiePosterAddr;
+
 
 MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변수명
 
