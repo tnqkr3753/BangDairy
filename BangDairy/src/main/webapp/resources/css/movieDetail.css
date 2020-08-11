@@ -1,4 +1,5 @@
 /* responsive �����̵� */
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 
 .rslides {	
 	position: relative;
@@ -271,4 +272,98 @@ section.wrapper header, article.wrapper header {
 }
 .bld {
      font-weight: bold;
+}
+
+/* 2020.08.10 은주 추가 */
+h1, li, p, h2, h3 {
+	font-family: 'Black Han Sans', sans-serif;
+}
+
+tr, td, th {
+	font-family: 'Black Han Sans', sans-serif;
+}
+
+.legend {
+	font-family: 'Black Han Sans', sans-serif;
+}
+
+.comments-wrap, #cWebsite, #pct_img, .s-extra .tagcloud a {
+	font-family: 'Black Han Sans', sans-serif;
+}
+
+/* 찜목록 버튼, 예고편 보기 버튼 */
+#wish-add, #btn-preview {
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 20px;
+	width: 160px;
+	height: 45px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: white;
+	background: #0099FF;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+#wish-add:hover, #btn-preview:hover {
+	background-color: white;
+	box-shadow: 0px 15px 20px gray;
+	color: black;
+	transform: translateY(-7px);
+}
+
+/* 슬라이드 이전, 다음 버튼 */
+.rslides_nav {
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 15px;
+	width: 160px;
+	height: 45px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: white;
+	background: black;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+.rslides_nav:hover {
+	background: white;
+	box-shadow: 0px 15px 20px gray;
+	font-color: black;
+	transform: translateY(-7px);
+}
+
+/* 배우 전체보기, 숨기기 버튼, 댓글 등록 버튼, 댓글 더보기 버튼 */
+#btnActorShow, #btnActorHide, #btn-insertComment, #btn-moreComment {
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 20px;
+	width: 200px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: white;
+	background: black;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+#btnActorShow:hover, #btnActorHide:hover, #btn-insertComment:hover, #btn-moreComment:hover {
+	background-color: white;
+	box-shadow: 0px 15px 20px gray;
+	color: black;
+	transform: translateY(-7px);
 }

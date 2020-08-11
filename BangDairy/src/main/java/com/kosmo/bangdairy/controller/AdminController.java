@@ -162,6 +162,12 @@ public class AdminController {
 		int result = adminService.updateIndieConfirm(vo);
 		return result;
 	}
+	/*
+	 * 메소드명		: getManagePage
+	 * 기능			: 통계페이지를 KIBANA와 연동해 띄운다
+	 * 변수			: Type
+	 * 작성자			: 박윤태
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/admin/manage/{type}",method = RequestMethod.POST)
 	public ModelAndView getManagePage(@PathVariable(value = "type")String type) {
@@ -186,4 +192,10 @@ public class AdminController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/admin/user/ban",method = RequestMethod.POST)
+	public int banUser(AccountFormVO vo) {
+		int result = adminService.banUser(vo);
+		return result;
+	}
 }

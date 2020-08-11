@@ -99,26 +99,32 @@ public class IndependentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "goodId/{goodId}", method = RequestMethod.GET)
-	public ModelAndView goodId(HttpSession session,@PathVariable(value = "goodId", required = true) String goodId) {
+	public ModelAndView goodId( HttpSession session,@PathVariable(value = "goodId", required = true) String goodId) {
 		System.out.println("-------------------------------------------------------------)))))))))))))))");
 	ModelAndView mv = new ModelAndView(); 
 		String userId =(String)session.getAttribute("userId");
 		System.out.println(userId);
 		System.out.println(goodId);
-		int goodId1 = Integer.parseInt(goodId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
-		int hateNum=indieSevice.selectHateNum(goodId1,userId);        
-		int like= indieSevice.selectEqulegood(goodId1,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
+		int indieId = Integer.parseInt(goodId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
+		
+		int hateNum=indieSevice.selectHateNum(indieId,userId);        
+		int like= indieSevice.selectEqulegood(indieId,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
+
+	
 		System.out.println(hateNum);
 		System.out.println(like);
 		
 		if (hateNum==0) {                                          //인서트해온게 널이면  값을 인서트해줌
-			indieSevice.goodInsert(goodId1,userId);
+			indieSevice.goodInsert(indieId,userId);
 		}
 		else if (hateNum==1 && like==1) {
-			 indieSevice.updateLike(goodId1,userId); 
-		System.out.println("넘겨야할4 인디 아이디" + goodId1);
+			 indieSevice.updateLike(indieId,userId); 
+		System.out.println("넘겨야할4 인디 아이디" + indieId);
 		System.out.println("like가 0이고 hate가 1 그러므로 값을 update해야함"+like);
 		 }
+
+		mv.addObject("indieId", indieId);
+		
 		 mv.setViewName("indie/indieDetail");
 		 return mv;
 		/*
@@ -138,29 +144,33 @@ public class IndependentController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "badId/{badId}", method = RequestMethod.GET)
-	public ModelAndView badId(HttpSession session,@PathVariable(value = "badId", required = true) String badId) {
+	public ModelAndView badId( IndieVO ivo,HttpSession session,@PathVariable(value = "badId", required = true) String badId) {
 		System.out.println("-------------------------------------------------------------)))))))))))))))");
 		ModelAndView mv = new ModelAndView(); 
 		String userId =(String)session.getAttribute("userId");
 		
 		System.out.println(userId);
 		System.out.println(badId);
-		int badIdInt = Integer.parseInt(badId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
-		int likeNum=indieSevice.selectLikeNum(badIdInt,userId);        
+		int indieId = Integer.parseInt(badId);                 // 현재 선택한 페이지 번호 받아와서 형 변환
+		int likeNum=indieSevice.selectLikeNum(indieId,userId); 
+
+		
 	
-		int hate= indieSevice.selectEqulebad(badIdInt,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
+		int hate= indieSevice.selectEqulebad(indieId,userId);  //인서트 해온게 1이면 값이 있고  hate가 1인거임  그러면 값을 업데이트해줌
 		System.out.println(likeNum);
 		System.out.println(hate);
 		
 		if (likeNum==0) {                                          //인서트해온게 널이면  값을 인서트해줌
-			indieSevice.badInsert(badIdInt,userId);
+			indieSevice.badInsert(indieId,userId);
 		}
 		else if (likeNum==1 && hate==1) {
-			 indieSevice.updateHate(badIdInt,userId); 
-		System.out.println("넘겨야할4 인디 아이디" + badIdInt);
+			 indieSevice.updateHate(indieId,userId); 
+		System.out.println("넘겨야할4 인디 아이디" + indieId);
 		System.out.println("like가1이고 hate가 0 그러므로 값을 update해야함"+hate);
 		 }
 //		 mv.addObject("result2",result);
+
+		mv.addObject("indieId", indieId);
 		 mv.setViewName("indie/indieDetail");
 		 return mv;
 	}
@@ -175,14 +185,14 @@ public class IndependentController {
 		ModelAndView mv = new ModelAndView();	
 		String userId =(String)session.getAttribute("userId");
 		ivo.setIndieId(indieId);
-		System.out.println(indieId);
+		
 		IndieVO result22 = indieSevice.selectIndieDetail(ivo);
 		int likeCount=indieSevice.selectLikeCount(indieId);
 		int hateCount=indieSevice.selectHateCount(indieId);
 		System.out.println("________________________________________________________________________________________________________________");
 		System.out.println(likeCount);
 		mv.addObject("userId",userId);
-		mv.addObject("result",result22);
+	mv.addObject("result",result22);
 		mv.addObject("likeCount", likeCount);
 		mv.addObject("hateCount", hateCount);
 		mv.setViewName("indie/indieDetail");

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	 *  account_cancel : 취소 버튼 Id 값
 	 *  작성자 : 이경호
 	 */
-	$('.account_container #account_cancel').on("click",function(){
+	$('.account_form #account_cancel').on("click",function(){
 		var siteBody = $('body');
 		siteBody.removeClass('account-is-visible')
 	});
@@ -162,7 +162,7 @@ $(document).ready(function(){
 		    	 * 주민번호 합쳐서 보내주기
 		    	 */
 		    	$('#saveReg').val($('.userReg').val()+$('.userRegB').val());
-		    	var userData = $('#account_body').serialize();
+		    	var userData = $('#accountForm').serialize();
 		    	//비동기 통신으로 유저 정보 저장하고 결과값 받기.
 		    	console.log(userData);
 		    	$.ajax({

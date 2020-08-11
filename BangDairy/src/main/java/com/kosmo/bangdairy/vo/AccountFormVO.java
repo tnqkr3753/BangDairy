@@ -27,7 +27,6 @@ public class AccountFormVO {
 	Date joinDate;
 	MultipartFile file;
 	String userType;
-	
 	public Date getJoinDate() {
 		return joinDate;
 	}

@@ -42,6 +42,7 @@
 										<th>타입</th>
 										<th>가입날짜</th>
 										<th>생년월일</th>
+										<th>벤</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -62,7 +63,10 @@
 										</td>
 										<td><fmt:formatDate value="${vo.joinDate }" type="date" dateStyle="full" /></td>
 										<td>${vo.userReg }</td>
-									</tr>
+										<td><c:if test="${vo.userBan eq '0' }"><input type="button" class="btn btn-danger ban-user" value="유저 벤" data-id=""${vo.userId }></c:if>
+										<c:if test="${vo.userBan eq '1' }"><input type="button" class="btn btn-danger cancle-ban-user" value="벤 취소" data-id=""${vo.userId }></c:if>
+										</td>									
+										</tr>
 									<!-- 하나의 영화 END -->
 									</c:forEach>
 								</tbody>

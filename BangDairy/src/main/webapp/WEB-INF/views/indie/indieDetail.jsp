@@ -1,7 +1,7 @@
+<%@page import="javax.naming.spi.DirStateFactory.Result"%>
 <%@page import="com.sun.org.glassfish.external.statistics.annotations.Reset"%>
 <%@page import="com.kosmo.bangdairy.vo.IndieVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
     
     
     </head>
-    <body data-spy="scroll" data-target=".navbar" data-offset="200" style=background-color="red">
+    <body data-spy="scroll" data-target=".navbar" data-offset="200" >
 	<%@ include file="../../../header_menu.jsp"%>
         <div class='preloader'>
             <div class='loaded'>&nbsp;</div>
@@ -140,26 +140,27 @@
                                                 </div>
                                             </div>
                                             
-                                            <button class="btnPaging" value='${likeCount}'>"좋야요"${likeCount}</button>
-                                            <button class="btnPaging" value='${hateCount}'>"싫어요"${hateCount}</button>
-                                            
+                                  
+                                          
+         <div id=indiedi>                               
                                           <c:choose>
   											<c:when test="${userId ne null}">
-                                            <span><input type="image" src="resources/images/Dislike.jpg" width="100px" id="bad" value="<%=result.getIndieId()%>" style="float: right;"></span> 
-                                            
-                                             <span><input type="image" src="resources/images/like.jpg" width="100px" id="good" value="<%=result.getIndieId()%>" style="float: right; "></span>
+  											   <span>    <button id="bad" class="bad"  value="<%=result.getIndieId()%>" style="float: right;">"싫어요"${hateCount}</button> </span>
+                                            <span>    <button  id="good" class="good" value="<%=result.getIndieId()%>"  style="float: right;">"좋야요"${likeCount} </button> </span> 
+                                        
+                                          
                                               </c:when>
                                               <c:otherwise>
-                    <span>  <a href='javascript:login_need();'><img  src="resources/images/Dislike.jpg" width="100px" style="float: right"></a></span>
+                    <span>  <a href='javascript:login_need();'> <button id="bad" class="bad"  value="<%=result.getIndieId()%>" style="float: right;">"싫어요"${hateCount}</button></a></span>
                                          
-             <span>  <a href='javascript:login_need();'><img  src="resources/images/like.jpg" width="100px" style="float: right"></a></span>
+             <span>  <a href='javascript:login_need();'> <button  id="good" class="good" value="<%=result.getIndieId()%>"  style="float: right;">"좋야요"${likeCount} </button> </a></span>
                                                  
                                       
                                                </c:otherwise>
                                                </c:choose>
                                               
-                                              
-                                        <td></td>
+                                              </div>  
+                                      
                           <%--       	<%	IndieVO good=(IndieVO)request.getAttribute("good"); %>
                                 	            	<%	IndieVO  result2=(IndieVO)request.getAttribute("result2"); %>
 									<script type="text/javascript">
@@ -207,7 +208,7 @@
 
                         </div>
                     </div>
-                </div>
+           
         
 
         <!-- START SCROLL TO TOP  -->
