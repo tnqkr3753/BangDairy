@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.mapping.ParameterMap;
@@ -111,19 +112,36 @@ public class IndexController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "getm/wish", method = RequestMethod.POST)
-	public ModelAndView getActorMovieWithWish(HttpSession session) {
+	public ModelAndView getActorMovieWithWish(HttpSession session,
+			HttpServletResponse response) {
 		String userId = (String)session.getAttribute("userId");
 		HashMap hash = new HashMap();
 		hash.put("userId", userId);
 		ActorVO avo = indexService.getActorMovieWithWish(hash);
-		List<MovieVO> mvo = indexService.getMovieWithActor(avo);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index/moviebar");
-		if (avo!=null) {
-			mv.addObject("title",avo.getActorName()+" 배우의 다른 작품들");
+		List<MovieVO> mvo = null;
+		if(avo!=null) { //위시리스트에 영화가 없거나 배우가 없을 때
+			mvo = indexService.getMovieWithActor(avo);
+			for (int i = 0;mvo.size()<5&& i <= 5; i++) { //추천이 작으면 최대 5번 반복
+				if(i==5) { //5번 반복을 해도 size가 5가 넘지 않을 때
+					mvo = null;
+				}
+				avo = indexService.getActorMovieWithWish(hash);
+				mvo =  indexService.getMovieWithActor(avo);
+			}
+			if(mvo.size()<5) { //사이즈가 작을 때
+				mv.addObject("title","평점 높은 영화");
+				mv.addObject("list", mvo);
+			}else { //영화가 있을 때
+				mv.addObject("title",avo.getActorName()+" 배우의 다른 작품들");
+				mv.addObject("list", mvo);
+			}
+		}else { // 위시리스트에 영화가 없거나 배우가 없을 때
+			mvo = indexService.getMovieAsScore();
+			mv.addObject("title","평점 높은 영화"+ "<script type=\"text/javascript\">alert('여러 기능을 즐기고 싶으시다면 영화를 위시리스트에 등록해주세요!')</script>");
 			mv.addObject("list", mvo);
 		}
-		
 		return mv;
 	}
 	/*
@@ -143,10 +161,19 @@ public class IndexController {
 			list =indexService.getMovieWithUserGenre(vo);
 		}
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("title", userId+"님이 보지 않으신 좋아하실만한 영화");
+		if(list.size()<5) { //표본이 작을 땐 인기 장르를 끌어온다
+			HashMap hash = new HashMap();
+			GenreVO gvo = indexService.getHitsAsGenre().get(0);
+			
+			hash.put("genreId", gvo.getGenreId());
+			list = indexService.getMovieWithGenre(hash);
+			mv.addObject("title", indexService.getGenreTitle(hash).getGenreTitle()
+					+ "<script type=\"text/javascript\">alert('여러 기능을 즐기고 싶으시다면 영화의 평점을 등록해주세요!')</script>");
+		}else {
+			mv.addObject("title", userId+"님이 보지 않으신 좋아하실만한 영화");
+		}
 		mv.addObject("list", list);
 		mv.setViewName("index/moviebar");
-		LoggerAspect.logger.info(list);
 		return mv;
 	}
 	/*
@@ -249,7 +276,11 @@ public class IndexController {
 		}
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("title", userId+"님 에게 추천하는 영화");
+		if(recommend_list!=null) {
+			mv.addObject("title", userId+"님 에게 추천하는 영화");
+		}else {
+			mv.addObject("title","영화에 대한 평점을 입력해주세요");
+		}
 		mv.addObject("list", recommend_list);
 		mv.setViewName("index/moviebar");
 		LoggerAspect.logger.info(recommend_list);
