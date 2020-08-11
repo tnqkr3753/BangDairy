@@ -96,7 +96,7 @@
                         <li><a class="pgn__num" href="#0">8</a></li>
                         <li><a class="pgn__next" href="#0">Next</a></li>
                     </ul>
-         </nav> -->
+         	</nav> -->
           
 		<!-- end pageheader-content row -->
 

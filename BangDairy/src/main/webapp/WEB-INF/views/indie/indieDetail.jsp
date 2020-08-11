@@ -1,7 +1,9 @@
 <%@page import="com.sun.org.glassfish.external.statistics.annotations.Reset"%>
 <%@page import="com.kosmo.bangdairy.vo.IndieVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
  <html class="no-js" lang=""> 
     <head>
@@ -10,14 +12,15 @@
         <title>Logic - Free Html  Business Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	
      <!--필요  --><link rel="stylesheet" href="resources/css/bootstrap.min.css">
  
     <link rel="stylesheet" href="resources/css/base.css">
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
 	<link rel="stylesheet" href="resources/css/independent.css">
-	
+	<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
         <!--For Plugins external css-->
@@ -39,9 +42,6 @@
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="200" style=background-color="red">
 	<%@ include file="../../../header_menu.jsp"%>
-<<<<<<< HEAD
-		<%@ include file="../../../account_form.jsp"%>
-		<%@ include file="../../../Sign_In.jsp"%>
         <div class='preloader'>
             <div class='loaded'>&nbsp;</div>
         </div>
@@ -54,7 +54,10 @@
                         <div class="col-sm-12">
                             <div class="main_features_area sections">
                                 <div class="head_title">	
+                                                           <div class="head_title">   
                                     <h5 style="text-align: center; "><%=result.getIndieTitle() %></h5>
+                                   
+                                </div>
                                    
                                 </div>
                                
@@ -107,7 +110,7 @@
             </section>
 
 
-            <section id="about" class="about">
+           <!--  <section id="about" class="about"></section> -->
                 <div class="container">
                     <div class="row">
 
@@ -138,12 +141,35 @@
                                             </div>
                                             
                                             
+                                          <c:choose>
+  											<c:when test="${userId ne null}">
+                                            <span><input type="image" src="resources/images/Dislike.jpg" width="100px" id="bad" value="<%=result.getIndieId()%>" style="float: right;"></span> 
+                                             <span><input type="image" src="resources/images/like.jpg" width="100px" id="good" value="<%=result.getIndieId()%>" style="float: right; "></span>
+                                              </c:when>
+                                              <c:otherwise>
+                    <span>  <a href='javascript:login_need();'><img  src="resources/images/Dislike.jpg"width="100px" style="float: right"></a></span>
                                          
-                                            <span><input type="image" src="resources/images/Dislike.jpg"width="100px"style="float: right;"></span> 
-                                         <span><input type="image" src="resources/images/like.jpg" width="100px" style="float: right; "></span>
+             <span>  <a href='javascript:login_need();'><img  src="resources/images/like.jpg"width="100px" style="float: right"></a></span>
                                                  
-                                            
-                                            
+                                      
+                                               </c:otherwise>
+                                               </c:choose>
+                                              
+                                              
+                                        
+                          <%--       	<%	IndieVO good=(IndieVO)request.getAttribute("good"); %>
+                                	            	<%	IndieVO  result2=(IndieVO)request.getAttribute("result2"); %>
+									<script type="text/javascript">
+									$("#good").click(function(){									
+									if(<%=good.getIndieId()%>=<%=result2.getIndieId()%>)and{
+										},<%=good.getUserId()%>
+										<%=good.getIndieLike()%>
+
+
+										})	 --%>									
+<!-- </script>	 -->
+										                                        
+                                        
                                             </div>
                                             
                                             
@@ -197,6 +223,7 @@
 
         <script src="resources/js/jquery.magnific-popup.js"></script>
         <script src="resources/js/jquery.mixitup.min.js"></script>
+    
 
 
         
@@ -211,7 +238,7 @@
 
 
 
-        <script>
+    <!--     <script>
 
                                             function showmap() {
                                                 var mapOptions = {
@@ -222,7 +249,7 @@
                                                 };
                                                 var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
                                             }
-        </script>
+        </script> -->
        
    <!--체팅기능-->
 <!--Start of Tawk.to Script-->
@@ -242,6 +269,7 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
  <script src="resources/js/plugins2.js"></script> 
+    <script src="resources/js/j_ajax.js"></script>
         <script src="resources/js/indieD.js"></script>
 	<%@ include file="../../../footer.jsp"%>
 

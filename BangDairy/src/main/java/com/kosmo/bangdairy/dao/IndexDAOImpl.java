@@ -55,5 +55,16 @@ public class IndexDAOImpl implements IndexDAO {
 	public List<MovieVO> getMovieWithUserGenre(AccountFormVO vo) {
 		return sqlSession.selectList("IndexDAO.getMovieWithUserGenre",vo);
 	}
+
+	@Override
+	public List<MovieVO> getUserMovies(String userId) {
+		return sqlSession.selectList("IndexDAO.getUserMovies", userId);
+	}
+
+	@Override
+	public List<MovieVO> getRecommendedMovieDetail(List<MovieVO> list) {
+	
+		return sqlSession.selectList("IndexDAO.getRecommendedMovieDetail",list);
+	}
 	
 }

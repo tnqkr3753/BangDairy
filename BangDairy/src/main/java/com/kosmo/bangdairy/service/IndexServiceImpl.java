@@ -52,6 +52,17 @@ public class IndexServiceImpl implements IndexService {
 	public List<MovieVO> getMovieWithUserGenre(AccountFormVO vo) {
 		return indexDAO.getMovieWithUserGenre(vo);
 	}
+
+	@Override
+	public List<MovieVO> getUserMovies(String userId) {
+		return indexDAO.getUserMovies(userId);
+	}
+
+	@Override
+	public List<MovieVO> getRecommendedMovieDetail(List<MovieVO> list) {
+		
+		return indexDAO.getRecommendedMovieDetail(list);
+	}
 	
 	
 	

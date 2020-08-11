@@ -17,4 +17,6 @@ public interface IndexDAO {
 	public List<MovieVO> getMovieWithActor(ActorVO vo);
 	public ActorVO getActorName(ActorVO vo);
 	public List<MovieVO> getMovieWithUserGenre(AccountFormVO vo);
+	public List<MovieVO> getUserMovies(String userId);
+	public List<MovieVO> getRecommendedMovieDetail(List<MovieVO> list);
 }

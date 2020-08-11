@@ -13,10 +13,10 @@
          <c:if test="${not empty vo.posterAddr }"></c:if>
         	
 			<c:forEach items="${list }" var="vo"><!-- forEach 시작  -->
-            <div class="masonry"style="background-color: black">
+            <div class="masonry"style="background-color: #19191b">
                 <div class="grid-sizer">
-             		<article class="masonry__brick entry format-standard" data-aos="fade-up" style="background-color: black">
-                    	<div class="entry__thumb" style="background-color: black" >
+             		<article class="masonry__brick entry format-standard" data-aos="fade-up" style="background-color: #19191b">
+                    	<div class="entry__thumb" style="background-color: #19191b" >
                     		<input type="hidden" value="${vo.movieId }" class="movieId">
 	                        <a href="#" class="entry__thumb-link" >
 	                        <img src="${vo.posterAddr }" class="entry__thumb-link1"
@@ -28,19 +28,19 @@
 	                    	</a>
                     	</div>
     
-    					<div class="board" style="background-color: black">
+    					<div class="board" style="background-color: #19191b">
   
   
-		                    <div class="entry__text" style="background-color: black">
-		                        <div class="entry__header" style="background-color: black">
+		                    <div class="entry__text" style="background-color: #19191b">
+		                        <div class="entry__header" style="background-color: #19191b">
                             		<h1 class="entry__title"><a href="detail?movieId=${vo.movieId}"><p class=rr>${vo.movieTitle}</p></a></h1>
                             	</div>
-                         		<div class="entry__date" style="background-color: black">
+                         		<div class="entry__date" style="background-color: #19191b">
                                		<a href="#"><div  align="right">${vo.viewingClass }</div></a>
                             	</div>
-                        		<div class="entry__excerpt" style="background-color: black">
+                        		<div class="entry__excerpt" style="background-color: #19191b">
                         		</div>
-		                        <div class="entry__meta" style="background-color: black">
+		                        <div class="entry__meta" style="background-color: #19191b">
 		                            <span class="entry__meta-links">
 		                                 <a href="https://www.naver.com/"><span><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
 		                                <!-- 아이콘 색 변경하려면  -->

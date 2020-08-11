@@ -1,166 +1,89 @@
-//ajax listindie 페이지기능
+$(function(){
+	
+	var searchWord = $('#search-word-indie').val();
+	
+	$(".btnPaging").click(function() {
+			var pNum = $(this).val();
+			getPage(pNum,searchWord);
+	});
 
-$(document).ready(function(){
-//var a =0
-//var main="mainAjax"
-//var jsp=".jsp"
-/*$('.movie_thema').click(function(){
-	movieType = $(this).attr("value");
-	*/
-	$('#sa').click(function(){
-	a=1
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : dd.jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area1").href(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
 
-    })
-$('#sb').click(function(){
-	a=2
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-        	  $(".Parse_Area2").html(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
 
-    })
-    $('#sc').click(function(){
-	a=3
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area3").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
+	$("#good").click(function(){
+		goodId=$(this).val();
+		$.ajax({
+			type : 'GET', // 요청 메소드 타입
+			url : "goodId/"+goodId, // 클라이언트가 HTTP 요청을 보낼 서버의 주소
+			error : function(e) { // 통신 실패시
+				alert(' 1통신실패' + e);
+			},
+			success : function(data) { // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
+	//			$('#movie-list').html(data);
+				if(data == 1){
+					alert("통신성공")
+				}else{
+					alert("실패")
+				}
+			}
+		});
+	});
+	$("#bad").click(function(){
+		badId=$(this).val();
+		alert(badId)	
+		$.ajax({
+			type : 'GET', // 요청 메소드 타입
+			url : "badId/"+badId, // 클라이언트가 HTTP 요청을 보낼 서버의 주소
+	//		dataType : "json", // 서버가 리턴하는 데이터 타입
+			error : function(e) { // 통신 실패시
+				alert(' 1통신실패' + e);
+			},
+			success : function(data) { // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
+	//			$('#movie-list').html(data);
+				if(data == 1){
+					alert("통신성공")
+				}else{
+					alert("실패")
+				}
+			}
+		});
+	});
+	/* 박윤태 수정 */
+	$(document).on("keydown",'.form-control',function(key){
+		if(key.keyCode == 13){
+			searchWord = $(this).val();
+			if(searchWord == "") {
+				searchWord = "all";
+			}
+			getPage(1,searchWord);
+		}
+	
+	});
+});
 
-    })
-    $('#sd').click(function(){
-	a=4
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area4").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
 
-    })
-    $('#se').click(function(){
-	a=5
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area5").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
+function login_need(){
+	alert("로그인이 필요합니다.")
+}
+var isRun = false;
+function getPage(pNum,searchWord){
+	if(searchWord =="" || searchWord ==null){
+		searchWord="all"
+	}
+		if(isRun == true) { return; }
+		isRun = true;
+				$.ajax({
+					type : 'GET', // 요청 메소드 타입
+					url : "listIndie2/" + pNum+"/"+searchWord, // 클라이언트가 HTTP 요청을 보낼 서버의 주소
+					dataType : "html", // 서버가 리턴하는 데이터 타입
+					error : function(e) { // 통신 실패시
+						alert('btnPaging 통신실패' + e);
+					},
+					success : function(data) { // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
+						isRun  = false;
+						$('#movie-list').html(data);
+					}
+				});
+		$('html').scrollTop(0);
+}
 
-    })
-    $('#sf').click(function(){
-	a=6
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area6").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
-
-    })
-    $('#sg').click(function(){
-	a=7
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area7").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
-
-    })
-    $('#sh').click(function(){
-	a=8
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area8").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
-
-    })
-       $('#si').click(function(){
-	a=9
-    $.ajax({
-        type : "get", //전송방식을 지정한다 (POST,GET)
-        url : main+a+jsp,//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-        dataType : "text",//호출한 페이지의 형식이다. xml,json,append,text등의 여러 방식을 사용할 수 있다.
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(Parse_data){
-        	
-            $(".Parse_Area9").append(Parse_data); //div에 받아온 값을 넣는다.
-          
-        }
-             })
-
-    })
     
-    
-
-    });
