@@ -1,5 +1,7 @@
 /* responsive �����̵� */
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 .rslides {	
 	position: relative;
@@ -275,25 +277,25 @@ section.wrapper header, article.wrapper header {
 }
 
 /* 2020.08.10 은주 추가 */
-h1, li, p, h2, h3 {
-	font-family: 'Black Han Sans', sans-serif;
+h1, li, p, h2, h3, span {
+font-family: 'Do Hyeon', sans-serif;
 }
 
 tr, td, th {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 .legend {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 .comments-wrap, #cWebsite, #pct_img, .s-extra .tagcloud a {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 /* 찜목록 버튼, 예고편 보기 버튼 */
 #wish-add, #btn-preview {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
 	width: 160px;
 	height: 45px;
@@ -319,7 +321,7 @@ tr, td, th {
 
 /* 슬라이드 이전, 다음 버튼 */
 .rslides_nav {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 15px;
 	width: 160px;
 	height: 45px;
@@ -345,7 +347,7 @@ tr, td, th {
 
 /* 배우 전체보기, 숨기기 버튼, 댓글 등록 버튼, 댓글 더보기 버튼 */
 #btnActorShow, #btnActorHide, #btn-insertComment, #btn-moreComment {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
 	width: 200px;
 	text-transform: uppercase;

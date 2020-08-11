@@ -6,7 +6,7 @@
 
 <div class="table-responsive">
 	<table>
-		<thead>
+		<thead style="font-size:30px; font-family: 'Do Hyeon', sans-serif;">
 			<tr>
 				<th>영화</th>
 				<th>영화제목</th>
@@ -28,7 +28,7 @@
 				<div class="tab-search">
 					<tbody class="movieList">
 						<!-- 영화 리스트 1개 START -->
-						<tr>
+						<tr style="font-size:20px;">
 							<td><input type="hidden" value="${list.movie_id}"
 								class="movieId"> <img src="${list.poster_addr}"
 								onerror="this.src='resources/images/movieList/noImage.png'"
@@ -79,7 +79,7 @@
 	</table>
 </div>
 
-<div class="row">
+<div class="row" id="btnPaging">
 	<div class="col-full">
 		<nav class="pgn">
 			<!-- ********** 페이징 ********** -->

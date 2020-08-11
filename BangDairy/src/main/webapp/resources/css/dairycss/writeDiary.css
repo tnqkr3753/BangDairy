@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 /* 다이어리 입력 헤더 */
 .insertDiaryTop {
@@ -43,7 +44,7 @@ td:first-child {
 }
 
 h2, h3, p, li, td, tr, th {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	text-align: center;
 	vertical-align: middle;
 	font-size: 20px;
@@ -55,7 +56,7 @@ th {
 
 /* 등록, 수정, 삭제 버튼 */
 #btnRegisterDiary, #btnDiaryModify, #btnDiaryDelete {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
 	width: 140px;
 	height: 45px;
@@ -104,7 +105,7 @@ th {
 }
 
 .diaryDetail {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 50px;
 	text-align: center;
 }
@@ -162,7 +163,7 @@ only screen and (max-width: 760px),
 
 /* 다이어리 내용 보여주는 태그 */
 pre {
-	font-family: 'Black Han Sans', sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
 	margin: 0;
 	padding: 0;
@@ -178,4 +179,16 @@ pre {
 @media screen and (min-width:768px) and (max-width:959px) {
 	.myleftTap {width:30%;}
 	.diaryDetail {width:70%;}
+}
+
+.insertDiaryTop, .insertDiaryDate {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 50px;
+	font-weight: 600;
+}
+
+#viewingDate, #file, #diaryTitle, #movieTitle, td {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	font-weight: 600;
 }
