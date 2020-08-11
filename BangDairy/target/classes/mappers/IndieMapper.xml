@@ -7,10 +7,10 @@
 	<insert id="indieInsert" parameterType="indie" useGeneratedKeys="true" keyProperty="indieId">
 			insert into indie_movie_info (indie_title, indie_director, indie_country,
 		indie_makedate, indie_plot, indie_actor, indie_addr, indie_keyword, indie_viewing_hits,
-		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre,indie_confirm) 
+		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre,indie_confirm,applicant) 
 		values (#{indieTitle},#{indieDirector},#{indieCountry},#{indieMakedate},
 		#{indiePlot},#{indieActor},#{indieAddr},#{indieKeyword},#{indieViewingHits},
-		#{indieUpdateDate},#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm})
+		#{indieUpdateDate},#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm},#{applicant})
 	</insert>
 	
 	<insert id="goodInsert" parameterType="hashmap">

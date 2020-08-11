@@ -47,6 +47,7 @@
 							<thead>
 							    <tr>
 							      <th scope="col">#</th>
+							      <th scope="col">신청인</th>
 							      <th scope="col">제목</th>
 							      <th scope="col">감독</th>
 							      <th scope="col">장르</th>
@@ -60,7 +61,7 @@
     
      										<tr>
 											      <th scope="row">${( pNum-1 )*10 + a}</th>
-											 
+											 		<td>${result.applicant }</td>
 											      <td><a href="indieDet?indieid=${result.indieId}">${result.indieTitle}</a></td>
 											      <td>${result.indieDirector}</td>
 											      <td>${result.indieGenre}</td>

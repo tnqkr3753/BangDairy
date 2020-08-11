@@ -51,6 +51,9 @@ public class MovieDetailController {
 		MovieVO vo = new MovieVO();
 		vo.setMovieId(movieId);
 		vo = movieDetailService.selectOneMovie(vo);
+		
+//		float detailStarScore = movieDetailService.selectDetailStarScore(vo);
+		
 		LoggerAspect.logger.info("movieDetail 결과 vo : "+vo);
 		List<StillVO> stillList = null;
 		if(vo!=null) {

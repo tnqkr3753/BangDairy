@@ -21,4 +21,6 @@ public interface AdminDAO {
 	public IndieVO getIndieOne(IndieVO vo);
 	public int updateIndieConfirm(IndieVO vo);
 	public List<AccountFormVO> getUserBanList();
+	public int banUser(AccountFormVO vo);
+
 }

@@ -55,7 +55,7 @@
 										<td><img src="resources/upload/indie/${vo.indiePosterAddr }"
 										onerror="this.src='resources/images/movieList/noImage.png'"
 											width="100px" height="100px"></td>
-										<td>${vo.indieDirector }</td>
+										<td>${vo.applicant }</td>
 										<td>${vo.indieTitle }</td>
 										<td>${vo.indieGenre }</td>
 										<td>좋아요 : ${vo.indieLike }<br/>싫어요 : ${vo.indieHate }</td>

@@ -61,6 +61,9 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<AccountFormVO> getUserBanList() {
 		return sqlSession.selectList("AdminDAO.getUserBanList");
 	}
+	public int banUser(AccountFormVO vo) {
+		return sqlSession.update("AdminDAO.banUser",vo);
+	}
 	
 	
 	
