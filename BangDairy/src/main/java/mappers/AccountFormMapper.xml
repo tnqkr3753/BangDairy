@@ -23,6 +23,9 @@
 		<if test="userProfileSize != null">
 			,user_profile_size
 		</if>
+		<if test="userType!=null">
+			,user_type
+		</if>
 			)
 		 values(#{userId},#{userPassword},
 		#{userEmail},#{userReg}
@@ -31,6 +34,9 @@
 		</if>
 		<if test="userProfileSize != null">
 		,#{userProfileSize}
+		</if>
+		<if test="userType!=null">
+			,#{userType}
 		</if>
 		)
 	</insert>
