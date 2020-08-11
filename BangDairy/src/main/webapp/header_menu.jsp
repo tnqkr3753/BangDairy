@@ -51,8 +51,8 @@
                 <div class="header__search">
                     <form role="search" method="GET" class="header__search-form" action="./search">
                         <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" id="search-field" class="search-field" placeholder="2626526" name="movieSearch" title="Sear:" autocomplete="off">
+                            <span class="hide-content"></span>
+                            <input type="search" id="search-field" class="search-field" placeholder="aaa" name="movieSearch" title="Sear:" autocomplete="off">
                         </label>
                         <input type="submit" class="search-submit">
                     </form>
@@ -72,24 +72,23 @@
                         <li class="current"><a href="index.jsp" title="">메인</a></li>
                   <li class="has-children"><a href="#0" title="">영화</a>
                      <ul class="sub-menu">
-                        <li><a href="movieList.jsp">영화정보</a></li>
+                        <li><a href="movieInfo">영화정보</a></li>
                      </ul></li>
                   <li class="has-children"><a href="#0" title="">다이어리</a>
                      <ul class="sub-menu">
                         <li><a href="insertrecentdairy">다이어리 메인</a></li>
                         <li><a href="getdairy">내 다이어리</a></li>
-                        <li><a href="writediary">다이어리 작성</a></li>
                         <li><a href="WEB-INF/views/diary/test.html"></a></li>
                      </ul></li>
                   <li class="has-children"><a href="#0" title="">인디극장</a>
 
-                     <ul>
+                     <ul class="sub-menu">
 
 
                         <li><a href="indieList.do">인디영화</a></li>
                         <li><a href="Independent.do">신청</a></li>
 
-                     </ul> <!-- end header__nav --> <a href="#0" title="Close Menu"
+                     </ul></li> <!-- end header__nav --> <a href="#0" title="Close Menu"
                      class="header__overlay-close close-mobile-menu">Close</a></nav> <!-- end header__nav-wrap -->
 
             </div> <!-- header-content -->

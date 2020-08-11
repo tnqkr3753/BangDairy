@@ -11,4 +11,6 @@ public interface AccountFormService {
 	public AccountFormVO signInUser(AccountFormVO vo);
 	public AccountFormVO checkForKakao(AccountFormVO vo);
 	public int joinKakao(AccountFormVO vo);
+	public void sendEmail(AccountFormVO vo);
+	public int updateAuthStatus(AccountFormVO vo);
 }

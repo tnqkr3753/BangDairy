@@ -73,10 +73,10 @@
     ================================================== -->
 	<section
 		class="s-content s-content--narrow s-content--no-padding-bottom">
-		<article class="row format-audio" id="parents">
+		<article style="font-weight: 600;" class="row format-audio" id="parents">
 
 			<c:forEach items="${userInfo}" var="userInfo">
-				<p class="myDiaryHeader" style="font-size: 35px;">
+				<p class="myDiaryHeader" style="font-size: 60px;">
 				
 				<img src="resources/images/diary/cinema.png" style="width:10%; height:10%;">
 				${userInfo.userId}님의 다이어리

@@ -50,7 +50,7 @@ public class IndexController {
 		List<MovieVO> list = indexService.getMovieAsScore();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index/moviebar");
-		mv.addObject("title","평점 높은 순");
+		mv.addObject("title","평점 높은 영화");
 		mv.addObject("list", list);
 		return mv;
 	}

@@ -63,15 +63,20 @@
 			<div class="s-content__header col-full">
 				<%-- 영화 이름 --%>
 				<h1 class="s-content__header-title">${vo.movieTitle }</h1>
-				
-				<%-- 평점 --%>
-				<div class="starRevM">
-					<span class="starR on">별1</span> <span class="starR">별2</span> <span
-						class="starR">별3</span> <span class="starR">별4</span> <span
-						class="starR">별5</span> <!-- 해야함 -->
-				</div>
 
-				<%-- 영화 정보 --%>
+						<c:if test="${!empty starScore}">
+						<%-- 평점 --%>
+						<div class="starRev" style="font-size: 60px; font-weight: bold;">
+							<img src="resources/images/star.png"
+								style="vertical-align: middle; height: 70px; width: 70px;">
+							&nbsp;<span style="vertical-align: middle; color: red;">${starScore}</span>
+						</div>
+						</c:if>
+						<c:if test="${empty starScore}">
+						<span style="font-size: 25px; color: red;">등록된 평점이 없습니다!</span>
+						</c:if>
+						
+						<%-- 영화 정보 --%>
 				<ul class="s-content__header-meta" style="border:2px solid gray; font-size:15px;">
 					<li>▶ 개봉일 : ${vo.openingDateStr }</li>
 					<li>▶ 장르 : <c:forEach items="${vo.movieGenre}" var="genre">
@@ -351,6 +356,16 @@
 
 		$('#btnActorHide').click(function() {	// 배우 숨기기 버튼을 누르면
 			$('.actorMore').hide();
+		});
+
+		// tagcloud 클릭했을때
+		$('.tagcloud a').click(function() {
+			// alert("keyword 클릭");
+			// alert($(this).text());
+
+			keyword = $(this).text();	// 현재 내가 클릭한 키워드
+
+			location.href = "search?movieSearch=" + keyword;
 		});
 	});
 </script>

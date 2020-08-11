@@ -63,7 +63,7 @@
                     ================================================== -->
 				<div class="respond">
 					<!-- 여기는 제목 -->
-					<h1 class="s-content__header-title">ALL MOVIES</h1>
+					<h1 class="s-content__header-title">전체 영화 목록</h1>
 
 					<!-- 여기는 상단 네비게이션 바 START -->
 					<nav class="clearfix">
@@ -83,28 +83,28 @@
 					<div class="select">
 						<!-- 검색창 -->
 						<form action="./search">
-						<input class="form-control" type="text" placeholder="Search" name="movieSearch"
-							style="float: left;">
+						<input class="form-control" type="text" placeholder="검색어를 입력해주세요!" name="movieSearch"
+							style="font-size:20px; float: left; text-align:center;">
 						</form>
 
 						<div class="search__tab" style="font-size: 30px; float: right;">
 							<input type="radio" value="Title" name="searchTab"
-								checked="checked" style="width: 20px; height: 20px;">&nbsp;Title
+								checked="checked" style="width: 20px; height: 20px;">&nbsp;제목 검색 
 							<input type="radio" value="Director" name="searchTab"
-								style="width: 20px; height: 20px;">&nbsp;Director <input
+								style="width: 20px; height: 20px;">&nbsp;감독 검색 <input
 								type="radio" value="Actor" name="searchTab"
-								style="width: 20px; height: 20px;">&nbsp;Actor <input
+								style="width: 20px; height: 20px;">&nbsp;배우 검색 <input
 								type="radio" value="Keywords" name="searchTab"
-								style="width: 20px; height: 20px;">&nbsp;Keywords
+								style="width: 20px; height: 20px;">&nbsp;키워드 검색 
 						</div>
 					</div>
 					<br /> <br /> <br />
 					<!-- 정렬기준 Select Box -->
-					<select name="order" id='orderBy' style="float: right;">
-						<option value="default">정렬기준</option>
-						<option value="title">영화제목순</option>
-						<option value="year">개봉일순</option>
-						<option value="score">평점순</option>
+					<select name="order" id='orderBy' style="float: right; font-size: 20px;">
+						<option value="default">&nbsp;정렬기준</option>
+						<option value="title">&nbsp;영화제목순</option>
+						<option value="year">&nbsp;개봉일순</option>
+						<option value="score">&nbsp;평점순</option>
 					</select>
 
 					<!-- 영화리스트 START -->

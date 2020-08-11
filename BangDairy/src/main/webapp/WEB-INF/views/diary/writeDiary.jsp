@@ -109,7 +109,7 @@
 										<td>영화 제목</td>
 										<td><input class="form-control" name="movieId"
 											id="movieTitle" placeholder="영화 제목을 검색해주세요."
-											style="width: 93%; height: 50px; text-align: center"
+											style="width: 70%; height: 50px; text-align: center"
 											autocomplete="off" />&nbsp;&nbsp; <i class="fa fa-search"
 											id="searchMovieTitle"></i>
 
@@ -121,11 +121,11 @@
 										<td>영화 내용</td>
 										<td><textarea class="form-control" name="diaryContent"
 											placeholder="영화 내용을 입력해주세요."
-											style="wrap: physical; width: 100%; height: 200px; text-align: left"
+											style="font-size:30px; wrap: physical; width: 100%; height: 200px; text-align: left"
 											autocomplete="off"></textarea></td>
 									</tr>
 									<tr>
-										<td>누구와 함께 보셨나요?</td>
+										<td>누구와 보셨나요?</td>
 										<td><input id="viewingTogether" name="viewingTogether"
 											style="height: 50px; width: 32.2%; font-size: 20px; display: inline"
 											autocomplete="off"></td>

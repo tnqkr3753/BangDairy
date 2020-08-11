@@ -57,7 +57,7 @@ public class SearchController {
 	}
 	
 	/* 메소드명 : movieInfo
-	 * 기능 : 헤더메뉴에서 영화정보 입력하면 movieList(영화 전체) 페이지로 이동
+	 * 기능 : 헤더메뉴에서 영화정보 클릭하면 movieList(영화 전체) 페이지로 이동
 	 * 변수 : 
 	 * 작성자 : 배은주
 	 */
@@ -83,13 +83,13 @@ public class SearchController {
 			@PathVariable(value = "selectOrder", required = false) String selectOrder,
 			@PathVariable(value = "genre", required = false) String genre) {
 		
-		System.out.println("-------------- 장르 출력 : " + genre);
+		// System.out.println("-------------- 장르 출력 : " + genre);
 		
 		ModelAndView mv = new ModelAndView(); 
 		
 		int pNum = Integer.parseInt(pageNum); // 현재 선택한 페이지 번호 받아와서 형 변환
 		
-		System.out.println("***** 현재 내가 선택한 페이지 번호 ***** : " + pNum);
+		// System.out.println("***** 현재 내가 선택한 페이지 번호 ***** : " + pNum);
 				
 		MovieVO mvo = new MovieVO();
 		DirectorVO dvo = new DirectorVO();
@@ -106,7 +106,7 @@ public class SearchController {
 			
 			totalPage = searchService.searchCountTitle(mvo, genre);	// 전체 페이지 수 구하기
 			
-			System.out.println("***** Title 전체 페이지수 확인 ***** : " + totalPage);
+			// System.out.println("***** Title 전체 페이지수 확인 ***** : " + totalPage);
 			
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
@@ -117,7 +117,7 @@ public class SearchController {
 
 			totalPage = searchService.searchCountDirector(dvo, genre);
 
-			System.out.println("***** Director 전체 페이지수 확인 ***** : " + totalPage);
+			// System.out.println("***** Director 전체 페이지수 확인 ***** : " + totalPage);
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
@@ -127,7 +127,7 @@ public class SearchController {
 			
 			totalPage = searchService.searchCountActor(avo, genre);
 			
-			System.out.println("***** Actor 전체 페이지수 확인 ***** : " + totalPage);
+			// System.out.println("***** Actor 전체 페이지수 확인 ***** : " + totalPage);
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
@@ -137,7 +137,7 @@ public class SearchController {
 			
 			totalPage = searchService.searchCountKeywords(mvo, genre);
 		
-			System.out.println("***** Keywords전체 페이지수 확인 ***** : " + totalPage);
+			// System.out.println("***** Keywords전체 페이지수 확인 ***** : " + totalPage);
 
 			mv.addObject("pNum", pNum);
 			mv.addObject("totalPage", totalPage);
@@ -161,13 +161,13 @@ public class SearchController {
 		
 		// System.out.println("******** insertStar 컨트롤러 ********");
 		
-		System.out.println("********** 별 개수 확인 : " + starLength);
+		// System.out.println("********** 별 개수 확인 : " + starLength);
 		
 		String userId = (String)session.getAttribute("userId");
 		
-		System.out.println("========== 유저 아이디 : " + userId);
+		// System.out.println("========== 유저 아이디 : " + userId);
 		
-		System.out.println("========== 영화 ID : " + movieId);
+		// System.out.println("========== 영화 ID : " + movieId);
 		
 		CommentVO vo = new CommentVO();
 		
