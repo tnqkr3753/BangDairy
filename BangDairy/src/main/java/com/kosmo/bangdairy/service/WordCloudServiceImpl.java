@@ -45,7 +45,7 @@ public class WordCloudServiceImpl implements WordCloudService {
 					List<Token> tList = analizeResultList.getTokenList();
 					for (Token tk : tList) {
 						String word = tk.getMorph();
-						if(word.equals("으로")||word.equals("에서")||word.equals("이다")||
+						if(word.equals("으로")||word.equals("에서")||word.equals("이다")||word.contains("ㅋ")||
 								word.equals("있다")||word.equals("일본")) {
 							continue;
 						}

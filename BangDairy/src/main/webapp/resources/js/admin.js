@@ -153,7 +153,32 @@ $(function(){
             });
         }
     })
-    
+    /* 유저 벤 */
+    $(document).on('click',".ban-user",function () {  
+        var userid= $(this).data("id");
+        var result = confirm(userid+"번 사용자를 벤하시겠습니까?");
+        var userData = {"userId":userid};
+        if (result){
+            $.ajax({
+                type:"POST",
+                url:"admin/"+type+"/ban",
+                async : false,
+                data:userData,
+                dataType: "text",
+                success: function (data) {
+                        if(data == 1){
+                            alert("성공적으로 수정되었습니다.");
+                            show(type,searchWord,page);
+                        }else{
+                            alert("수정에 실패하였습니다.");
+                        }
+                },
+                error:function(e){
+                    alert("유저 벤 수정 오류");
+                }
+            });
+        }
+    });
     /* 보여주기 함수 */
     function show(type,searchWord,page){
         $.ajax({
