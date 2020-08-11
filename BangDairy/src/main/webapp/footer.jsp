@@ -17,12 +17,9 @@
                     <h4>바로가기</h4>
 
                     <ul class="s-footer__linklist">
-                        <li><a href="#0">영화정보</a></li>
-                        <li><a href="#0">Blog</a></li>
-                        <li><a href="#0">Styles</a></li>
-                        <li><a href="#0">About</a></li>
-                        <li><a href="#0">Contact</a></li>
-                        <li><a href="#0">Privacy Policy</a></li>
+                        <li><a href="#0">일반영화</a></li>
+                        <li><a href="#0">인디극장</a></li>
+                        <li><a href="#0">다이어리</a></li>
                     </ul>
 
                 </div> <!-- end s-footer__sitelinks -->
