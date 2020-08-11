@@ -26,6 +26,7 @@ $(document).ready(function(){
 			touchEnabled:true,
 			pager:false
 		}); 
+		$('.bx-wrapper').attr("style","max-width:3270px;background:#19191b;");
 	}
 	$(".bx-start").hide();	//onload시 시작버튼 숨김. 
 	$(document).on('click',".entry__thumb",function(){
@@ -118,6 +119,7 @@ $(document).ready(function(){
 				if(response=='true'){
 					getActorMovieWithWish($('#first_movie_list'));
 					getMovieWithUserGenre($('#second_movie_list'));
+					getRecommender($('#title_movie_list'));
 				}else{
 					getListAsNormal();
 				}
@@ -173,4 +175,22 @@ $(document).ready(function(){
 			
 		});
 	}
+	function getRecommender(div){
+		$.ajax({
+			type: "POST",
+			async : true,
+			url: "getm/recommender",
+			dataType: "html",
+			success: function (response) {
+				div.html(response);
+				bxstart();
+			},
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert("장르 별 영화 불러오기 실패");
+			}
+			
+		});
+	}
+	
 });  

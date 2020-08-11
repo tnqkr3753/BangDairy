@@ -7,10 +7,10 @@
 	<insert id="indieInsert" parameterType="indie" useGeneratedKeys="true" keyProperty="indieId">
 			insert into indie_movie_info (indie_title, indie_director, indie_country,
 		indie_makedate, indie_plot, indie_actor, indie_addr, indie_keyword, indie_viewing_hits,
-		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre,indie_confirm) 
+		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre,indie_confirm,applicant) 
 		values (#{indieTitle},#{indieDirector},#{indieCountry},#{indieMakedate},
 		#{indiePlot},#{indieActor},#{indieAddr},#{indieKeyword},#{indieViewingHits},
-		#{indieUpdateDate},#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm})
+		#{indieUpdateDate},#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm},#{applicant})
 	</insert>
 	
 	<insert id="goodInsert" parameterType="hashmap">
@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="selectEqulebad" parameterType="hashmap" resultType="int">
-	select count(*) from indie_user where user_id=#{userId} and indie_id=#{goodId1} and indie_like=1
+	select count(*) from indie_user where user_id=#{userId} and indie_id=#{badIdInt} and indie_like=1
 	</select>
 	
 	
@@ -45,6 +45,14 @@
 	<update id="updateHate" parameterType="hashmap">
 		update indie_user set indie_hate=1,indie_like=0 where user_id=#{userId} and indie_id=#{badIdInt} 
 	</update>
+	<select id="selectLikeCount" resultType="int">
+		select count(*) from indie_user where indie_like=1 and indie_id=#{indieId}
+	</select>
+	
+	<select id="selectHateCount" resultType="int">
+		select count(*) from indie_user where indie_hate=1 and indie_id=#{indieId}
+	</select>
+	
 	
 	
 	
@@ -79,13 +87,27 @@
 	select * from indie_movie_info where indie_confirm="y" LIMIT  0,10
 	</select>
 	
-	<select id="selectTotalCount" resultType="int">
-	select count(*) from indie_movie_info  where indie_confirm="y"<!-- 관리자가 where indie_confirm="y"을 n으로 바꾸면 안나오게함 -->
+	<select id="selectTotalCount" parameterType="hashmap" resultType="int">
+	select count(*) from indie_movie_info  where
+	<if test="searchWord != 'all' ">
+	indie_title like "${searchWord}%" AND
+	</if>
+	 indie_confirm="y"<!-- 관리자가 where indie_confirm="y"을 n으로 바꾸면 안나오게함 -->
 	</select>
 	
 	<select id="selectIndiepaging" resultType="indie" parameterType="hashmap">
-	select * from indie_movie_info where indie_confirm="y" LIMIT ${firstRow},${endRow}
+	select * from indie_movie_info where
+	<if test="searchWord != 'all' ">
+	indie_title like "${searchWord}%" AND
+	</if>
+	 indie_confirm="y" LIMIT ${firstRow},${endRow}
 	</select>
+	<!--박윤태  -->
+	<update id="increaseHits" parameterType="indie">
+	UPDATE indie_movie_info SET indie_viewing_hits = indie_viewing_hits+1
+	WHERE indie_id = #{indieId}
+		
+	</update>
 	
 	
 	

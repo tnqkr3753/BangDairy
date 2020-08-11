@@ -25,8 +25,8 @@ public class IndieSeviceImpl implements IndieSevice {
 	int totalCount ; // 물론 실제론 여긴 DBMS 에서 조회해서 들어가야 합니다.
 
 	int countList = 10;
-int totalPage;
-int page = 5;
+	int totalPage;
+	int page = 5;
 
 	
 	@Autowired
@@ -36,72 +36,40 @@ int page = 5;
 	public void indieInsert(IndieVO ivo) {
 		indieDAO.indieInsert(ivo);	
 	}
-	
-	
-	
 	@Override
 	public List<IndieVO> indieGnareSelect() {
 		return 	indieDAO.indieGnareSelect();
 	}
-//	@Override
-//	public void indiegenreInsert(IndieVO ivo) {
-//		indieDAO.indieInsert(ivo);
-//		
-//	}
 
 	public IndieVO selectIndieDetail(IndieVO ivo){
+		indieDAO.increaseHits(ivo);
 		return indieDAO.selectIndieDetail(ivo);
-		
-		
 	}
 	
 	@Override
 	public List<IndieVO> selectIndieInfo() {
 		return indieDAO.selectIndieInfo();
-		 
 	}
-
-
-
 	@Override
-	public int selectTotalCount() {
-		// TODO Auto-generated method stub
-		totalCount=indieDAO.selectTotalCount();
-		
-
+	public int selectTotalCount(String searchWord) {
+		HashMap hash = new HashMap();
+		hash.put("searchWord", searchWord);
+		totalCount=indieDAO.selectTotalCount(hash);
 		 totalPage = totalCount / countList;
-
-
 		if (totalCount % countList > 0) {
-
 		    totalPage++;
-		   
 		}
-
-if (totalPage < page) {
-
-    page = totalPage;
-
-}
-		
+		if (totalPage < page) {
+		    page = totalPage;
+		}
 		 return totalPage;
-		 
 	}
-
-
-
 	@Override
-	public List<HashMap> selectIndiepaging(int pNum) {
-		
+	public List<HashMap> selectIndiepaging(int pNum,String searchWord) {
 		int firstRow = (pNum-1)*countList;
 		int endRow = 10;
-		
-		return indieDAO.selectIndiepaging(firstRow,endRow);
-		
+		return indieDAO.selectIndiepaging(firstRow,endRow,searchWord);
 	}
-
-
-
 	@Override
 	public int goodInsert(int goodId1, String userId) {
 		 return indieDAO.goodInsert( goodId1, userId);
@@ -115,29 +83,20 @@ if (totalPage < page) {
 	public int selectEqulegood(int goodId1, String userId) {
 		 return indieDAO.selectEqulegood( goodId1, userId);
 	}
-	
 	@Override
 	public int selectEqulebad(int badIdInt, String userId) {
-		 return indieDAO.selectEqulegood( badIdInt, userId);
+		 return indieDAO.selectEqulebad( badIdInt, userId);
 	}
-
-
-
 	@Override
 	public int selectHateNum(int goodId1, String userId) {
 		 return indieDAO.selectHateNum( goodId1, userId);
 	
 	}
-	
-	
 	@Override
 	public int selectLikeNum(int badIdInt, String userId) {
 		 return indieDAO.selectHateNum( badIdInt, userId);
 	
 	}
-
-
-
 
 	@Override
 	public void updateLike(int goodId1, String userId) {
@@ -146,18 +105,24 @@ if (totalPage < page) {
 	
 	@Override
 	public void updateHate(int badIdInt, String userId) {
-		 indieDAO.updateLike( badIdInt, userId);
+		 indieDAO.updateHate( badIdInt, userId);
+	}
+	@Override
+	public int selectLikeCount(int indieId){
+		 return indieDAO.selectLikeCount(indieId);
+	}
+	@Override
+	public int selectHateCount(int indieId){
+		 return indieDAO.selectHateCount(indieId);
 	}
 	
 	
-
-
-	}
-	
-
-
-
+}
 
 	
 
+
+
+
+	
 

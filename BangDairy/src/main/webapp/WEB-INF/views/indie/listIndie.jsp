@@ -55,85 +55,6 @@
 
 	
 <div id="movie-list">
-
-		<div id="comments" class="row" style="background:#e5e5e5">
-			<div class="col-full">
-
-				<!-- respond
-                    ================================================== -->
-				<div class="respond">
-					<!-- 여기는 제목 -->
-			
-
-					<!-- 여기는 상단 네비게이션 바 START -->
-					
-					<!-- 네비게이션 바 END -->
-		<h1 class="s-content__header-title">ALL MOVIES</h1>
-	
-					<!-- 검색창과 Select Box -->
-					
-					<div class="select">
-						<!-- 검색창 -->
-						<input class="form-control" type="text" placeholder="Search"
-							style="float: left">
-						<!-- 정렬기준 Select Box -->
-						<select name="order" id='order'>
-							<option value="">정렬기준</option>
-							<option value="">개봉년도순</option>
-							<option value="">관람객순</option>
-							<option value="">평점순</option>
-						</select>
-					</div>
-
-
-					<!-- 영화리스트 START -->
-						<!-- Comments START -->
-	
-		<div class="comments-wrap">        
-			<br/>
-			<br/>
-	  				<form id="frm1212" action="indieDet" method="post"enctype="multipart/form-data" accept="image/png, image/jpeg">
-						<table class="table table-striped table-dark" >
-							<thead>
-							    <tr>
-							      <th scope="col">포스터</th>
-							      <th scope="col">제목</th>
-							      <th scope="col">감독</th>
-							      <th scope="col">장르</th>
-							      <th scope="col">평점</th>
-							    </tr>
-							</thead>
-							
-							<tbody >
-    							<c:set var="a" value="1"></c:set>
-    							<c:forEach items="${result}" var="result">
-    
-     										<tr>
-											      <th scope="row">${a}</th>
-											 
-											      <td><a href="indieDet?indieid=${result.indieId}">${result.indieTitle}</a></td>
-											      <td>${result.indieDirector}</td>
-											      <td>${result.indieGenre}</td>
-											     <td ><div class="starRev" >
-													<span class="starR on">별1</span> <span class="starR">별2</span>
-													<span class="starR">별3</span> <span class="starR">별4</span>
-													<span class="starR">별5</span>
-													</div>
-												</td>							
-    										</tr>
-     							<c:set var="a" value="${a+1}"></c:set>
-    							</c:forEach>
-    						</tbody>
-						</table>
-					</form>
-				</div>
-					<!-- 영화 리스트 END -->
-			</div>
-				<!-- end respond -->
-
-		</div>
-			<!-- end col-full -->
-	</div>
 		<!-- end row comments -->
 	<div class="row">
 	<div class="col-full">
@@ -213,6 +134,11 @@
 	<script src="resources/js/main.js"></script>
 	
 	 <script src="resources/js/j.independent.js"></script>
+	 <script type="text/javascript">
+		$(function(){
+			getPage(1,'all');
+			});
+	 </script>
 </body>
 
 </html>

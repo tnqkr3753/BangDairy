@@ -14,8 +14,8 @@ public interface IndieDAO {
 	public List<IndieVO>selectIndieInfo();
 	public List<IndieVO> indieGnareSelect();
 	public IndieVO selectIndieDetail(IndieVO ivo);
-	public int selectTotalCount();
-	public List<HashMap>selectIndiepaging(int firstRow,int endRow);
+	public int selectTotalCount(HashMap hash);
+	public List<HashMap>selectIndiepaging(int firstRow,int endRow,String searchWord);
 	public int goodInsert(int goodId1, String userId);
 	public int badInsert(int badid1, String userId);
 	public int selectEqulegood(int goodId1, String userId);
@@ -24,7 +24,8 @@ public interface IndieDAO {
 	public int selectLikeNum(int badIdInt, String userId);
 	public void updateLike(int goodi1, String userId);
 	public void updateHate(int badIdInt, String userId);
-	
-	
-	
+	public int increaseHits(IndieVO vo);
+	public int selectLikeCount(int indieId);
+	public int selectHateCount(int indieId);
+
 }

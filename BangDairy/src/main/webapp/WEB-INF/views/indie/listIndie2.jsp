@@ -14,7 +14,7 @@
 						<div>
     							<div id="comments" class="row" style="background:#e5e5e5">
 			<div class="col-full">
-
+				<input type="hidden" id="search-word-indie" value="${searchWord}"> 
 				<!-- respond
                     ================================================== -->
 				<div class="respond">
@@ -33,12 +33,6 @@
 						<input class="form-control" type="text" placeholder="Search"
 							style="float: left">
 						<!-- 정렬기준 Select Box -->
-						<select name="order" id='order'>
-							<option value="">정렬기준</option>
-							<option value="">개봉년도순</option>
-							<option value="">관람객순</option>
-							<option value="">평점순</option>
-						</select>
 					</div>
 
 
@@ -52,11 +46,12 @@
 						<table class="table table-striped table-dark" >
 							<thead>
 							    <tr>
-							      <th scope="col">포스터</th>
+							      <th scope="col">#</th>
+							      <th scope="col">신청인</th>
 							      <th scope="col">제목</th>
 							      <th scope="col">감독</th>
 							      <th scope="col">장르</th>
-							      <th scope="col">평점</th>
+							      <th scope="col">조회수</th>
 							    </tr>
 							</thead>
 							
@@ -65,17 +60,12 @@
     							<c:forEach items="${result}" var="result">
     
      										<tr>
-											      <th scope="row">${a}</th>
-											 
+											      <th scope="row">${( pNum-1 )*10 + a}</th>
+											 		<td>${result.applicant }</td>
 											      <td><a href="indieDet?indieid=${result.indieId}">${result.indieTitle}</a></td>
 											      <td>${result.indieDirector}</td>
 											      <td>${result.indieGenre}</td>
-											     <td ><div class="starRev" >
-													<span class="starR on">별1</span> <span class="starR">별2</span>
-													<span class="starR">별3</span> <span class="starR">별4</span>
-													<span class="starR">별5</span>
-													</div>
-												</td>							
+											     <td >${result.indieViewingHits }</td>							
     										</tr>
      							<c:set var="a" value="${a+1}"></c:set>
     							</c:forEach>
