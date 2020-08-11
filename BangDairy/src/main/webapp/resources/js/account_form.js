@@ -4,7 +4,7 @@ $(document).ready(function(){
 	 *  account_cancel : 취소 버튼 Id 값
 	 *  작성자 : 이경호
 	 */
-	$('.account_container #account_cancel').on("click",function(){
+	$('.account_form #account_cancel').on("click",function(){
 		var siteBody = $('body');
 		siteBody.removeClass('account-is-visible')
 	});
