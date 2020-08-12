@@ -258,5 +258,24 @@ $(function(){
                 alert("데이터 가져오기에 실패했습니다.");
             }
         });
-    })
+    });
+    /*
+     * 경호 추가
+     * 넥사크로
+     */
+//    $('.ban-list').on('click',function(){
+//    	$.ajax({
+//            type:"POST",
+//            url:"admin/userBanList",
+//            async : true,
+//            dataType: "text",
+//            success: function (data) {
+//            	$('.content-admin').html(data);
+//
+//            },
+//            error:function(e){
+//                alert("데이터 가져오기에 실패했습니다.");
+//            }
+//        });
+//    });
 });

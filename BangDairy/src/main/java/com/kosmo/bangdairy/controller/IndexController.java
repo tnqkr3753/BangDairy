@@ -188,8 +188,8 @@ public class IndexController {
 				System.out.println("메소드 선택 인자 전송 완료");
 				
 				bos.write(userId.getBytes());
-				if (20-userId.getBytes().length!=0) {
-					for(int i=0; i<20-userId.getBytes().length;i++) {
+				if (30-userId.getBytes().length!=0) {
+					for(int i=0; i<30-userId.getBytes().length;i++) {
 						bos.write(" ".getBytes());
 					}
 				}

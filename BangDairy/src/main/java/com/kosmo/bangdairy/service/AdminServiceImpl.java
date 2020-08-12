@@ -68,13 +68,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AccountFormVO> getUserBanList() {
-		return adminDAO.getUserBanList();
+	public List<AccountFormVO> getUserBanList(AccountFormVO vo) {
+		return adminDAO.getUserBanList(vo);
 	}
 	@Override	
 	public int banUser(AccountFormVO vo) {
 		return adminDAO.banUser(vo);
 
+	}
+
+	@Override
+	public int allowUser(AccountFormVO vo) {
+		return adminDAO.allowUser(vo);
 	}
 	
 	

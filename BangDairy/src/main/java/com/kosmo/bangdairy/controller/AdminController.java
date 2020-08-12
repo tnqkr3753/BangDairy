@@ -1,13 +1,17 @@
 package com.kosmo.bangdairy.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +27,11 @@ import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
 import com.nexacro17.xapi.data.DataSet;
 import com.nexacro17.xapi.data.DataTypes;
+import com.nexacro17.xapi.data.PlatformData;
 import com.nexacro17.xapi.data.datatype.DataType;
+import com.nexacro17.xapi.tx.HttpPlatformResponse;
+import com.nexacro17.xapi.tx.PlatformException;
+import com.nexacro17.xapi.tx.PlatformType;
 
 @Controller
 public class AdminController {
@@ -200,27 +208,52 @@ public class AdminController {
 	 * 변수			: Account_FormVO
 	 * 작성자			: 이경호
 	 */
-	@RequestMapping(value = "/admin/userBanList")
-	public ModelAndView userBanList() {
-		ModelAndView mv = new ModelAndView();
-		//유저 밴목록 DB에서 불러오기
-		List<AccountFormVO> list = adminService.getUserBanList();
+
+	@RequestMapping(value = "/adminUserBanList")
+	public void userBanList(HttpServletRequest request,HttpServletResponse response) {
+		//키워드 받아서 검색하기
+		String keyword = request.getParameter("param");
+		AccountFormVO avo = new AccountFormVO();
+		avo.setUserId(keyword);
 		
+		//유저 밴목록 DB에서 불러오기
+		List<AccountFormVO> list = adminService.getUserBanList(avo);
 		//넥사크로와 바인딩 될 데이터셋
-		DataSet ds = new DataSet("ar");
-		ds.addColumn("user_id",DataTypes.STRING,10);
-		ds.addColumn("user_id",DataTypes.DATE,10);
+		DataSet ds = new DataSet("rename");
+		ds.addColumn("user_id",DataTypes.STRING,256);
+		ds.addColumn("user_email",DataTypes.STRING,256);
 		
 		for(AccountFormVO vo : list) {
 			int row = ds.newRow();
 			ds.set(row, "user_id", vo.getUserId());
-			ds.set(row, "date", vo.getJoinDate());
+			ds.set(row, "user_email", vo.getUserEmail());
 			
 		}
-		mv.addObject("ds",ds);
-		mv.setViewName("admin/userBanList");
-		return mv;
+		
+		PlatformData pData = new PlatformData();
+		pData.addDataSet(ds);
+		HttpPlatformResponse res = 
+				new HttpPlatformResponse(response,PlatformType.CONTENT_TYPE_XML,"utf-8");
+		res.setData(pData);	
+		try {
+			res.sendData();
+		} catch (PlatformException e) {
+			e.printStackTrace();
+		}
 	}
+	/*
+	 * 메소드명		: allowUser
+	 * 기능			: 넥사크로 연동 / 유저 밴 해제
+	 * 변수			: Account_FormVO
+	 * 작성자			: 이경호
+	 */
+	@RequestMapping(value = "/adminAllowUser")
+	public void allowUser(HttpServletRequest request, HttpServletResponse response,
+							AccountFormVO vo) {
+		adminService.allowUser(vo);
+	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/admin/user/ban",method = RequestMethod.POST)

@@ -27,6 +27,14 @@ public class AccountFormVO {
 	Date joinDate;
 	MultipartFile file;
 	String userType;
+	String userBan;
+	
+	public String getUserBan() {
+		return userBan;
+	}
+	public void setUserBan(String userBan) {
+		this.userBan = userBan;
+	}
 	public Date getJoinDate() {
 		return joinDate;
 	}
@@ -97,12 +105,14 @@ public class AccountFormVO {
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
 	
+
 	@Override
 	public String toString() {
 		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
 				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
 				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
-				+ absoluteFilePath + ", file=" + file + ", userType=" + userType + "]";
+				+ absoluteFilePath + ", joinDate=" + joinDate + ", file=" + file + ", userType=" + userType
+				+ ", userBan=" + userBan + "]";
 	}
 	public String getUserName() {
 		return userName;
