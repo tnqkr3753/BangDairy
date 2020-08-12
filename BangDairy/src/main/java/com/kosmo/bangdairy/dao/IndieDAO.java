@@ -19,6 +19,13 @@ public interface IndieDAO {
 	public int goodInsert(int goodId1, String userId);
 	public int badInsert(int badid1, String userId);
 	public int selectEqulegood(int goodId1, String userId);
-	public int selectNull(int goodi1, String userId);
+	public int selectEqulebad(int badIdInt, String userId);
+	public int selectHateNum(int goodi1, String userId);
+	public int selectLikeNum(int badIdInt, String userId);
+	public void updateLike(int goodi1, String userId);
+	public void updateHate(int badIdInt, String userId);
 	public int increaseHits(IndieVO vo);
+	public int selectLikeCount(int indieId);
+	public int selectHateCount(int indieId);
+
 }

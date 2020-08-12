@@ -23,6 +23,12 @@ public interface IndieSevice {
 	public int goodInsert(int goodId1, String userId);
 	public int badInsert(int badid1, String userId);
 	public int selectEqulegood(int goodId1, String userId);
-	public int selectNull(int goodId1, String userId);
-
+    public int selectEqulebad(int badIdInt, String userId);
+	public int selectHateNum(int goodId1, String userId);
+	public int selectLikeNum(int badIdInt, String userId);
+	
+	public void updateLike(int goodId1, String userId);
+	public void updateHate(int badIdInt, String userId);
+	public int selectLikeCount(int indieId);
+	public int selectHateCount(int indieId);
 }

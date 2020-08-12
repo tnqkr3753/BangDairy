@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!-- 영화 리스트 시작 -->
 <div>
@@ -9,9 +10,8 @@
         <span class=title>${title }</span>
         </div>
         <br/> 
+        <c:if test="${not empty list }">
  		<div class="bxslider" id="stastistical-part"> 
-         <c:if test="${not empty vo.posterAddr }"></c:if>
-        	
 			<c:forEach items="${list }" var="vo"><!-- forEach 시작  -->
             <div class="masonry"style="background-color: #19191b">
                 <div class="grid-sizer">
@@ -55,6 +55,7 @@
 				</div>
 	            </c:forEach><!-- forEach 끝  -->
 			</div>
+			</c:if>
 		</div>
 		</div>
                  <!-- 영화 리스트 끝 -->
