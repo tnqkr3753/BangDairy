@@ -28,7 +28,22 @@ public class AccountFormVO {
 	MultipartFile file;
 	String userType;
 	String userBan;
+	String resourcesPath="resources/upload/userProfile/";
+	String userAuthCode;
+	String userAuthStatus;
 	
+	public String getUserAuthCode() {
+		return userAuthCode;
+	}
+	public void setUserAuthCode(String userAuthCode) {
+		this.userAuthCode = userAuthCode;
+	}
+	public String getUserAuthStatus() {
+		return userAuthStatus;
+	}
+	public void setUserAuthStatus(String userAuthStatus) {
+		this.userAuthStatus = userAuthStatus;
+	}
 	public String getUserBan() {
 		return userBan;
 	}
@@ -105,7 +120,15 @@ public class AccountFormVO {
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
 
-	
+	@Override
+	public String toString() {
+		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
+				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
+				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
+				+ absoluteFilePath + ", joinDate=" + joinDate + ", file=" + file + ", userType=" + userType
+				+ ", userBan=" + userBan + ", resourcesPath=" + resourcesPath + ", userAuthCode=" + userAuthCode
+				+ ", userAuthStatus=" + userAuthStatus + "]";
+	}
 	public String getUserName() {
 		return userName;
 	}

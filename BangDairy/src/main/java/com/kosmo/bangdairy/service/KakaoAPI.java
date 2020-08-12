@@ -103,14 +103,13 @@ public class KakaoAPI {
 	        
 	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-	        String profile= null;
-	        if(kakao_account.getAsJsonObject().get("profile_needs_agreement").equals("true")) {
-	        	profile = properties.getAsJsonObject().get("profile_image").getAsString();
-	        	
-	        }
-	        
 	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
-	        
+	        String profile= null;
+	        try {
+	        	profile = kakao_account.getAsJsonObject().get("profile").getAsJsonObject().get("profile_image_url").getAsString();
+	        }catch (Exception e) {
+				LoggerAspect.logger.error("프로필 사진 없음!" + email);
+			}
 	        userInfo.put("profile", profile);
 	        userInfo.put("email", email);
 	        LoggerAspect.logger.info(userInfo);
