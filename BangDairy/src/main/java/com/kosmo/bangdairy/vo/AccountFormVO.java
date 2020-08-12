@@ -104,24 +104,8 @@ public class AccountFormVO {
 		String formatName = outputImagePath.substring(outputImagePath.lastIndexOf(".")+1);
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
-	
-<<<<<<< HEAD
 
-=======
 	
->>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
-	@Override
-	public String toString() {
-		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
-				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
-				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
-				+ absoluteFilePath + ", joinDate=" + joinDate + ", file=" + file + ", userType=" + userType
-<<<<<<< HEAD
-				+ ", userBan=" + userBan + "]";
-=======
-				+ ", userAuthCode=" + userAuthCode + ", userAuthStatus=" + userAuthStatus + "]";
->>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
-	}
 	public String getUserName() {
 		return userName;
 	}
