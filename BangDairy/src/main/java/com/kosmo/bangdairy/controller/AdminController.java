@@ -25,7 +25,6 @@ import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
-<<<<<<< HEAD
 import com.nexacro17.xapi.data.DataSet;
 import com.nexacro17.xapi.data.DataTypes;
 import com.nexacro17.xapi.data.PlatformData;
