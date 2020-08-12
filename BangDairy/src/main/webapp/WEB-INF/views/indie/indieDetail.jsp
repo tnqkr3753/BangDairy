@@ -67,7 +67,7 @@
 
                                             
                                                 <div class="single_ft_s_item">
-                                                    <img src="resources/upload/userProfile/<%=result.getIndiePosterAddr() %>" alt="" />
+                                                    <img src="resources/upload/indie/<%=result.getIndiePosterAddr() %>" alt="" />
                                                 </div>
                                                
                                            

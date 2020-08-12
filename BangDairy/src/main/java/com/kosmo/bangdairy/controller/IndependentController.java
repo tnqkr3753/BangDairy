@@ -207,6 +207,8 @@ public class IndependentController {
 		@RequestMapping(value = "indieinsert", method=RequestMethod.POST )
 	public ModelAndView indieInsert(HttpSession session,IndieVO ivo){	
 		String id = (String) session.getAttribute("userId");
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(ivo.getIndieMakedate());
 		ivo.setApplicant(id);
 		indieSevice.indieInsert(ivo);
 		ModelAndView mv = new ModelAndView();
