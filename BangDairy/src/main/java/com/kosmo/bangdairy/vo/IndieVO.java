@@ -8,9 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class IndieVO {
 	
-	
-	
-	
 private int indieId;
 private String indieTitle;
 private String indieDirector;
@@ -42,7 +39,7 @@ MultipartFile file;	// write.jsp에 파일첨부시 name="file"과 동일한 변
  * 변수 		: indiePosterAddr,indiePosterSize,file
  * 작성자		: 신진섭
  */
-String path="C:\\Users\\KOSMO_14\\git\\BangDairy2\\BangDairy\\src\\main\\webapp\\resources\\upload\\indie\\";
+String path="C:\\Users\\KOSMO_22\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\indie\\";
 public void setFile(MultipartFile file) {
 	this.file = file;
 

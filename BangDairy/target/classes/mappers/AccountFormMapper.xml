@@ -26,6 +26,9 @@
 		<if test="userType!=null">
 			,user_type
 		</if>
+		<if test="absoluteFilePath!=null">
+			,absolute_file_path
+		</if>
 			)
 		 values(#{userId},#{userPassword},
 		#{userEmail},#{userReg}
@@ -37,6 +40,9 @@
 		</if>
 		<if test="userType!=null">
 			,#{userType}
+		</if>
+		<if test="absoluteFilePath!=null">
+			,#{absoluteFilePath}
 		</if>
 		)
 	</insert>

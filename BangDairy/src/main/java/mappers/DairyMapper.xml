@@ -2,38 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="DairyDAO">
-	<insert id="dairyInsert" parameterType="dairy">
-		insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
-		 values (0, "A03091", #{userId}, #{diaryTitle},#{diaryContent},#{viewingTogether}, #{viewingLocation}, #{viewingDate}, #{diaryImage})
-	</insert>
 	
-	<select id="listdairy" parameterType="account" resultType="dairy" >
-		SELECT d.diary_id as diary_id, m.movie_title as movie_title, d.diary_title as diary_title, d.diary_hits as diary_hits
-		FROM diary_info d, movie_info m
-		WHERE user_id = #{userId}
+	<!-- 다이어리 정보 입력 -->
+   <insert id="dairyInsert" parameterType="dairy">
+      insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
+      values (0, "${movieId}", "${userId}", '${diaryTitle}','${diaryContent}','${viewingTogether}', '${viewingLocation}', '${viewingDate}', '${diaryImage}')
+   </insert>
+   
+   <!-- 유저벌 다이어리 리스트 출력 -->
+   <select id="listdairy" parameterType="account" resultType="dairy" >
+      SELECT d.diary_id as diary_id, m.movie_title as movie_title, d.diary_title as diary_title, d.diary_hits as diary_hits
+      FROM diary_info d, movie_info m
+      WHERE user_id = '${userId}'
         AND d.movie_id = m.movid_id
+   </select>
+   
+   <!-- 페이징 -->
+   <select id="recentdairy" parameterType="account" resultType="dairy">
+      select * from diary_info 
+      where movie_id = 
+       (select movie_id from diary_info WHERE user_id = '${userId}' order by diary_id desc limit 1)
+        and user_id != '${userId}' order by diary_id desc limit 3 
+     </select>
+     
+     <!-- 조회수 높은 다이어리 5개 -->
+   <select id="topdairy" resultType="hashmap">
+     select d.*,u.* from diary_info d inner join user_info u ON
+     d.user_id = u.user_id order by d.diary_hits DESC limit 5
+    </select>
+    
+    <!-- 페이징 -->
+   <select id="recommendairy" parameterType="account" resultType="dairy">
+     select d.user_id, d.diary_image, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
+     WHERE m.movie_id = d.movie_id AND d.user_id != '${userId}' group by m.movie_id order by d.user_id limit 4;
+   </select>
+   
+   <!-- 검색 -->
+   <select id="searchddairy" parameterType="hashmap" resultType="hashmap">
+     SELECT d.*,m.movie_title FROM (SELECT a.*,nvl(du.diary_like,0) as diary_like,nvl(du.diary_hate,0) as diary_hate 
+     FROM diary_info a left outer join 
+        (SELECT diary_id,sum(nvl(diary_like,'0')) as diary_like,
+      sum(nvl(diary_hate,'0')) as diary_hate FROM diary_user
+      GROUP BY diary_id) du
+     ON a.diary_id = du.diary_id) d INNER JOIN movie_info m 
+     ON d.movie_id=m.movie_id WHERE REPLACE(${searchType},' ','') like '%${searchWord}%'
+     ORDER BY d.diary_hits DESC;
+    </select>
+    
+   <select id="getMyProfile" parameterType="account" resultType="account">
+		SELECT * FROM user_info WHERE
+		user_id= #{userId}
 	</select>
 	
-	<select id="recentdairy" parameterType="account" resultType="dairy">
-	   select * from diary_info 
-	   where movie_id = 
-       (select movie_id from diary_info WHERE user_id = #{userId} order by diary_id desc limit 1)
-        and user_id != #{userId} order by diary_id desc limit 3 </select>
-	
-	<select id="topdairy" resultType="dairy">
-	  select * from diary_info order by diary_hits DESC limit 5</select>
-	
-	<select id="recommendairy" parameterType="account" resultType="dairy">
-	  select d.user_id, d.diary_image, d.diary_title, m.movie_title, count(m.movie_id) as c from diary_info d, movie_info m 
-	  WHERE m.movie_id = d.movie_id AND d.user_id != #{userId} group by m.movie_id order by d.user_id limit 4;
-	</select>
-	
-	<select id="searchddairy" parameterType="hashmap" resultType="dairy">
-	  select distinct d.user_id, d.diary_id,d.diary_content, d.user_id, d.diary_hits, d.diary_image
-	  from diary_info d, movie_info m where d.diary_title like '%${searchWord}%' OR
-	  d.diary_content like '%${searchWord}%' OR movie_title like'%{searchWord}%'
-	  ORDER BY diary_hits DESC LIMIT 0, 5 
-	 </select>
 	<!-- 여기부터 은주 -->
 	<!-- 사용자가 입력한 단어에 따라 영화 추천검색어 10개 -->
 	<select id="recommendTitle" parameterType="movie" resultType="movie">

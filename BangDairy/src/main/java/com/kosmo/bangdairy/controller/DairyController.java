@@ -1,6 +1,5 @@
 package com.kosmo.bangdairy.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,13 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.DairyServicelmpl;
@@ -27,82 +24,82 @@ public class DairyController {
 	@Autowired
 	DairyServicelmpl dairyService;
 	
-
 	@RequestMapping(value = "mydairy")
-	public ModelAndView my_dairy() {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("ModelAndView");
-		mv.setViewName("diary/my_dairy");
-		return mv;
-	}
-	
-	@RequestMapping(value = "listdairy")
-	public ModelAndView showList(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		String userId = (String)session.getAttribute("userId");
-		AccountFormVO vo= new AccountFormVO();
-		vo.setUserId(userId);
-		List<DairyVO> list = dairyService.showList(vo);
+	   public ModelAndView my_dairy() {
+	      ModelAndView mv = new ModelAndView();
+	      
+	      mv.setViewName("diary/my_dairy");
+	      return mv;
+	   }
+	   
+	   @RequestMapping(value = "listdairy")
+	   public ModelAndView showList(HttpSession session) {
+	      ModelAndView mv = new ModelAndView();
+	      String userId = (String)session.getAttribute("userId");
+	      AccountFormVO vo= new AccountFormVO();
+	      vo.setUserId(userId);
+	      List<DairyVO> list = dairyService.showList(vo);
 
-		
-		mv.addObject("listdairy", list);
-		mv.setViewName("diary/my_dairy");
-		return mv;
-	}
-	
-	@RequestMapping(value = "writedairy")
-	public ModelAndView write_dairy() {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("ModelAndView");
-		mv.setViewName("diary/write_dairy");
-		return mv;
-	}
-	
-	@RequestMapping(value = "maindairy")
-	public ModelAndView main_dairy() {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("ModelAndView");
-		mv.setViewName("diary/main_dairy");
-		return mv;
-	}
-	
-	@RequestMapping(value = "insertrecentdairy")
-	public ModelAndView recentDairy(HttpSession session) throws Exception { 
-		ModelAndView mv = new ModelAndView();
-		String userId = (String)session.getAttribute("userId");
-		AccountFormVO vo= new AccountFormVO();
-		vo.setUserId(userId);
-		List<DairyVO> result = dairyService.recentDairy(vo);
-		mv.addObject("recentdairy", result);
-		
-		List<DairyVO> result2 = dairyService.recommenDairy(vo);
-        mv.addObject("recommendairy", result2);
-        
-		List<DairyVO> result3 = dairyService.topDairy();
-		mv.addObject("topdairy", result3);
-		mv.setViewName("diary/main_dairy");
-		return mv;
-     }
+	      
+	      mv.addObject("listdairy", list);
+	      mv.setViewName("diary/my_dairy");
+	      return mv;
+	   }
+	   
+	   @RequestMapping(value = "writedairy")
+	   public ModelAndView write_dairy() {
+	      ModelAndView mv = new ModelAndView();
+	      
+	      mv.setViewName("diary/write_dairy");
+	      return mv;
+	   }
+	   
+	   @RequestMapping(value = "maindairy")
+	   public ModelAndView main_dairy() {
+	      ModelAndView mv = new ModelAndView();
+	      
+	      mv.setViewName("diary/main_dairy");
+	      return mv;
+	   }
+	   
+	   @RequestMapping(value = "insertrecentdairy")
+	   public ModelAndView recentDairy(HttpSession session) throws Exception { 
+	      ModelAndView mv = new ModelAndView();
+	      String userId = (String)session.getAttribute("userId");
+	      AccountFormVO vo= new AccountFormVO();
+	      vo.setUserId(userId);
+	      vo = dairyService.getMyProfile(vo);
+	      List<DairyVO> result = dairyService.recentDairy(vo);
+	      mv.addObject("recentdairy", result);
+	      mv.addObject("vo", vo);
+	      List<DairyVO> result2 = dairyService.recommenDairy(vo);
+	        mv.addObject("recommendairy", result2);
+	        
+	      List<HashMap> result3 = dairyService.topDairy();
+	      mv.addObject("topdairy", result3);
+	      mv.setViewName("diary/main_dairy");
+	      return mv;
+	     }
 
-	@RequestMapping(value = "dairySearch", method = RequestMethod.POST)
-	public ModelAndView go_search_diary(@RequestParam(value="searchWord") String searchWord) {
-		
-		ModelAndView mv = new ModelAndView();
-		HashMap hash = new HashMap();
-		hash.put("searchWord", searchWord);
-		List<DairyVO> list = dairyService.searchDdairy(hash);
-		mv.addObject("list", list);
-		
-		int totalpage = list.size();
-		int pagenum = totalpage/10 +1;
-		
-		mv.addObject("totalpage", totalpage);
-		mv.addObject("pagenum",pagenum);
-		
-		mv.setViewName("diary/diaryList");
+	   @RequestMapping(value = "dairySearch", method = RequestMethod.POST)
+	   public ModelAndView go_search_diary(@RequestParam(value="searchWord") String searchWord,
+	         @RequestParam(value = "searchType",required = true)String searchType) {
+	      
+	      ModelAndView mv = new ModelAndView();
+	      HashMap hash = new HashMap();
+	      searchWord = searchWord.replace(" ","");
+	      hash.put("searchType", searchType);
+	      hash.put("searchWord", searchWord);
+	      List<HashMap> list = dairyService.searchDdairy(hash);
+	      mv.addObject("list", list);
+//	      int totalpage = list.size();
+//	      int pagenum = totalpage/10 +1;
+	      mv.addObject("search", hash);
+	      mv.setViewName("diary/diaryList");
 
-		return mv;
-	}
+	      return mv;
+	   }
+	
 	//--------------------------은주--------------------------
 
 	/* 메소드명 : writeDairy

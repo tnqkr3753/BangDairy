@@ -192,7 +192,7 @@ public class IndependentController {
 		System.out.println("________________________________________________________________________________________________________________");
 		System.out.println(likeCount);
 		mv.addObject("userId",userId);
-	mv.addObject("result",result22);
+		mv.addObject("result",result22);
 		mv.addObject("likeCount", likeCount);
 		mv.addObject("hateCount", hateCount);
 		mv.setViewName("indie/indieDetail");
