@@ -10,10 +10,8 @@
         <span class=title>${title }</span>
         </div>
         <br/> 
+        <c:if test="${not empty list }">
  		<div class="bxslider" id="stastistical-part"> 
-         <c:if test="${not empty vo.posterAddr }"></c:if>
-         
-        
 			<c:forEach items="${list }" var="vo"><!-- forEach 시작  -->
             <div class="masonry"style="background-color: #19191b">
                 <div class="grid-sizer">
@@ -57,6 +55,7 @@
 				</div>
 	            </c:forEach><!-- forEach 끝  -->
 			</div>
+			</c:if>
 		</div>
 		</div>
                  <!-- 영화 리스트 끝 -->
