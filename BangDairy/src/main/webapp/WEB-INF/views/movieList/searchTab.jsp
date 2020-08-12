@@ -6,9 +6,9 @@
 
 <div class="table-responsive">
 	<table>
-		<thead style="font-size:30px; font-family: 'Do Hyeon', sans-serif;">
+		<thead style="font-size:40px; font-family: 'Do Hyeon', sans-serif;">
 			<tr>
-				<th>영화</th>
+				<th>포스터</th>
 				<th>영화제목</th>
 				<th>장르</th>
 				<th>개봉일</th>
@@ -28,10 +28,10 @@
 				<div class="tab-search">
 					<tbody class="movieList">
 						<!-- 영화 리스트 1개 START -->
-						<tr style="font-size:20px;">
+						<tr style="font-size:25px;">
 							<td><input type="hidden" value="${list.movie_id}"
 								class="movieId"> <img src="${list.poster_addr}"
-								onerror="this.src='resources/images/movieList/noImage.png'"
+								onerror="this.src='resources/images/defaultImage.png'"
 								width="100px" height="100px"> <br /> <c:choose>
 									<c:when test="${empty list.score}">
 										<!-- 평점이 null일때 -->
@@ -50,7 +50,7 @@
 							<!-- 영화 제목 -->
 							<td>${list.gtitle}</td>
 							<!-- 장르 -->
-							<td>${list.opening_date}</td>
+							<td style="width:14%;">${list.opening_date}</td>
 							<!-- 개봉일 -->
 
 							<!-- 평점 START -->
@@ -66,7 +66,8 @@
 										</div>
 									</c:if>
 									<c:if test="${list.count == 1}">
-										평점을 이미 입력하셨습니다!!
+										<img src="resources/images/complete.png" style="width:30px;"/>
+										입력완료
 										</c:if>
 								</c:if></td>
 						</tr>
