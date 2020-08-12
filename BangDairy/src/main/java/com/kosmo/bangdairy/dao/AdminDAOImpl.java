@@ -58,11 +58,15 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.update("AdminDAO.updateIndieConfirm",vo);
 	}
 	@Override
-	public List<AccountFormVO> getUserBanList() {
-		return sqlSession.selectList("AdminDAO.getUserBanList");
+	public List<AccountFormVO> getUserBanList(AccountFormVO vo) {
+		return sqlSession.selectList("AdminDAO.getUserBanList",vo);
 	}
 	public int banUser(AccountFormVO vo) {
 		return sqlSession.update("AdminDAO.banUser",vo);
+	}
+	@Override
+	public int allowUser(AccountFormVO vo) {
+		return sqlSession.update("AdminDAO.allowUser",vo);
 	}
 	
 	
