@@ -63,7 +63,9 @@
                     ================================================== -->
 				<div class="respond">
 					<!-- 여기는 제목 -->
-					<h1 class="s-content__header-title">전체 영화 목록</h1>
+					<h1 class="s-content__header-title">
+					<img src="resources/images/video.png" style="width:7%;"/>
+					전체 영화 목록</h1><br/>
 
 					<!-- 여기는 상단 네비게이션 바 START -->
 					<nav class="clearfix">
@@ -84,10 +86,10 @@
 						<!-- 검색창 -->
 						<form action="./search">
 						<input class="form-control" type="text" placeholder="검색어를 입력해주세요!" name="movieSearch"
-							style="font-size:20px; float: left; text-align:center;">
+							style="font-size:30px; float: left; text-align:center; width:25%;">
 						</form>
 
-						<div class="search__tab" style="font-size: 30px; float: right;">
+						<div class="search__tab" style="font-size: 35px; font-weight:600; float: right;">
 							<input type="radio" value="Title" name="searchTab"
 								checked="checked" style="width: 20px; height: 20px;">&nbsp;제목 검색 
 							<input type="radio" value="Director" name="searchTab"
@@ -100,7 +102,7 @@
 					</div>
 					<br /> <br /> <br />
 					<!-- 정렬기준 Select Box -->
-					<select name="order" id='orderBy' style="float: right; font-size: 20px;">
+					<select name="order" id='orderBy' style="float: right; font-size: 30px; height:80px;">
 						<option value="default">&nbsp;정렬기준</option>
 						<option value="title">&nbsp;영화제목순</option>
 						<option value="year">&nbsp;개봉일순</option>

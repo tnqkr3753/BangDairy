@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kosmo.bangdairy.aop.LoggerAspect;
 import com.kosmo.bangdairy.service.AccountFormServiceImpl;
 import com.kosmo.bangdairy.service.KakaoAPI;
 import com.kosmo.bangdairy.service.MovieDetailServiceImpl;
@@ -135,7 +136,7 @@ public class AccountForm {
 	 * 변수 : 
 	 * 작성자 : 박윤태
 	 */
-	@RequestMapping(value = "login/kakao")
+	@RequestMapping(value = "/login/kakao")
 	@ResponseBody
 	public ModelAndView kakaoLogin(@RequestParam(value = "code") String code,HttpSession session) {
 		String accessToken = kakao.getAccessToken(code);
@@ -147,6 +148,8 @@ public class AccountForm {
 		vo.setUserEmail((String)userInfo.get("email"));
 		vo.setUserType("2");
 		vo.setUserAuthStatus("1");
+		LoggerAspect.logger.info("KAKAO : " + vo);
+		LoggerAspect.logger.info("KAKAO : " + userInfo);
 		ModelAndView mv = new ModelAndView();
 		AccountFormVO avo = accountFormService.checkForKakao(vo);
 		if (avo != null) {

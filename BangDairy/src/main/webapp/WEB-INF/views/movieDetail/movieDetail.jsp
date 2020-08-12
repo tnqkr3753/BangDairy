@@ -94,13 +94,13 @@
   				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 				</svg>
 				찜 추가</button>
-				<c:if test="${not empty vo.previewAddrKmdb }"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button><br/>
+				<c:if test="${not empty vo.previewAddrKmdb}"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button><br/>
 				<div id="myModal" class="modal">
  
 				      <!-- Modal content -->
 				      <div class="modal-content">
 				        <span class="close">&times;</span>                                                               
-				        <iframe src="${ vo.previewAddrKmdb }"></iframe>
+				        <iframe src="${vo.previewAddrKmdb}"></iframe>
 				      </div>
 				 
 				</div>
@@ -110,8 +110,8 @@
 			
 				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<c:if test="${not empty sList }">
-						<c:forEach items="${sList }" var="list">
+					<c:if test="${not empty sList}">
+						<c:forEach items="${sList}" var="list">
 							<li><img src="${list.stillAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
 						</c:forEach>
 					</c:if>
@@ -134,10 +134,10 @@
 							<a href="#" class="image"><img
 								src="resources/images/movieDetail/directorSam.jpg" alt=""></a> --%>
 							<div class="content">
-								<c:forEach items="${vo.movieDirector }" var="director">
+								<c:forEach items="${vo.movieDirector}" var="director">
 								<h2 class="major" style="text-align:center;">
 								<img src="resources/images/director.png" style="width:100px; height:100px;"/>
-								&nbsp;&nbsp;${director.directorName }</h2>
+								&nbsp;&nbsp;${director.directorName}</h2>
 								<%-- <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
 									Cras turpis ante, nullam sit amet turpis non, sollicitudin
 									posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla

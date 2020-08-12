@@ -13,10 +13,9 @@ import com.kosmo.bangdairy.vo.MovieVO;
 
 @Repository("dairyDAO")
 public class DairyDAOlmpl implements DairyDAO{
-	
 	@Autowired
 	SqlSessionTemplate sqlSession;
-
+	
 	@Override
 	public List<DairyVO> showList(AccountFormVO vo) {
 		return sqlSession.selectList("DairyDAO.listdairy",vo);
@@ -28,7 +27,7 @@ public class DairyDAOlmpl implements DairyDAO{
 	}
 	
 	@Override
-	public List<DairyVO> topDairy() {
+	public List<HashMap> topDairy() {
 		return sqlSession.selectList("DairyDAO.topdairy");
 	}
 	
@@ -38,9 +37,15 @@ public class DairyDAOlmpl implements DairyDAO{
 	}
 	
 	@Override
-	public List<DairyVO> searchDdairy(HashMap hash) {
+	public List<HashMap> searchDdairy(HashMap hash) {
 		return sqlSession.selectList("DairyDAO.searchddairy",hash);
 	}
+	
+	@Override
+	public AccountFormVO getMyProfile(AccountFormVO vo) {
+		return sqlSession.selectOne("DairyDAO.getMyProfile",vo);
+	}
+	
 	//--------------------------은주--------------------------
 	@Override
 	public List<MovieVO> recommendTitle(MovieVO mvo) {	// 영화제목 검색 후 리스트 받아옴

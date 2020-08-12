@@ -24,7 +24,7 @@
 					<!-- 여기는 상단 네비게이션 바 START -->
 					
 					<!-- 네비게이션 바 END -->
-		<h1 class="s-content__header-title">ALL MOVIES</h1>
+		<h1 class="s-content__header-title">ALL MOVIES</h1>        <!--  <button>  <a href = "javascript:popup()">팝업</a></button> -->
 	
 					<!-- 검색창과 Select Box -->
 					

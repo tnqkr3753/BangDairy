@@ -4,6 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -26,8 +28,13 @@
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
 	<link rel="stylesheet" href="resources/css/maindairy.css">
+	<link rel="stylesheet" href="resources/css/movieList.css">
+	<link rel="stylesheet" href="resources/css/dairycss/writeDiary.css">
+	
     <!-- script
     ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="resources/js/myDiary.js"></script>
     <script src="resources/js/modernizr.js"></script>
     <script src="resources/js/pace.min.js"></script>
 
@@ -50,140 +57,135 @@
 		
     <section class="s-content">
         
-        
-        
-		<article class="row format-video">
-		<article class="mydairy_up">
+       
+	<article class="row format-video">
+	<article class="mydairy_up">
 
-
-	<form method="post" action="dairySearch">
-      <p><label>검색 : <input style="width: 25%;" type="text" name="searchWord"></label></p>
-    </form>
-	
-				<h3 class="title">
-					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
-						class="link" bg-nclick="htp.htp">다이어리 >> </a>
-					<a href="#" ng-click="blogHomeCtrl.goState('hotTopicChallenge')"
-						class="link" bg-nclick="htp.htp">내가 최근에 쓴 다이어리와 같 DIARY</a>	
-				</h3>
-	
-			<div id="ramdairy" class="heading">          
-      
-                   
-                   <div style="width: "></div>
-         					<table >
-								<thead>	
-									<tr >
-										<c:forEach items="${recentdairy}" var="recent">       
-	      		      					  <td><img style="max-width: auto; max-height: 200px;; " src="${recent.diaryImage }" ></td>
-         								</c:forEach>	
-									
-									</tr>
-									<tr>
-										<c:forEach items="${recentdairy}" var="recent">       
-	                                <td><a style="width: 30%; padding-left: 40% "> ${recent.diaryTitle }</a></td>
-         								</c:forEach>
-         							</tr>	
-							</thead>
-							</table>
-         			
-
-                <p class="s-content__tags">
-					<span class="s-content__tag-list"> 
-					<a href="#0">1</a> <a href="#0">2</a> <a href="#0">3</a></br>
-					</span>
-				</p>
-				</article>
-               </div>
-
-
-			<div class = "mydairy">
-			<div class="left-dairy-maintab">
-			<div id="mydairyimg">
-				<h1 class="s-content__header-title" style="text-align: center">이달의 다이어리 추천</h1>
-				<li style="font-size: 20px;" class="date">December 16, 2017</li>
-			<br/><br/>
-	
-			 <c:forEach items="${topdairy}" var="top">       
-      			<h4 class="s-content__author-name">
-				<img src="resources/images/avatars/user-03.jpg" alt="">
-				</br>
-				<a href="#0">${top.userId }</a>
-				</h4>								
-				<div class="s-content__author-name2">
-				<h2 style="text-align: center;">${top.diaryTitle }</h2>
-				<img src="${top.diaryImage }" style="">
-				<h5 style="padding-left: 80%"> 조회수 : ${top.diaryHits }</h5>
-				<h5>${top.diaryContent }</h5>
-				
-				</div>
-			</c:forEach>
+    <div class="col-full">
+		<div class="respond">
+			<div style="padding-left: 65%;" class="select">
+						
+			</div>
+			<div class="insert	DiaryTop" style="font-size: 55px; margin-left: 30px;">메인 다이어리</div>
+				<br/>
+				<nav class="clearfix">
+					<ul class="clearfix">
+						<li class="clist"><a href="#"></a></li>
+					</ul>
+					<a id="pull" href="#">CATEGORY</a>
+				</nav>
+				<form method="post" action="dairySearch">
+					<input style="width: 400px;display: inline-block; "  placeholder="검색어를 입력해주세요" type="text" name="searchWord">
+					<select style="display: inline-block;" id="search-type" name="searchType">	
+						<option value="m.movie_title">영화 제목</option>
+						<option value="d.user_id">글쓴이</option>
+						<option value="d.diary_title">다이어리 제목</option>
+					</select>
+				</form>
+		</div>
+	</div>
+	<c:if test="${not empty recentdairy }">
+	    <div class="insertDiaryTop" style="font-size: 43px; text-align: center;">
 			
-		</div></div>
-
-				<%
-		AccountFormVO vo = new AccountFormVO();
-        HttpSession sess = request.getSession();
-        String id = (String) sess.getAttribute("userId");
-        vo.setUserId(id);
-        
-		%>
-		<%
-							if (vo.getUserId() == null) {
-						%>
-        <%
-							} else {
-						%>	
-
-
-			<div class="right-dairy-maintab">
-			</br></br></br></br>
-						<h3 class="s-content__author-name5"></h3>
-						</br></br>
-						<img src="images/avatars/user-03.jpg" alt="">
-						</br></br>
-						<%=vo.getUserId()%></br><a href="#0">myprofile go</a>
-						</h4>
-					
-				
-										
-				<div id="myrigthprofile">
-				<h4>name: <%=vo.getUserName()%></br>
-				age: <%=vo.getUserAge()%></br>
-				gender: <%=vo.getUserGender()%></br>
-				e-mail: <%=vo.getUserEmail()%></h4>
-				</div>
-				<%
-							}
-						%>	
-				<div id="rigthmakediary">
-				<button type="submit" class="submit btn--primary btn--large full-width">새글작성</button>
-				<button type="submit" class="submit btn--primary btn--large full-width" index="mydairy_btn">내다이어리</button>
-				</div>
-				
-				<div id="rigthotherdiary">
-				<h3 style="margin: inherit; line-height: inherit; text-align: center;">이런    다이어리는 </h3>
-				<h1 style="margin: inherit; line-height: inherit; text-align: center; border-bottom: ">어때?</h1></br>
-				<c:forEach items="${recommendairy}"  var="recommend">
-				<img alt="" src="${recommend.diaryImage }">
-					<h3 style="font-size: 18px;  margin: inherit; line-height: inherit; ">${recommend.userId }<br/>
-				  : ${recommend.diaryTitle }</h3></br>
-					
-				</c:forEach>	
-				</div>
-              </div>
+			<img src="resources/images/diary/diary.png"
+								style="height: 40px; width: 40px;">
+							최근에 쓴 다이어리 
+			<img src="resources/images/diary/diary.png"
+								style="height: 40px; width: 40px;">
+			
+		</div>
+	</c:if>
+	<div id="ramdairy" class="heading" >          
+    	<table>
+			<c:forEach items="${recentdairy}" var="recent">
+				<td>
+					<div class="table" style="border: 5px solid black; height:450px; width:350px; 
+								border-radius: 20px; padding: 10px; margin: 10px;">
+						<table >
+							<thead >
+								<tr style="border: none;">  
+	      		      				<td><img style="max-width: auto; height:300px; max-height: 230px; border: 5px solid black;" src="${recent.diaryImage }" >
+	      		      				</td>	
+								</tr>
+								<tr style="border: none;">
+	                                <td>
+	                                	<div style="font-size: 40px; text-align: center;">${recent.diaryTitle }
+	                                	</div>
+	                                </td>
+	                            </tr>
+							</thead>	
+						</table>
+					</div>
+				</td>
+         	</c:forEach>
+        </table>
+	</div>		
+	<div class="s-content__header-title" style="text-align: center; font-size: 60px;">이달의 다이어리 추천
+	</div>
+	<div class = "mydairy">
+		<div class="left-dairy-maintab">
+			<div id="mydairyimg">
+			<br/><br/>
+				<c:forEach items="${topdairy}" var="top">       
+		      		<h4 class="s-content__author-name">
+						<img src="${top.absolute_file_path }" 
+						onerror='this.src="resources/images/diary/userDefaultImage.png"'	alt="">
+						<br/>
+						<a href="#0">${top.user_id }</a>
+					</h4>								
+					<div class="s-content__author-name2">
+						<h2 style="text-align: center;">${top.diary_title }</h2>
+						<img src="${top.diary_image }" style="">
+						<h5 style="padding-left: 80%"> 조회수 : ${top.diary_hits }</h5>
+						<h5>${top.diary_content }</h5>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
+	</div>
+	<div class="right-dairy-maintab">
+		<br/><br/><br/><br/>
+			<c:if test="${not empty vo }">
+			<h3 class="s-content__author-name5"></h3>
+			<img src="${vo.absoluteFilePath }" onerror='this.src="resources/images/diary/userDefaultImage.png"' alt="">
+			<br/><br/>
+			${vo.userId }<br/><a href="myPage">내 프로필 보기</a>
+			<div id="myrigthprofile">
+				<h4><%-- 가입 날짜 : <fmt:formatDate value="${vo.joinDate }"  type="date" dateStyle="full" /><br/> --%>
+				나이 : ${vo.userAge }<br/>
+				성별 : 
+				<c:choose>
+					<c:when test="${vo.userGender eq 1 }">남</c:when>
+					<c:otherwise>여</c:otherwise>
+				</c:choose><br/>
+				이메일 : ${vo.userEmail }</h4>
+			</div>	
+			
+			<div id="rigthmakediary">
+				<button type="submit" class="submit btn--primary btn--large full-width">새글작성</button>
+				<button type="submit" class="submit btn--primary btn--large full-width" index="mydairy_btn">내다이어리</button>
+			</div>
+			</c:if>
+			<div id="rigthotherdiary">
+				<h3 style="margin: inherit; line-height: inherit; text-align: center;">이런    다이어리는 </h3>
+				<h1 style="margin: inherit; line-height: inherit; text-align: center; border-bottom: ">어때?</h1><br/>
+				<c:forEach items="${recommendairy}"  var="recommend">
+					<img alt="" src="resources/upload/diary/${recommend.diaryImage }">
+						<h3 style="font-size: 18px;  margin: inherit; line-height: inherit; ">${recommend.userId }<br/>
+					  : ${recommend.diaryTitle }</h3><br/>
+					
+				</c:forEach>	
+			</div>
+	</div>
+	</article>
 	</article>
 </section>
-		<%@ include file="../../../footer.jsp"%>
+	<%@ include file="../../../footer.jsp"%>
 
     <!-- Java Script
     ================================================== -->
-    <script src="resources/js/jquery-3.2.1.min.js"></script>
     <script src="resources/js/plugins.js"></script>
     <script src="resources/js/main.js"></script>
-    <script src="/path/to/cdn/jquery.min.js"></script>
 
 </body>
 </html>

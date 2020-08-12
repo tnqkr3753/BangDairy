@@ -1,11 +1,10 @@
-
-<%@page import="com.kosmo.bangdairy.vo.DairyVO"%>
-<%@page import="com.kosmo.bangdairy.vo.MovieVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -24,13 +23,21 @@
 
 <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">	
+ <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
-<link rel="stylesheet" href="resources/css/dairycss/dairyList.css">
+<link rel="stylesheet" href="resources/css/movieList.css">
+<link rel="stylesheet" href="resources/css/dairycss/diaryList.css">
+
 
 <!-- script
     ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="resources/js/modernizr.js"></script>
 <script src="resources/js/pace.min.js"></script>
 
@@ -40,7 +47,6 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <!-- jquery lib import -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 </head>
 
@@ -51,24 +57,32 @@
     ================================================== -->
 
 	<!-- Comments START -->
-	<!-- Comments START -->
 	<div class="comments-wrap">
 
 		<div id="comments" class="row">
 			<div class="col-full">
-
 				<!-- respond
-                 
-                 
                     ================================================== -->
 				<div class="respond">
 					<!-- 여기는 제목 -->
-					<h1 class="s-content__header-title">Diary</h1>
+					<h1 class="s-content__header-title">
+					<c:choose>
+						<c:when test="${search.searchType eq 'd.diary_title' }">다이어리 제목</c:when>
+						<c:when test="${search.searchType eq 'd.user_id' }">글쓴이</c:when>
+						<c:otherwise>영화 제목</c:otherwise>
+					</c:choose>
+					<small>에 대한</small>
+					${search.searchWord } 검색 결과
+					</h1>
 
 					<!-- 여기는 상단 네비게이션 바 START -->
 					<nav class="clearfix">
 						<ul class="clearfix">
-							
+							<li class="clist"><a href="#"></a></li>
+							<li class="clist"><a href="#"></a></li>
+							<li class="clist"><a href="#"></a></li>
+							<li class="clist"><a href="#"></a></li>
+							<li class="clist"><a href="#"></a></li>
 							<li class="clist"><a href="#"></a></li>
 						</ul>
 						<a id="pull" href="#">CATEGORY</a>
@@ -77,78 +91,69 @@
 
 					<!-- 검색창과 Select Box -->
 					<div class="select">
-						<!-- 검색창 -->
-						<form method="post" action="dairySearch">
-					      <p><label style="font-size: 30px;">상세 검색 : <input style="width: 20%" type="text" name="searchWord"></label></p>
-					    </form>
-					</div>
-				
+						
+
+					<!-- 영화리스트 START -->
 					<!-- 영화리스트 START -->
 					<div class="col-twelve" >
+						<c:if test="${empty list }">
+							<h1>검색된 결과가 없습니다.</h1>
+						</c:if>
+						<c:if test="${not empty list }">
 						<div class="table-responsive">
-							<table >
+							<c:set value="1" var="count"/>
+							<table style="align-content: center;">
 								<thead>
 								
 									<tr >
-										<th style="font-size:20px; ">사진</th>
-										<th style="font-size:20px;  width: 15%;">제목</th>
-										<th style="font-size:20px;  ">내용</th>
-										<th style="font-size:20px;  width: 15%;">유저 아이디</th>
-										<th style="font-size:20px;  width: 15%; ">조회수 </th>		
-										<th style="font-size:20px;   ">다이어리 이동 </th>		
+										<th style="font-size:15px; text-align:center; width: 25%;">사진</th>
+										<th style="font-size:15px; text-align:center; width: 20%;">제목</th>
+										<th style="font-size:15px; text-align:center; width: 15%;">글쓴이</th>
+										<th style="font-size:15px; text-align:center; width: 15%;">영화 제목</th>
+										<th style="font-size:15px;  width: 10%; ">조회수 </th>		
+										<th style="font-size:15px; text-align:center; width: 15%;"></th>		
 									
 									</tr>
-										
-								
+								</thead>
+								<tbody> 
 								 <c:forEach items="${list }" var="search" >   
-								 <tbody>    
-									<tr >
-										<td><img src="${search.diaryImage }"
+								    
+									<tr <c:if test="${count gt 10 }">class="hide-tr"</c:if> >
+										<td><img src="resources/upload/diary/${search.diary_image}" onerror="this.src='resources/images/defaultImage.png'"
 											 height="400px"></td>
-										<td style="align-self: center; width: 60px;">${search.diaryTitle } </td>
-								
-										<td >${search.diaryContent } </td>
-										<td >${search.userId } </td>
-										<td >${search.diaryHits} </td>
-										<td ><button>이동</button> </td>
-									
+										<td style="align-self: center; width: 60px;">${search.diary_title} </td>									
+										<td >${search.user_id} </td>
+										<td >${search.movie_title })</td>
+										<td >${search.diary_hits} </td>
+										<fmt:parseNumber var="like" type="number" value="${search.diary_like }"/>
+										<fmt:parseNumber var="hate" type="number" value="${search.diary_hate }"/>
+										<td >좋아요 : ${like}<br/>
+										싫어요 : ${hate}</td>
 									</tr>
-									</tbody>
+								
+								<c:set var="count" value="${count + 1 }"/>
 								</c:forEach>
-							</thead>
+								</tbody>
+							
 							</table>
 						</div>
+						<input id="btn-moreview" type="button" class="submit btn--primary" value="더보기">
+						</c:if>
 					</div>
+					<!-- 영화 리스트 END -->
+				</div>
+				<!-- end respond -->
+			</div>
+			<!-- end col-full -->
+		</div>
+		<!-- end row comments -->
+
 		
-		<div class="row">
-			
-				<nav class="pgn">
-					<!-- 페이징 -->
-					<ul>
-						<li><a class="pgn__prev" href="#0">Prev</a></li>
-						<li><a class="pgn__num" href="#0">1</a></li>
-						<li><span class="pgn__num current">2</span></li>
-						<li><a class="pgn__num" href="#0">3</a></li>
-						<li><a class="pgn__num" href="#0">4</a></li>
-						<li><a class="pgn__num" href="#0">5</a></li>
-						<li><span class="pgn__num dots">…</span></li>
-						<li><a class="pgn__num" href="#0">8</a></li>
-						<li><a class="pgn__next" href="#0">Next</a></li>
-					</ul>
-				</nav>
-			
-		</div></div>
-		</div>
-		</div>
-		</article>
-		</section>
-	<!-- </div> -->
+	</div>
 	<!-- end comments-wrap -->
 	<!-- Comments END -->
 
 	<%@ include file="../../../footer.jsp"%>
-
-
 
 	<!-- preloader
     ================================================== -->
@@ -164,13 +169,13 @@
 		</div>
 	</div>
 
-
 	<!-- Java Script
     ================================================== -->
-
 	<script src="resources/js/plugins.js"></script>
 	<script src="resources/js/main.js"></script>
-	<script src="resources/js/movieList.js"></script>
+	<script src="resources/js/diaryList.js"></script>
+	
+	
 </body>
 
 </html>

@@ -192,7 +192,7 @@ public class IndependentController {
 		System.out.println("________________________________________________________________________________________________________________");
 		System.out.println(likeCount);
 		mv.addObject("userId",userId);
-	mv.addObject("result",result22);
+		mv.addObject("result",result22);
 		mv.addObject("likeCount", likeCount);
 		mv.addObject("hateCount", hateCount);
 		mv.setViewName("indie/indieDetail");
@@ -207,6 +207,8 @@ public class IndependentController {
 		@RequestMapping(value = "indieinsert", method=RequestMethod.POST )
 	public ModelAndView indieInsert(HttpSession session,IndieVO ivo){	
 		String id = (String) session.getAttribute("userId");
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(ivo.getIndieMakedate());
 		ivo.setApplicant(id);
 		indieSevice.indieInsert(ivo);
 		ModelAndView mv = new ModelAndView();

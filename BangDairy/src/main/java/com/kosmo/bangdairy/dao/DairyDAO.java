@@ -9,15 +9,17 @@ import com.kosmo.bangdairy.vo.MovieVO;
 
 public interface DairyDAO {
 	
-	public List<DairyVO> showList(AccountFormVO vo);
+public List<DairyVO> showList(AccountFormVO vo);
 	
 	public List<DairyVO> recentDairy(AccountFormVO vo);
 
-	public List<DairyVO> topDairy();
+	public List<HashMap> topDairy();
 	
 	public List<DairyVO> recommenDairy(AccountFormVO vo);
 	
-	public List<DairyVO> searchDdairy(HashMap hash);
+	public List<HashMap> searchDdairy(HashMap hash);
+	
+	public AccountFormVO getMyProfile(AccountFormVO vo);
 	
 	//--------------------------은주--------------------------
 	public List<MovieVO> recommendTitle(MovieVO mvo);	// 영화제목 검색 후 리스트 받아옴

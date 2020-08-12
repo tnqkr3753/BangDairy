@@ -29,6 +29,7 @@ public class AccountFormVO {
 	private String userType;
 	private String userAuthCode;
 	private String userAuthStatus;
+	private String resourcesPath = "resources/upload/userProfile/";
 	public String getUserAuthCode() {
 		return userAuthCode;
 	}
@@ -88,7 +89,7 @@ public class AccountFormVO {
 			}
 			File nFile = new File(outputImagePath);
 			this.userProfileSize  = nFile.length();
-			this.absoluteFilePath = outputImagePath;
+			this.absoluteFilePath = resourcesPath+userProfile;
 		}
 	}
 	/*
@@ -155,8 +156,7 @@ public class AccountFormVO {
 	}
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
-		String path = "resources/upload/userProfile/";
-		this.absoluteFilePath = path+userProfile;
+		this.absoluteFilePath = resourcesPath+userProfile;
 	}
 	public long getUserProfileSize() {
 		return userProfileSize;
@@ -185,9 +185,9 @@ public class AccountFormVO {
 				this.userGender =2;
 			}
 			if(lastNum =='1' || lastNum =='2') {
-				this.userAge=cal.YEAR-(1900+birth)+1;
+				this.userAge=cal.get(Calendar.YEAR)-(1900+birth)+1;
 			}else if(lastNum =='3' || lastNum =='4') {
-				this.userAge=cal.YEAR-(2000+birth)+1;
+				this.userAge=cal.get(Calendar.YEAR)-(2000+birth)+1;
 			}
 		}
 		catch (Exception e) {
