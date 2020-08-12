@@ -82,7 +82,7 @@
 </update>
 
 <update id="banUser" parameterType="account">
-	UPDATE user_info SET user_type = '-1' WHERE user_id = #{userId}
+	UPDATE user_info SET user_type = '9' WHERE user_id = #{userId}
 </update>
 	
 </mapper>

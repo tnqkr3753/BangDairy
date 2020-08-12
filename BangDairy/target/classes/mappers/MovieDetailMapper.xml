@@ -60,4 +60,13 @@
  <select id="getStill" parameterType="movie" resultType="still">
 	SELECT * FROM movie_still_img WHERE movie_id = #{movieId} 	
  </select>
+ 
+<!-- 영화 평점 얻어오기 --> 
+ <select id="selectDetailStarScore" parameterType="movie" resultType="float">
+SELECT IFNULL(v.score, 0) AS score FROM movie_info m
+LEFT OUTER JOIN 
+(SELECT movie_id, round(avg(score), 2) AS score FROM movie_score GROUP BY movie_id) v 
+ON v.movie_id = m.movie_id WHERE m.movie_id = #{movieId} 	
+ </select>
+ 
 </mapper>  

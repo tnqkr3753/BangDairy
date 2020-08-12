@@ -64,5 +64,8 @@ public class MovieDetailDAOImpl implements MovieDetailDAO {
 		return sqlSession.selectList("MovieDetailDAO.getStill",vo);
 	}
 	
-
+	@Override // 영화 평점 얻어오기
+	public float selectDetailStarScore(MovieVO vo) {
+		return sqlSession.selectOne("MovieDetailDAO.selectDetailStarScore", vo);
+	}
 }

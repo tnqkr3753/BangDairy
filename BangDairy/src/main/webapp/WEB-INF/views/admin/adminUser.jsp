@@ -48,6 +48,8 @@
 								<tbody>
 									<c:forEach items="${list }" var="vo">
 									<!-- 하나의 유저 START -->
+									<!-- 벤 목록 제외 -->
+									<c:if test="${vo.userType ne '9' }">
 									<tr>
 										<td><img src="${vo.absoluteFilePath }"
 										onerror="this.src='resources/images/movieList/noImage.png'"
@@ -63,10 +65,10 @@
 										</td>
 										<td><fmt:formatDate value="${vo.joinDate }" type="date" dateStyle="full" /></td>
 										<td>${vo.userReg }</td>
-										<td><c:if test="${vo.userBan eq '0' }"><input type="button" class="btn btn-danger ban-user" value="유저 벤" data-id=""${vo.userId }></c:if>
-										<c:if test="${vo.userBan eq '1' }"><input type="button" class="btn btn-danger cancle-ban-user" value="벤 취소" data-id=""${vo.userId }></c:if>
+										<td><input type="button" class="btn btn-danger ban-user" value="유저 벤" data-id="${vo.userId }" data-bantype="ban">
 										</td>									
 										</tr>
+										</c:if>
 									<!-- 하나의 영화 END -->
 									</c:forEach>
 								</tbody>

@@ -23,6 +23,12 @@
 		<if test="userProfileSize != null">
 			,user_profile_size
 		</if>
+		<if test="userType!=null">
+			,user_type
+		</if>
+		<if test="absoluteFilePath!=null">
+			,absolute_file_path
+		</if>
 			)
 		 values(#{userId},#{userPassword},
 		#{userEmail},#{userReg}
@@ -31,6 +37,12 @@
 		</if>
 		<if test="userProfileSize != null">
 		,#{userProfileSize}
+		</if>
+		<if test="userType!=null">
+			,#{userType}
+		</if>
+		<if test="absoluteFilePath!=null">
+			,#{absoluteFilePath}
 		</if>
 		)
 	</insert>
@@ -41,8 +53,16 @@
 	<select id="checkForKakao" parameterType="account" resultType="account">
 		SELECT * FROM user_info WHERE user_email=#{userEmail} AND user_id=#{userId}
 	</select>
-	<insert id="joinKakao">
-		INSERT INTO user_info (user_id,user_email,absolute_file_path)
-		VALUES (#{userId},#{userEmail},#{#absoluteFilePath})
+	<insert id="joinKakao" parameterType="account">
+		INSERT INTO user_info (user_id,user_email,absolute_file_path,user_type,user_auth_status)
+		VALUES (#{userId},#{userEmail},#{absoluteFilePath},#{userType},#{userAuthStatus})
 	</insert>
+	<update id="updateAuthCode" parameterType="account">
+		UPDATE user_info SET user_auth_code = #{userAuthCode}
+		WHERE user_id = #{userId}
+	</update>
+	<update id="updateAuthStatus" parameterType="account">
+		UPDATE user_info SET user_auth_status = "1"
+		WHERE user_id = #{userId} AND user_auth_code = #{userAuthCode}
+	</update>
 </mapper>

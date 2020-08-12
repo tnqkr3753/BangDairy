@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap');
 @charset "utf-8";
 
 /* 평점 */
@@ -86,7 +92,7 @@ only screen and (max-width: 760px),
 	width: 100%;
 	background: #555555;
 	font-size: 11pt;
-	font-family: 'PT Sans', Arial, Sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
 	font-weight: bold;
 	position: relative;
 	border-bottom: 2px solid #444444;
@@ -184,11 +190,23 @@ only screen and (max-width: 760px),
     z-index: 10000;
 }
 
-.active {
+.clist active {
 	background-color: white;
 }
 
-.active a {
+.clist active a {
 	color: black;
+}
+
+.clearfix, .search__tab {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+}
+
+.btnPaging {
+	font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
+	font-weight: 600;
+	border-radius: 20px;
+	width: 8%;
 }

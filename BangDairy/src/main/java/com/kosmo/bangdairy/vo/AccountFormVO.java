@@ -82,7 +82,7 @@ public class AccountFormVO {
 			}
 			File nFile = new File(outputImagePath);
 			this.userProfileSize  = nFile.length();
-			this.absoluteFilePath = outputImagePath;
+			this.absoluteFilePath = resourcesPath+userProfile;
 		}
 	}
 	/*
@@ -105,14 +105,22 @@ public class AccountFormVO {
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
 	
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
 	@Override
 	public String toString() {
 		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
 				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
 				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
 				+ absoluteFilePath + ", joinDate=" + joinDate + ", file=" + file + ", userType=" + userType
+<<<<<<< HEAD
 				+ ", userBan=" + userBan + "]";
+=======
+				+ ", userAuthCode=" + userAuthCode + ", userAuthStatus=" + userAuthStatus + "]";
+>>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
 	}
 	public String getUserName() {
 		return userName;
@@ -149,8 +157,7 @@ public class AccountFormVO {
 	}
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
-		String path = "resources/upload/userProfile/";
-		this.absoluteFilePath = path+userProfile;
+		this.absoluteFilePath = resourcesPath+userProfile;
 	}
 	public long getUserProfileSize() {
 		return userProfileSize;
@@ -179,9 +186,9 @@ public class AccountFormVO {
 				this.userGender =2;
 			}
 			if(lastNum =='1' || lastNum =='2') {
-				this.userAge=cal.YEAR-(1900+birth)+1;
+				this.userAge=cal.get(Calendar.YEAR)-(1900+birth)+1;
 			}else if(lastNum =='3' || lastNum =='4') {
-				this.userAge=cal.YEAR-(2000+birth)+1;
+				this.userAge=cal.get(Calendar.YEAR)-(2000+birth)+1;
 			}
 		}
 		catch (Exception e) {

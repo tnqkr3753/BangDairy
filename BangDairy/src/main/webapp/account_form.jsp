@@ -39,10 +39,10 @@
 					<input id="saveReg" style="display:none;" name="userReg">
 			</div>
 
-			<div  class="form-group">
-				<strong>e-mail&nbsp;<small id="eMailCheckResult" class="FilterResultEmail hideResult"></small></strong>
+			<div  class="form-group" data-req="true">
+				<strong>e-mail&nbsp;* 인증 필수 
+				<small id="eMailCheckResult" class="FilterResultEmail hideResult"></small></strong>
 				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
-					
 			</div>
 			
 			<input id="onsubmit" class="function-btn" type="submit" value="회원가입">

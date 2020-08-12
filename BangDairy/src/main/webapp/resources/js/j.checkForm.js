@@ -10,7 +10,7 @@
 		var fTyp;	// 폼 요소 Type
 		var fVal;	// 폼 요소 Value
 		var fMsg;	// 경고 메시지 속성
-		var fNum;		// 숫자만 입력 속성
+		var fNum;	// 숫자만 입력 속성
 		var fMax;	// 최대 길이 지정
 		var fMin;	// 최소 길이 지정
 		var fMxN;	// 최대값 지정
@@ -41,6 +41,7 @@
 			
 
 			// 체크해야 하는 필수 폼인지 확인
+			
 			var chkBool = false;
 			if (fMsg != undefined || getLen(fVal) > 0) chkBool = true;
 

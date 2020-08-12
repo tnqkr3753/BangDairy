@@ -53,6 +53,17 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 	public int joinKakao(AccountFormVO vo) {
 		return sqlSession.insert("AccountFormDAO.joinKakao",vo);
 	}
+
+	@Override
+	public int updateAuthCode(AccountFormVO vo) {
+		return sqlSession.update("AccountFormDAO.updateAuthCode",vo);
+	}
+
+	@Override
+	public int updateAuthStatus(AccountFormVO vo) {
+		return sqlSession.update("AccountFormDAO.updateAuthStatus",vo);
+	}
+	
 	
 
 }

@@ -155,13 +155,17 @@ $(function(){
     })
     /* 유저 벤 */
     $(document).on('click',".ban-user",function () {  
-        var userid= $(this).data("id");
+        banControl($(this));
+    });
+    function banControl(input){
+        var banType = input.data("bantype");
+        var userid= input.data("id");
         var result = confirm(userid+"번 사용자를 벤하시겠습니까?");
         var userData = {"userId":userid};
         if (result){
             $.ajax({
                 type:"POST",
-                url:"admin/"+type+"/ban",
+                url:"admin/"+type+"/"+banType,
                 async : false,
                 data:userData,
                 dataType: "text",
@@ -178,7 +182,7 @@ $(function(){
                 }
             });
         }
-    });
+    };
     /* 보여주기 함수 */
     function show(type,searchWord,page){
         $.ajax({

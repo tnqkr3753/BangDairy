@@ -32,9 +32,9 @@ public class DairyServicelmpl implements DairyService {
 	}
 	
 	@Override
-	public List<DairyVO> topDairy(){
+	public List<HashMap> topDairy(){
 		return dairyDAO.topDairy();
-	}
+	} 
 	
 	@Override
 	public List<DairyVO> recommenDairy(AccountFormVO vo){
@@ -42,10 +42,14 @@ public class DairyServicelmpl implements DairyService {
 	}
 	
 	@Override
-	public List<DairyVO> searchDdairy(HashMap hash) {
+	public List<HashMap> searchDdairy(HashMap hash) {
 		return dairyDAO.searchDdairy(hash);		
 	}
 
+	@Override
+	public AccountFormVO getMyProfile(AccountFormVO vo) {
+		return dairyDAO.getMyProfile(vo);
+	}
 	//--------------------------은주--------------------------
 	@Override
 	public List<MovieVO> recommendTitle(MovieVO mvo) {	// 영화제목 검색 후 리스트 받아옴

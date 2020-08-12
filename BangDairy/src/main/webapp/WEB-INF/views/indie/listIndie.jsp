@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="resources/css/movieList.css">
 
 
+
 <!-- script
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -49,6 +50,10 @@
 <body id="back">
 	<%@ include file="../../../header_menu.jsp"%>
 
+	
+	
+	
+
 	<!-- s-content
     ================================================== -->
 
@@ -61,60 +66,35 @@
 		<nav class="pgn">
 		
 			<!-- ********** 페이징 ********** -->
-		<%-- 	<c:if test="${totalPage < 5}"> --%>
 				<!-- 전체페이지 수가 5보다 작을때 -->
 				<c:forEach var="i" begin="1" end="5">
 					<button class="btnPaging" value='${i}'>${i}</button>
-					
 				</c:forEach>
-		<%-- 	</c:if> --%>
-
-<%-- 			<c:if test="${totalPage >= 5}">
-				<!-- 전체페이지 수가 5보다 클때 -->
-				<c:if test="${pNum == 1}">
-					<!-- 현재 페이지가 1페이지일때 뒤 4개의 페이지 보여줌 -->
-					<c:forEach var="i" begin="${pNum}" end="${pNum+4}">
-					
-						<button class="btnPaging" value='${i}'>${i}</button>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pNum == 2}">
-					<!-- 현재 페이지가 2페이지일때 1페이지, 뒤 3개의 페이지 보여줌 -->
-					<c:forEach var="i" begin="${pNum-1}" end="${pNum+3}">
-						<button class="btnPaging" value='${i}'>${i}</button>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pNum >= 3 and pNum <= totalPage-2}">
-					<!-- 현재 페이지가 3페이지 이상일때 앞 2개, 뒤 2개의 페이지 보여줌 -->
-					<c:forEach var="i" begin="${pNum-2}" end="${pNum+2}">
-						<button class="btnPaging" value='${i}'>${i}</button>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pNum == totalPage-1}">
-					<c:forEach var="i" begin="${pNum-3}" end="${pNum+1}">
-						<!-- 현재 페이지가 마지막 페이지-1일때 -->
-						<button class="btnPaging" value='${i}'>${i}</button>
-					</c:forEach>
-				</c:if>
-				<c:if test="${pNum == totalPage}">
-					<!-- 현재 페이지가 마지막 페이지일때 -->
-					<c:forEach var="i" begin="${pNum-4}" end="${pNum}">
-						<button class="btnPaging" value='${i}'>${i}</button>
-					</c:forEach>
-				</c:if>
-			</c:if> --%>
-			<!-- ********** 페이징 ********** -->
-
-<%-- 			<c:if test="${totalPage > 5 and pNum < totalPage-2}"> --%>
+		
 				<!-- 전체 페이지의 개수 표시 -->
 			... <button class="btnPaging" value='${totalPage}'>${totalPage}</button>
-<%-- 			</c:if> --%>
+				
 		</nav>
+
+	
 	</div>
 </div>
 	</div>
+	
+
 	<!-- end comments-wrap -->
 	<!-- Comments END -->
+	
+
+	
+		 <script>
+        function popup(){
+            var url = "Independent";
+            var name = "popup test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            window.open(url, name, option);
+        }
+    </script>
 
 	<%@ include file="../../../footer.jsp"%>
 

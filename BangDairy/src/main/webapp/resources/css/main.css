@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 /* =================================================================== 
  *
  *  Philosophy v1.0 Main Stylesheet
@@ -76,18 +79,21 @@
  */
  
 #mark-user-id{
-	font-size: 20px;
+	font-size: 30px;
 }
  .header__social #show-login:hover{
 	cursor:pointer;
 }
 .title-wrap{
    text-align: center;
+   margin: 30px;
 }
  .title{
 color: #292a32;
-    font-size: 25px;
     font-weight: 700;
+    font-family: 'Do Hyeon', sans-serif;
+	font-size: 60px;
+	color: white;
     -webkit-letter-spacing: -0.4px;
     -moz-letter-spacing: -0.4px;
     -ms-letter-spacing: -0.4px;
@@ -112,7 +118,7 @@ html, body {
 
 body {
    background: #19191b;
-   font-family: "metropolis-regular", sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
    font-size: 1.6rem;
    font-style: normal;
    font-weight: normal;
@@ -151,7 +157,7 @@ a:hover, a:active {
  * 
  * ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-   font-family: "librebaskerville-bold", serif;
+font-family: 'Do Hyeon', sans-serif;
    color: #000000;
    font-style: normal;
    font-weight: normal;
@@ -236,7 +242,7 @@ p img {
 }
 
 p.lead {
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 2rem;
    line-height: 1.8;
    margin-bottom: 3.6rem;
@@ -258,11 +264,11 @@ em, i, strong, b {
 }
 
 em, i {
-   font-family: "metropolis-italic", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 strong, b {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 small {
@@ -282,14 +288,14 @@ blockquote:before {
    line-height: 0px;
    margin: 0;
    color: rgba(0, 0, 0, 0.25);
-   font-family: arial, sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    position: absolute;
    top: 3.6rem;
    left: 0;
 }
 
 blockquote p {
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    padding: 0;
    font-size: 2.1rem;
    line-height: 1.857;
@@ -298,7 +304,7 @@ blockquote p {
 
 blockquote cite {
    display: block;
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    font-style: normal;
    line-height: 1.4;
@@ -314,7 +320,7 @@ blockquote cite a, blockquote cite a:visited {
 }
 
 abbr {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-variant: small-caps;
    text-transform: lowercase;
    letter-spacing: .05rem;
@@ -322,7 +328,7 @@ abbr {
 }
 
 var, kbd, samp, code, pre {
-   font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 pre {
@@ -475,7 +481,7 @@ table {
    border-width: 0;
    width: 100%;
    max-width: 100%;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 th, td {
@@ -486,7 +492,7 @@ th, td {
 
 th {
    color: #000000;
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 td {
@@ -692,7 +698,7 @@ select {
    border: 0;
    outline: none;
    color: #151515;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.6rem;
    line-height: 3rem;
    max-width: 100%;
@@ -774,7 +780,7 @@ select:focus {
 }
 
 label, legend {
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.4rem;
    font-weight: bold;
    margin-bottom: .9rem;
@@ -790,8 +796,8 @@ input[type="checkbox"], input[type="radio"] {
 label > .label-text {
    display: inline-block;
    margin-left: 1rem;
-   font-family: "librebaskerville-regular", serif;
-   font-weight: normal;
+font-family: 'Do Hyeon', sans-serif;
+	font-weight: normal;
    line-height: inherit;
 }
 
@@ -848,7 +854,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
    display: inline-block;
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.2rem;
    text-transform: uppercase;
    letter-spacing: .3rem;
@@ -964,7 +970,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    position: relative;
    margin-bottom: 3rem;
    border-radius: 3px;
-   font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    line-height: 1.6;
 }
@@ -1012,7 +1018,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    margin: 0;
    padding: 1.5rem .6rem 0 0;
    font-size: 8.4rem;
-   font-family: "metropolis-extrabold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-weight: bold;
    line-height: 6rem;
    text-indent: 0;
@@ -1087,7 +1093,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    height: 1em;
    position: absolute;
    font-size: 10rem;
-   font-family: Arial, Sans-Serif;
+font-family: 'Do Hyeon', sans-serif;
    color: rgba(0, 0, 0, 0.25);
 }
 
@@ -1144,7 +1150,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .stats-tabs li a {
    display: inline-block;
    font-size: 2.5rem;
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-weight: bold;
    border: none;
    color: #000000;
@@ -1158,7 +1164,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
    display: block;
    margin: .6rem 0 0 0;
    font-size: 1.5rem;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    color: #727272;
 }
 
@@ -1186,7 +1192,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .pgn__num {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    line-height: 2.4rem;
    display: inline-block;
@@ -1331,7 +1337,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .audio-wrap .mejs__container {
    background-color: rgba(0, 0, 0, 0.8) !important;
-   font-family: "metropolis-light", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 .audio-wrap .mejs__time-buffering,
@@ -1511,7 +1517,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .masonry .entry__thumb-link::after {
    content:url("https://img.icons8.com/nolan/64/documentary.png");
-   font-family: georgia, serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 2.7rem;
    z-index: 1;
    display: block;
@@ -1576,7 +1582,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__date {
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.4rem;
    line-height: 1.714;
    margin-bottom: .6rem;
@@ -1592,7 +1598,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__meta {
-   font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    margin-bottom: 0;
 }
@@ -1665,7 +1671,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .format-quote blockquote p, .format-link .link-wrap p {
-   font-family: "librebaskerville-bold", serif;
+font-family: 'Do Hyeon', sans-serif;
    color: #000000;
    padding: 7.8rem 0 0 0;
    margin-bottom: 3.3rem;
@@ -1675,7 +1681,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .format-quote cite, .format-link cite {
    display: block;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    font-style: normal;
    line-height: 1.6;
@@ -1943,10 +1949,10 @@ div.header_sticky{
 }
 
 .header__search-form::after {
-   content: "Press Enter to begin your search.";
+	font-family: 'Do Hyeon', sans-serif;
    display: block;
    letter-spacing: 0.6px;
-   font-size: 1.6rem;
+   font-size: 30px;
    margin-top: 3rem;
    text-align: center;
    color: rgba(255, 255, 255, 0.5);
@@ -1954,10 +1960,10 @@ div.header_sticky{
 
 .header__search-form input[type="search"] {
    background-color: transparent;
-   color: #000000;
+   color: white;
    height: auto;
    width: 100%;
-   font-family: "metropolis-semibold", sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
    font-size: 6rem;
    line-height: 1.5;
    border: none;
@@ -1966,6 +1972,7 @@ div.header_sticky{
    padding-top: .6rem !important;
    padding-bottom: .6rem !important;
    margin: 0 auto;
+   text-align: center;
 }
 
 .header__search-form input[type="search"]::-webkit-input-placeholder {
@@ -2032,8 +2039,8 @@ body.search-is-visible {
 }
 
 .header__search-trigger::before {
-   font-family: "metropolis-semibold", sans-serif;
-   font-size: 16px;
+font-family: 'Do Hyeon', sans-serif;
+   font-size: 30px;
    text-transform: uppercase;
    letter-spacing: 2px;
    line-height: 21px;
@@ -2187,7 +2194,7 @@ body.search-is-visible {
 
 .header__nav-wrap .header__nav-heading {
    text-align: center;
-   font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.4rem;
    color: #FFFFFF;
    text-transform: uppercase;
@@ -2200,13 +2207,15 @@ body.search-is-visible {
    display: none;
 }
 
-.header__nav {
+
+
+.header__content .header__nav-wrap .header__nav {
    text-align: center;
    list-style: none;
    margin: 0;
    padding-left: 40px;
-   font-family: "metropolis-medium", sans-serif;
-   font-size: 15px;
+font-family: 'Do Hyeon', sans-serif;
+   font-size: 25px;
 }
 
 .header__nav li {
@@ -2300,7 +2309,7 @@ body.search-is-visible {
    display: block;
    white-space: nowrap;
    padding: 7.5px 3rem 7.5px 2rem;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    line-height: 18px;
    color: rgba(255, 255, 255, 0.6);
 }
@@ -2361,7 +2370,7 @@ body.search-is-visible {
    .header__nav {
       margin: 4.8rem 6rem 3rem 6rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
       font-size: 16px;
    }
 
@@ -2513,7 +2522,7 @@ body.search-is-visible {
 
 .featured .entry__category {
    display: inline-block;
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.1rem;
    line-height: 2.4rem;
    text-transform: uppercase;
@@ -2546,7 +2555,7 @@ body.search-is-visible {
    list-style: none;
    margin: 0 0 0 6rem;
    padding: 0;
-   font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    color: rgba(255, 255, 255, 0.5);
    line-height: 1.5;
 }
@@ -3110,7 +3119,7 @@ html.no-csstransitions .featured {
    background-color: #FFFFFF;
    padding-top: 7.8rem;
    padding-bottom: 9rem;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    line-height: 1.8;
 }
@@ -3134,7 +3143,7 @@ html.no-csstransitions .featured {
 }
 
 .s-extra h5 {
-   font-family: "metropolis-extrabold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.6rem;
    line-height: 1.3125;
    margin-bottom: .6rem;
@@ -3214,7 +3223,7 @@ html.no-csstransitions .featured {
 
 .s-extra .tagcloud a {
    display: inline-block;
-   font-family: "metropolis-extrabold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.3rem;
    line-height: 3.6rem;
    text-transform: uppercase;
@@ -3330,7 +3339,7 @@ footer a {
 }
 
 footer h4 {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.4rem;
    line-height: 1.286;
    text-transform: uppercase;
@@ -3438,7 +3447,7 @@ footer h4::after {
 
 .s-footer__subscribe #mc-form label {
    color: #FFFFFF;
-   font-family: "metropolis-regular", sans-serif, sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.3rem;
    padding: 0 2rem;
 }
@@ -3621,16 +3630,17 @@ footer h4::after {
 }
 
 .s-content__header-title {
-   font-size: 4.2rem;
+   font-size: 55px;
    line-height: 1.214;
    margin-bottom: .9rem;
+   font-weight: 600;
 }
 
 .s-content__header-meta {
    list-style: none;
    margin-left: 0;
    margin-bottom: 1.2rem;
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.5rem;
    line-height: 1.8;
    position: relative;
@@ -3692,11 +3702,11 @@ footer h4::after {
  * ------------------------------------------------------------------- */
 .s-content__tags {
    margin-top: 6rem;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 .s-content__tags span {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    color: #151515;
    position: relative;
    padding-right: 55px;
@@ -3727,7 +3737,7 @@ footer h4::after {
 
 .s-content__tags .s-content__tag-list a {
    display: inline-block;
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.3rem;
    line-height: inherit;
    color: #7f7f7f;
@@ -3784,7 +3794,7 @@ footer h4::after {
 .s-content__author-social {
    list-style: none;
    margin-left: 0;
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 12px;
    text-transform: uppercase;
    letter-spacing: 1px;
@@ -3819,7 +3829,7 @@ footer h4::after {
 
 .s-content__nav span {
    display: block;
-   font-family: "metropolis-medium", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 12px;
    text-transform: uppercase;
    letter-spacing: 2.5px;
@@ -3830,7 +3840,7 @@ footer h4::after {
 }
 
 .s-content__nav a {
-   font-family: "librebaskerville-bold", serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 2.2rem;
    line-height: 1.5;
    color: #19191b;
@@ -4078,7 +4088,7 @@ footer h4::after {
 }
 
 .comment__info cite {
-   font-family: "metropolis-bold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.9rem;
    line-height: 1.263;
    font-style: normal;
@@ -4086,7 +4096,7 @@ footer h4::after {
 }
 
 .comment__meta {
-   font-family: "metropolis-regular", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
    font-size: 1.45rem;
    line-height: 3rem;
    font-style: normal;
@@ -4099,7 +4109,7 @@ footer h4::after {
 }
 
 .comment__meta .reply {
-   font-family: "metropolis-semibold", sans-serif;
+font-family: 'Do Hyeon', sans-serif;
 }
 
 .comment__text {
@@ -4237,7 +4247,7 @@ footer h4::after {
    display: block;
    color: white;
    text-align: center;
-   font-family: 'FontAwesome';
+font-family: 'Do Hyeon', sans-serif;
    font-size: 14px;
    content: "\f067";
    height: 32px;
@@ -4276,7 +4286,8 @@ footer h4::after {
    margin: 3rem;
 }
 
+#title_movie_list, #first_movie_list, #second_movie_list, #third_movie_list {
 
-
+}
 
 

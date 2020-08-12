@@ -63,15 +63,20 @@
 			<div class="s-content__header col-full">
 				<%-- 영화 이름 --%>
 				<h1 class="s-content__header-title">${vo.movieTitle }</h1>
-				
-				<%-- 평점 --%>
-				<div class="starRevM">
-					<span class="starR on">별1</span> <span class="starR">별2</span> <span
-						class="starR">별3</span> <span class="starR">별4</span> <span
-						class="starR">별5</span> <!-- 해야함 -->
-				</div>
 
-				<%-- 영화 정보 --%>
+						<c:if test="${!empty starScore}">
+						<%-- 평점 --%>
+						<div class="starRev" style="font-size: 60px; font-weight: bold;">
+							<img src="resources/images/star.png"
+								style="vertical-align: middle; height: 70px; width: 70px;">
+							&nbsp;<span style="vertical-align: middle; color: red;">${starScore}</span>
+						</div>
+						</c:if>
+						<c:if test="${empty starScore}">
+						<span style="font-size: 25px; color: red;">등록된 평점이 없습니다!</span>
+						</c:if>
+						
+						<%-- 영화 정보 --%>
 				<ul class="s-content__header-meta" style="border:2px solid gray; font-size:15px;">
 					<li>▶ 개봉일 : ${vo.openingDateStr }</li>
 					<li>▶ 장르 : <c:forEach items="${vo.movieGenre}" var="genre">
@@ -89,13 +94,13 @@
   				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 				</svg>
 				찜 추가</button>
-				<c:if test="${not empty vo.previewAddrKmdb }"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button><br/>
+				<c:if test="${not empty vo.previewAddrKmdb}"><button id="btn-preview" class="btn btn-default" data-src="${vo.previewAddrKmdb }">예고편 보기</button><br/>
 				<div id="myModal" class="modal">
  
 				      <!-- Modal content -->
 				      <div class="modal-content">
 				        <span class="close">&times;</span>                                                               
-				        <iframe src="${ vo.previewAddrKmdb }"></iframe>
+				        <iframe src="${vo.previewAddrKmdb}"></iframe>
 				      </div>
 				 
 				</div>
@@ -105,8 +110,8 @@
 			
 				<%-- 영화 포스터 rslides Start --%>
 				<ul class="rslides">
-					<c:if test="${not empty sList }">
-						<c:forEach items="${sList }" var="list">
+					<c:if test="${not empty sList}">
+						<c:forEach items="${sList}" var="list">
 							<li><img src="${list.stillAddr}" onerror='this.src="resources/images/defaultImage.png"' alt=""></li>
 						</c:forEach>
 					</c:if>
@@ -129,10 +134,10 @@
 							<a href="#" class="image"><img
 								src="resources/images/movieDetail/directorSam.jpg" alt=""></a> --%>
 							<div class="content">
-								<c:forEach items="${vo.movieDirector }" var="director">
+								<c:forEach items="${vo.movieDirector}" var="director">
 								<h2 class="major" style="text-align:center;">
 								<img src="resources/images/director.png" style="width:100px; height:100px;"/>
-								&nbsp;&nbsp;${director.directorName }</h2>
+								&nbsp;&nbsp;${director.directorName}</h2>
 								<%-- <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit.
 									Cras turpis ante, nullam sit amet turpis non, sollicitudin
 									posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
@@ -351,6 +356,16 @@
 
 		$('#btnActorHide').click(function() {	// 배우 숨기기 버튼을 누르면
 			$('.actorMore').hide();
+		});
+
+		// tagcloud 클릭했을때
+		$('.tagcloud a').click(function() {
+			// alert("keyword 클릭");
+			// alert($(this).text());
+
+			keyword = $(this).text();	// 현재 내가 클릭한 키워드
+
+			location.href = "search?movieSearch=" + keyword;
 		});
 	});
 </script>

@@ -18,7 +18,7 @@ body {
     margin-right: 0;
     font-weight: 400;
     width:100%;
-    font-family: 'Raleway', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
 }
 .preloader {
     position: fixed;
@@ -69,7 +69,7 @@ a span {
     transition: 0.2s ease-in-out;
 }
 a{
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 .btn.extra-width {
@@ -148,14 +148,14 @@ h2,
 h3 {
     font-weight: 400;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
 }
 h4,
 h5 {
     font-weight: 400;
     margin: 0;
     line-height: 2rem;
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
 }
 h1 {
     font-size: 3.75rem;
@@ -181,7 +181,7 @@ h4 {
     text-transform: uppercase;
 }
 h5 {
-	font-family: "librebaskerville-bold", serif;
+	font-family: 'Do Hyeon', sans-serif;
    font-size: 4.8rem;
     margin-bottom: 1rem;
     color:#223d61;
@@ -394,7 +394,7 @@ Button
     background-color: #ff7200;
     transition: .5s;
     border: 1px solid #ff7200;
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 
@@ -582,7 +582,7 @@ input::-ms-input-placeholder {
     text-transform: uppercase;
     font-size: 0.875rem;
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 .navbar-brand {
@@ -641,7 +641,7 @@ input::-ms-input-placeholder {
     color:#413d4b;
 }
 .head_title p{
-    font-family: 'playfair_displayregular';
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 /*home section*/
@@ -757,7 +757,7 @@ input::-ms-input-placeholder {
     margin-bottom:15px;
 }
 .single_features_text ul li span{
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 
@@ -917,6 +917,7 @@ input::-ms-input-placeholder {
     height: 5px;
     width: 0;
 }
+
 
 
 /*counter section css*/
@@ -1132,7 +1133,7 @@ button.btn-md {
     background-color: transparent;
     transition: .5s;
     border: 0px solid #ff7200;
-    font-family: 'Montserrat', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 button.btn-md:hover {
@@ -1343,7 +1344,7 @@ button.btn-md:hover {
     font-size:1rem;
 }
 .main_testimonial .single_testimonial .single_test_author h4 span{
-    font-family: 'Raleway', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
     font-weight: 400;
 }
 .main_testimonial .single_testimonial .single_test_author p{
@@ -1512,7 +1513,7 @@ button.btn-md:hover {
 }
 .footer_subcribs_area .submit_btn:before {
     content: "\f178";
-    font-family: 'Fontawesome';
+	font-family: 'Do Hyeon', sans-serif;
     text-align: center;
     font-size:1rem;
 }

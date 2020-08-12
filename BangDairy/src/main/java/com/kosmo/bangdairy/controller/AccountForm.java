@@ -79,11 +79,18 @@ public class AccountForm {
 	 * 기능 : 유저의 회원가입 정보를 넘겨받아 DB에 유저 정보를 저장 시킨다
 	 * 변수 : result = DB sql(insert)문 실행 결과
 	 * 작성자: 이경호
+	 * 수정	: 박윤태
 	 */
 	@RequestMapping(value="/AccountUser", method = RequestMethod.POST)
 	@ResponseBody
 	public int accountUser(AccountFormVO vo) {
 		int result = accountFormService.insertUser(vo);
+		try {
+			accountFormService.sendEmail(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("오류 !!" + e.getMessage());
+		}
 		return result;
 	}
 	/*
@@ -100,12 +107,14 @@ public class AccountForm {
 		AccountFormVO avo = accountFormService.signInUser(vo);
 		int result = 0;
 		if (avo!=null) {
-			result=1;
-			sess.setAttribute("userId", avo.getUserId());
-			sess.setAttribute("userType", avo.getUserType());
-			System.out.println(avo);
-			if(avo.getUserType().equals("0")) {
-				result = 2; //admin
+			if(avo.getUserAuthStatus().equals("1")) {
+				result=1;
+				sess.setAttribute("userId", avo.getUserId());
+				sess.setAttribute("userType", avo.getUserType());
+				System.out.println(avo);
+				if(avo.getUserType().equals("0")) {
+					result = 2; //admin
+				}
 			}
 		}
 		return result;
@@ -137,6 +146,7 @@ public class AccountForm {
 		vo.setAbsoluteFilePath((String)userInfo.get("profile"));
 		vo.setUserEmail((String)userInfo.get("email"));
 		vo.setUserType("2");
+		vo.setUserAuthStatus("1");
 		ModelAndView mv = new ModelAndView();
 		AccountFormVO avo = accountFormService.checkForKakao(vo);
 		if (avo != null) {
@@ -153,6 +163,20 @@ public class AccountForm {
 			session.setAttribute("userType", vo.getUserType());
 			mv.setViewName("redirect:/index.jsp");
 		}
+		return mv;
+	}
+	@RequestMapping(value = "/email/confirm",method = RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView sendEmail(@RequestParam(value = "id",required = true)String userId,
+			@RequestParam(value = "key",required = true)String userAuthCode) {
+		AccountFormVO vo = new AccountFormVO();
+		vo.setUserId(userId);
+		vo.setUserAuthCode(userAuthCode);
+		int result = accountFormService.updateAuthStatus(vo);
+		ModelAndView  mv = new ModelAndView();
+		mv.setViewName("user/confirm");
+		mv.addObject("result", result);
+		mv.addObject("vo", vo);
 		return mv;
 	}
 }

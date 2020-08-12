@@ -8,7 +8,6 @@
 	<setting name="mapUnderscoreToCamelCase" value="true"/>
 	<setting name="jdbcTypeForNull" value="NULL" />
 </settings>   
-
 <typeAliases>
 	<typeAlias alias="movie" type="com.kosmo.bangdairy.vo.MovieVO"/>
 	<typeAlias alias="actor" type="com.kosmo.bangdairy.vo.ActorVO"/>
@@ -17,9 +16,6 @@
 	<typeAlias alias="still" type="com.kosmo.bangdairy.vo.StillVO"/>
 	<typeAlias alias="comment" type="com.kosmo.bangdairy.vo.CommentVO"/>
 	<typeAlias alias="review" type="com.kosmo.bangdairy.vo.ReviewVO"/>
-	
-	
-	<typeAlias alias="indiegenre" type="com.kosmo.bangdairy.vo.IndieGenreVO"/>
 	
 	<!-- 2020-07-23 이경호 수정
 		수정내용:AccountFormVO 추가 -->
@@ -36,8 +32,9 @@
 	<!-- 2020-07-23 신진섭 추가
 		수정내용:QnaVO 추가 -->
 	<typeAlias alias="indie" type="com.kosmo.bangdairy.vo.IndieVO"/>
-	
-	
+	<!-- 2020-08-03 노예슬 수정
+      수정내용:DairyVO 추가 -->
+    <typeAlias alias="userdairy" type="com.kosmo.bangdairy.vo.DairyUserVO"/>
 </typeAliases>
 
 </configuration>   

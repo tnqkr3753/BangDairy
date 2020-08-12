@@ -54,7 +54,6 @@ public class IndieSeviceImpl implements IndieSevice {
 	public int selectTotalCount(String searchWord) {
 		HashMap hash = new HashMap();
 		hash.put("searchWord", searchWord);
-		// TODO Auto-generated method stub
 		totalCount=indieDAO.selectTotalCount(hash);
 		 totalPage = totalCount / countList;
 		if (totalCount % countList > 0) {
@@ -85,8 +84,45 @@ public class IndieSeviceImpl implements IndieSevice {
 		 return indieDAO.selectEqulegood( goodId1, userId);
 	}
 	@Override
-	public int selectNull(int goodId1, String userId) {
-		 return indieDAO.selectNull( goodId1, userId);
+	public int selectEqulebad(int badIdInt, String userId) {
+		 return indieDAO.selectEqulebad( badIdInt, userId);
 	}
-}
+	@Override
+	public int selectHateNum(int goodId1, String userId) {
+		 return indieDAO.selectHateNum( goodId1, userId);
 	
+	}
+	@Override
+	public int selectLikeNum(int badIdInt, String userId) {
+		 return indieDAO.selectHateNum( badIdInt, userId);
+	
+	}
+
+	@Override
+	public void updateLike(int goodId1, String userId) {
+		 indieDAO.updateLike( goodId1, userId);
+	}
+	
+	@Override
+	public void updateHate(int badIdInt, String userId) {
+		 indieDAO.updateHate( badIdInt, userId);
+	}
+	@Override
+	public int selectLikeCount(int indieId){
+		 return indieDAO.selectLikeCount(indieId);
+	}
+	@Override
+	public int selectHateCount(int indieId){
+		 return indieDAO.selectHateCount(indieId);
+	}
+	
+	
+}
+
+	
+
+
+
+
+	
+

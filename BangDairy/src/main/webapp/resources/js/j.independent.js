@@ -15,18 +15,21 @@
 	});
 	
 	 $("#makebtn").click(function() {
-	var dynamicTag = '<input type="text" name="indieActor"  class="type01 " style="width:60px;" msg="배우를">';
+	var dynamicTag = '<input type="text" name="indieActor"  class="type01 remov" style="width:60px; margin-right: 1%;">';
 	$("#actorbutton").append(dynamicTag);
-	
-	
 });
+	 $("#reMOve").click(function(){
+		 $(".remov").last().remove();
+	 });
 
 	 $("#makeky").click(function() {
-	var dynamic =  "<input type='text' name='indieKeyword' value='123'class='type01' style='width:60px'>";
+	var dynamic =  "  <input type='text'  class='type01 removeKy' name='indieActor' style='width:70px' margin-right: 1%;>";
 	$("#actorbu").append(dynamic);
-	
-	
 });
+	 $("#removeky").click(function(){
+		 $(".removeKy").last().remove();
+	 });
+	 
 	 
 	
 	$($("#ov_items").children().get(0)).attr("src", $($("#ov_items").children().get(0)).attr("ov_src") );
@@ -86,6 +89,7 @@ function fn_submit(){
 	if(checkForm("frm")){
 	
 		$("#frm").submit();
+
 	}
 }
 	

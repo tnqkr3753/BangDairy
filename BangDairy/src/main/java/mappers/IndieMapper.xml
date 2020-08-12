@@ -21,11 +21,41 @@
 	insert into indie_user (user_id, indie_id, indie_like, indie_hate, reg_date) values (#{userId},#{goodId1},0,1,now())
 	</insert>
 	<select id="selectEqulegood" parameterType="hashmap" resultType="int">
-	select count(*) from indie_user where user_id="${userId}" and indie_id=${goodId1} and indie_hate=1
+	select count(*) from indie_user where user_id=#{userId} and indie_id=#{goodId1} and indie_hate=1
 	</select>
-	<select id="selectNull" resultType="int" parameterType="hashmap">
-		select count(*) from indie_user where user_id="${userId}" and indie_id=${goodId1} 
+	
+	<select id="selectEqulebad" parameterType="hashmap" resultType="int">
+	select count(*) from indie_user where user_id=#{userId} and indie_id=#{badIdInt} and indie_like=1
 	</select>
+	
+	
+	<select id="selectHateNum" resultType="int" parameterType="hashmap">
+		select count(*) from indie_user where user_id=#{userId} and indie_id=#{goodId1} 
+	</select>
+	
+	<select id="selectLikeNum" resultType="int" parameterType="hashmap">
+		select count(*) from indie_user where user_id=#{userId} and indie_id=#{badIdInt} 
+	</select>
+	
+	
+	<update id="updateLike" parameterType="hashmap">
+		update indie_user set indie_hate=0,indie_like=1 where user_id=#{userId} and indie_id=#{goodId1} 
+	</update>
+	
+	<update id="updateHate" parameterType="hashmap">
+		update indie_user set indie_hate=1,indie_like=0 where user_id=#{userId} and indie_id=#{badIdInt} 
+	</update>
+	<select id="selectLikeCount" resultType="int">
+		select count(*) from indie_user where indie_like=1 and indie_id=#{indieId}
+	</select>
+	
+	<select id="selectHateCount" resultType="int">
+		select count(*) from indie_user where indie_hate=1 and indie_id=#{indieId}
+	</select>
+	
+	
+	
+	
 	
 	
 	
@@ -37,6 +67,7 @@
 	<insert id="indiegenreInsert" parameterType="indiegenre">
 	INSERT INTO indie_movie_genre (indie_id) 
 	VALUES (#{indieId})
+	
 	
 	</insert> -->
 	<select id="indieGnareSelect" resultType="genre">
