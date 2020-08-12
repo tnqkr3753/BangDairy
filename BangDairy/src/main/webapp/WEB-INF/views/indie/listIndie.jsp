@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="resources/css/movieList.css">
 
 
+
 <!-- script
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -48,6 +49,10 @@
 
 <body id="back">
 	<%@ include file="../../../header_menu.jsp"%>
+
+	
+	
+	
 
 	<!-- s-content
     ================================================== -->
@@ -68,13 +73,28 @@
 		
 				<!-- 전체 페이지의 개수 표시 -->
 			... <button class="btnPaging" value='${totalPage}'>${totalPage}</button>
-
+				
 		</nav>
+
+	
 	</div>
 </div>
 	</div>
+	
+
 	<!-- end comments-wrap -->
 	<!-- Comments END -->
+	
+
+	
+		 <script>
+        function popup(){
+            var url = "Independent";
+            var name = "popup test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            window.open(url, name, option);
+        }
+    </script>
 
 	<%@ include file="../../../footer.jsp"%>
 

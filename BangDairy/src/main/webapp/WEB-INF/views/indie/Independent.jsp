@@ -61,7 +61,7 @@
     <!-- pageheader
     ================================================== -->
     
-<%@ include file = "../../../header_menu.jsp" %>
+ <%@ include file = "../../../header_menu.jsp" %>
 
 
 
@@ -73,7 +73,7 @@
 
  <section class="s-content">
 <form  id="frm"  method='post' action="indieinsert" enctype="multipart/form-data" >
-			<div class="distribution" title="배급신청" style="display: block" id="box" >
+			<div class="distribution"  style="display: block" id="box" >
 				<h4>신청인</h4>
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
@@ -83,23 +83,19 @@
 				  <tr>
 				  
 					<th>감독</th>
-				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:30%;" msg="감독을" maxlen=10> </td>
+				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:120px;" msg="감독을" maxlen=10> </td>
 				  <td><input type="hidden" name=indieConfirm value="y"></td>
 				  </tr>
 				   <tr>
 					<th>배우</th>
-				   <td id="actorbutton" msg="배우를" ></td>
-				   
-				<!--  <td><input type="button"src="resources/images/추가버튼.png"  value="추가"> -->
-			
-				  </tr>
-				  <td>  <p style="cursor:pointer"><img src="resources/images/add.ico" id="makebtn" style="width:60px"></a></p></td>
+					 <td id=actorbutton>
+				  <input type="text"  class="type01" name="indieActor" style="width:70px" msg="배우를" >
+				  	  </td>
+
+				  </tr> <td> <p style="cursor:pointer"><img src="resources/images/add.ico" id="makebtn" class="reMove" style="width:60px" title="추가"></p></td><td><p style="cursor:pointer"><img src="resources/images/add.ico" id="reMOve" class="reMove" style="width:60px" title="삭제"></td>
 				 
- 				  <tr> 
-				 <th>포스터url</th>
-				   <td><input  type="file" name='file' msg="포스터를" class="type01"></td>
-			
-				  </tr>
+				 
+ 			
 <!-- 		<td><input id="profile_img" type="file" name='indiePosterAddr' value="" accept="image/gif,image/jpg,image/png" onchange="chk_file_type(this)" > -->
 				  </tbody>		   
 				  
@@ -124,71 +120,38 @@
 		              <input type="text" name="distri_phone3" id="distri_phone3" title="휴대전화 마지막자리 입력"  maxlength="4" class="type01" style="width:10%;" msg="번호를" onkeydown="onlyNumber(this)">
 					</td>
 				  </tr> -->
-				</tbody></table>
+			</table>
 				
 				<h4>작품정보</h4>
 				<table class="">
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
-					<th>제목</th>
-				    <td><input type="text" name="indieTitle"  id="distri_movie_subject" class="type01" style="width:20%;" msg="제목을" msg="감독을" maxlen=20> </td>
+		<th>제목</th>
+				    <td><input type="text" name="indieTitle"  id="distri_movie_subject" class="type01" style="width:120px;" msg="제목을" msg="감독을" maxlen=20> </td>
 				  </tr>
-				
-<!-- 				  <tr> -->
-<!-- 					<th>영문제목</th> -->
-<!-- 				   <td><input type="text" name="distri_movie_esubject" id="distri_movie_esubject" class="type01" style="width:20%;" msg="영문제목을"> </td> -->
-<!-- 				  </tr> -->
-<!-- 				  <tr> -->
-<!-- 					<th>장편/단편</th> -->
-<!-- 				    <td> -->
-<!-- 						<select title="장편/단편 선택" style="width:20%;" name="distri_movie_type" id="distri_movie_type"> -->
-<!-- 							<option value="long" selected="">장편</option>  -->
-<!-- 							<option value="short">단편</option>                       -->
-<!-- 		              </select> -->
-<!-- 					</td> -->
-<!-- 				  </tr> -->
-<!-- 				  <tr> -->
-<!-- 					<th>길이</th> -->
-<!-- 				   <td><input type="text" name="distri_movie_length1" id="distri_movie_length1" class="type01" style=
-
-"width:10%;" msg="분을" onkeydown="onlyNumber(this)"> 분&nbsp;&nbsp;  <input type="text" value ="423"name="distri_movie_length2" id="distri_movie_length2" class="type01" style="width:10%" msg="초를" onkeydown="onlyNumber(this)"> 초 </td> -->
-<!-- 				  </tr> -->
-				  <tr>
-					<th>만든날짜</th>
-				 <td><input type="text" name="indieMakedate" value="2020/02/04"class="type01" style="width:120px;" date> ex 2020/02/04
-				  </tr>
-				  
-			  <tr>
-					<th>키워드?</th>
-				   <td id=actorbu>
-				  <input type="text" name="indieKeyword" class="type01" style="width:70px";msg="감독을" maxlen="10">
-				  	  <td ></td>
-				  
+			      <tr>
+		<th>키워드</th>
+				  <td id=actorbu>
+				  <input type="text" name="indieKeyword" class="type01 " style="width:70px" msg="키워드를" maxlen="10">
 				  </td>
-			
 				  </tr> 	
-	 <td> <p style="cursor:pointer"><img src="resources/images/add.ico" id="makeky" style="width:60px" ></p></td>
+	              <td><p style="cursor:pointer"><img src="resources/images/add.ico" id="makeky" style="width:60px" title="추가"></p></td><td><p style="cursor:pointer" title="추가"><img src="resources/images/add.ico" id="removeky" class="reMove" style="width:60px" title="삭제"></td>
 
-		  <tr>
-					<th>작품링크</th>
+
+		          <tr>
+		<th>작품링크</th>
 				   <td><input type="text" name="indieAddr"  class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
 				  </tr>
-<!-- 				  <tr> -->
-<!-- 					<th>제작포맷</th> -->
-<!-- 				    <td><input type="text" name="distri_movie_mformat" id="distri_movie_mformat" class="type01" style="width:30%;" msg="제작포맷을"></td> -->
-<!-- 				  </tr> -->
-				  <!-- <tr>
-					<th>상영포맷</th>
-				    <td><input type="text" name="distri_movie_sformat" id="distri_movie_sformat" class="type01" style="width:380px;"/>&nbsp;&nbsp; 제작포맷과 다른 경우 </td>
-				  </tr> -->
-				  <tr>
-					<th>나라</th>
-				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:20%;" msg="언어/자막언어를"> </td>
-				  </tr>
-<!-- 				  <tr> -->
-<!-- 					<th>컬러/흑백</th> -->
-<!-- 				    <td><input type="text" name="distri_movie_color" id="distri_movie_color" class="type01" style="width:20%;" msg="컬러/흑백을"> </td> -->
-<!-- 				  </tr> -->
+				  
+				  
+				  
+				  
+				  
+				  
+		<th>나라</th>
+				
+				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:60px;" msg="언어/자막언어를"> </td>
+				  </tr>	
 				  <tr>
 				  <th>장르</th>
 				<td id="ganre"><!-- GenreVO 에 있는 db값을 없어와서 옵션에 넣어준다. -->
@@ -201,38 +164,26 @@
 		             
 					</td>
               </tr>
+              	  <tr> 
+				 <th>포스터url</th>
+				   <td><input  type="file" name='file' msg="포스터를" class="type01"></td>
+				  </tr>
+				    <tr>
+					<th>만든날짜</th>
+				 <td><input type="text" name="indieMakedate" autocomplete="off" placeholder="yyyy-mm-dd" class="type01" style="width:120px;"> 
+				  </tr>
           
 				  <tr>
 				  
 					<th>줄거리</th>
 				    <td><textarea name="indiePlot"   id="distri_movie_direct" rows="5" style="width:100%;" cols="" msg="연출의도를" maxlen=1000></textarea> </td>
-				  </tr> 
-			
+				  </tr>   
 				 
-				   
-		
-			
-				                                
-<!-- 				  <tr> -->
-<!-- 					<th>영화제 상영리스트</th> -->
-<!-- 				    <td><textarea name="distri_movie_festival" id="distri_movie_festival" rows="5" style="width:100%;" cols="" msg="영화제 상영리스트를"></textarea> </td> -->
-<!-- 				  </tr>	 -->
-<!-- 				  <tr> -->
-<!-- 					<th>작품 링크</th>  -->
-<!-- 				    <td><input type="text" name="movie_link" id="movie_link" class="type01" style="width:100%;"" value="">&nbsp; 예) http://www.naver.com</td>  -->
-<!-- 				  </tr> -->
-				  <tr>
-					<th>비고</th> 
-				    <td>
-						<textarea name="movie_note" id="movie_note" rows="5"></textarea><br>
-						<span class="tt02" style="display:none;">* 장편의 경우 작품 기획서를 doona@indiestory.com 으로 보내주시기 바랍니다.</span>
-					</td> 
-
-				  </tr>
+				  
 				</tbody></table>
 			</div></form>
 
-<p class="r pr10 pt10"><a href="javascript:fn_submit()"><img src="resources/images/신청1.JPG" alt="" style="margin-left: 70%"></a></p>
+<p class="r pr10 pt10"><a href="javascript:fn_submit()"><button style="margin-left:80%">신청하기</button></a></p>
 
   
  </section>
@@ -241,7 +192,7 @@
 
 
 
-<%@ include file="../../../footer.jsp" %>
+ <%@ include file="../../../footer.jsp" %> 
     <!-- Java Script
     ================================================== -->
 

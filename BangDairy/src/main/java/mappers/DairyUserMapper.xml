@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dairyUserDAO">
+
+        <select id="insertDiaryLike" parameterType="dairy" resultType="hashmap">
+        select *, (select count(diary_like) from diary_user where diary_id= #{diaryId} and diary_like=1) as likehit, 
+        (select count(diary_hate) from diary_user where diary_id= #{diaryId} and diary_hate=1) as hatehit
+        from diary_info
+		where diary_id = ${diaryId}
+
+ 		</select>  
+ 		
+ 		<select id="selectwishmovie" parameterType="dairy" resultType="wish">
+			SELECT w.movie_id as movie_id , w.user_id as user_id , w.reg_date as reg_date,
+			m.movie_title as movie_title , m.viewing_class as viewing_class , m.poster_addr as poster_addr
+			FROM wish_movie w inner join movie_info m
+			ON w.movie_id = m.movie_id 
+			WHERE user_id = (select user_id from diary_info where diary_id = ${diaryId})
+			ORDER BY reg_date desc limit 4
+		</select>
+ 		
+ 		<select id="leftInfo" parameterType="dairy" resultType="account">
+ 			  select user_info.* from user_info 
+ 			  where user_id = (select user_id from diary_info where diary_id = ${diaryId})
+ 		</select>
+ 		
+ 			<select id="otherdiarylist" parameterType="dairy" resultType="dairy">
+		   select * from diary_info where user_id = 
+		   (select user_id from diary_info where diary_id = ${diaryId}) limit 3
+			</select>
+ 		
+ 		<!-- 조회수 증가 --> 
+        
+        <update id="addhits" parameterType="dairy" >
+        	update diary_info set diary_hits = (diary_hits + 1) where diary_id = ${diaryId}
+        </update>
+        
+        <!-- 좋아요 싫어요 -->
+        
+        <!-- null인지 알아본다 count결과가 0이면 null -->
+        <select id="countlikes" parameterType="userdairy" resultType="int">
+           select count(diary_like) as likes from diary_user where user_id = '${userId}' and diary_id= ${diaryId}
+   		</select>
+   			
+        <select id="counthates" parameterType="userdairy" resultType="int">
+           select count(diary_hate) as hates from diary_user where user_id = '${userId}' and diary_id= ${diaryId}
+        </select>
+        
+        <!-- 좋아요/싫어요 눌렀는지 여부 -->
+        
+        <select id="checklike" parameterType="userdairy" resultType="int">
+        	     select diary_id, count(diary_like) as likes from diary_user 
+        	     where user_id = '${userId}' and diary_id= ${diaryId}' and diary_like = 1
+        </select>
+       
+        <select id="checkhate" parameterType="userdairy" resultType="int">
+        	     select diary_id, count(diary_hate) as hates from diary_user 
+        	     where user_id = '${userId}' and diary_id= ${diaryId}' and diary_hate = 1
+        </select>
+
+       
+        <delete id="makezero" parameterType="userdairy">
+         delete from diary_user where user_id = '${userId}' and diary_id= ${diaryId}
+        </delete>
+        
+        <update id="insertzerolike" parameterType="userdairy">
+         update diary_user set diary_like = 0  where user_id = '${userId}' and diary_id= ${diaryId};
+        </update>
+        
+        <update id="insertzerohate" parameterType="userdairy">
+        update diary_user set diary_hate = 0 where user_id = '${userId}' and diary_id= ${diaryId};
+        </update>
+        
+        <update id="changelike" parameterType="userdairy" >
+        update diary_user set diary_like = 1  where user_id = '${userId}' and diary_id= ${diaryId};
+        </update>
+        
+        <update id="changehate" parameterType="userdairy">
+        update diary_user set diary_hate = 1 where user_id = '${userId}' and diary_id= ${diaryId};
+        </update> 
+        
+        <insert id="insertzero" parameterType="userdairy">
+        	insert into diary_user (diary_id, user_id, diary_like, diary_hate) values (${diaryId},'${userId}',0,0) 
+        </insert>  
+        
+        <insert id="uplike"  parameterType="userdairy">
+        insert into diary_user (user_id, diary_like,diary_id) values ('${userId}', 1 ,${diaryId})
+        </insert>
+        
+        <insert id="uphate"  parameterType="userdairy">
+        insert into diary_user (user_id, diary_hate,diary_id) values ('${userId}', 1 ,${diaryId})
+        </insert>
+        
+        <!-- 페이징 -->
+  
+       <!-- 페이지별로 다이어리 리스트 가져오기 -->
+	<select id="odairylist" parameterType="hashmap" resultType="hashmap">
+	 select d.*,m.movie_title from diary_info d inner join movie_info m ON d.movie_id = m.movie_id 
+	 where d.user_id = (select user_id from diary_info where diary_id = #{diaryId})
+	 order by reg_date desc
+	  LIMIT ${firstRow}, ${endRow}
+	</select>
+	
+	<!-- 각 유저별 다이어리 총 개수 -->
+	<select id="ocountodiarybyUser" parameterType="dairy" resultType="int">
+	select count(diary_id) from diary_info 
+	where user_id = (select user_id from diary_info where diary_id = ${diaryId})
+	</select>
+
+</mapper>

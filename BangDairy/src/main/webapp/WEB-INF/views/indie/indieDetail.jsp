@@ -71,6 +71,7 @@
 										d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
 </svg>
 
+<<<<<<< HEAD
 								${hateCount}
 							</button>
 						</span>
@@ -86,6 +87,30 @@
   <path
 										d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
 </svg>
+=======
+                                            
+                                                <div class="single_ft_s_item">
+                                                    <img src="resources/upload/indie/<%=result.getIndiePosterAddr() %>" alt="" />
+                                                </div>
+                                               
+                                           
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="single_features_text">
+                                                <h4 style=font-size:20px>줄거리<h4>
+                                                      <p><%=result.getIndiePlot() %> </p>
+
+                                             
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+>>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
 
 
 								${likeCount}
