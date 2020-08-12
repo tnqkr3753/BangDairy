@@ -2,7 +2,7 @@ package com.kosmo.bangdairy.vo;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 

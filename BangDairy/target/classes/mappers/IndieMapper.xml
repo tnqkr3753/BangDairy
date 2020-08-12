@@ -7,10 +7,10 @@
 	<insert id="indieInsert" parameterType="indie" useGeneratedKeys="true" keyProperty="indieId">
 			insert into indie_movie_info (indie_title, indie_director, indie_country,
 		indie_makedate, indie_plot, indie_actor, indie_addr, indie_keyword, indie_viewing_hits,
-		indie_update_date, indie_poster_addr, indie_poster_size,indie_genre,indie_confirm,applicant) 
+		 indie_poster_addr, indie_poster_size,indie_genre,indie_confirm,applicant) 
 		values (#{indieTitle},#{indieDirector},#{indieCountry},#{indieMakedate},
 		#{indiePlot},#{indieActor},#{indieAddr},#{indieKeyword},#{indieViewingHits},
-		#{indieUpdateDate},#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm},#{applicant})
+		#{indiePosterAddr},#{indiePosterSize},#{genreId},#{indieConfirm},#{applicant})
 	</insert>
 	
 	<insert id="goodInsert" parameterType="hashmap">
@@ -76,7 +76,7 @@
 	</select>
 	
 <select id="selectIndieDetail"  resultType="indie" parameterType="indie"> 
-	SELECT * FROM indie_movie_info where indie_id = #{indieId} 
+	SELECT * FROM indie_movie_info where indie_id = #{indieId}
 	</select>
 		
 	
@@ -100,7 +100,13 @@
 	<if test="searchWord != 'all' ">
 	indie_title like "${searchWord}%" AND
 	</if>
-	 indie_confirm="y" LIMIT ${firstRow},${endRow}
+	 indie_confirm="y" 
+	 
+	 ORDER BY indie_update_date DESC
+	 
+	 LIMIT ${firstRow},${endRow}
+	 
+	 
 	</select>
 	<!--박윤태  -->
 	<update id="increaseHits" parameterType="indie">

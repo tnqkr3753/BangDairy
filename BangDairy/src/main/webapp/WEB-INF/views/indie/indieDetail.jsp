@@ -5,6 +5,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="">
 <head>
@@ -38,211 +41,136 @@
 
 <body data-spy="scroll" data-target=".navbar" data-offset="200">
 	<%@ include file="../../../header_menu.jsp"%>
-	<% IndieVO result = (IndieVO) request.getAttribute("result"); %>
 
 	<section
 		class="s-content s-content--narrow s-content--no-padding-bottom">
 
 		<article class="row format-video">
-			
-			<%-- 영화 컨텐츠 시작 --%>
+
 			<div class="s-content__header col-full">
+
+				<%-- 인디 영화 제목 --%>
+				<h1 class="s-content__header-title" style="color: black;">[
+					${result.indieTitle } ]</h1>
 				
-				<%-- 영화 이름 --%>
-				<h1 class="s-content__header-title" style="color: black;">
-					[
-					${result.indieTitle }
-					]
-				</h1>
-				
+				<!-- 비로그인 상태 -->
 				<c:choose>
 					<c:when test="${userId ne null}">
 						<span>
-							<button id="bad" class="bad" value="${result.indieId }">
-
-								<svg width="1em" height="1em" viewBox="0 0 16 16"
-									class="bi bi-emoji-frown" fill="currentColor"
-									xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-										d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path fill-rule="evenodd"
-										d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z" />
-  <path
-										d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
-</svg>
-
-<<<<<<< HEAD
-								${hateCount}
-							</button>
-						</span>
-						<span>
-							<button id="good" class="good" value="${result.indieId }">
+							<button id="good" class="good" value="${result.indieId}">
 								<svg width="1em" height="1em" viewBox="0 0 16 16"
 									class="bi bi-emoji-smile" fill="currentColor"
 									xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-										d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path fill-rule="evenodd"
-										d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z" />
-  <path
-										d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
-</svg>
-=======
-                                            
-                                                <div class="single_ft_s_item">
-                                                    <img src="resources/upload/indie/<%=result.getIndiePosterAddr() %>" alt="" />
-                                                </div>
-                                               
-                                           
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="single_features_text">
-                                                <h4 style=font-size:20px>줄거리<h4>
-                                                      <p><%=result.getIndiePlot() %> </p>
-
-                                             
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
->>>>>>> branch 'master' of https://github.com/tnqkr3753/BangDairy.git
-
-
+								<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+								<path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z" />
+								<path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+								</svg>
 								${likeCount}
+							</button>
+						</span>
+
+						<span>
+							<button id="bad" class="bad" value="${result.indieId}">
+								<svg width="1em" height="1em" viewBox="0 0 16 16"
+									class="bi bi-emoji-frown" fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+								<path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z" />
+								<path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+								</svg>
+								${hateCount}
 							</button>
 						</span>
 					</c:when>
 					<c:otherwise>
 						<span> <a href='javascript:login_need();'>
-								<button id="bad" class="bad" value="${result.indieId }">
-									<svg width="1em" height="1em" viewBox="0 0 16 16"
-										class="bi bi-emoji-frown" fill="currentColor"
-										xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-											d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path fill-rule="evenodd"
-											d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z" />
-  <path
-											d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
-</svg>
-
-									${hateCount}
-								</button>
-						</a></span>
-
-						<span> <a href='javascript:login_need();'>
-								<button id="good" class="good" value="${result.indieId }">
+								<button id="good" class="good" value="${result.indieId}">
 									<svg width="1em" height="1em" viewBox="0 0 16 16"
 										class="bi bi-emoji-smile" fill="currentColor"
 										xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd"
-											d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path fill-rule="evenodd"
-											d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z" />
-  <path
-											d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
-</svg>
-
+								<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+								<path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z" />
+								<path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+								</svg>
 									${likeCount}
 								</button>
 						</a></span>
-
-
+						<span> <a href='javascript:login_need();'>
+								<button id="bad" class="bad" value="${result.indieId}">
+									<svg width="1em" height="1em" viewBox="0 0 16 16"
+										class="bi bi-emoji-frown" fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+								<path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z" />
+								<path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+								</svg>
+									${hateCount}
+								</button>
+						</a></span>
 					</c:otherwise>
 				</c:choose>
+
+				<!-- 인디 디테일 탭 -->
 				<div class="s-content__header-meta"
 					style="margin-top: 20px; border: 2px solid gray; font-size: 15px;">
-					<p>
-						▶ 장르 :
-						${result.indieGenre }</p>
-					<p>
-						▶ 키워드 :
-						${result.indieKeyword }</p>
-					<p>
-						▶ 제조국가 :
-						${result.indieCountry }</p>
-					<p>
-						▶ 개봉일 :
-						${result.indieMakedate }</p>
-
+					<p>▶ 장르 : ${result.indieGenre }</p>
+					<p>▶ 제조국가 : ${result.indieCountry }</p>
+					<p>▶ 개봉일 :
+						<fmt:formatDate value="${result.indieMakedate}"
+							pattern="yyyy년 MM월 dd일" />
+					</p>
 				</div>
-
-
-				<img src="resources/upload/indie/<%=result.getIndiePosterAddr()%>"
-					alt=""
+					
+				<!-- 인디 포스터 -->
+				<img src="resources/upload/indie/${result.indiePosterAddr}" alt=""
 					style="width: 50%; border: 5px solid black; padding: 30px; margin: 50px; border-radius: 10%;" />
-
 			</div>
 
 			<div class="col-full s-content__main" style="margin-top: 0;">
-
-				<%-- 영화 줄거리 --%>
-				<p class="indiePlot"><%=result.getIndiePlot()%></p>
-
-				<iframe width="100%" height="400"
-					src="<%=result.getIndieAddr().replace("watch?v=", "embed/")%>"
+				<%-- 인디 줄거리 --%>
+				<p class="indiePlot">${result.indiePlot }</p>
+				<div class="row bottom tags-wrap">
+					<div class="col-full tags" style="text-align: center;">
+					<!-- 키워드 태그 -->
+						<div class="tagCloudIndie" style="margin-bottom: 40px;">
+							<c:forEach items="${fn:split(result.indieKeyword,',')}" var="key">
+								<a href="#">${key}</a>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 영상 띄워주는 곳 -->
+				<iframe width="100%" height="400" id="iframe-id" 
+					src="${fn:replace(result.indieAddr, 'watch?v=', 'embed/')}"
 					frameborder="0"
 					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 					allowfullscreens></iframe>
 
-
-
-				<%-- 영화 배우 시작 --%>
+				<%-- 인디 감독 --%>
 				<h2 class="indieDetail">[감독]</h2>
-
 				<div class="inner" style="border-bottom: 3px solid gray;">
 					<div class="indieContent">
 						<img src="resources/images/indie/director.png" style="width: 20%;" />
 						${result.indieDirector }
 					</div>
 				</div>
-				
 
-
-				<%-- 영화 감독 TODO --%>
+				<%-- 인디 배우 --%>
 				<h2 class="indieDetail">[배우]</h2>
-
 				<div class="inner">
 					<div class="indieContent">
 						<img src="resources/images/indie/actor.png" style="width: 20%;" />
 						${result.indieActor }
 					</div>
 				</div>
-
-
-
-				<%-- 영화 감독 끝 --%>
-
-
-
-
-
-
-
 			</div>
-
 			</div>
-			<%-- 영화 컨텐츠 끝 --%>
-
 		</article>
-
 	</section>
-
-
-
 
 	<script src="resources/js/jquery.magnific-popup.js"></script>
 	<script src="resources/js/jquery.mixitup.min.js"></script>
-
-
-
-
-	<!--         <script src="http://maps.google.com/maps/api/js"></script> -->
 
 	<script type="text/javascript">
 		/*   $(window).resize(function(){resizeYoutube();});
@@ -250,10 +178,6 @@
 		 function resizeYoutube(){ $("iframe").each(function(){ if( /^https?:\/\/www.youtube.com\/embed\g.test($(this).attr("src")) ){ $(this).css("width","100%"); $(this).css("height",Math.ceil( parseInt($(this).css("width")) * 480 / 854 ) + "px");} }); }
 		 */
 	</script>
-
-
-
-
 	<!--     <script>
 
                                             function showmap() {
@@ -280,6 +204,20 @@
 			s1.setAttribute('crossorigin', '*');
 			s0.parentNode.insertBefore(s1, s0);
 		})();
+
+		var myRequest = new Request("${fn:replace(result.indieAddr, 'watch?v=', 'embed/')}");
+
+		fetch(myRequest).then(function(response) {
+			$("#iframe-id").attr("src","indieError.jsp")
+			 // alert("1122")
+			
+		 
+		}).catch(function(error) {
+			
+			 if(response.status == '404'){
+				 alert("1121")
+					 }
+		});
 	</script>
 	<!--End of Tawk.to Script-->
 
@@ -289,8 +227,6 @@
 	<script src="resources/js/j_ajax.js"></script>
 	<script src="resources/js/indieD.js"></script>
 	<%@ include file="../../../footer.jsp"%>
-
-
 
 </body>
 </html>

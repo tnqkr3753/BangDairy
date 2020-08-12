@@ -83,16 +83,18 @@
 				  <tr>
 				  
 					<th>감독</th>
-				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:120px;" msg="감독을" maxlen=10> </td>
-				  <td><input type="hidden" name=indieConfirm value="y"></td>
+				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:15%; height:50px;" msg="감독을" maxlen=10> </td>
+				  <input type="hidden" name=indieConfirm value="y">
 				  </tr>
 				   <tr>
 					<th>배우</th>
 					 <td id=actorbutton>
-				  <input type="text"  class="type01" name="indieActor" style="width:70px" msg="배우를" >
+				  <input type="text"  class="type01" name="indieActor" style="width:15%; height:50px;" msg="배우를" >
 				  	  </td>
 
-				  </tr> <td> <p style="cursor:pointer"><img src="resources/images/add.ico" id="makebtn" class="reMove" style="width:60px" title="추가"></p></td><td><p style="cursor:pointer"><img src="resources/images/add.ico" id="reMOve" class="reMove" style="width:60px" title="삭제"></td>
+				  </tr>
+				  <td> <p style="cursor:pointer"><img src="resources/images/indie/plus.png" id="makebtn" class="reMove" style="width:60px" title="추가"></p></td>
+				  <td>  <p style="cursor:pointer"><img src="resources/images/indie/minus.png" id="reMOve" class="reMove" style="width:60px" title="삭제"></p></td>
 				 
 				 
  			
@@ -127,20 +129,21 @@
 				  <colgroup><col width="130px"><col width=""></colgroup>
 				  <tbody><tr>
 		<th>제목</th>
-				    <td><input type="text" name="indieTitle"  id="distri_movie_subject" class="type01" style="width:120px;" msg="제목을" msg="감독을" maxlen=20> </td>
+				    <td><input type="text" name="indieTitle"  id="distri_movie_subject" class="type01" style="width:35%; height:50px;" msg="제목을" msg="감독을" maxlen=20> </td>
 				  </tr>
 			      <tr>
 		<th>키워드</th>
 				  <td id=actorbu>
-				  <input type="text" name="indieKeyword" class="type01 " style="width:70px" msg="키워드를" maxlen="10">
+				  <input type="text" name="indieKeyword" class="type01 " style="width:15%; height:50px;" msg="키워드를" maxlen="10">
 				  </td>
 				  </tr> 	
-	              <td><p style="cursor:pointer"><img src="resources/images/add.ico" id="makeky" style="width:60px" title="추가"></p></td><td><p style="cursor:pointer" title="추가"><img src="resources/images/add.ico" id="removeky" class="reMove" style="width:60px" title="삭제"></td>
+	              <td><p style="cursor:pointer"><img src="resources/images/indie/plus.png" id="makeky" style="width:60px" title="추가"></p></td>
+	              <td><p style="cursor:pointer" title="추가"><img src="resources/images/indie/minus.png" id="removeky" class="reMove" style="width:60px" title="삭제"></td>
 
 
 		          <tr>
 		<th>작품링크</th>
-				   <td><input type="text" name="indieAddr"  class="type01" style="width:30%;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
+				   <td><input type="text" name="indieAddr"  class="type01" style="width:40%; height:50px;"msg="작품징크" > 예) https://www.youtube.com/watch?v=My9OW-W2Jso</td>
 				  </tr>
 				  
 				  
@@ -148,15 +151,15 @@
 				  
 				  
 				  
-		<th>나라</th>
+		<th>제작국가</th>
 				
-				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:60px;" msg="언어/자막언어를"> </td>
+				    <td><input type="text" name="indieCountry" id="distri_movie_lang" class="type01" style="width:15%; height:50px;" msg="언어/자막언어를"> </td>
 				  </tr>	
 				  <tr>
 				  <th>장르</th>
 				<td id="ganre"><!-- GenreVO 에 있는 db값을 없어와서 옵션에 넣어준다. -->
 				<% List<GenreVO> result =  (List<GenreVO>)request.getAttribute("result"); %>
-						<select title="장르" style="width:80px;" name="genreId" id="genreTitle">
+						<select title="장르" style="width:20%; height:50px;" name="genreId" id="genreTitle">
 						<% for (GenreVO vo : result){ %>
 							<option value=<%=vo.getGenreTitle()%>><%=vo.getGenreTitle() %></option>     
 						<%}; %>  
@@ -165,12 +168,12 @@
 					</td>
               </tr>
               	  <tr> 
-				 <th>포스터url</th>
-				   <td><input  type="file" name='file' msg="포스터를" class="type01"></td>
+				 <th>포스터 Url</th>
+				   <td><input  type="file" name='file' msg="포스터를" class="type01" style="width:30%; height:80px;"></td>
 				  </tr>
 				    <tr>
-					<th>만든날짜</th>
-				 <td><input type="text" name="indieMakedate" autocomplete="off" placeholder="yyyy-mm-dd" class="type01" style="width:120px;"> 
+					<th>제작일</th>
+				 <td><input type="date" name="indieMakedate" autocomplete="off" placeholder="yyyy-mm-dd" class="type01" style="width:20%; height:50px;"> </td>
 				  </tr>
           
 				  <tr>
@@ -183,14 +186,9 @@
 				</tbody></table>
 			</div></form>
 
-<p class="r pr10 pt10"><a href="javascript:fn_submit()"><button style="margin-left:80%">신청하기</button></a></p>
-
+		<p class="r pr10 pt10"><a href="javascript:fn_submit()"><button id="btnInsertIndie" style="margin-left:80%">신청하기</button></a></p>
   
  </section>
-
-
-
-
 
  <%@ include file="../../../footer.jsp" %> 
     <!-- Java Script
