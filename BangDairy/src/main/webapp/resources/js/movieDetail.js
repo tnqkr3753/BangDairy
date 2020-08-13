@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var movieId = $('#movieId').val();
 	var pageNum = 1;
 	var totalpage = 1;
-	var commentPerPage = 10;
+	var commentPerPage = 5;
 	commentLoad(pageNum,movieId);
 	getWordCloud(movieId);
 	$(".rslides").responsiveSlides({
@@ -27,7 +27,6 @@ $(document).ready(function(){
 	//커맨트 더보기를 누를 때
 	$('#btn-moreComment').click(function(){
 		if(pageNum>=1&&pageNum<=totalpage){
-			pageNum+=1;
 			commentLoad(pageNum,movieId);
 		}else{
 			alert("마지막 페이지입니다.");
@@ -51,7 +50,7 @@ $(document).ready(function(){
 			dataType: "text",
 			success: function (response) {
 				$('#comment-count').text(response+" Comments");
-				totalpage = response/commentPerPage+1;
+				totalpage = parseInt(response/commentPerPage+1);
 				if(response!=0&&response%commentPerPage==0){
 					totalpage-=1;
 				}
@@ -70,6 +69,7 @@ $(document).ready(function(){
 			dataType: "html",
 			success: function (response) {
 				$('ol.commentlist').append(response);
+				pageNum+=1;
 			},
 			error: function(e){
 				alert("comment 불러오기 실패 :"+e);

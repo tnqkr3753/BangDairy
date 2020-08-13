@@ -53,7 +53,7 @@ public class AccountFormServiceImpl implements AccountFormService {
 
 	@Override
 	public int joinKakao(AccountFormVO vo) {
-		return accountFormDAO.insertUser(vo);
+		return accountFormDAO.joinKakao(vo);
 	}
 
 	@Override

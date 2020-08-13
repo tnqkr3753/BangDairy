@@ -14,22 +14,24 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kosmo.bangdairy.aop.LoggerAspect;
 
 public class AccountFormVO {
-	private String userName;
-	private int userAge;
-	private String userId;
-	private String userPassword;
-	private String userEmail;
-	private int userGender;
-	private String userProfile;
-	private long userProfileSize;
-	private String userReg;
-	private String absoluteFilePath;
-	private Date joinDate;
-	private MultipartFile file;
-	private String userType;
-	private String userAuthCode;
-	private String userAuthStatus;
-	private String resourcesPath = "resources/upload/userProfile/";
+	String userName;
+	int userAge;
+	String userId;
+	String userPassword;
+	String userEmail;
+	int userGender;
+	String userProfile;
+	long userProfileSize;
+	String userReg;
+	String absoluteFilePath;
+	Date joinDate;
+	MultipartFile file;
+	String userType;
+	String userBan;
+	String resourcesPath="resources/upload/userProfile/";
+	String userAuthCode;
+	String userAuthStatus;
+	
 	public String getUserAuthCode() {
 		return userAuthCode;
 	}
@@ -41,6 +43,12 @@ public class AccountFormVO {
 	}
 	public void setUserAuthStatus(String userAuthStatus) {
 		this.userAuthStatus = userAuthStatus;
+	}
+	public String getUserBan() {
+		return userBan;
+	}
+	public void setUserBan(String userBan) {
+		this.userBan = userBan;
 	}
 	public Date getJoinDate() {
 		return joinDate;
@@ -111,15 +119,15 @@ public class AccountFormVO {
 		String formatName = outputImagePath.substring(outputImagePath.lastIndexOf(".")+1);
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="
 				+ userPassword + ", userEmail=" + userEmail + ", userGender=" + userGender + ", userProfile="
 				+ userProfile + ", userProfileSize=" + userProfileSize + ", userReg=" + userReg + ", absoluteFilePath="
 				+ absoluteFilePath + ", joinDate=" + joinDate + ", file=" + file + ", userType=" + userType
-				+ ", userAuthCode=" + userAuthCode + ", userAuthStatus=" + userAuthStatus + "]";
+				+ ", userBan=" + userBan + ", resourcesPath=" + resourcesPath + ", userAuthCode=" + userAuthCode
+				+ ", userAuthStatus=" + userAuthStatus + "]";
 	}
 	public String getUserName() {
 		return userName;

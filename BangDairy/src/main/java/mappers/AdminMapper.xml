@@ -71,12 +71,18 @@
 	WHERE indie_id = #{indieId}
 </update>
 
-<select id="getUserBanList" resultType="account">
-	select * from user_info where user_type='9'
+<select id="getUserBanList" resultType="account" parameterType="account">
+	select user_id,user_email from user_info where user_ban='1'
+	<if test="userId != null">
+		and user_id like '%${userId}%'
+	</if>
 </select>
+<update id="allowUser" parameterType="account">
+	UPDATE user_info SET user_ban = '0' WHERE user_id = #{userId}
+</update>
 
 <update id="banUser" parameterType="account">
-	UPDATE user_info SET user_type = '9' WHERE user_id = #{userId}
+	UPDATE user_info SET user_ban = '1' WHERE user_id = #{userId}
 </update>
 	
 </mapper>

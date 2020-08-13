@@ -35,7 +35,7 @@
 								 <a class="dropdown-item drop-type" href="#" data-type="movie">영화 정보</a> <a class="dropdown-item drop-type" href="#" data-type="user">유저 정보</a> <a class="dropdown-item drop-type" href="#" data-type="diary">다이어리 정보</a>
 								<a class="dropdown-item drop-type" href="#" data-type="comment">코멘트 정보</a>
 								<div class="dropdown-divider">
-								</div><a class="dropdown-item ban-list" href="#" data-type="ban">벤 목록</a> <a class="dropdown-item drop-type" href="#" data-type="qna">Q&A 목록</a><a class="dropdown-item drop-type" href="#" data-type="indie">인디영화 신청 목록 </a>
+								</div><a class="dropdown-item ban-list" href="resources/nexa/adminUserBanList.jsp" data-type="ban">벤 목록</a> <a class="dropdown-item drop-type" href="#" data-type="qna">Q&A 목록</a><a class="dropdown-item drop-type" href="#" data-type="indie">인디영화 신청 목록 </a>
 							</div>
 						</li>
 					</ul>
