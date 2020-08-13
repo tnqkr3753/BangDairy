@@ -79,7 +79,7 @@
  */
  
 #mark-user-id{
-	font-size: 30px;
+	font-size: 40px;
 }
  .header__social #show-login:hover{
 	cursor:pointer;
@@ -2036,11 +2036,12 @@ body.search-is-visible {
    background-repeat: no-repeat;
    background-position: right center;
    background-size: contain;
+   margin-top: 30px;
 }
 
 .header__search-trigger::before {
 font-family: 'Do Hyeon', sans-serif;
-   font-size: 30px;
+   font-size: 40px;
    text-transform: uppercase;
    letter-spacing: 2px;
    line-height: 21px;
@@ -2215,7 +2216,7 @@ font-family: 'Do Hyeon', sans-serif;
    margin: 0;
    padding-left: 40px;
 font-family: 'Do Hyeon', sans-serif;
-   font-size: 25px;
+   font-size: 30px;
 }
 
 .header__nav li {
@@ -2226,6 +2227,7 @@ font-family: 'Do Hyeon', sans-serif;
 
 .header__nav li.has-children {
    padding-right: 3.3rem;
+   margin-top: 20px;
 }
 
 .header__nav li a {
@@ -3223,7 +3225,7 @@ font-family: 'Do Hyeon', sans-serif;
 
 .s-extra .tagcloud a {
    display: inline-block;
-font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
    font-size: 1.3rem;
    line-height: 3.6rem;
    text-transform: uppercase;

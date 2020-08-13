@@ -84,7 +84,7 @@
 				  
 					<th>감독</th>
 				    <td><input type="text" name="indieDirector" id="distri_name"  class="type01" style="width:15%; height:50px;" msg="감독을" maxlen=10> </td>
-				  <input type="hidden" name=indieConfirm value="y">
+				  <input type="hidden" name=indieConfirm value="n">
 				  </tr>
 				   <tr>
 					<th>배우</th>
