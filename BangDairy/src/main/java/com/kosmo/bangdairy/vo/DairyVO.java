@@ -119,7 +119,7 @@ public class DairyVO {
 		this.file = file;
 
 		// 이미지가 저장될 경로
-		String path = "C:\\Users\\KOSMO_22\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\diary\\";
+		String path = "C:\\Users\\KOSMO_25\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\diary\\";
 
 		if(!file.isEmpty()) {	// file이 비어있지 않으면
 			this.diaryImage = file.getOriginalFilename();	// file 이름

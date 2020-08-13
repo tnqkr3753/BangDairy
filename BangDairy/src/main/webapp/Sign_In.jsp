@@ -23,10 +23,9 @@
       <input id="login-btn" type="button" class="login-btn" value="Login"/> 
       <p>당신의 SNS계정으로 로그인하세요</p>    
       <input type="button" id="kakao_login" class="kakao-login"/>
-      <a class="reset-psw" href="#">Forgot your password?</a>
+      <a id='find-info' class="reset-psw" href="#">아이디 또는 비밀번호를 까먹으셨나요?</a>
       <div class="seperator"><b>or</b></div>
       <div><input id="login-cancel-btn" class="login-btn" type="button" value="취소"></div>
-      
     </form>
   </div>
   </div>

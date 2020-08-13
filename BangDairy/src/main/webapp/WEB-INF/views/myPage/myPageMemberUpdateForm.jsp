@@ -23,10 +23,6 @@
 			<td><input type='text' value="${vo.userId }"  name="userId" readonly="readonly" ></td>
 		</tr>
 		<tr>
-			<th><span>이름</span></th>
-			<td><input type='text' value="${vo.userName }"  name="userName" readonly="readonly" ></td>
-		</tr>
-		<tr>
 			<th><span>주민등록번호</span></th>
 			<td><input type='text' value="${vo.userReg}"  name="userReg" readonly="readonly" ></td>
 		</tr>
@@ -35,11 +31,15 @@
 			<td><input type='email' value="${vo.userEmail }"   name="userEmail" readonly="readonly" ></td>
 		</tr>
 		<tr>
-			<th><span>비밀번호</span></th>
-			<td><input type="password" value="" name="userPassword"></td>
+			<th><span>현재 비밀번호</span></th>
+			<td><input id="currPassword" type="password" value="" name="currPassword"></td>
 		</tr>
 		<tr>
-			<th style="font-size: 14px"><span>비밀번호 확인</span></th>
+			<th><span>새 비밀번호</span></th>
+			<td><input id="userPassword" type="password" value="" name="userPassword"></td>
+		</tr>
+		<tr>
+			<th style="font-size: 14px"><span>새 비밀번호 확인</span></th>
 			<td><input type="password" value="" id="passwordCheck"></td>
 		</tr>
 		

@@ -20,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -168,6 +169,12 @@ public class AccountForm {
 		}
 		return mv;
 	}
+	/*
+	 * 메소드명 : sendEmail
+	 * 기능 : 이메일에서 링크를 누르면 아이디 로그인을 허용하는 메소드
+	 * 변수 : userId, userAuthCode
+	 * 작성자 : 박윤태
+	 */
 	@RequestMapping(value = "/email/confirm",method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView sendEmail(@RequestParam(value = "id",required = true)String userId,
@@ -182,4 +189,54 @@ public class AccountForm {
 		mv.addObject("vo", vo);
 		return mv;
 	}
+	/*
+	 * 메소드명 : findForm
+	 * 기능 : 로그인에서 비밀번호 찾기 누르면 나오는 탭
+	 * 변수 : request (요청페이지가 로그인폼일때만)
+	 * 작성자 : 박윤태
+	 */
+	@RequestMapping(value = "/user/finder")
+	public ModelAndView findForm(HttpServletRequest request) {
+		String referer = request.getHeader("referer");
+		if(referer.equals("")) { //요청페이지 고정 index또는 loginform
+			
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/find-info");
+		return mv;
+	}
+	/*
+	 * 메소드명 : findResult
+	 * 기능 : 찾기를 누를 떄 연결
+	 * 변수 : AccountFormVO , type
+	 * 작성자 : 박윤태
+	 */
+	@RequestMapping(value = "/user/finder/{findType}",method = RequestMethod.POST)
+	public ModelAndView findResult(AccountFormVO vo,
+			@PathVariable(value = "findType")String type) {
+		ModelAndView mv = new ModelAndView();
+		if(type.equals("id")) { //아이디 찾기일 때
+			vo = accountFormService.findAccount(vo);
+			if(vo==null) {
+				mv.addObject("content","이메일에 일치하는 아이디가 없습니다.");
+			}else {
+				String id = vo.getUserId();
+				int size = id.length();
+				StringBuilder sendId = new StringBuilder();
+				sendId.append(id.substring(0, 4));
+				while(sendId.length()<size) {
+					sendId.append("*");
+				}
+				mv.addObject("content","찾으시는 아이디는 "+sendId.toString()+" 입니다.");
+			}
+		}else if (type.equals("pass")) { //비밀번호 찾기일때
+			String message = accountFormService.sendPassEmail(vo);
+			mv.addObject("content",message);
+		}else {
+			mv.addObject("content","잘못된 접근입니다.");
+		}
+		mv.setViewName("user/viewResult");
+		return mv;
+	}
+	
 }

@@ -239,7 +239,6 @@ $(function(){
             dataType: "html",
             success: function (data) {
                 $('.content-admin').html(data);
-
             },
             error:function(e){
                 alert(e);

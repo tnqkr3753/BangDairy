@@ -63,7 +63,11 @@ public class AccountFormDAOImpl implements AccountFormDAO {
 	public int updateAuthStatus(AccountFormVO vo) {
 		return sqlSession.update("AccountFormDAO.updateAuthStatus",vo);
 	}
-	
+
+	@Override
+	public AccountFormVO findAccount(AccountFormVO vo) {
+		return sqlSession.selectOne("AccountFormDAO.findAccount",vo);
+	}
 	
 
 }

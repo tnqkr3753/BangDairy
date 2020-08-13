@@ -1,13 +1,17 @@
 package com.kosmo.bangdairy.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -78,18 +82,27 @@ public class MyPageController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "myPage/info/updateUser",method = RequestMethod.POST)
-	public ModelAndView updateUser(HttpSession session,AccountFormVO vo) {
-		LoggerAspect.logger.info("=== updateUser ===");
-		ModelAndView mv = new ModelAndView();
+	public boolean updateUser(HttpSession session,AccountFormVO vo,
+			@RequestParam(value = "currPassword")String currPassword) throws IOException {
+
+		AccountFormVO currVO = new AccountFormVO();
+		currVO.setUserPassword(currPassword);
 		String userId = (String)session.getAttribute("userId");
-		vo.setUserId(userId);
-		int result = myPageService.updateUserInfo(vo);
-		if (result ==1) {
-			vo = myPageService.selectUserInfo(vo);
+		currVO.setUserId(userId);
+		currVO = myPageService.checkUser(currVO);
+		if(currVO!=null) {
+			vo.setUserId(userId);
+			if(vo.getUserPassword().equals("")||vo.getUserPassword()==null) {
+				vo.setUserPassword(currPassword);
+			}
+			int result = myPageService.updateUserInfo(vo);
+			if (result ==1) {
+				vo = myPageService.selectUserInfo(vo);
+			}
+		}else {
+			return false;
 		}
-		mv.addObject("vo", vo);
-		mv.setViewName("myPage/myPageMember");
-		return mv;
+		return true;
 	}
 	/*
 	 * 메소드 명  	:		deleteUserForm

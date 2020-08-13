@@ -15,4 +15,5 @@ public interface MyPageService {
 	public List<QnaVO> selectQnaList(QnaVO vo);
 	public int insertQna(QnaVO vo);
 	public QnaVO selectQna(QnaVO vo);
+	public AccountFormVO checkUser(AccountFormVO vo);
 }

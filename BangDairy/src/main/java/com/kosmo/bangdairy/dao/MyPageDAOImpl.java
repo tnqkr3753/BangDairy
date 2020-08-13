@@ -54,6 +54,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public QnaVO selectQna(QnaVO vo) {
 		return sqlSession.selectOne("MyPageDAO.selectQnaOne",vo);
 	}
+
+	@Override
+	public AccountFormVO checkUser(AccountFormVO vo) {
+		return sqlSession.selectOne("AccountFormDAO.SignInUser", vo);
+	}
 	
 	
 }

@@ -90,6 +90,42 @@ public class AccountFormServiceImpl implements AccountFormService {
 	public int updateAuthStatus(AccountFormVO vo) {
 		return accountFormDAO.updateAuthStatus(vo);
 	}
+
+	@Override
+	public AccountFormVO findAccount(AccountFormVO vo) {
+		return accountFormDAO.findAccount(vo);
+	}
+
+	@Override
+	public String sendPassEmail(AccountFormVO vo) {
+		AccountFormVO avo = accountFormDAO.findAccount(vo);
+		try {
+			if( avo != null) { 
+				MailHandler sendMail;
+				
+				sendMail = new MailHandler(mailSender);
+
+				sendMail.setSubject("[MovieAry 회원 찾기 결과]");
+				String text = new StringBuffer().append("<h1>비밀번호 찾기 결과</h1>")
+						.append("<p>").append(avo.getUserId())
+						.append("님의 비밀번호는  ").append(avo.getUserPassword())
+						.append("  입니다.</p>").toString();
+				LoggerAspect.logger.info(text);
+				sendMail.setText(text);
+				sendMail.setFrom("tnqkr3753@a.ut.ac.kr", "무비어리 운영자");
+				sendMail.setTo(vo.getUserEmail());
+				sendMail.send();
+				return "회원님의 비밀번호를 <br/> "+avo.getUserEmail()+"에 <br/> 보냈습니다.";
+			}else {
+				return "일치하는 아이디가<br/> 없습니다.";
+			}
+		} catch (MessagingException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+			LoggerAspect.logger.error("메일 에러 : "+ e.getMessage());
+			return "메일 전송에 <br/>실패했습니다.";
+		}
+	}
+	
 	
 	
 }

@@ -41,10 +41,10 @@ public class WordCloudServiceImpl implements WordCloudService {
 	//			posList.add("IC"); //감탄사
 	//			posList.add("VV"); //동사
 	//			posList.add("VA"); //형용사
+				
 				try {
-					List<Token> tList = analizeResultList.getTokenList();
-					for (Token tk : tList) {
-						String word = tk.getMorph();
+					List<String> strList = analizeResultList.getMorphesByTags("NNG","NNP","IC","NV"/*,"VV","VA"*/,"MAG","SL");
+					for (String word : strList) {
 						if(word.equals("으로")||word.equals("에서")||word.equals("이다")||word.contains("ㅋ")||
 								word.equals("있다")||word.equals("일본")) {
 							continue;

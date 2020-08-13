@@ -13,4 +13,6 @@ public interface AccountFormService {
 	public int joinKakao(AccountFormVO vo);
 	public void sendEmail(AccountFormVO vo);
 	public int updateAuthStatus(AccountFormVO vo);
+	public AccountFormVO findAccount(AccountFormVO vo);
+	public String sendPassEmail(AccountFormVO vo);
 }

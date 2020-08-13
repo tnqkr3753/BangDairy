@@ -174,7 +174,7 @@ $(document).ready(function(){
 	        				alert('가입실패 : DB오류');
 	        			}
 	        			else{
-	        				alert('가입이 성공적으로 완료 되었습니다.<br/>이메일을 확인해주세요');
+	        				alert('가입이 성공적으로 완료 되었습니다. 이메일을 확인해주세요');
 	        				window.location.href="index.jsp";
 	        			}
 	        		}

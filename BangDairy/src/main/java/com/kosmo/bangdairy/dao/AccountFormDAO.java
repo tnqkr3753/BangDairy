@@ -15,4 +15,5 @@ public interface AccountFormDAO {
 	public int joinKakao(AccountFormVO vo);
 	public int updateAuthCode(AccountFormVO vo);
 	public int updateAuthStatus(AccountFormVO vo);
+	public AccountFormVO findAccount(AccountFormVO vo);
 }

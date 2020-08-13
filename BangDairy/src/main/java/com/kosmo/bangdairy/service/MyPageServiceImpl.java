@@ -54,6 +54,11 @@ public class MyPageServiceImpl implements MyPageService {
 	public QnaVO selectQna(QnaVO vo) {
 		return myPageDAO.selectQna(vo);
 	}
+
+	@Override
+	public AccountFormVO checkUser(AccountFormVO vo) {
+		return myPageDAO.checkUser(vo);
+	}
 	
 	
 }

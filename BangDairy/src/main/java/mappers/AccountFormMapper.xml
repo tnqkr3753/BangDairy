@@ -65,4 +65,11 @@
 		UPDATE user_info SET user_auth_status = "1"
 		WHERE user_id = #{userId} AND user_auth_code = #{userAuthCode}
 	</update>
+	<select id="findAccount" parameterType="account" resultType="account">
+		SELECT * FROM user_info WHERE 
+		user_email = #{userEmail}
+		<if test="userId != null">
+		AND user_id=#{userId}
+		</if>
+	</select>
 </mapper>

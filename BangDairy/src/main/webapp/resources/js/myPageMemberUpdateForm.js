@@ -47,10 +47,13 @@ jQuery(document).ready(function ($) {
 			contentType: false,	// 필수
 			url: "myPage/info/updateUser",
 			data : formData,
-			dataType: "html",
+			dataType: "text",
 			success: function (response) {
-				if(response){
-					$('.mypage-content').html(response);
+				if(response=='true'){
+					alert('수정되었습니다.');
+					location.reload();
+				}else{
+					alert("수정에 실패했습니다. 비밀번호를 확인하세요");
 				}
 			},
 			error: function(request,status,error){
