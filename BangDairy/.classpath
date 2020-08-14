@@ -13,7 +13,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/apache-tomcat-8.5.54-windows-x64/apache-tomcat-8.5.54/lib/servlet-api.jar"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -38,6 +37,9 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/nexacro17-xapi-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/nexacro17-xeni-1.0.jar"/>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
 		<attributes>
 			<attribute name="ignore_optional_problems" value="true"/>
@@ -47,8 +49,5 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/nexacro17-xapi-1.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/nexacro17-xeni-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

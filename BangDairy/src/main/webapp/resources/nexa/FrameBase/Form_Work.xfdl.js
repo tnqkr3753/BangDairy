@@ -63,10 +63,9 @@
         this.Button00_onclick = function(obj,e)
         {
          	var search_keyword =  encodeURI(this.Edit00.value,"UTF-8");
-         	this.alert(search_keyword)
          	 var id = "adminUserBanList";
               //var url = "strURL::adminUserBanList.jsp";
-         	  var url ="http://192.168.0.22:8080/bangdairy/adminUserBanList?param="+search_keyword;
+         	  var url ="http://115.91.88.227:60003/bangdairy/adminUserBanList?param="+search_keyword;
               var reqDs = "";
               var respDs = "rename=rename";
               var args = "";
@@ -112,7 +111,7 @@
         		var rtn = this.confirm("사용자 밴을 해제 하시겠습니까?","System");
         		if (rtn){
         			var id = "adminAllowUser";
-        			var url ="http://192.168.0.22:8080/bangdairy/adminAllowUser?userId="+userId;
+        			var url ="http://115.91.88.227:60003/bangdairy/adminAllowUser?userId="+userId;
         			var reqDs = "";
         			var respDs = "rename=rename";
         			var args = "";
