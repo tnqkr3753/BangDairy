@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
@@ -67,6 +68,10 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int allowUser(AccountFormVO vo) {
 		return sqlSession.update("AdminDAO.allowUser",vo);
+	}
+	@Override
+	public int deleteComment(CommentVO vo) {
+		return sqlSession.delete("AdminDAO.deleteComment",vo);
 	}
 	
 	

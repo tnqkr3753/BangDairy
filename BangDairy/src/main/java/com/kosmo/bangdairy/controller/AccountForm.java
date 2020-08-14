@@ -140,8 +140,9 @@ public class AccountForm {
 	@RequestMapping(value = "/login/kakao")
 	@ResponseBody
 	public ModelAndView kakaoLogin(@RequestParam(value = "code") String code,HttpSession session) {
+		System.out.println("********** : "+code);
 		String accessToken = kakao.getAccessToken(code);
-		logger.info(accessToken);
+		System.out.println("********** : "+accessToken);
 		HashMap<String, Object> userInfo = kakao.getUserInfo(accessToken);
 		AccountFormVO vo = new AccountFormVO();
 		vo.setUserId((String)userInfo.get("email"));

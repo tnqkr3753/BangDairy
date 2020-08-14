@@ -6,5 +6,7 @@ import com.kosmo.bangdairy.vo.MovieVO;
 import com.kosmo.bangdairy.vo.ReviewVO;
 
 public interface WordCloudDAO {
-	public List<ReviewVO> getReviewContent(MovieVO vo);
+	public List<ReviewVO> getReviewContentDaum(MovieVO vo);
+	public List<ReviewVO> getReviewContentNaver(MovieVO vo);
+	public List<ReviewVO> getReviewContentWacha(MovieVO vo);
 }

@@ -15,7 +15,7 @@
 	});
 	
 	 $("#makebtn").click(function() {
-	var dynamicTag = '<input type="text" name="indieActor"  class="type01 remov" style="width:60px; margin-right: 1%;">';
+	var dynamicTag = '<input type="text" name="indieActor"  class="type01 remov" style="width:15%; height:50px; margin-right: 1%;">';
 	$("#actorbutton").append(dynamicTag);
 });
 	 $("#reMOve").click(function(){
@@ -23,7 +23,7 @@
 	 });
 
 	 $("#makeky").click(function() {
-	var dynamic =  "  <input type='text'  class='type01 removeKy' name='indieActor' style='width:70px' margin-right: 1%;>";
+	var dynamic =  "  <input type='text'  class='type01 removeKy' name='indieKeyword' style='width:15%; height:50px; margin-right: 1%;'>";
 	$("#actorbu").append(dynamic);
 });
 	 $("#removeky").click(function(){

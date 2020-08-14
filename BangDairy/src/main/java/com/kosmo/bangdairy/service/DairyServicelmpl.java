@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.dao.DairyDAOlmpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.DairyUserVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -87,7 +88,9 @@ public class DairyServicelmpl implements DairyService {
 
 	@Override	// 다이어리 상세정보 가져옴
 	public List<HashMap> getDetailDiary(DairyVO dvo) {
+		dairyDAO.increateHits(dvo);
 		return dairyDAO.getDetailDiary(dvo);
+		
 	}
 
 	@Override	// 다이어리 삭제
@@ -99,4 +102,10 @@ public class DairyServicelmpl implements DairyService {
 	public int updateDiary(DairyVO dvo) {
 		return dairyDAO.updateDiary(dvo);
 	}
+
+	@Override
+	public int clickLikeHate(DairyUserVO vo) {
+		return dairyDAO.clickLikeHate(vo);
+	}
+	
 }

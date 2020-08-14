@@ -3,8 +3,17 @@ $(document).ready(function(){
 	var pageNum = 1;
 	var totalpage = 1;
 	var commentPerPage = 5;
+	/* 워드 클라우드 경우 */
+	var siteList = ["naver","daum","wacha"]
+	for (let index = 0; index < siteList.length; index++) {
+		getWordCloud(movieId,siteList[index]);
+	}
+	$('.wordcloud-radio').click(function(){
+		alert("안녕");
+		var type = $(this).val();
+		getWordCloud(movieId,type);
+	});
 	commentLoad(pageNum,movieId);
-	getWordCloud(movieId);
 	$(".rslides").responsiveSlides({
 		maxwidth:300,
 		pager:false,				 // 페이징
@@ -36,6 +45,24 @@ $(document).ready(function(){
 	$('#wish-add').click(function(){
 		insertWish();
 	})
+	/* 영수증 라디오버튼 누를 때 */
+	$('.bring-receipt').click(function(){
+		var result = $('.bring-receipt:checked').val()
+		filterComment(result);
+	})
+	function filterComment(result){
+		if(result=="has-receipt"){
+			$(".normal-comment").each(function(){$(this).hide();});
+			$(".receipt-comment").each(function(){$(this).show();});
+		}else if (result=="all-comment"){
+			$(".normal-comment").each(function(){$(this).show();});
+			$(".receipt-comment").each(function(){$(this).show();});
+		}
+		else{
+			$(".normal-comment").each(function(){$(this).show();});
+			$(".receipt-comment").each(function(){$(this).hide();});
+		}
+	}
 	/*
 	 * 메소드명		: commentLoad
 	 * 기능			: 총코멘트 숫자와 코멘트들을 읽어옴
@@ -70,6 +97,8 @@ $(document).ready(function(){
 			success: function (response) {
 				$('ol.commentlist').append(response);
 				pageNum+=1;
+				var result = $('.bring-receipt:checked').val()
+				filterComment(result);
 			},
 			error: function(e){
 				alert("comment 불러오기 실패 :"+e);
@@ -146,50 +175,57 @@ $(document).ready(function(){
  
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];                                          
- 
-        // When the user clicks on the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
- 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
- 
+
+		// When the user clicks on the button, open the modal 
+		if(btn!=undefined){
+			btn.onclick = function() {
+				modal.style.display = "block";
+			}
+		}
+		// When the user clicks on <span> (x), close the modal
+		if(span!=undefined){
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+		}
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
-	function getWordCloud(movieId){
+	function getWordCloud(movieId,type){
+		var inputData = {"type":type};
 		var frequency_list = $.ajax({
 			type: "POST",
 			async : false,
 			url: "detail/wordcloud/"+movieId,
 			dataType: "json",
+			data:inputData,
 			success: function (response) {
-				x = response
 			},
 			error: function(e){
 				alert("워드클라우드 로딩에 실패 :"+e);
 			}
 		}).responseText;
+		if(!frequency_list.length){
+			$('#wordcloud').append("<h3>"+type+"사이트는 수집된 리뷰가 부족합니다").append("</h3>")
+			return false;
+		}
 		var x = JSON.parse(frequency_list);
 		var color = d3.scale.linear()
 				.domain([0,1,2,3,4,5,6,10,15,20,100])
-				.range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
+				.range([ "#6D5D8E", "#F4A9A8", "#CE97B0", "#AF9CB8", "#85C0D9", "#04ACC0", "#04B08C", "#8C98B6", "#B0BCC5", "#B387D6", "#AF65B9","#FBC6A4"]);
 				// .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 		d3.layout.cloud().size([800, 300])
-				.words(x)
-				.rotate(0)
-				.font('Impact')
-				.fontSize(function(d) { return d.size; })
-				.on("end", draw)
-				.start();
-	
+			.words(x)
+			.rotate(0)
+			.font('Impact')
+			.fontSize(function(d) { return d.size; })
+			.on("end", draw)
+			.start();
 		function draw(words) {
+			$('#wordcloud').append("<h3>"+type).append("</h3>");
 			d3.select("#wordcloud").append("svg")
 					.attr("width", 850)
 					.attr("height", 350)

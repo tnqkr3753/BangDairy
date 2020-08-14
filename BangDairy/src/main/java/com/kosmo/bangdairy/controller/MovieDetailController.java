@@ -58,7 +58,6 @@ public class MovieDetailController {
 		List<StillVO> stillList = null;
 		if(vo!=null) {
 			mv.addObject("vo",vo);
-			wordCloudService.getWordCloud(vo);
 			stillList = movieDetailService.selectStill(vo);
 		}
 		
@@ -210,10 +209,11 @@ public class MovieDetailController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "detail/wordcloud/{movieId}",method = RequestMethod.POST)
-	public List<Map<String, Object>> getWordCloud(@PathVariable(value = "movieId",required = true)String movieId) {
+	public List<Map<String, Object>> getWordCloud(@PathVariable(value = "movieId",required = true)String movieId,
+			@RequestParam(value = "type",required = true)String type) {
 		MovieVO vo = new MovieVO();
 		vo.setMovieId(movieId);
-		return wordCloudService.getWordCloud(vo);
+		return wordCloudService.getWordCloud(vo,type);
 	}
 	/*
 	 * 메소드명	: addWish

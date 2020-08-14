@@ -62,7 +62,7 @@
 			<%-- 영화 컨텐츠 시작 --%>
 			<div class="s-content__header col-full">
 				<%-- 영화 이름 --%>
-				<h1 class="s-content__header-title">${vo.movieTitle }</h1>
+				<h1 class="s-content__header-title" id = "movieDetailHeader">[ ${vo.movieTitle} ]</h1>
 
 						<c:if test="${!empty starScore}">
 						<%-- 평점 --%>
@@ -77,14 +77,13 @@
 						</c:if>
 						
 						<%-- 영화 정보 --%>
-				<ul class="s-content__header-meta" style="border:2px solid gray; font-size:15px;">
+				<ul class="s-content__header-meta" style="border:2px solid gray; font-size:30px;">
 					<li>▶ 개봉일 : ${vo.openingDateStr }</li>
 					<li>▶ 장르 : <c:forEach items="${vo.movieGenre}" var="genre">
 					${genre.genreTitle} &nbsp;
 					</c:forEach></li>
 					<li>▶ 상영시간 : ${vo.showtimes} 분</li>
-					<br />
-					<li>▶ 관람등급 : ${vo.viewingClass}</li>
+					<li>▶ 관람등급 : ${vo.viewingClass}</li><br />
 					<li>▶ 제작사 : ${vo.company}</li>
 					<li>▶ 제조국가 : ${vo.country}</li>
 				</ul>
@@ -123,7 +122,7 @@
 			<div class="col-full s-content__main">
 
 				<%-- 영화 줄거리 --%>
-				<p style="border-bottom:2px solid gray; border-top:2px solid gray; font-size:19px;">&nbsp;${vo.plot }</p>
+				<p style="border-bottom:2px solid gray; border-top:2px solid gray; font-size:25px;">&nbsp;${vo.plot }</p>
 
 				<%-- 영화 감독 TODO --%>
 				<h2>[감독]</h2> 
@@ -168,7 +167,7 @@
 
 				<%-- 영화 배우 시작 --%>
 				<h2 style="border-top:2px solid gray;"><br/>[배우]</h2>
-				<div class="col-twelve">
+				<div class="col-twelve" style="padding-bottom: 50px; border-bottom: 2px solid gray;">
 							<div class="table-responsive" style="font-size:20px;">
 								<table>
 									<thead>
@@ -226,12 +225,12 @@
 				<%-- 영화 배우정보 끝 --%>
 
 				<%-- 영화 그래프 시작 --%>
-				<h2>[타 사이트 댓글 반응]</h2>
+				<h2 style="display: inline-block;">[타 사이트 반응]</h2>
 				<div id="wordcloud" align="center" >
 		        </div>
 		        <br/>
-		        <div class="legend"  align="center" style="width:100%; font-size:18px;">
-		          	빈도수가 높은 단어는 크지만 흐립니다. 빈도수가 낮은 단어는 작지만 진합니다.
+		        <div class="legend"  align="center" style="width:100%; font-size:30px;">
+		          	빈도수가 높은 단어는 크지만 흐립니다.<br/>빈도수가 낮은 단어는 작지만 진합니다.
 		        </div>
 				<%-- 영화 그래프 끝 --%>
 			</div>
@@ -279,8 +278,22 @@
 					<%-- 코멘트 리스폰드 끝 --%>
 
 					<%-- 다른 코멘트 --%>
-					<h3 id="comment-count">1 Comments</h3>
-
+					
+					<div>
+						<h3 id="comment-count" style="display: inline-block;">1 Comments</h3>
+						<label class="radio-inline" style="display: inline-block;margin-left: 10px;">
+					  		<input class="bring-receipt" type="radio" id="all-receipt" name="receipt" value="all-comment"
+					         checked >전체 보기
+					   	</label>
+						<label class="radio-inline" style="display: inline-block;">
+					  		<input class="bring-receipt" type="radio" id="has-receipt" name="receipt" value="has-receipt"
+					        >영수증 첨부
+					    </label>
+					    <label class="radio-inline" style="display: inline-block;">
+					  		<input class="bring-receipt" type="radio" id="no-receipt" name="receipt" value="no-receipt"
+					         >영수증 미첨부
+					   	</label>
+					</div>
 					<%-- 코멘트 리스트 --%>
 					<ol class="commentlist">
 						
@@ -306,7 +319,7 @@
 
 		<div class="row bottom tags-wrap">
 			<div class="col-full tags">
-				<h3>Keywords</h3>
+				<h3 style="font-size:40px;">주요 키워드</h3>
 
 				<div class="tagcloud">
 				<c:forEach items="${fn:split(vo.keyword,',')}" var="key"><a href="#0">${key}</a></c:forEach>

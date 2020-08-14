@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/movieList.css">
-
+<link rel="stylesheet" href="resources/css/independent.css">
 
 
 <!-- script

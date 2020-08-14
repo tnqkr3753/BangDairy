@@ -35,7 +35,7 @@
 	<if test="searchWord != null">
 	WHERE replace(mc.user_id,' ','') like "${searchWord}%"
 	</if>
-	ORDER BY mc.comment_reg_date
+	ORDER BY mc.comment_reg_date desc
 	LIMIT ${page}
 </select>
 <select id="getQna" parameterType="hashmap" resultType="qna">
@@ -84,5 +84,9 @@
 <update id="banUser" parameterType="account">
 	UPDATE user_info SET user_ban = '1' WHERE user_id = #{userId}
 </update>
+<delete id="deleteComment" parameterType="comment">
+	DELETE FROM movie_comment WHERE
+	movie_id=#{movieId} AND user_id  = #{userId}
+</delete>
 	
 </mapper>

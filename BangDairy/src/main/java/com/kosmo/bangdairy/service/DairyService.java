@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.DairyUserVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -38,4 +39,5 @@ public List<DairyVO> showList(AccountFormVO vo);
 	public int deleteDiary(DairyVO dvo);	// 다이어리 삭제
 	
 	public int updateDiary(DairyVO dvo);	// 다이어리 수정
+	public int clickLikeHate(DairyUserVO vo);
 }

@@ -108,26 +108,31 @@
 <script type="text/javascript">
 
 // 다이어리 리스트 버튼 클릭했을때
-$(".btnDiaryList").click(function() {
-	pNum = $(this).val();
-	// alert(pNum);
-
-	$.ajax({
-		type : 'POST',	// 요청 메소드 타입
-		url : "showDiaryList/" + pNum,	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
-		dataType : "html",	// 서버가 리턴하는 데이터 타입
-		error : function(e) {          // 통신 실패시
-			alert('diaryAjax 통신실패' + e);
-		},
-		success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-			$('.myRightTap').html(data);
+	$(".btnDiaryList").click(function() {
+		pNum = $(this).val();
+		// alert(pNum);
+		var userId = $('.myleftTap').data('id');
+		var userData=null;
+		if (userId!=null && userId!=""){
+			userData = {"userId":userId};
 		}
+		$.ajax({
+			type : 'POST',	// 요청 메소드 타입
+			url : "showDiaryList/" + pNum,	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
+			dataType : "html",	// 서버가 리턴하는 데이터 타입
+			data:userData,
+			error : function(e) {          // 통신 실패시
+				alert('diaryAjax 통신실패' + e);
+			},
+			success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
+				$('.myRightTap').html(data);
+			}
+		});
+	
+		// 버튼 눌렀을때 리스트의 상단으로 스크롤 이동
+		var offset = $(".myRightTap").offset();
+		$('html, body').animate({scrollTop:offset.top}, 400);
 	});
-
-	// 버튼 눌렀을때 리스트의 상단으로 스크롤 이동
-	var offset = $(".myRightTap").offset();
-	$('html, body').animate({scrollTop:offset.top}, 400);
-});
 
 // 커서 : 포인트
 $(".diaryList tr").hover(function() {
@@ -135,29 +140,41 @@ $(".diaryList tr").hover(function() {
 });
 
 // 다이어리 리스트 클릭하면 Ajax로 상세페이지 붙이기
-$(".diaryList tr").click(function() {
+$(".diaryList tr").click(function(){
+	var diaryId = $(this).find('input[type="hidden"]').val();
+	getDiaryOne(diaryId);
+});
+	function getDiaryOne(diaryId) {
 	
 	// alert("tr 클릭");
 	// alert("선택한 행의 다이어리번호 : " + $(this).find('input[type="hidden"]').val());
 	
 	// 지금 선택한 다이어리의 인덱스 번호
-	diaryId = $(this).find('input[type="hidden"]').val();
 
-	$.ajax({
-		type : 'POST',	// 요청 메소드 타입
-		url : "showDetailList/" + diaryId,	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
-		dataType : "html",	// 서버가 리턴하는 데이터 타입
-		error : function(e) {          // 통신 실패시
-			alert('showDetailList 통신실패' + e);
-		},
-		success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-			$('.diaryDetail').html(data);
+		$.ajax({
+			type : 'POST',	// 요청 메소드 타입
+			url : "showDetailList/" + diaryId,	// 클라이언트가 HTTP 요청을 보낼 서버의 주소
+			dataType : "html",	// 서버가 리턴하는 데이터 타입
+			error : function(e) {          // 통신 실패시
+				alert('showDetailList 통신실패' + e);
+			},
+			success : function(data) {    // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
+				$('.diaryDetail').html(data);
+			}
+		});
+	
+		// tr 눌렀을때 다이어리 내용 볼수있게 스크롤 이동
+		var offset = $(".myDiaryHeader").offset();
+		$('html, body').animate({scrollTop:offset.top}, 400);
+	}
+	$(function(){
+		var did = $(".myRightTap").data('did');
+		//갈 영화페이지가 있을 때
+		if (did!=null&&did!=""){
+			getDiaryOne(did);
 		}
-	});
-
-	// tr 눌렀을때 다이어리 내용 볼수있게 스크롤 이동
-	var offset = $(".myDiaryHeader").offset();
-	$('html, body').animate({scrollTop:offset.top}, 400);
-});
+		$('.myRightTap').data("did","");
+		var did = $(".myRightTap").data('did');
+		});
 
 </script>

@@ -85,7 +85,7 @@ div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97
 	border-top:2px solid gray;
 	padding: 30px;
 	margin: 30px;
-	margin-bottom: 100px;
+	margin-bottom: 70px;;
 }
 
 #good, #bad {
@@ -117,4 +117,87 @@ div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97
 .s-content__header-meta p {
 	font-size: 30px;
 	padding: 10px;
+}
+
+.tagCloudIndie a {
+    display: inline-block;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 1.3rem;
+    line-height: 3.6rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    padding: 0 2rem;
+    margin: 0 1.2rem 1.5rem 0;
+    border-radius: 10px;
+    background: black;
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+#frm1212 td {
+	font-size: 30px;
+}
+
+#frm1212 th {
+	font-size: 40px;
+}
+
+#indieListHeader {
+	border: 7px solid black;
+	padding: 30px;
+	text-align: center;
+}
+
+#frm th, #frm td {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	padding: 20px;
+}
+
+#frm th {
+	width: 20%;
+	text-align: center;
+}
+
+#frm h4  {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 40px;
+	padding: 20px;
+}
+
+#genreTitle {
+	font-size: 30px;
+	font-family: 'Do Hyeon', sans-serif;	
+}
+
+#frm input, #frm textarea {
+	font-size: 30px;
+	font-family: 'Do Hyeon', sans-serif;
+	padding: 20px;
+	line-height:1.2em;
+}
+
+#btnInsertIndie {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	width: 200px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: white;
+	background: black;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+#btnInsertIndie:hover {
+	background-color: white;
+	box-shadow: 0px 15px 20px gray;
+	color: black;
+	transform: translateY(-7px);
 }

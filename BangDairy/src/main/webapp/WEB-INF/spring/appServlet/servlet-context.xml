@@ -60,6 +60,7 @@
         	<mapping path="/myPage"/>
         	<mapping path="/myPage/**/"/>
         	<mapping path="/detail/addWish"/>
+        	<mapping path="/getdairy"/>
         	<beans:bean id="loginCheckInterceptor" class="com.kosmo.bangdairy.interceptor.LoginCheckInterceptor"></beans:bean>
         </interceptor>
         <interceptor>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.DairyUserVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -95,4 +96,16 @@ public class DairyDAOlmpl implements DairyDAO{
 	public int updateDiary(DairyVO dvo) {	// 다이어리 수정
 		return sqlSession.update("DairyDAO.updateUserInfo", dvo);
 	}
+
+	@Override
+	public int increateHits(DairyVO vo) {
+		return sqlSession.update("DairyDAO.addhits",vo);
+	}
+
+	@Override
+	public int clickLikeHate(DairyUserVO vo) {
+		return sqlSession.insert("DairyDAO.clickLikeHate",vo);
+	}
+	
+	
 }

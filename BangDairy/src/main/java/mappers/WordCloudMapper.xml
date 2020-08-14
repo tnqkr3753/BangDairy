@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="WordCloudDAO">
-	<select id="getReviewContent" parameterType="movie" resultType="review">
-		SELECT * FROM site_review WHERE movie_id = #{movieId} order by review_score
+	<select id="getReviewContentDaum" parameterType="movie" resultType="review">
+		SELECT * FROM site_review WHERE movie_id = #{movieId} 
+		AND site_name='daum' order by review_score
+
+	</select>
+	<select id="getReviewContentNaver" parameterType="movie" resultType="review">
+		SELECT * FROM site_review WHERE movie_id = #{movieId}
+		AND site_name='naver' order by review_score
+
+	</select>
+	<select id="getReviewContentWacha" parameterType="movie" resultType="review">
+		SELECT * FROM site_review WHERE movie_id = #{movieId}
+		AND site_name='wachapedia' order by review_score
 
 	</select>
 	

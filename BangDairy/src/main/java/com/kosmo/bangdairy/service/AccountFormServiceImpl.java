@@ -70,7 +70,7 @@ public class AccountFormServiceImpl implements AccountFormService {
 	
 					sendMail.setSubject("[MovieAry 서비스 메일 인증]");
 					String text = new StringBuffer().append("<h1>메일인증</h1>")
-							.append("<a href='http://192.168.0.8:8080/bangdairy/email/confirm")
+							.append("<a href='http://115.91.88.227:60003/bangdairy/email/confirm")
 							.append("?id=").append(vo.getUserId())
 							.append("&key=").append(vo.getUserAuthCode())
 							.append("' target='_blank'>이메일 인증 확인</a>").toString();

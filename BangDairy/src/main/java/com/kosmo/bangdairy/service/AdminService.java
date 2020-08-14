@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
@@ -22,4 +23,5 @@ public interface AdminService {
 	public List<AccountFormVO> getUserBanList(AccountFormVO vo);
 	public int allowUser(AccountFormVO vo);
 	public int banUser(AccountFormVO vo);
+	public int deleteComment(CommentVO vo);
 }

@@ -5,7 +5,8 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 					<c:forEach items="${list}" var="comment">
-						<li class="depth-1 comment ">
+						<li <c:if test="${comment.receipt eq 0}">class="depth-1 comment normal-comment" </c:if>
+						<c:if test="${comment.receipt eq 1}">class="depth-1 comment receipt-comment"</c:if>>
 							<div class="comment__star">
 								<div class="starRevC">
 									<c:forEach begin="1" end="${comment.commentScore }">

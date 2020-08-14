@@ -29,20 +29,11 @@
 <!-- CSS
     ================================================== -->
 <!-- write dairy -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="bootstrap.min.css">
-<link href="font-awesome.css" rel="stylesheet">
-<link href="simplePagination.css" rel="stylesheet" />
 <link rel="stylesheet" href="resources/css/base.css">
 <link rel="stylesheet" href="resources/css/vendor.css">
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/maindairy.css">
 <link rel="stylesheet" href="resources/css/dairycss/nickdairy.css">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="bootstrap.min.css">
-<link href="font-awesome.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -63,7 +54,6 @@
 <!-- favicons
     ================================================== -->
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 </head>
 <body id="top">
@@ -85,7 +75,8 @@
 				</p>
 
 				<!-- 나의 프로필 START -->
-				<div class="myleftTap" style="border:3px solid black; border-radius:20px; padding:10px; margin:10px;">
+				<div class="myleftTap" style="border:3px solid black; border-radius:20px; padding:10px; margin:10px;"
+				data-id="${userInfo.userId}">
 					<h3 class="s-content__author-name5">
 					
 						"${userInfo.userId}" 님
@@ -98,7 +89,7 @@
 						<img src="resources/upload/userProfile/userDefaultImage.png" style="width:70%; height:70%;"> </c:otherwise>
 						</c:choose>
 						</br></br>
-						<a href="myPage">마이페이지로<br/>이동하기</a>
+						<c:if test="${sessionScope.userId eq userInfo.userId }"><a href="myPage">마이페이지로<br/>이동하기</a></c:if>
 						<hr/>
 						
 						<div id="myProfile" style="font-size:32px;">
@@ -118,8 +109,8 @@
 						</div><hr/><br/>
 					
 					<!-- 글 등록 버튼 -->
-					<input type="button" id="btnRegisterDiary"
-					onclick="location.href='writediary'" value="새글등록">
+					<c:if test="${userInfo.userId eq sessionScope.userId }"><input type="button" id="btnRegisterDiary"
+					onclick="location.href='writediary'" value="새글등록"></c:if>
 				</div>
 				<!-- 나의 프로필 END -->
 			</c:forEach>
@@ -129,7 +120,7 @@
 				<br/>아래의 리스트에서<br/>다이어리를<br/>선택해주세요!
 			</div>
 			
-			<div class="myRightTap">
+			<div class="myRightTap" data-did="${diaryId }">
 				<!-- Ajax로 다이어리 리스트, 페이지 번호 붙이는 곳 -->
 			</div>
 		</article>
@@ -137,8 +128,8 @@
 
 	<!-- Java Script
     ================================================== -->
-	<script src="/resources/js/plugins.js"></script>
-	<script src="/resources/js/main.js"></script>
+	<script src="resources/js/plugins.js"></script>
+	<script src="resources/js/main.js"></script>
 	<%@ include file="../../../footer.jsp"%>
 </body>
 </html>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo.bangdairy.service.DairyServicelmpl;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.DairyUserVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 @Controller
@@ -174,7 +175,7 @@ public class DairyController {
 			System.out.println("다이어리 입력 성공");
 		}
 		
-		mv.setViewName("redirect:index.jsp");	// index 페이지로 넘겨줌
+		mv.setViewName("redirect:getdairy");	// index 페이지로 넘겨줌
         return mv;
      }
 	
@@ -184,17 +185,24 @@ public class DairyController {
 	 * 작성자 : 배은주
 	 */
 	@RequestMapping(value = "getdairy")
-	public ModelAndView myDiary(HttpSession session){ 
+	public ModelAndView myDiary(HttpSession session,
+			@RequestParam(value = "userId",required = false)String diaryUserId,
+			@RequestParam(value = "diaryId",required = false)String diaryId){ 
 		ModelAndView mv = new ModelAndView();
-		
 		String userId = (String)session.getAttribute("userId");	// 로그인한 유저아이디 가져오기
-		
 		AccountFormVO avo = new AccountFormVO();
-		avo.setUserId(userId);
-		
+		if(userId!=null&&diaryId!=null&&diaryUserId!=null) { //MainDiary 에서 넘어올 때
+			if(!userId.equals(diaryUserId)) {
+				avo.setUserId(diaryUserId);
+				mv.addObject("diaryId", diaryId);
+			}else {
+				avo.setUserId(userId);
+			}
+		}else {
+			avo.setUserId(userId);
+		}
 		List<AccountFormVO> userInfo = dairyService.userInfo(avo);	// 유저 정보
-		System.out.println("user 정보 확인 : " + userInfo);
-		
+
 		mv.addObject("userInfo", userInfo);
         mv.setViewName("diary/myDiary");
         
@@ -209,12 +217,17 @@ public class DairyController {
 	@ResponseBody
 	@RequestMapping(value = "showDiaryList/{pNum}", method = RequestMethod.POST)
 	public ModelAndView diaryList(HttpSession session,
-			@PathVariable(value = "pNum", required = true) String pageNum) {
+			@PathVariable(value = "pNum", required = true) String pageNum,
+			@RequestParam(value = "userId",required = false)String requestId) {
 		ModelAndView mv = new ModelAndView();
-
+		
 		String userId = (String)session.getAttribute("userId");
 		AccountFormVO avo = new AccountFormVO();
-		avo.setUserId(userId);
+		if(requestId!=null) {
+			avo.setUserId(requestId);
+		}else {
+			avo.setUserId(userId);
+		}
 		
 		// totalPage 구하기
 		int totalPage = dairyService.countDiaryByUser(avo); // user별 등록한 다이어리 수대로 전체 페이지 수 구함
@@ -246,7 +259,6 @@ public class DairyController {
 		// System.out.println("***** diaryId ***** " + diaryId);
 		
 		List<HashMap> result = dairyService.getDetailDiary(dvo);	// 다이어리 ID별로 가져온 상세페이지 리스트
-
 		mv.addObject("diaryDetailList", result);
 		mv.setViewName("diary/diaryDetailAjax");
 		
@@ -270,7 +282,7 @@ public class DairyController {
 		
 		dairyService.deleteDiary(dvo);
 		
-		mv.setViewName("redirect:index.jsp");
+		mv.setViewName("redirect:getdairy");
 		return mv;
 	}
 	
@@ -325,7 +337,26 @@ public class DairyController {
 		
 		dairyService.updateDiary(dvo);
 		
-		mv.setViewName("redirect:index.jsp");
+		mv.setViewName("redirect:getdairy");
 		return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value="/getdairy/likehate",method = RequestMethod.POST)
+	public int clickLikeHate(@RequestParam(value="diaryId",required = true)String diaryId,
+			@RequestParam(value = "type",required = true)String type,HttpSession session) {
+		String userId = (String)session.getAttribute("userId");
+		DairyUserVO vo = new DairyUserVO();
+		vo.setDiaryId(Integer.parseInt(diaryId));
+		vo.setUserId(userId);
+		if(type.equals("like")) {
+			vo.setDiaryLike("1");
+			vo.setDiaryHate("0");
+		}else {
+			vo.setDiaryLike("0");
+			vo.setDiaryHate("1");
+		}
+		int result = dairyService.clickLikeHate(vo);
+		return result;
+		
 	}
 }

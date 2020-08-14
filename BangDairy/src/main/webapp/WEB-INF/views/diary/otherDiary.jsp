@@ -109,7 +109,7 @@
 					</c:choose>
 					</br>
 					
-					<hr />
+					<hr/>
 
 					<div id="myProfile" style="font-size: 32px;">
 						<ul>

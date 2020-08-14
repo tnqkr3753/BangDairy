@@ -35,8 +35,8 @@
  <select id="selectComment"	parameterType="hashmap" resultType="comment">
  	<![CDATA[SELECT * FROM movie_comment
  	WHERE (movie_id,user_id) IN (SELECT b.movie_id,b.user_id FROM 
- 	(SELECT a.movie_id,a.user_id,ROW_NUMBER() OVER(order by comment_reg_date desc) as rnum FROM
- 	(SELECT * FROM movie_comment WHERE movie_id=#{movieId} order by comment_reg_date desc ) a
+ 	(SELECT a.movie_id,a.user_id,ROW_NUMBER() OVER(order by receipt desc, comment_reg_date desc) as rnum FROM
+ 	(SELECT * FROM movie_comment WHERE movie_id=#{movieId} order by receipt desc, comment_reg_date desc ) a
  	) b
  	WHERE rnum >= #{startRow} AND rnum <= #{endRow})]]>
  </select>

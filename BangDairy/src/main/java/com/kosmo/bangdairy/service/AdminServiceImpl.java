@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo.bangdairy.dao.AdminDAO;
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.CommentVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.IndieVO;
 import com.kosmo.bangdairy.vo.QnaVO;
@@ -80,6 +81,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int allowUser(AccountFormVO vo) {
 		return adminDAO.allowUser(vo);
+	}
+
+	@Override
+	public int deleteComment(CommentVO vo) {
+		return adminDAO.deleteComment(vo);
 	}
 	
 	

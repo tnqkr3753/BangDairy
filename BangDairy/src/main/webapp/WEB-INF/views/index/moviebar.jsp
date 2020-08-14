@@ -42,9 +42,8 @@
                         		</div>
 		                        <div class="entry__meta" style="background-color: #19191b">
 		                            <span class="entry__meta-links">
-		                                 <a href="https://www.naver.com/"><span><i class="fa fa-play-circle-o fa-2x " aria-hidden="true"title="예고편시청"></i></spen></a>
 		                                <!-- 아이콘 색 변경하려면  -->
-		                                <a href="#0" style="color:red"><span><i class="fa fa-heart fa-2x" aria-hidden="true"title="좋아요"></i></spen></a>
+		                                <a href="#" style="color:red"><span><i class="fa fa-heart fa-2x" aria-hidden="true" title="좋아요"></i></span></a>
 		                            </span>
 		                        </div>
                          	</div>

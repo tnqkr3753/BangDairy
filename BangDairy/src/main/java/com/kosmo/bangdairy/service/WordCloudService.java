@@ -6,5 +6,5 @@ import java.util.Map;
 import com.kosmo.bangdairy.vo.MovieVO;
 
 public interface WordCloudService {
-	public List<Map<String, Object>> getWordCloud(MovieVO vo);
+	public List<Map<String, Object>> getWordCloud(MovieVO vo,String type);
 }

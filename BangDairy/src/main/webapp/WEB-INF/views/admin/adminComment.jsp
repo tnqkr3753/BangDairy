@@ -35,12 +35,13 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>영화 제목</th>
-										<th>쓴 사람</th>
-										<th>영수증 첨부 여부</th>
-										<th>코맨트 내용</th>
-										<th>별점</th>
-										<th>작성 날짜</th>
+										<th width="13%">영화 제목</th>
+										<th width="8%">쓴 사람</th>
+										<th width="5%">영수증<br/> 첨부 여부</th>
+										<th width="50%">코맨트 내용</th>
+										<th width="5%">별점</th>
+										<th width="13%">작성 날짜</th>
+										<th width="6%">삭제</th>
 									</tr>
 								</thead>
 
@@ -57,6 +58,8 @@
 										<td>${vo.comment }</td>
 										<td>${vo.comment_score }</td>
 										<td><fmt:formatDate value="${vo.comment_reg_date }" type="date" dateStyle="full" /></td>
+										<td><button class="btn btn-warning btn-del-comm" data-cmid="${vo.movie_id }"
+										data-cuid="${vo.user_id }">삭제</button></td>
 									</tr>
 									<!-- 하나의 코맨트 END -->
 									</c:forEach>

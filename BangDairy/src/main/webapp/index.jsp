@@ -133,7 +133,6 @@
 
 		<script src="resources/js/plugins.js"></script>
 		<script src="resources/js/main.js"></script>
-		  <script type="text/javascript" src="resources/js/js1/j.jquery.js"></script>
   <!-- /옆에 바 구현 ; -->    
 
 		

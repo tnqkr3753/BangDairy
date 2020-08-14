@@ -49,7 +49,7 @@
 									<c:forEach items="${list }" var="vo">
 									<!-- 하나의 유저 START -->
 									<!-- 벤 목록 제외 -->
-									<c:if test="${vo.userBan eq 0' }">
+									<c:if test="${vo.userBan eq '0' }">
 									<tr>
 										<td><img src="${vo.absoluteFilePath }"
 										onerror="this.src='resources/images/movieList/noImage.png'"

@@ -34,7 +34,7 @@
     <!-- script
     ================================================== -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="resources/js/myDiary.js"></script>
+	<script src="resources/js/mainDiary.js"></script>
     <script src="resources/js/modernizr.js"></script>
     <script src="resources/js/pace.min.js"></script>
 
@@ -122,27 +122,33 @@
 	</div>		
 	<div class="s-content__header-title" style="text-align: center; font-size: 60px;">이달의 다이어리 추천
 	</div>
-	<div class = "mydairy">
-		<div class="left-dairy-maintab">
-			<div id="mydairyimg">
-			<br/><br/>
-				<c:forEach items="${topdairy}" var="top">       
-		      		<h4 class="s-content__author-name">
-						<img src="${top.absolute_file_path }" 
-						onerror='this.src="resources/images/diary/userDefaultImage.png"'	alt="">
-						<br/>
-						<a href="#0">${top.user_id }</a>
-					</h4>								
-					<div class="s-content__author-name2">
-						<h2 style="text-align: center;">${top.diary_title }</h2>
-						<img src="${top.diary_image }" style="">
-						<h5 style="padding-left: 80%"> 조회수 : ${top.diary_hits }</h5>
-						<h5>${top.diary_content }</h5>
-					</div>
-				</c:forEach>
+	<form action="getdairy" method="POST" id="go-getdairy">
+		<div class = "mydairy">
+			<input type="hidden" id="monthly-uid" name="userId">
+			<input type="hidden" id="monthly-did" name="diaryId">
+			<div class="left-dairy-maintab">
+				<div id="mydairyimg">
+				<br/><br/>
+					<c:forEach items="${topdairy}" var="top">       
+			      		<div class="monthly-diary" data-did="${top.diary_id}" data-uid="${top.user_id }">
+				      		<h4 class="s-content__author-name">
+								<img src="${top.absolute_file_path }" 
+								onerror='this.src="resources/images/diary/userDefaultImage.png"'	alt="">
+								<br/>
+								<a href="#0">${top.user_id }</a>
+							</h4>								
+							<div class="s-content__author-name2">
+								<h2 style="text-align: center;">${top.diary_title }</h2>
+								<img src="${top.diary_image }" style="">
+								<h5 style="padding-left: 80%"> 조회수 : ${top.diary_hits }</h5>
+								<h5>${top.diary_content }</h5>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 	<div class="right-dairy-maintab">
 		<br/><br/><br/><br/>
 			<c:if test="${not empty vo }">

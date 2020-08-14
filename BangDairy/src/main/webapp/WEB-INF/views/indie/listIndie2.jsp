@@ -24,14 +24,18 @@
 					<!-- 여기는 상단 네비게이션 바 START -->
 					
 					<!-- 네비게이션 바 END -->
-		<h1 class="s-content__header-title">ALL MOVIES</h1>        <!--  <button>  <a href = "javascript:popup()">팝업</a></button> -->
+		<h1 id="indieListHeader" class="s-content__header-title">
+		<img src="resources/images/indie/indieMovie.png" style="width:7%;"/>
+		인디극장
+		<img src="resources/images/indie/indieMovie.png" style="width:7%;"/>
+		</h1>        <!--  <button>  <a href = "javascript:popup()">팝업</a></button> -->
 	
 					<!-- 검색창과 Select Box -->
 					
 					<div class="select">
 						<!-- 검색창 -->
-						<input class="form-control" type="text" placeholder="Search"
-							style="float: left">
+						<input class="form-control" type="text" placeholder="검색어를 입력하세요!"
+							style="float: right; width: 20%; font-size:30px; padding:30px; margin:30px;">
 						<!-- 정렬기준 Select Box -->
 					</div>
 
@@ -48,7 +52,7 @@
 							    <tr>
 							      <th scope="col">#</th>
 							      <th scope="col">신청인</th>
-							      <th scope="col">제목</th>
+							      <th scope="col">인디 제목</th>
 							      <th scope="col">감독</th>
 							      <th scope="col">장르</th>
 							      <th scope="col">조회수</th>

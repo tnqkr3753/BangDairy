@@ -252,11 +252,28 @@ public class AdminController {
 							AccountFormVO vo) {
 		adminService.allowUser(vo);
 	}
-	
+	/*
+	 * 메소드명		:banUser
+	 * 기능			:유저를 벤한다
+	 * 변수			:AccountFormVO
+	 * 작성자			:박윤태
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/admin/user/ban",method = RequestMethod.POST)
 	public int banUser(AccountFormVO vo) {
 		int result = adminService.banUser(vo);
+		return result;
+	}
+	/*
+	 * 메소드명		:deleteComment
+	 * 기능			:코멘트를 삭제한다
+	 * 변수			:CommentVO
+	 * 작성자			:박윤태
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/admin/comment/delete",method = RequestMethod.POST)
+	public int deleteComment(CommentVO vo) {
+		int result = adminService.deleteComment(vo);
 		return result;
 	}
 }

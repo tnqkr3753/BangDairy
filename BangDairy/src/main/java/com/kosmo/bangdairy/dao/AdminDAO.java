@@ -23,5 +23,5 @@ public interface AdminDAO {
 	public List<AccountFormVO> getUserBanList(AccountFormVO vo);
 	public int banUser(AccountFormVO vo);
 	public int allowUser(AccountFormVO vo);
-
+	public int deleteComment(CommentVO vo);
 }

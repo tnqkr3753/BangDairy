@@ -34,6 +34,32 @@ $(function(){
         page = 1;
         show(type,searchWord,page)
     });
+    /* 코멘트 삭제 */ 
+    $(document).on('click','.btn-del-comm',function() {
+        var movieId = $(this).data("cmid");
+        var userId = $(this).data("cuid");
+        var inputData = {"movieId":movieId,"userId":userId};
+        if(confirm("정말 해당 코맨트를 삭제하겠습니까?")){
+            $.ajax({
+                type:"POST",
+                url:"admin/"+type+"/delete",
+                async : false,
+                data:inputData,
+                dataType: "text",
+                success: function (data) {
+                    if(data==1){
+                        alert("코맨트 삭제 완료");
+                        show(type,searchWord,page);
+                    }else{
+                        alert("코맨트 삭제 실패")
+                    }
+                },
+                error:function(e){
+                    alert("코맨트 삭제 오류");
+                }
+            });
+        }
+    })
     /* Q&A 작성 및 보기 */
     //Q&A 작성하기
     $(document).on("click",'.write-qna',function(e){

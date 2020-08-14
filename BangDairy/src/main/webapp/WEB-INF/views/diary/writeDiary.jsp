@@ -145,7 +145,11 @@
 									</tr>
 									<tr>
 										<td>이미지 첨부</td>
-										<td><input type="file" id="file" name="file" /></td>
+										<td><input id="diaryImg" type="file" id="file" name="file" accept="image/gif,image/jpg,image/png" 
+										 onchange="chk_file_type(this)"/>
+										<div id='image_container'><img src=""
+			 onerror='this.src="resources/images/defaultImage.png"'/></div></td>
+										
 									</tr>
 								</tbody>
 							</table>
@@ -174,7 +178,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$('#diaryImg').change(function () { // 이미지 변경할때마다
+			readURL(this);
+		});
 		$('#submitCheck').click(function() {	// 등록버튼 클릭했을때
 			
 			// 사용자가 현재 입력한 값들 얻어옴
@@ -214,4 +220,28 @@
 			}
 		});
 	});
+	function chk_file_type(obj) {
+		var file_kind = obj.value.lastIndexOf('.');
+		var file_name = obj.value.substring(file_kind+1,obj.length);
+		var file_type = file_name.toLowerCase();
+		var check_file_type= new Array;
+		var check_file_type=['jpg','gif','png','jpeg','bmp'];
+		if(check_file_type.indexOf(file_type)==-1){
+			alert('이미지 파일만 선택할 수 있습니다.');
+			var parent_Obj=obj.parentNode
+			var node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+			obj.value = '';
+			obj.focus();
+			return false;
+		}
+	}
+	function readURL(input) {
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result); 
+			$("div#image_container").html(img); 
+		}; 
+		reader.readAsDataURL(input.files[0]); 
+	}
 </script>

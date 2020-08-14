@@ -192,5 +192,34 @@ $(document).ready(function(){
 			
 		});
 	}
+	$(document).on('click','.entry__meta-links a',function(){
+
+		movieId = $(this).closest(".masonry__brick").find("input[type=hidden]").val();
+		// alert(movieId);
+
+		var result = confirm('찜목록에 추가하시겠습니까?');
+
+		if (result) {
+		
+		$.ajax({
+			type: "POST",
+			async : true,
+			contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+			url: "detail/addWish",
+			data :  {"movieId":movieId},
+			dataType: "html",
+			success: function (response) {
+				if(response==1){
+					alert("찜목록 입력 성공");
+				}else{
+					alert("찜목록 입력 실패");
+				}
+			},
+			error: function(e){
+				alert("이미 찜목록에 추가했습니다. :"+e);
+			}
+		})
+		}
+	});
 	
 });  

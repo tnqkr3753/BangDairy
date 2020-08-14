@@ -27,8 +27,11 @@
      
      <!-- 조회수 높은 다이어리 5개 -->
    <select id="topdairy" resultType="hashmap">
-     select d.*,u.* from diary_info d inner join user_info u ON
-     d.user_id = u.user_id order by d.diary_hits DESC limit 5
+     select d.*,u.* from diary_info d inner join user_info u 
+     ON
+     d.user_id = u.user_id
+     WHERE date_format(d.reg_date,'%Y-%m') = date_format(now(),'%Y-%m')
+      order by d.diary_hits DESC limit 5
     </select>
     
     <!-- 페이징 -->
@@ -86,7 +89,9 @@
 	
 	<!-- 다이어리 상세페이지 -->
 	<select id="getDetailDiary" parameterType="dairy" resultType="hashmap">
-	SELECT d.*, i.movie_title AS mtitle FROM diary_info d INNER JOIN movie_info i WHERE d.diary_id=${diaryId} AND d.movie_id = i.movie_id
+	SELECT d.*,nvl(a.diary_like,0) as diary_like,nvl(a.diary_hate,0) as diary_hate,m.movie_title FROM diary_info d inner join movie_info m ON
+    m.movie_id=d.movie_id left outer join (SELECT diary_id,sum(diary_like) as diary_like,sum(diary_hate) as diary_hate FROM diary_user group by diary_id) a
+    ON d.diary_id = a.diary_id WHERE d.diary_id= #{diaryId}
 	</select>
 	
 	<!-- 다이어리 삭제 -->
@@ -105,5 +110,13 @@
     
     WHERE diary_id=${diaryId}
 	</update>
-	
+			<!-- 조회수 증가 --> 
+        <update id="addhits" parameterType="dairy" >
+        	update diary_info set diary_hits = (diary_hits + 1) where diary_id = ${diaryId}
+        </update>
+    <insert id="clickLikeHate" parameterType="userdairy">
+    	INSERT INTO diary_user (user_id,diary_id,diary_like,diary_hate)
+    	VALUES (#{userId},#{diaryId},#{diaryLike},#{diaryHate})
+    	ON DUPLICATE KEY UPDATE diary_like=#{diaryLike},diary_hate=#{diaryHate}
+    </insert>
 </mapper>

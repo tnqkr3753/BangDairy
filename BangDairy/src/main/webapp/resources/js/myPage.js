@@ -1,5 +1,7 @@
 $(document).ready(function(){
-	
+	$(document).on('click','#btn-goList',function(){
+		loadQnaList()
+	})
 	/*
 	 * My Profile 하단의 Go 버튼을 눌렀을때 동작
 	 */

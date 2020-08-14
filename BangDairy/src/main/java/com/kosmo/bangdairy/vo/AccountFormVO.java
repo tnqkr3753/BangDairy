@@ -119,7 +119,7 @@ public class AccountFormVO {
 		String formatName = outputImagePath.substring(outputImagePath.lastIndexOf(".")+1);
 		ImageIO.write(outputImage, formatName, new File(outputImagePath));
 	}
-	
+
 	@Override
 	public String toString() {
 		return "AccountFormVO [userName=" + userName + ", userAge=" + userAge + ", userId=" + userId + ", userPassword="

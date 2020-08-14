@@ -15,8 +15,21 @@ public class WordCloudDAOImpl implements WordCloudDAO {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<ReviewVO> getReviewContent(MovieVO vo) {
-		return sqlSession.selectList("WordCloudDAO.getReviewContent",vo);
+	public List<ReviewVO> getReviewContentDaum(MovieVO vo) {
+		return sqlSession.selectList("WordCloudDAO.getReviewContentDaum",vo);
 	}
+
+	@Override
+	public List<ReviewVO> getReviewContentNaver(MovieVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("WordCloudDAO.getReviewContentNaver",vo);
+	}
+
+	@Override
+	public List<ReviewVO> getReviewContentWacha(MovieVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("WordCloudDAO.getReviewContentWacha",vo);
+	}
+	
 	
 }

@@ -107,7 +107,7 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		<dependency>
+		<dependency> 
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
@@ -124,7 +124,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		<!-- 오류 -->
+		<dependency> 
+			<groupId>taglibs</groupId> 
+			<artifactId>standard</artifactId> 
+			<version>1.1.2</version> 
+			<scope>compile</scope> 
+		</dependency>
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

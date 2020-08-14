@@ -26,13 +26,23 @@ public class WordCloudServiceImpl implements WordCloudService {
 
 	@Autowired
 	WordCloudDAO wordCloudDAO;
-	
+	Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
 	@Override
-	public List<Map<String, Object>> getWordCloud(MovieVO vo) {
-		Komoran komoran = new Komoran(DEFAULT_MODEL.LIGHT);
+	public List<Map<String, Object>> getWordCloud(MovieVO vo,String type) {
 		Set<String> wordSet = new HashSet<String>();
 		Map<String, Integer> wordCnt = new HashMap<String, Integer>();
-		List<ReviewVO> list = wordCloudDAO.getReviewContent(vo);
+		List<ReviewVO> list=null;
+		switch (type) {
+		case "naver":
+			list = wordCloudDAO.getReviewContentNaver(vo);
+			break;
+		case "daum":
+			list = wordCloudDAO.getReviewContentDaum(vo);
+			break;
+		default:
+			list = wordCloudDAO.getReviewContentWacha(vo);
+			break;
+		}
 		for (ReviewVO reviewVO : list) {
 			if(reviewVO.getReviewContent()!=null ||! reviewVO.getReviewContent().equals("")) {
 				KomoranResult analizeResultList = komoran.analyze(reviewVO.getReviewContent());
@@ -77,5 +87,4 @@ public class WordCloudServiceImpl implements WordCloudService {
 		}
 		return resultList;
 	}
-
 }

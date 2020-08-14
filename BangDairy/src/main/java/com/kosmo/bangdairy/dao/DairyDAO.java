@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kosmo.bangdairy.vo.AccountFormVO;
+import com.kosmo.bangdairy.vo.DairyUserVO;
 import com.kosmo.bangdairy.vo.DairyVO;
 import com.kosmo.bangdairy.vo.MovieVO;
 
@@ -37,4 +38,7 @@ public List<DairyVO> showList(AccountFormVO vo);
 	public int deleteDiary(DairyVO dvo);	// 다이어리 삭제
 	
 	public int updateDiary(DairyVO dvo);	// 다이어리 수정
+	
+	public int increateHits(DairyVO vo);
+	public int clickLikeHate(DairyUserVO vo);
 }

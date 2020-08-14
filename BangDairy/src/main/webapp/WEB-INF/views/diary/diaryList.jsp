@@ -101,6 +101,9 @@
 						</c:if>
 						<c:if test="${not empty list }">
 						<div class="table-responsive">
+							<form action="getdairy" method="POST" id="go-getdairy">
+							<input type="hidden" name="userId" id="search-uid">
+							<input type="hidden" name="diaryId" id="search-did">
 							<c:set value="1" var="count"/>
 							<table style="align-content: center;">
 								<thead>
@@ -118,7 +121,10 @@
 								<tbody> 
 								 <c:forEach items="${list }" var="search" >   
 								    
-									<tr <c:if test="${count gt 10 }">class="hide-tr"</c:if> >
+									<tr data-uid="${search.user_id}"
+										data-did="${search.diary_id }"
+									 <c:if test="${count le 10 }">class="search-tr"</c:if>
+									 <c:if test="${count gt 10 }">class="search-tr hide-tr"</c:if> >
 										<td><img src="resources/upload/diary/${search.diary_image}" onerror="this.src='resources/images/defaultImage.png'"
 											 height="400px"></td>
 										<td style="align-self: center; width: 60px;">${search.diary_title} </td>									
@@ -136,9 +142,11 @@
 								</tbody>
 							
 							</table>
+							</form>
 						</div>
 						<input id="btn-moreview" type="button" class="submit btn--primary" value="더보기">
 						</c:if>
+						
 					</div>
 					<!-- 영화 리스트 END -->
 				</div>
