@@ -167,7 +167,7 @@
 
 				<%-- 영화 배우 시작 --%>
 				<h2 style="border-top:2px solid gray;"><br/>[배우]</h2>
-				<div class="col-twelve" style="padding-bottom: 50px; border-bottom: 2px solid gray;">
+				<div class="col-twelve" style="padding-bottom: 50px;">
 							<div class="table-responsive" style="font-size:20px;">
 								<table>
 									<thead>
@@ -281,17 +281,17 @@
 					
 					<div>
 						<h3 id="comment-count" style="display: inline-block;">1 Comments</h3>
-						<label class="radio-inline" style="display: inline-block;margin-left: 10px;">
+						<label class="radio-inline" style="display: inline-block;margin-left: 10px; font-size:30px;">
 					  		<input class="bring-receipt" type="radio" id="all-receipt" name="receipt" value="all-comment"
-					         checked >전체 보기
+					         checked >&nbsp;전체 보기
 					   	</label>
-						<label class="radio-inline" style="display: inline-block;">
+						<label class="radio-inline" style="display: inline-block; font-size:30px;">
 					  		<input class="bring-receipt" type="radio" id="has-receipt" name="receipt" value="has-receipt"
-					        >영수증 첨부
+					        >&nbsp;영수증 첨부
 					    </label>
-					    <label class="radio-inline" style="display: inline-block;">
+					    <label class="radio-inline" style="display: inline-block; font-size:30px;">
 					  		<input class="bring-receipt" type="radio" id="no-receipt" name="receipt" value="no-receipt"
-					         >영수증 미첨부
+					         >&nbsp;영수증 미첨부
 					   	</label>
 					</div>
 					<%-- 코멘트 리스트 --%>

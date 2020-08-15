@@ -4,7 +4,7 @@ body {
   }
   
   .account_form h1 {
-	font-size: 36px;
+	font-size: 50px;
 	text-align: center;
 	color: #45aba6;
 	margin-top: 10px;
@@ -13,7 +13,7 @@ body {
   }
   .account_form strong {
 	  width: 100%;
-	  font-size: 20px;
+	  font-size: 25px;
 	  color: #666;
 	  text-align: left;
 	  float: left;
@@ -86,7 +86,7 @@ body {
 	  border-radius: 74px;
 	  border: 1px solid #ccc;
 	  box-sizing: border-box;
-	  font-size: 15px;
+	  font-size: 25px;
 	  padding-left: 45px;
   }
   .account_form .form-group .input-icon {
@@ -110,7 +110,7 @@ body {
 	color: #fff;
 	text-align: center;
 	margin: 0 auto;
-	font-size: 20px;
+	font-size: 25px;
 	border: 1px solid #45aba6;
 	border-radius: 44px;
 	width: 100%;

@@ -27,9 +27,8 @@
     <link rel="stylesheet" href="resources/css/base.css">
     <link rel="stylesheet" href="resources/css/vendor.css">
     <link rel="stylesheet" href="resources/css/main.css">
-	<link rel="stylesheet" href="resources/css/maindairy.css">
+	<link rel="stylesheet" href="resources/css/dairycss/maindairy.css">
 	<link rel="stylesheet" href="resources/css/movieList.css">
-	<link rel="stylesheet" href="resources/css/dairycss/writeDiary.css">
 	
     <!-- script
     ================================================== -->
@@ -66,7 +65,6 @@
 			<div style="padding-left: 65%;" class="select">
 						
 			</div>
-			<div class="insert	DiaryTop" style="font-size: 55px; margin-left: 30px;">메인 다이어리</div>
 				<br/>
 				<nav class="clearfix">
 					<ul class="clearfix">
@@ -75,8 +73,8 @@
 					<a id="pull" href="#">CATEGORY</a>
 				</nav>
 				<form method="post" action="dairySearch">
-					<input style="width: 400px;display: inline-block; "  placeholder="검색어를 입력해주세요" type="text" name="searchWord">
-					<select style="display: inline-block;" id="search-type" name="searchType">	
+					<input style="width: 400px;display: inline-block; font-size:30px;"  placeholder="검색어를 입력해주세요" type="text" name="searchWord">
+					<select style="display: inline-block; font-size:25px;" id="search-type" name="searchType">	
 						<option value="m.movie_title">영화 제목</option>
 						<option value="d.user_id">글쓴이</option>
 						<option value="d.diary_title">다이어리 제목</option>
@@ -138,10 +136,10 @@
 								<a href="#0">${top.user_id }</a>
 							</h4>								
 							<div class="s-content__author-name2">
-								<h2 style="text-align: center;">${top.diary_title }</h2>
+								<h2 style="text-align: center;">[${top.diary_title }]</h2>
 								<img src="${top.diary_image }" style="">
-								<h5 style="padding-left: 80%"> 조회수 : ${top.diary_hits }</h5>
-								<h5>${top.diary_content }</h5>
+								<h5 style="text-align:right; font-size:30px;"> 조회수 : ${top.diary_hits }</h5>
+								<h5 style="font-size: 30px;">${top.diary_content }</h5>
 							</div>
 						</div>
 					</c:forEach>
@@ -158,18 +156,18 @@
 			${vo.userId }<br/><a href="myPage">내 프로필 보기</a>
 			<div id="myrigthprofile">
 				<h4><%-- 가입 날짜 : <fmt:formatDate value="${vo.joinDate }"  type="date" dateStyle="full" /><br/> --%>
-				나이 : ${vo.userAge }<br/>
-				성별 : 
+				* 나이 : ${vo.userAge }<br/>
+				* 성별 : 
 				<c:choose>
 					<c:when test="${vo.userGender eq 1 }">남</c:when>
 					<c:otherwise>여</c:otherwise>
 				</c:choose><br/>
-				이메일 : ${vo.userEmail }</h4>
+				* 이메일 : ${vo.userEmail }</h4>
 			</div>	
 			
 			<div id="rigthmakediary">
-				<button type="submit" class="submit btn--primary btn--large full-width">새글작성</button>
-				<button type="submit" class="submit btn--primary btn--large full-width" index="mydairy_btn">내다이어리</button>
+				<button type="submit" class="submit btn--primary btn--large full-width">새 글 작성</button>
+				<button type="submit" class="submit btn--primary btn--large full-width" index="mydairy_btn">내 다이어리</button>
 			</div>
 			</c:if>
 			<div id="rigthotherdiary">

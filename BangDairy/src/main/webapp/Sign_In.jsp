@@ -20,11 +20,11 @@
         <input id="usrPasswd" type="password" name="userPassword" placeholder="비밀번호">
         <span class="input-icon"><i class="fa fa-lock"></i></span>
       </div>   
-      <input id="login-btn" type="button" class="login-btn" value="Login"/> 
+      <input id="login-btn" type="button" class="login-btn" value="로그인"/> 
       <p>당신의 SNS계정으로 로그인하세요</p>    
       <input type="button" id="kakao_login" class="kakao-login"/>
       <a id='find-info' class="reset-psw" href="#">아이디 또는 비밀번호를 까먹으셨나요?</a>
-      <div class="seperator"><b>or</b></div>
+      <div class="seperator"><b>또는</b></div>
       <div><input id="login-cancel-btn" class="login-btn" type="button" value="취소"></div>
     </form>
   </div>

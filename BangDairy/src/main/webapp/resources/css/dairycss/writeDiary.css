@@ -1,25 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-/* 다이어리 입력 헤더 */
+/* �떎�씠�뼱由� �엯�젰 �뿤�뜑 */
 .insertDiaryTop {
 	font-size: 30px;
 	color: black;
 	font-weight: bold;
 }
 
-/* 날짜 출력 div */
+/* �궇吏� 異쒕젰 div */
 .insertDiaryDate {
 	font-size: 20px;
 }
 
-/* 테이블 설정 */
+/* �뀒�씠釉� �꽕�젙 */
 .table th, .table td {
 	vertical-align: middle;
 }
 
 td:first-child {
 	text-align: center;
+	line-height: 1;
 }
 
 /* myDiary css */
@@ -47,14 +48,13 @@ h2, h3, p, li, td, tr, th {
 font-family: 'Do Hyeon', sans-serif;
 	text-align: center;
 	vertical-align: middle;
-	font-size: 20px;
 }
 
 th {
 	font-size: 25px;
 }
 
-/* 등록, 수정, 삭제 버튼 */
+/* �벑濡�, �닔�젙, �궘�젣 踰꾪듉 */
 #btnRegisterDiary, #btnDiaryModify, #btnDiaryDelete {
 font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
@@ -94,7 +94,7 @@ font-family: 'Do Hyeon', sans-serif;
 	transform: translateY(-7px);
 }
 
-/* 마이 다이어리 페이지 상단 */
+/* 留덉씠 �떎�씠�뼱由� �럹�씠吏� �긽�떒 */
 .myDiaryHeader {
 	color: white;
 	text-shadow: 1px 1px 5px gray;
@@ -114,7 +114,7 @@ font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
 }
 
-/* 테이블 반응형 */
+/* �뀒�씠釉� 諛섏쓳�삎 */
 @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -155,13 +155,13 @@ only screen and (max-width: 760px),
 	/*
 	Label the data
 	*/
-	#diaryListAjax td:nth-of-type(1):before { content: "이미지"; }
-	#diaryListAjax td:nth-of-type(2):before { content: "다이어리 제목"; }
-	#diaryListAjax td:nth-of-type(3):before { content: "영화 제목"; }
-	#diaryListAjax td:nth-of-type(4):before { content: "조회수"; }
+	#diaryListAjax td:nth-of-type(1):before { content: "�씠誘몄�"; }
+	#diaryListAjax td:nth-of-type(2):before { content: "�떎�씠�뼱由� �젣紐�"; }
+	#diaryListAjax td:nth-of-type(3):before { content: "�쁺�솕 �젣紐�"; }
+	#diaryListAjax td:nth-of-type(4):before { content: "議고쉶�닔"; }
 }
 
-/* 다이어리 내용 보여주는 태그 */
+/* �떎�씠�뼱由� �궡�슜 蹂댁뿬二쇰뒗 �깭洹� */
 pre {
 font-family: 'Do Hyeon', sans-serif;
 	font-size: 20px;
@@ -170,7 +170,7 @@ font-family: 'Do Hyeon', sans-serif;
 	padding-bottom: 30px;
 }
 
-/* 반응형 도전~~~~~~~~~~ */
+/* 諛섏쓳�삎 �룄�쟾~~~~~~~~~~ */
 @media screen and (max-width:767px) {
 	.myleftTap {width:50%; max-width:200px;}
 	.diaryDetail {width:70%;}

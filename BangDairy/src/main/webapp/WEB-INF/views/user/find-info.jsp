@@ -10,6 +10,20 @@
 <!-- ========== script ============= -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+a, label, input, button {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 25px;
+}
+
+.col-md-12 {
+	text-align: center;
+}
+</style>
+
 </head>
 <body>
 <div class="container-fluid find-form">
@@ -28,7 +42,7 @@
 					<div class="tab-pane active" id="tab1">
 						<form action="" method="POST">
 								<div class="form-group"> 
-									<label for="id-id">이메일</label> 
+									<label for="id-id"><br/>가입하신 이메일을 입력해주세요!</label> 
 									<input type="text" name="userEmail" class="form-control" id="id-email"> 
 								</div>
 						</form>
@@ -36,11 +50,11 @@
 					<div class="tab-pane" id="tab2">
 						<form action="" method="POST">
 								<div class="form-group"> 
-									<label for="pass-id">아이디</label> 
+									<label for="pass-id">가입하신 아이디를 입력해주세요!</label> 
 									<input type="text"  name="userId" class="form-control" id="pass-id"> 
 								</div>
 								<div class="form-group"> 
-									<label for="pass-email">이메일</label> 
+									<label for="pass-email">가입하신 이메일을 입력해주세요!</label> 
 									<input type="email"  name="userEmail" class="form-control" id="pass-email"> 
 								</div>
 						</form>

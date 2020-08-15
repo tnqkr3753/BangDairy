@@ -10,7 +10,6 @@
     <footer class="s-footer">
 
         <div class="s-footer__main">
-                        <img src="/bangdairy/resources/images/logoMovie.png" alt="Homepage" style="float:middle;"> 
         
             <div class="row">
             
