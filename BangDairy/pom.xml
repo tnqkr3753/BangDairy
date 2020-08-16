@@ -17,7 +17,7 @@
 			추가내용: log4j2 버전 관리
 			삭제 : <org.slf4j-version>1.6.6</org.slf4j-version>
 			================================================= -->
-		<log4j2.version>2.11.0</log4j2.version>
+		<log4j2.version>2.13.3</log4j2.version>
 	</properties>
 	<!--박윤태 08 06 추가 형태소 분석  -->
 	<repositories>
