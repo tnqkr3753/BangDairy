@@ -174,15 +174,15 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>    
 	<!-- 진섭 파일 업로드 -->
-<dependency>
-
-         <groupId>commons-io</groupId>
-
-         <artifactId>commons-io</artifactId>
-
-         <version>1.4</version>
-
-</dependency>
+		<dependency>
+		
+		         <groupId>commons-io</groupId>
+		
+		         <artifactId>commons-io</artifactId>
+		
+		         <version>1.4</version>
+		
+		</dependency>
 
 		<!-- 파일 업로드 -->
 		<dependency>

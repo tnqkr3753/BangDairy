@@ -39,7 +39,6 @@
 	<property name="port" value="587" />
 	<property name="username" value="tnqkr3753@a.ut.ac.kr" />
 	<property name="password" value="park9512" />
-
 	<property name="javaMailProperties">
 		<props>
 			<prop key="mail.smtp.auth">true</prop>

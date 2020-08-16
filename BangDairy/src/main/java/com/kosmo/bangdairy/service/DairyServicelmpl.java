@@ -90,7 +90,6 @@ public class DairyServicelmpl implements DairyService {
 	public List<HashMap> getDetailDiary(DairyVO dvo) {
 		dairyDAO.increateHits(dvo);
 		return dairyDAO.getDetailDiary(dvo);
-		
 	}
 
 	@Override	// 다이어리 삭제

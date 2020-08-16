@@ -160,7 +160,8 @@ public class ApiConnectionService {
 					}
 				}
 				vo.setStarring(actMap);
-				vo.setPreviewAddr(rs.get("vods").getAsJsonObject().get("vod").getAsJsonArray().get(0).getAsJsonObject().get("vodUrl").getAsString());
+				vo.setPreviewAddr(rs.get("vods").getAsJsonObject().get("vod").getAsJsonArray()
+						.get(0).getAsJsonObject().get("vodUrl").getAsString());
 //				System.out.println(vo);
 				voArr.add(vo);
 			}

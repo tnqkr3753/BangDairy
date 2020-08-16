@@ -51,7 +51,6 @@ public class WordCloudServiceImpl implements WordCloudService {
 	//			posList.add("IC"); //감탄사
 	//			posList.add("VV"); //동사
 	//			posList.add("VA"); //형용사
-				
 				try {
 					List<String> strList = analizeResultList.getMorphesByTags("NNG","NNP","IC","NV"/*,"VV","VA"*/,"MAG","SL");
 					for (String word : strList) {

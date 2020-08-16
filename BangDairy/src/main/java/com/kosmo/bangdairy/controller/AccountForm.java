@@ -177,7 +177,6 @@ public class AccountForm {
 	 * 작성자 : 박윤태
 	 */
 	@RequestMapping(value = "/email/confirm",method = RequestMethod.GET)
-	@ResponseBody
 	public ModelAndView sendEmail(@RequestParam(value = "id",required = true)String userId,
 			@RequestParam(value = "key",required = true)String userAuthCode) {
 		AccountFormVO vo = new AccountFormVO();
