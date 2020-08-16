@@ -1,4 +1,4 @@
-/* responsive �����̵� */
+/* responsive 占쏙옙占쏙옙占싱듸옙 */
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
@@ -58,15 +58,15 @@
 }
 
 
-/* ���� */
+/* 占쏙옙占쏙옙 */
 
 .starR {
 	background:
 		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
 		no-repeat right 0;
 	background-size: auto 100%;
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	display: inline-block;
 	text-indent: -9999px;
 	cursor: pointer;
@@ -207,7 +207,7 @@ section.wrapper header, article.wrapper header {
 .comment {
 	text-align:left;
 }
-/*박윤태 추가 rslide_nav
+/*諛뺤쑄�깭 異붽� rslide_nav
 */
     .rslides_nav{ 
       text-decoration: none;
@@ -220,8 +220,9 @@ section.wrapper header, article.wrapper header {
       transition:all 0.1s;
       background-color: #e0e0e0;
       border-bottom:5px solid #a0a0a0;
+      font-family: 'Do Hyeon', sans-serif;
     }
-/* 박윤태 추가 영화예고편
+/* 諛뺤쑄�깭 異붽� �쁺�솕�삁怨좏렪
 */
 /* The Modal (background) */
 .modal {
@@ -276,7 +277,7 @@ section.wrapper header, article.wrapper header {
      font-weight: bold;
 }
 
-/* 2020.08.10 은주 추가 */
+/* 2020.08.10 ��二� 異붽� */
 h1, li, p, span {
 font-family: 'Do Hyeon', sans-serif;
 }
@@ -288,6 +289,7 @@ h2, h3 {
 
 tr, td, th {
 font-family: 'Do Hyeon', sans-serif;
+font-size: 30px;
 }
 
 .legend {
@@ -299,12 +301,12 @@ font-family: 'Do Hyeon', sans-serif;
 font-size: 30px;
 }
 
-/* 찜목록 버튼, 예고편 보기 버튼 */
+/* 李쒕ぉ濡� 踰꾪듉, �삁怨좏렪 蹂닿린 踰꾪듉 */
 #wish-add, #btn-preview {
 font-family: 'Do Hyeon', sans-serif;
-	font-size: 20px;
-	width: 160px;
-	height: 45px;
+	font-size: 30px;
+	width: 200px;
+	height: 70px;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;
 	font-weight: 500;
@@ -325,12 +327,12 @@ font-family: 'Do Hyeon', sans-serif;
 	transform: translateY(-7px);
 }
 
-/* 슬라이드 이전, 다음 버튼 */
+/* �뒳�씪�씠�뱶 �씠�쟾, �떎�쓬 踰꾪듉 */
 .rslides_nav {
 font-family: 'Do Hyeon', sans-serif;
-	font-size: 15px;
-	width: 160px;
-	height: 45px;
+	font-size: 20px;
+	width: 180px;
+	height: 60px;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;
 	font-weight: 500;
@@ -351,10 +353,10 @@ font-family: 'Do Hyeon', sans-serif;
 	transform: translateY(-7px);
 }
 
-/* 배우 전체보기, 숨기기 버튼, 댓글 등록 버튼, 댓글 더보기 버튼 */
+/* 諛곗슦 �쟾泥대낫湲�, �닲湲곌린 踰꾪듉, �뙎湲� �벑濡� 踰꾪듉, �뙎湲� �뜑蹂닿린 踰꾪듉 */
 #btnActorShow, #btnActorHide, #btn-insertComment, #btn-moreComment {
 font-family: 'Do Hyeon', sans-serif;
-	font-size: 20px;
+	font-size: 25px;
 	width: 200px;
 	text-transform: uppercase;
 	letter-spacing: 2.5px;

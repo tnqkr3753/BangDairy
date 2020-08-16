@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var totalpage = 1;
 	var commentPerPage = 5;
 	/* 워드 클라우드 경우 */
-	var siteList = ["naver","daum","wacha"]
+	var siteList = ["Naver","Daum","Watcha"]
 	for (let index = 0; index < siteList.length; index++) {
 		getWordCloud(movieId,siteList[index]);
 	}

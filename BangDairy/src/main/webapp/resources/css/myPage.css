@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 .img-circle {
 	border-radius: 50%
 }
@@ -162,7 +164,16 @@
 	}
 }
 
-<!-- ���̺� -->
+<!-- 占쏙옙占싱븝옙 -->
 .boardId {
 	width:10%;
+}
+
+p {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 22px;
+}
+
+h2 {
+	font-size: 50px;
 }

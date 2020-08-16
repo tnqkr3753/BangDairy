@@ -131,7 +131,7 @@
 										</tr>
 										<!-- 누구와? -->
 										<tr>
-											<td>누구와 함께 보셨나요?</td>
+											<td>누구와 함께<br/>보셨나요?</td>
 											<td><input id="viewingTogether" name="viewingTogether"
 												style="height: 50px; width: 32.2%; font-size: 20px; display: inline"
 												autocomplete="off" value="${result.viewing_together}"></td>

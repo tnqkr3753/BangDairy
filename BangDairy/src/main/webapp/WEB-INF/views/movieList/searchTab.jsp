@@ -18,7 +18,7 @@
 		<c:if test="${empty mList}">
 			<!-- mList가 비어있을때 (즉, 검색결과가 없을때) -->
 			<tbody>
-				<td colspan="5">일치하는 검색 결과가 없습니다.</td>
+				<td colspan="5" style="font-size:30px;">일치하는 검색 결과가 없습니다.</td>
 			</tbody>
 		</c:if>
 

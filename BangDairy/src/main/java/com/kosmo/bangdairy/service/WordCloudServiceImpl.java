@@ -33,10 +33,10 @@ public class WordCloudServiceImpl implements WordCloudService {
 		Map<String, Integer> wordCnt = new HashMap<String, Integer>();
 		List<ReviewVO> list=null;
 		switch (type) {
-		case "naver":
+		case "Naver":
 			list = wordCloudDAO.getReviewContentNaver(vo);
 			break;
-		case "daum":
+		case "Daum":
 			list = wordCloudDAO.getReviewContentDaum(vo);
 			break;
 		default:

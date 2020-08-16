@@ -61,7 +61,7 @@
 			<pre><br/>${diaryDetailList.diary_content}</pre>
 			
 			<!-- 누구와? 언제? 어디서? -->
-			<ul>
+			<ul style="font-size:20px;">
 				<li style="text-align: left;">${diaryDetailList.viewing_together}와(과) 함께</li>
 				<li style="text-align: left;">언제? ${fn:substring(diaryDetailList.viewing_date, 0, 10)}</li>
 				<li style="text-align: left;">어디서? ${diaryDetailList.viewing_location}</li>

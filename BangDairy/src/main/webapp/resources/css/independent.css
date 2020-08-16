@@ -17,7 +17,7 @@ color: #fff;
 
 td:nth-of-type(n+10) { display: none; }
 
-/* 반응형폰트 */
+/* 諛섏쓳�삎�룿�듃 */
 .rr{ font-size: 30px; 
 }
 
@@ -27,19 +27,19 @@ select{
 }
 	
 
-div.distribution h4					{margin:25px 0 0 0; padding:0 0 0 20px;  font:bold 14px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#333;  background:url("../_img/cont/icon01.gif") no-repeat 7px 3px}
+div.distribution h4					{margin:25px 0 0 0; padding:0 0 0 20px;  font:bold 14px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#333;  background:url("../_img/cont/icon01.gif") no-repeat 7px 3px}
 div.distribution table				{width:99%; margin:10px auto 0 auto; border-top:2px solid #666}
 div.distribution table thead th		{text-align:center; padding:5px 0 4px 0;}
-div.distribution table td.c			{padding:5px 5px 5px 5px; text-align:center; border-bottom:1px solid #ddd; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table th			{padding:5px 0 4px 20px; height:24px;  text-align:left; border-bottom:1px solid #ddd; background:#f5f5f5; font:bold 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
+div.distribution table td.c			{padding:5px 5px 5px 5px; text-align:center; border-bottom:1px solid #ddd; font:normal 12px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
+div.distribution table th			{padding:5px 0 4px 20px; height:24px;  text-align:left; border-bottom:1px solid #ddd; background:#f5f5f5; font:bold 12px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
 div.distribution table th span		{color:red}
-div.distribution table td			{padding:5px 7px 5px 7px; text-align:left; border-bottom:1px solid #ddd; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td .type01	{background:rgba(255, 255, 255, 0.5);  padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td .type02	{padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td .tt01		{font:normal 11px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#ff6c00;}
-div.distribution table td .tt02		{font:bold 11px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#f90000;}
-div.distribution table td select	{background:rgba(255, 255, 255, 0.5);padding:0 0 0 5px; height:24px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
-div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97%; padding:2px 0 0 5px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','나눔고딕','Malgun Gothic','돋움','굴림','Arial'; color:#555;}
+div.distribution table td			{padding:5px 7px 5px 7px; text-align:left; border-bottom:1px solid #ddd; font:normal 12px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
+div.distribution table td .type01	{background:rgba(255, 255, 255, 0.5);  padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
+div.distribution table td .type02	{padding:2px 0 0 5px; height:20px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
+div.distribution table td .tt01		{font:normal 11px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#ff6c00;}
+div.distribution table td .tt02		{font:bold 11px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#f90000;}
+div.distribution table td select	{background:rgba(255, 255, 255, 0.5);padding:0 0 0 5px; height:24px; border:1px solid #ccc; font:normal 12px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
+div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97%; padding:2px 0 0 5px; border:1px solid #ccc; font:normal 13px/16px  'NanumGothic','�굹�닎怨좊뵓','Malgun Gothic','�룍��','援대┝','Arial'; color:#555;}
 
 #box{
 	margin-right: 10%;
@@ -56,7 +56,7 @@ div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97
 	font-size: 20px;
 }
 
-/* 은주 */
+/* ��二� */
 .container {
 		font-family: 'Do Hyeon', sans-serif;
 	
@@ -85,7 +85,8 @@ div.distribution table td textarea	{background:rgba(255, 255, 255, 0.5);width:97
 	border-top:2px solid gray;
 	padding: 30px;
 	margin: 30px;
-	margin-bottom: 70px;;
+	margin-bottom: 70px;
+	line-height: 1.5;
 }
 
 #good, #bad {

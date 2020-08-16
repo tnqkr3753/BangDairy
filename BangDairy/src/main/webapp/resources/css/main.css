@@ -272,7 +272,8 @@ font-family: 'Do Hyeon', sans-serif;
 }
 
 small {
-   font-size: 1.2rem;
+   font-size: 15px;
+   color: red;
    line-height: inherit;
 }
 
@@ -1854,6 +1855,8 @@ div.header_sticky{
 
 .header__social a {
    color: #FFFFFF;
+   font-family: 'Do Hyeon', sans-serif;
+   font-size: 30px;
 }
 
 .header__social li {
@@ -4091,7 +4094,7 @@ font-family: 'Do Hyeon', sans-serif;
 
 .comment__info cite {
 font-family: 'Do Hyeon', sans-serif;
-   font-size: 1.9rem;
+   font-size: 30px;
    line-height: 1.263;
    font-style: normal;
    color: #151515;
@@ -4108,6 +4111,7 @@ font-family: 'Do Hyeon', sans-serif;
 
 .comment__meta time {
    margin-right: 12px;
+   font-size: 20px;
 }
 
 .comment__meta .reply {

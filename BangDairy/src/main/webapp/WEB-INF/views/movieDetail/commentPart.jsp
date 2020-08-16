@@ -21,7 +21,7 @@
 							<div class="comment__content">
 								<div class="comment__info">
 									<cite>${comment.userId}</cite>
-									<c:if test="${comment.receipt == 1}"><div><span class="badge badge-pill badge-danger">영수증 인증!</span></div></c:if>
+									<c:if test="${comment.receipt == 1}"><div><span class="badge badge-pill badge-danger" style="background-color:red;">영수증 인증!</span></div></c:if>
 									<div class="comment__meta">
 										
 										<time class="comment__time"><fmt:formatDate value="${comment.commentRegDate }"  type="date" dateStyle="full" /></time>
