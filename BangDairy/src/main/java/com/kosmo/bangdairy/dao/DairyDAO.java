@@ -11,6 +11,8 @@ import com.kosmo.bangdairy.vo.MovieVO;
 public interface DairyDAO {
 	
 public List<DairyVO> showList(AccountFormVO vo);
+
+	public List<HashMap> mostlikeuser(AccountFormVO vo);
 	
 	public List<DairyVO> recentDairy(AccountFormVO vo);
 
@@ -22,23 +24,26 @@ public List<DairyVO> showList(AccountFormVO vo);
 	
 	public AccountFormVO getMyProfile(AccountFormVO vo);
 	
-	//--------------------------은주--------------------------
-	public List<MovieVO> recommendTitle(MovieVO mvo);	// 영화제목 검색 후 리스트 받아옴
+	//--------------------------��二�--------------------------
+	public List<MovieVO> recommendTitle(MovieVO mvo);	// �쁺�솕�젣紐� 寃��깋 �썑 由ъ뒪�듃 諛쏆븘�샂
 	
-	public int insertDiary(DairyVO dvo);	// 다이어리 작성 후 DB에 입력
+	public int insertDiary(DairyVO dvo);	// �떎�씠�뼱由� �옉�꽦 �썑 DB�뿉 �엯�젰
 	
-	public List<AccountFormVO> userInfo(AccountFormVO avo); // 유저정보 가져옴
+	public List<AccountFormVO> userInfo(AccountFormVO avo); // �쑀���젙蹂� 媛��졇�샂
 	
-	public int countDiaryByUser(AccountFormVO avo); // 다이어리 총 개수 COUNT
+	public int countDiaryByUser(AccountFormVO avo); // �떎�씠�뼱由� 珥� 媛쒖닔 COUNT
 	
-	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow);	// 다이어리 리스트 목록 가져옴
+	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow);	// �떎�씠�뼱由� 由ъ뒪�듃 紐⑸줉 媛��졇�샂
 
-	public List<HashMap> getDetailDiary(DairyVO dvo);	// 다이어리 상세정보 가져옴
+	public List<HashMap> getDetailDiary(DairyVO dvo);	// �떎�씠�뼱由� �긽�꽭�젙蹂� 媛��졇�샂
 	
-	public int deleteDiary(DairyVO dvo);	// 다이어리 삭제
+	public int deleteDiary(DairyVO dvo);	// �떎�씠�뼱由� �궘�젣
 	
-	public int updateDiary(DairyVO dvo);	// 다이어리 수정
+	public int updateDiary(DairyVO dvo);	// �떎�씠�뼱由� �닔�젙
 	
 	public int increateHits(DairyVO vo);
 	public int clickLikeHate(DairyUserVO vo);
+
+
+	
 }

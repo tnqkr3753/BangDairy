@@ -13,7 +13,7 @@
             this.set_titletext("Form_Work");
             if (Form == this.constructor)
             {
-                this._setFormPosition(570,520);
+                this._setFormPosition(1050,540);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -25,7 +25,7 @@
             obj = new Grid("Grid00","60","113","500","394",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("rename");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"196\"/><Column size=\"190\"/><Column size=\"93\"/></Columns><Rows><Row size=\"62\" band=\"head\"/><Row size=\"57\"/></Rows><Band id=\"head\"><Cell text=\"아이디\" border=\"1px none #cacaca, 1px solid #cacaca\"/><Cell col=\"1\" text=\"이메일\" border=\"1px none #cacaca, 1px solid #cacaca\"/><Cell col=\"2\" text=\"벤\" accessibilityrole=\"button\" expandshow=\"hide\" displaytype=\"normal\"/></Band><Band id=\"body\"><Cell text=\"bind:user_id\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:user_email\" background=\"#ffffff\"/><Cell col=\"2\" accessibilityrole=\"button\" displaytype=\"buttoncontrol\" text=\"벤\" background=\"#ffffff\" color=\"black\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"100\"/><Column size=\"80\"/><Column size=\"48\"/></Columns><Rows><Row size=\"40\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"user_id\"/><Cell col=\"1\" text=\"user_email\"/><Cell col=\"2\"/></Band><Band id=\"body\"><Cell text=\"bind:user_id\"/><Cell col=\"1\" text=\"bind:user_email\"/><Cell col=\"2\" displaytype=\"buttoncontrol\" text=\"밴\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","260","67","83","40",null,null,null,null,null,null,this);
@@ -45,7 +45,7 @@
 
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","Desktop_screen",570,520,this,function(p){});
+            obj = new Layout("default","Desktop_screen",1050,540,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -78,6 +78,7 @@
 
         this.Form_Work_onload = function(obj,e)
         {
+
          	 var id = "adminUserBanList";
               //var url = "strURL::adminUserBanList.jsp";
          	  var url ="http://115.91.88.227:60003/bangdairy/adminUserBanList";
@@ -87,7 +88,9 @@
               var callback = "received";
               this.transaction(id, url, reqDs, respDs, args, callback);
            this.received = function(id, code, message)
-         { }
+         {
+        	alert(code);
+         }
         };
 
 

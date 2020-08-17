@@ -139,7 +139,7 @@ public class IndexController {
 			}
 		}else { // 위시리스트에 영화가 없거나 배우가 없을 때
 			mvo = indexService.getMovieAsScore();
-			mv.addObject("title","평점 높은 영화"+ "<script type=\"text/javascript\">alert('여러 기능을 즐기고 싶으시다면 영화를 위시리스트에 등록해주세요!')</script>");
+			mv.addObject("title","평점 높은 영화");	
 			mv.addObject("list", mvo);
 		}
 		return mv;
@@ -167,8 +167,7 @@ public class IndexController {
 			
 			hash.put("genreId", gvo.getGenreId());
 			list = indexService.getMovieWithGenre(hash);
-			mv.addObject("title", indexService.getGenreTitle(hash).getGenreTitle()
-					+ "<script type=\"text/javascript\">alert('여러 기능을 즐기고 싶으시다면 영화의 평점을 등록해주세요!')</script>");
+			mv.addObject("title", indexService.getGenreTitle(hash).getGenreTitle());
 		}else {
 			mv.addObject("title", userId+"님이 보지 않으신 좋아하실만한 영화");
 		}

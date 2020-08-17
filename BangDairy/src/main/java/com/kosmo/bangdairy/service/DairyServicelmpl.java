@@ -28,6 +28,11 @@ public class DairyServicelmpl implements DairyService {
 	}
 	
 	@Override
+	public List<HashMap> mostlikeuser(AccountFormVO vo){
+		return dairyDAO.mostlikeuser(vo);
+	}
+	
+	@Override
 	public List<DairyVO> recentDairy(AccountFormVO vo){
 		return dairyDAO.recentDairy(vo);
 	}
@@ -51,25 +56,25 @@ public class DairyServicelmpl implements DairyService {
 	public AccountFormVO getMyProfile(AccountFormVO vo) {
 		return dairyDAO.getMyProfile(vo);
 	}
-	//--------------------------은주--------------------------
+	//--------------------------��二�--------------------------
 	@Override
-	public List<MovieVO> recommendTitle(MovieVO mvo) {	// 영화제목 검색 후 리스트 받아옴
+	public List<MovieVO> recommendTitle(MovieVO mvo) {	// �쁺�솕�젣紐� 寃��깋 �썑 由ъ뒪�듃 諛쏆븘�샂
 		return dairyDAO.recommendTitle(mvo);
 	}
 	@Override
-	public int insertDiary(DairyVO dvo) {	// 다이어리 작성 후 DB에 입력
+	public int insertDiary(DairyVO dvo) {	// �떎�씠�뼱由� �옉�꽦 �썑 DB�뿉 �엯�젰
 		return dairyDAO.insertDiary(dvo);
 	}
 
 	@Override
-	public List<AccountFormVO> userInfo(AccountFormVO avo) { // 유저정보 가져옴
+	public List<AccountFormVO> userInfo(AccountFormVO avo) { // �쑀���젙蹂� 媛��졇�샂
 		return dairyDAO.userInfo(avo);
 	}
 	
-	int totalDiaryCount;	// 총 다이어리 리스트 개수
+	int totalDiaryCount;	// 珥� �떎�씠�뼱由� 由ъ뒪�듃 媛쒖닔
 	
 	@Override
-	public int countDiaryByUser(AccountFormVO avo) { // 다이어리 총 개수 COUNT
+	public int countDiaryByUser(AccountFormVO avo) { // �떎�씠�뼱由� 珥� 媛쒖닔 COUNT
 		totalDiaryCount = dairyDAO.countDiaryByUser(avo);
 		pageTotalCount = totalDiaryCount/5;
 		
@@ -78,7 +83,7 @@ public class DairyServicelmpl implements DairyService {
 		return pageTotalCount;
 	}
 	
-	@Override	// 다이어리 리스트 목록 가져옴
+	@Override	// �떎�씠�뼱由� 由ъ뒪�듃 紐⑸줉 媛��졇�샂
 	public List<HashMap> getDairyList(AccountFormVO vo, int pNum) {
 		int firstRow = (pNum-1) * 5;
 		int endRow = 5;
@@ -86,19 +91,18 @@ public class DairyServicelmpl implements DairyService {
 		return dairyDAO.getDairyList(vo, firstRow, endRow);
 	}
 
-	@Override	// 다이어리 상세정보 가져옴
+	@Override	// �떎�씠�뼱由� �긽�꽭�젙蹂� 媛��졇�샂
 	public List<HashMap> getDetailDiary(DairyVO dvo) {
 		dairyDAO.increateHits(dvo);
 		return dairyDAO.getDetailDiary(dvo);
-		
 	}
 
-	@Override	// 다이어리 삭제
+	@Override	// �떎�씠�뼱由� �궘�젣
 	public int deleteDiary(DairyVO dvo) {
 		return dairyDAO.deleteDiary(dvo);
 	}
 
-	@Override	// 다이어리 수정
+	@Override	// �떎�씠�뼱由� �닔�젙
 	public int updateDiary(DairyVO dvo) {
 		return dairyDAO.updateDiary(dvo);
 	}
@@ -107,5 +111,6 @@ public class DairyServicelmpl implements DairyService {
 	public int clickLikeHate(DairyUserVO vo) {
 		return dairyDAO.clickLikeHate(vo);
 	}
+	
 	
 }

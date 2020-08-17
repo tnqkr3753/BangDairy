@@ -3,10 +3,20 @@
 
 <mapper namespace="DairyDAO">
 	
+	<!-- 내가 좋아요를 많이 누른 유저 -->
+		<select id="mostlikeuserr" parameterType="account" resultType="hashmap">
+		select * from diary_info,user_info where user_info.user_id = diary_info.user_id
+     	and diary_id = ( select diary_id from diary_Info where user_id=(select max(user_id) from 
+		(select diary_id  from diary_user where diary_like=1 and user_id='${userId}') 
+		as d, diary_info as i where
+		d.diary_id = i.diary_id) order by diary_hits limit 1)
+		</select>
+			
+	
 	<!-- 다이어리 정보 입력 -->
    <insert id="dairyInsert" parameterType="dairy">
       insert into diary_info (diary_hits, movie_id, user_id, diary_title, diary_content, viewing_together,viewing_location, viewing_date, diary_image)
-      values (0, "${movieId}", "${userId}", '${diaryTitle}','${diaryContent}','${viewingTogether}', '${viewingLocation}', '${viewingDate}', '${diaryImage}')
+      values (0, #{movieId}, #{userId}, #{diaryTitle},#{diaryContent},#{viewingTogether}, #{viewingLocation}, #{viewingDate}, #{diaryImage})
    </insert>
    
    <!-- 유저벌 다이어리 리스트 출력 -->

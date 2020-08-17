@@ -200,7 +200,6 @@
 
 			// DB에서 받아온 값과 사용자의 입력폼 영화 타이틀 비교
 			if ($("#recommendSelect option:selected").val() != $('#movieTitle').val()) {
-				alert("영화는 검색 후 선택해주세요");
 				return false;
 			}
 			

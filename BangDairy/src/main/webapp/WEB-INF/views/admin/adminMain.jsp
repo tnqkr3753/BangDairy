@@ -33,7 +33,7 @@
 							 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">관리</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								 <a class="dropdown-item drop-type" href="#" data-type="movie">영화 정보</a> <a class="dropdown-item drop-type" href="#" data-type="user">유저 정보</a> <a class="dropdown-item drop-type" href="#" data-type="diary">다이어리 정보</a>
-								<a class="dropdown-item drop-type" href="#" data-type="comment">코멘트 정보</a>
+								<a class="dropdown-item drop-type" href="#" data-type="comment">코멘트 정보</a><a class="dropdown-item drop-type" href="#" data-type="score">유저 평점 정보</a>
 								<div class="dropdown-divider">
 								</div><a class="dropdown-item ban-list" href="resources/nexa/adminUserBanList.jsp" data-type="ban">벤 목록</a> <a class="dropdown-item drop-type" href="#" data-type="qna">Q&A 목록</a><a class="dropdown-item drop-type" href="#" data-type="indie">인디영화 신청 목록 </a>
 							</div>
@@ -46,8 +46,8 @@
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 								 <a class="dropdown-item manage-a" href="#" data-a="movie">영화 통계</a> <a class="dropdown-item manage-a" href="#" data-a="review">리뷰 통계</a> <a class="dropdown-item manage-a" href="#" data-a="diary">다이어리 통계</a>
 								 <a class="dropdown-item manage-a" href="#" data-a="comment">코멘트 통계</a>
-								<div class="dropdown-divider">
-								</div>
+								<!-- <div class="dropdown-divider">
+								</div> -->
 							</div>
 						</li>
 					</ul>

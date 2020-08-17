@@ -19,21 +19,20 @@ public class LoggerAspect {
 	public Object controllerAspect(ProceedingJoinPoint jp) throws Throwable{
 		String type = jp.getSignature().getDeclaringTypeName(); // 해당 메소드의 클래스이름 반환
 		String name = "Controller \t";
-		
 		logger.info(name+type+"."+jp.getSignature().getName()+" , Param : "+Arrays.toString(jp.getArgs())); //jp.getSignature().getName()메소드 이름
 		return jp.proceed();
 	}
 	@Around("execution(* com.kosmo.bangdairy.service.*ServiceImpl.*(..))")
 	public Object serviceAspect(ProceedingJoinPoint jp) throws Throwable{
 		String type = jp.getSignature().getDeclaringTypeName(); // 해당 메소드의 클래스이름 반환
-		String name = "Controller \t";
+		String name = "Service \t";
 		logger.info(name+type+"."+jp.getSignature().getName()+" , Param : "+Arrays.toString(jp.getArgs())); //jp.getSignature().getName()메소드 이름
 		return jp.proceed();
 	}
 	@Around("execution(* com.kosmo.bangdairy.dao.*DAOImpl.*(..))")
 	public Object daoAspect(ProceedingJoinPoint jp) throws Throwable{
 		String type = jp.getSignature().getDeclaringTypeName(); // 해당 메소드의 클래스이름 반환
-		String name = "Controller \t";
+		String name = "DAO \t";
 		logger.info(name+type+"."+jp.getSignature().getName()+" , Param : "+Arrays.toString(jp.getArgs())); //jp.getSignature().getName()메소드 이름
 		return jp.proceed();
 	}

@@ -87,6 +87,11 @@ public class AdminServiceImpl implements AdminService {
 	public int deleteComment(CommentVO vo) {
 		return adminDAO.deleteComment(vo);
 	}
+
+	@Override
+	public List<HashMap> getUserScore(HashMap hash) {
+		return adminDAO.getUserScore(hash);
+	}
 	
 	
 }

@@ -11,6 +11,17 @@
 <!-- ========== script ============= -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+table {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+</style>
+
 </head>
 <body>
 	<div class="table-responsive">

@@ -24,7 +24,7 @@
 	                                    srcset="${vo.posterAddr } 1x" </c:if>
 	                                    <c:if test="${empty vo.posterAddr }">
 	                                    srcset="resources/images/thumbs/default_movie.png 1x" </c:if>
-	                                    alt="" onerror="resources/images/thumbs/default_movie.png" height = "320" width="220">
+	                                    alt="" onerror="resources/images/thumbs/default_movie.png" height = "250" width="250">
 	                    	</a>
                     	</div>
     
@@ -36,7 +36,7 @@
                             		<h1 class="entry__title"><a href="detail?movieId=${vo.movieId}"><p class=rr>${vo.movieTitle}</p></a></h1>
                             	</div>
                          		<div class="entry__date" style="background-color: #19191b">
-                               		<a href="#"><div style="font-size:20px;" align="right">${vo.viewingClass }</div></a>
+                               		<a href="#"><div style="font-size: 25px;" align="right">${vo.viewingClass }</div></a>
                             	</div>
                         		<div class="entry__excerpt" style="background-color: #19191b">
                         		</div>

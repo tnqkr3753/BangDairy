@@ -19,20 +19,20 @@
 			<input id='user_id' type="text" name="userId" required="" minlength="2" placeholder="아이디">
 		</div>
 			<div class="form-group">
-				<strong >패스워드&nbsp;<small id="passwdCheckResult" class="FilterResultPasswd hideResult"></small></strong>	
-				<input id="user_passwd" type="password" name="userPassword" required="">
+				<strong >비밀번호&nbsp;<small id="passwdCheckResult" class="FilterResultPasswd hideResult"></small></strong>	
+				<input id="user_passwd" type="password" name="userPassword" required="" placeholder="비밀번호">
 			</div>
 			
 			<div class="form-group">
-				<strong>패스워드-확인&nbsp;<small id="passwdCheckResult2" class="FilterResultPasswd2 hideResult"></small></strong>	
-				<input id="user_passwd2" type="password" required="">
+				<strong>비밀번호-확인&nbsp;<small id="passwdCheckResult2" class="FilterResultPasswd2 hideResult"></small></strong>	
+				<input id="user_passwd2" type="password" required="" placeholder="비밀번호 확인">
 				
 			</div>
 			
 			
  			<div id="userRegForm" class="form-group" >
- 					<strong>주민등록번호 ex)900101-1&nbsp;</strong>
-					<input maxlength="6" minlength="6" class="userReg" type="text" required="" placeholder="ex)900101">
+ 					<strong>주민등록번호 ex) 900101-1&nbsp;</strong>
+					<input maxlength="6" minlength="6" class="userReg" type="text" required="" placeholder="ex) 900101">
 					<span class="bar"> -</span>
 					<input maxlength="1" class="userRegB" type="text" required="" placeholder="ex) 1">
 						
@@ -42,11 +42,11 @@
 			<div  class="form-group" data-req="true">
 				<strong>e-mail&nbsp;* 인증 필수 
 				<small id="eMailCheckResult" class="FilterResultEmail hideResult"></small></strong>
-				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex)hong@naver.com">
+				<input id="user_email" type="text" name="userEmail" required="" placeholder="ex) hong@naver.com">
 			</div>
 			
 			<input id="onsubmit" class="function-btn" type="submit" value="회원가입">
-			<div class="seperator"><b>or</b></div>
+			<div class="seperator"><b>또는</b></div>
 			<input type="button" class="function-btn" id="account_cancel" value="취소"/>
 			
 		</form>

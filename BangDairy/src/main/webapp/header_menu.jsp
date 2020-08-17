@@ -15,7 +15,7 @@
 
                 <div class="header__logo">
                     <a class="logo" href="index.jsp">
-                        <img src="/bangdairy/resources/images/logoMovie.png" alt="Homepage" >
+                        <img src="/bangdairy/resources/images/logoMovie.png" alt="Homepage" style="margin:20px;">
                     </a>
                 </div> <!-- end header__logo -->
 
@@ -25,19 +25,23 @@
              
                 <ul class="header__social">
                    <%if (userId==null){ %>
+                    
+                    
                     <li>
-                        <a id="show-login"><i class="fa fa-sign-in" id="pa" aria-hidden="true"></i>로그인</a>
+                        <a id="show-login"><i class="fa fa-user" id="pa" aria-hidden="true"></i>&nbsp;로그인</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">회원가입</i></a>
+                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">&nbsp;회원가입</i></a>
                     </li>
+                    
+                    
                     
                     <%}else{ %><!-- end If -->
                     <ul class="header__nav">
                        <li class="has-children">
                        <a href='#'><i id='mark-user-id' class="f   a" aria-hidden="true"><%=userId%>님</i></a>
                           <ul class="sub-menu">
-                             <li><a href="myPage">마이 페이지</a></li>
+                             <li><a href="myPage">마이페이지</a></li>
                              <li><a id="logout-btn" href="#">로그아웃</a></li>
                           </ul>
                        </li>
@@ -85,8 +89,8 @@
                      <ul class="sub-menu">
 
 
-                        <li><a href="indieList.do">인디 영화</a></li>
-                        <li><a href="Independent.do">신청</a></li>
+                        <li><a href="indieList">인디 영화</a></li>
+                        <li><a href="Independent">신청</a></li>
 
                      </ul></li> <!-- end header__nav --> <a href="#0" title="Close Menu"
                      class="header__overlay-close close-mobile-menu">Close</a></nav> <!-- end header__nav-wrap -->
