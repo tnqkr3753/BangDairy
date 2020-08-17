@@ -103,7 +103,7 @@
         </div>
         <%@ include file="/account_form.jsp"%>
 		<%@ include file="/Sign_In.jsp"%>
-		<script type="text/javascript" src="/bangdairy/resources/js/account_form.js"></script
+		<script type="text/javascript" src="/bangdairy/resources/js/account_form.js"></script>
 </body>
 </html>>
 		<script type="text/javascript" src="/bangdairy/resources/js/Sign_in.js"></script>

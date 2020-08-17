@@ -1,2 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/kosmo/bangdairy/controller/DairyController.java=UTF-8
+encoding//src/main/java/com/kosmo/bangdairy/dao/DairyDAO.java=UTF-8
+encoding//src/main/java/com/kosmo/bangdairy/dao/DairyDAOlmpl.java=UTF-8
+encoding//src/main/java/com/kosmo/bangdairy/service/DairyService.java=UTF-8
+encoding//src/main/java/com/kosmo/bangdairy/service/DairyServicelmpl.java=UTF-8
+encoding//src/main/webapp/resources/css/dairycss/maindairy.css=UTF-8
 encoding//src/main/webapp/resources/css/main.css=UTF-8
+encoding/<project>=UTF-8

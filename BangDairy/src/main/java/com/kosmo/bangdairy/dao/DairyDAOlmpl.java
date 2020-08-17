@@ -23,6 +23,11 @@ public class DairyDAOlmpl implements DairyDAO{
 	}
 	
 	@Override
+	public List<HashMap> mostlikeuser(AccountFormVO vo){
+		return sqlSession.selectList("DairyDAO.mostlikeuserr",vo);
+	}
+	
+	@Override
 	public List<DairyVO> recentDairy(AccountFormVO vo) {
 		return sqlSession.selectList("DairyDAO.recentdairy",vo);
 	}
@@ -47,28 +52,28 @@ public class DairyDAOlmpl implements DairyDAO{
 		return sqlSession.selectOne("DairyDAO.getMyProfile",vo);
 	}
 	
-	//--------------------------은주--------------------------
+	//--------------------------��二�--------------------------
 	@Override
-	public List<MovieVO> recommendTitle(MovieVO mvo) {	// 영화제목 검색 후 리스트 받아옴
+	public List<MovieVO> recommendTitle(MovieVO mvo) {	// �쁺�솕�젣紐� 寃��깋 �썑 由ъ뒪�듃 諛쏆븘�샂
 		return sqlSession.selectList("DairyDAO.recommendTitle", mvo);
 	}
 	
 	@Override
-	public int insertDiary(DairyVO dvo) {	// 다이어리 작성 후 DB에 입력
+	public int insertDiary(DairyVO dvo) {	// �떎�씠�뼱由� �옉�꽦 �썑 DB�뿉 �엯�젰
 		return sqlSession.insert("DairyDAO.insertDiary", dvo);
 	}
 	
 	@Override
-	public List<AccountFormVO> userInfo(AccountFormVO avo) { // 유저정보 가져옴
+	public List<AccountFormVO> userInfo(AccountFormVO avo) { // �쑀���젙蹂� 媛��졇�샂
 		return sqlSession.selectList("DairyDAO.userInfo", avo);
 	}
 	
 	@Override
-	public int countDiaryByUser(AccountFormVO avo) { // 다이어리 총 개수 COUNT
+	public int countDiaryByUser(AccountFormVO avo) { // �떎�씠�뼱由� 珥� 媛쒖닔 COUNT
 		return sqlSession.selectOne("DairyDAO.countDiaryByUser", avo);
 	}
 	
-	@Override	// 다이어리 리스트 목록 가져옴
+	@Override	// �떎�씠�뼱由� 由ъ뒪�듃 紐⑸줉 媛��졇�샂
 	public List<HashMap> getDairyList(AccountFormVO vo, int firstRow, int endRow) {
 		HashMap m = new HashMap();
 		
@@ -83,17 +88,17 @@ public class DairyDAOlmpl implements DairyDAO{
 	}
 
 	@Override
-	public List<HashMap> getDetailDiary(DairyVO dvo) {	// 다이어리 상세정보 가져옴
+	public List<HashMap> getDetailDiary(DairyVO dvo) {	// �떎�씠�뼱由� �긽�꽭�젙蹂� 媛��졇�샂
 		return sqlSession.selectList("DairyDAO.getDetailDiary", dvo);
 	}
 
 	@Override
-	public int deleteDiary(DairyVO dvo) {	// 다이어리 삭제
+	public int deleteDiary(DairyVO dvo) {	// �떎�씠�뼱由� �궘�젣
 		return sqlSession.delete("DairyDAO.deleteDiary", dvo);
 	}
 
 	@Override
-	public int updateDiary(DairyVO dvo) {	// 다이어리 수정
+	public int updateDiary(DairyVO dvo) {	// �떎�씠�뼱由� �닔�젙
 		return sqlSession.update("DairyDAO.updateUserInfo", dvo);
 	}
 
@@ -106,6 +111,8 @@ public class DairyDAOlmpl implements DairyDAO{
 	public int clickLikeHate(DairyUserVO vo) {
 		return sqlSession.insert("DairyDAO.clickLikeHate",vo);
 	}
+
+
 	
 	
 }
