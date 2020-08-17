@@ -18,13 +18,8 @@ $(function(){
 			//dataType : "html", 
 			 async: false,
 			error : function(request,status,error) { // 통신 실패시
-
-			
 			},
 			success : function(data) { // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-		
-					alert("통신성공")
-
 			}
 			
 		});
@@ -43,9 +38,6 @@ $(function(){
 			
 			},
 			success : function(data) { // Ajax 통신에 성공했을 때 호출될 이벤트 핸들러
-			
-					alert("통신성공")
-				
 			}
 			
 		});

@@ -129,7 +129,7 @@
             </c:forEach> 
         </table>   
    </div>
-	 </br> </br> </br>
+	 <br/> <br/> <br/>
    <div class="s-content__header-title" style="text-align: center; font-size: 60px;">
   
   <img style="height: 60px; width: auto;" src="resources/images/diary/thismonthdiary2.PNG">
@@ -137,7 +137,6 @@
    <img style="height: 60px; width: auto;" src="resources/images/diary/thismonthdiary2.PNG">
    </div>
    
-	</div>
 	<div class = "mydairy">
 	
 		<div class="left-dairy-maintab">
@@ -151,7 +150,7 @@
 				<input name="userId" type="hidden" value="${top.user_id }">
           		<input name="diaryId" type="hidden" value="${top.diary_id }">
           		
-			<div class="container text-center">
+			<div class="container text-center monthly-diary">
 				
 				<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-12 team-box">
@@ -166,7 +165,9 @@
 					</h4>								
 					
 						
-						<img src="${top.diary_image }" style="">
+						<img src="resources/upload/diary/${top.diary_image }" 
+						onerror='this.src="resources/images/defaultImage.png"'
+						style="">
 						<h5 style="padding-left: 80%"> 조회수 : ${top.diary_hits }</h5>
 						<h3>${top.diary_content }</h3>
 				
@@ -178,12 +179,10 @@
 				
 			</div>
 			
-			</br>
-			
-			</br></br></br></br>
-			</br></br><</br></br><div style="padding-left:95%">
-                   <button type="submit" class="btn btn-success btn-circle btn-circle-sm m-1"><i class='fa fa-mail-forward'></i></button> 
-            	</div></br>
+			<br/> <br/> <br/>
+			<br/><br/><br/><br/><div style="padding-left:95%">
+                   <!-- <button type="" class="btn btn-success btn-circle btn-circle-sm m-1"><i class='fa fa-mail-forward'></i></button> --> 
+            	</div><br/>
 			</form>
 			</c:forEach>
 				
@@ -225,18 +224,18 @@
 			</c:forEach>
 			<div class="sub-comment"></div>
 			
-			<div class="comment-box box">
+<!-- 			<div class="comment-box box">
 				
 				<div style="clear:both;"></div>
 				<div class="comment-btn">
 					<input type="textarea" class="text" rows="10" cols="30" placeholder="Add a comment...">
 				</div>
-			</div>
+			</div> -->
 		</div>
-		<div class="add-comment">
-			<div class="box">
+<%-- 		<div class="add-comment">
+			
 			<c:forEach items="${userInfo}" var="userInfo">
-				
+				<div class="box">
 					<c:choose>
 						<c:when test="${!empty userInfo.userProfile}">
 						<img src="resources/upload/userProfile/${userInfo.userProfile}" alt=""></c:when>
@@ -253,12 +252,11 @@
 			<div class="add-comment-text-btn">
 				<button class="post-comment-btn">Post Comment</button>
 				<button class="cancel-btn">Cancel</button>
-			</div>
+			</div> --%>
 			
 		</div>
 	
          
-   </div>
    </article>
    </article>
 </section>
