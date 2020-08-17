@@ -31,7 +31,7 @@
                         <a id="show-login"><i class="fa fa-user" id="pa" aria-hidden="true"></i>&nbsp;로그인</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true">&nbsp;회원가입</i></a>
+                        <a href="#"><i class="fa fa-address-book-o" aria-hidden="true"></i>&nbsp;회원가입</i></a>
                     </li>
                     
                     
