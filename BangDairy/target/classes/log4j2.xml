@@ -30,7 +30,7 @@
 			<DefaultRolloverStrategy max="500" fileIndex="min" /><!-- 롤링 파일 500개 까지 생성 -->
 		</RollingFile>
 		
-		<RollingFile name="loggingInterceptRolling" fileName="D:/log/userlogs/${logInterceptor}.log" filePattern="D:/log/userlogs/${logInterceptor}_%d{yyyy-MM-dd}_%i.log">
+		<RollingFile name="loggingInterceptRolling" fileName="D:/log/userlogs/${logInterceptor}.log" filePattern="D:/log/userlogs/${logInterceptor}_%d{yyyy-MM-dd}_%i.csv">
 			<PatternLayout pattern="%d{YYYY:MM:dd : HH:mm:ss},%-5level,%msg%n" />
 			<Policies>
 			<SizeBasedTriggeringPolicy size="10MB" /> <!-- 10MB 용량이 초과시 DefaultRolloverStrategy 정책만큼 넘버링 -->      

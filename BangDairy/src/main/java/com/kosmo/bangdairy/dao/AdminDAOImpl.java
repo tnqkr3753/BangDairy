@@ -73,6 +73,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public int deleteComment(CommentVO vo) {
 		return sqlSession.delete("AdminDAO.deleteComment",vo);
 	}
+	@Override
+	public List<HashMap> getUserScore(HashMap hash) {
+		return sqlSession.selectList("AdminDAO.getUserScore", hash);
+	}
 	
 	
 	

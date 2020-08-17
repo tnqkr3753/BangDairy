@@ -24,4 +24,5 @@ public interface AdminService {
 	public int allowUser(AccountFormVO vo);
 	public int banUser(AccountFormVO vo);
 	public int deleteComment(CommentVO vo);
+	public List<HashMap> getUserScore(HashMap hash);
 }

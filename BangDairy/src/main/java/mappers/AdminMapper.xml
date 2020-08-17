@@ -88,5 +88,19 @@
 	DELETE FROM movie_comment WHERE
 	movie_id=#{movieId} AND user_id  = #{userId}
 </delete>
+<select id="getUserScore" parameterType="hashmap" resultType="hashmap">
+	SELECT ms.*,a.movie_title,a.genre_title FROM movie_score ms INNER JOIN 
+	(SELECT  m.movie_id,m.movie_title,group_concat(g.genre_title) as genre_title
+	 FROM movie_info m INNER JOIN movie_genre mg 
+	ON mg.movie_id = m.movie_id INNER JOIN genre_info g
+	ON mg.genre_id = g.genre_id 
+	GROUP BY movie_id) a
+	ON ms.movie_id=a.movie_id 
+	<if test="searchWord != null">
+	WHERE replace(ms.user_id,' ','') like "${searchWord}%"
+	</if>
+	ORDER BY ms.user_id desc
+	LIMIT ${page}
+</select>
 	
 </mapper>

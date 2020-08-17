@@ -55,7 +55,7 @@
 			</c:if>
 			
 			<!-- 영화 제목 -->
-			<span><br/>[${diaryDetailList.mtitle}]</span>
+			<span><br/>[${diaryDetailList.movie_title}]</span>
 
 			<!-- 다이어리 내용 -->
 			<pre><br/>${diaryDetailList.diary_content}</pre>

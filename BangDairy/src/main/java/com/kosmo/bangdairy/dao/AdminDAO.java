@@ -24,4 +24,5 @@ public interface AdminDAO {
 	public int banUser(AccountFormVO vo);
 	public int allowUser(AccountFormVO vo);
 	public int deleteComment(CommentVO vo);
+	public List<HashMap> getUserScore(HashMap hash);
 }

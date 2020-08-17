@@ -89,8 +89,8 @@
                      <ul class="sub-menu">
 
 
-                        <li><a href="indieList.do">인디 영화</a></li>
-                        <li><a href="Independent.do">신청</a></li>
+                        <li><a href="indieList">인디 영화</a></li>
+                        <li><a href="Independent">신청</a></li>
 
                      </ul></li> <!-- end header__nav --> <a href="#0" title="Close Menu"
                      class="header__overlay-close close-mobile-menu">Close</a></nav> <!-- end header__nav-wrap -->

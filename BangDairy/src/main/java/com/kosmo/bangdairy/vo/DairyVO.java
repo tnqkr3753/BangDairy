@@ -122,14 +122,13 @@ public class DairyVO {
 		String path = "C:\\Users\\KOSMO_25\\git\\BangDairy\\BangDairy\\src\\main\\webapp\\resources\\upload\\diary\\";
 
 		if(!file.isEmpty()) {	// file이 비어있지 않으면
-			this.diaryImage = file.getOriginalFilename();	// file 이름
+			this.diaryImage = diaryId+"_"+file.getOriginalFilename();	// file 이름
 			this.diaryImageSize = file.getSize();	// file 크기
 			
 			File f = new File(path + diaryImage);	// 파일로 저장
 			String outputImagePath = path + diaryImage;	// 전체 경로
 			
 			try {
-				// TODO 수정필요
 				file.transferTo(f);
 			}catch (Exception e) {
 				LoggerAspect.logger.error("파일 전송 에러 : " + e.getMessage());
