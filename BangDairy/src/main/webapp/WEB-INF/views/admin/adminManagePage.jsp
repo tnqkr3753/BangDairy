@@ -7,5 +7,5 @@
 <div class="row">
 </div>
 <div class="col-md-12 justify-content-center display-as-table">
-	<iframe class="vh-100" id="kibana-show" src="${src }" style="height: 1400px;width: 100%"></iframe>
+	<iframe class="vh-100" id="kibana-show" src="${src }" style="margin-top: 50px;height: 1400px;width: 100%"></iframe>
 </div>
