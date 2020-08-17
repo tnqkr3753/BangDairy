@@ -76,22 +76,11 @@
          }
         };
 
-        this.Edit00_onchanged = function(obj,e)
-        {
-
-        };
-
-        this.Static00_onclick = function(obj,e)
-        {
-
-        };
-
-
         this.Form_Work_onload = function(obj,e)
         {
          	 var id = "adminUserBanList";
               //var url = "strURL::adminUserBanList.jsp";
-         	  var url ="http://192.168.0.22:8080/bangdairy/adminUserBanList";
+         	  var url ="http://115.91.88.227:60003/bangdairy/adminUserBanList";
               var reqDs = "";
               var respDs = "rename=rename";
               var args = "";
